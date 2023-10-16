@@ -70,10 +70,9 @@
                 android:hint="아이디"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/SignUp_btn_DuplicateCheck_ID"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.7" />
+                app:layout_constraintWidth_percent="1" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/SignUp_btn_Id_exit"
@@ -82,19 +81,6 @@
                 android:src="@drawable/ic_exit_button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/SignUp_etxt_ID"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/SignUp_btn_DuplicateCheck_ID"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="15dp"
-                android:background="@drawable/signup_btn_kit"
-                android:text="중복확인"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent="0.8"
-                app:layout_constraintStart_toEndOf="@+id/SignUp_etxt_ID"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -212,15 +198,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="비밀번호가 일치하지 않습니다."
-            android:textColor="#FF4C4C"
-            android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/SignUp_const_PwBox_check"
-            app:layout_constraintTop_toBottomOf="@+id/SignUp_const_PwBox_check" />
+
 
         <!--        닉네임 확인-->
 
@@ -250,13 +228,12 @@
                 android:id="@+id/SignUp_etxt_NickName"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:hint="닉네임을 입력하세요"
+                android:hint="12자 이내의 닉네임을 입력해주세요."
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/SignUp_btn_DuplicateCheck_NickName"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.7" />
+                app:layout_constraintWidth_percent="1" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/SignUp_btn_NickName_exit"
@@ -267,31 +244,10 @@
                 app:layout_constraintEnd_toEndOf="@+id/SignUp_etxt_NickName"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/SignUp_btn_DuplicateCheck_NickName"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="15dp"
-                android:background="@drawable/signup_btn_kit"
-                android:text="중복확인"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent="0.8"
-                app:layout_constraintStart_toEndOf="@+id/SignUp_etxt_NickName"
-                app:layout_constraintTop_toTopOf="parent" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이미 존재하는 닉네임 입니다."
-            android:textColor="#FF4C4C"
-            android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/SignUp_const_NickName_Box"
-            app:layout_constraintTop_toBottomOf="@+id/SignUp_const_NickName_Box" />
 
 
         <!--        나이-->
@@ -307,15 +263,6 @@
             app:layout_constraintBottom_toTopOf="@+id/SignUp_etxt_Age"
             app:layout_constraintStart_toStartOf="@+id/SignUp_etxt_Age" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1~200까지의 숫자만 입력해 주세요."
-            android:textColor="#FF4C4C"
-            android:textSize="10sp"
-            app:layout_constraintStart_toStartOf="@+id/SignUp_etxt_Age"
-            app:layout_constraintTop_toBottomOf="@+id/SignUp_etxt_Age" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/SignUp_etxt_Age"
@@ -324,7 +271,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="24dp"
-            android:hint="나이를 입력해 주세요."
+            android:hint="1~200까지의 숫자만 입력해 주세요."
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
