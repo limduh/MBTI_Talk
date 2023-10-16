@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "536780266072",
+    "firebase_url": "https://test-3edab-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "test-3edab",
+    "storage_bucket": "test-3edab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536780266072:android:939fe3e9843e32b451c82d",
+        "android_client_info": {
+          "package_name": "com.example.mbti_talk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKxU-ZgTceed1mdn-XsVujgrqQJTxqvH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536780266072:android:764fa86352ca20a251c82d",
+        "android_client_info": {
+          "package_name": "com.example.mbti_test_10_15"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKxU-ZgTceed1mdn-XsVujgrqQJTxqvH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536780266072:android:518c830255a505aa51c82d",
+        "android_client_info": {
+          "package_name": "com.example.test_custom_authentication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKxU-ZgTceed1mdn-XsVujgrqQJTxqvH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
