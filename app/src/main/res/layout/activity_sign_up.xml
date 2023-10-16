@@ -194,7 +194,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/SignUp_etxt_Pw_check"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
+<!--10.16일 2시8분-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
