@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 
 
-
+//ㅅㅅㅅㅅ
 class Porfile : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var binding: ActivityProfileBinding
