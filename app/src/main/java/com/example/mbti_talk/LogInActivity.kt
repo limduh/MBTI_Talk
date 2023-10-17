@@ -2,11 +2,8 @@ package com.example.mbti_talk
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract.Profile
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import com.example.mbti_talk.databinding.ActivityLogInBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -58,7 +55,7 @@ class LogInActivity : AppCompatActivity() {
                         // 로그인 성공 토스팅
                         Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
                         // 메인 페이지 이동
-                        val intent = Intent(this, Porfile::class.java)
+                        val intent = Intent(this, Profile::class.java)
                         startActivity(intent)
                         finish() // 로그인 화면 종료
                     } else {
