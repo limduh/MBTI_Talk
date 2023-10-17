@@ -10,7 +10,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class Porfile : AppCompatActivity() {
+class Profile : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var binding: ActivityProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -35,11 +35,11 @@ class Porfile : AppCompatActivity() {
                 if (snapshot.exists()) {
                     val userData = snapshot.getValue(UserData::class.java)
                     if (userData != null) {
-                        binding.ProgileEmail.text = "${userData.user_email}"
-                        binding.ProgileUid.text = "${userData.uid}"
-                        binding.ProgileNickname.text = "${userData.user_nickName}"
-                        binding.ProgileAge.text = "${userData.user_age}"
-                        binding.ProgileGender.text = "${userData.gender}"
+                        binding.ProfileEmail.text = "${userData.user_email}"
+                        binding.ProfileUid.text = "${userData.uid}"
+                        binding.ProfileNickname.text = "${userData.user_nickName}"
+                        binding.ProfileAge.text = "${userData.user_age}"
+                        binding.ProfileGender.text = "${userData.gender}"
                     }
                 }
             }

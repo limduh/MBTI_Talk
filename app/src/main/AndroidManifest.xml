@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MBTI_Talk"
         tools:targetApi="31">
         <activity
-            android:name=".Porfile"
+            android:name=".Profile"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
