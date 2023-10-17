@@ -21,6 +21,7 @@ class Porfile : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         val userId = firebaseAuth.currentUser?.uid
+        //여기까지
 
 
         }
