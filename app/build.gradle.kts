@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.mbti_talk"
-    compileSdk = 34
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.example.mbti_talk"
