@@ -19,12 +19,15 @@ class Porfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //FB초기화
+        firebaseAuth = FirebaseAuth.getInstance()
+        //로그인한 유저의 UID
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
             val currentUserId = currentUser.uid
 
-        firebaseAuth = FirebaseAuth.getInstance()
 
+            //DB에서 현재 사용자의 데이터 가져오기
         val usersReference = FirebaseDatabase.getInstance().getReference("Users")
         usersReference.child(currentUserId).addListenerForSingleValueEvent(object :
             ValueEventListener {
@@ -40,7 +43,6 @@ class Porfile : AppCompatActivity() {
                     }
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 // 데이터 가져오기 실패 시 처리
             }
