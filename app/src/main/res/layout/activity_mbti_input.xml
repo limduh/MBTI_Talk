@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/Mbti_txt_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="내 MBTI 입력하기"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/Mbti_V_hline"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/login_hline_kit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Mbti_txt_title" />
+
+    <TextView
+        android:id="@+id/Mbti_txt_explanation1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="MBTI 유형 선택"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Mbti_V_hline" />
+
+    <TextView
+        android:id="@+id/Mbti_txt_explanation2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="회원님의 MBTI 유형을 선택해 주세요. \n 회원님과 잘맞는 유형의 친구를 추천해 드립니다."
+        android:textSize="13sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Mbti_txt_explanation1" />
+
+    <TextView
+        android:id="@+id/Mbti_txt_explanation3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="회원님의 MBTI 유형"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Mbti_txt_explanation2" />
+
+    <TextView
+        android:id="@+id/Mbti_txt_explanation4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="빈 칸을 클릭해 주세요 :)"
+        android:textSize="13sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/Mbti_box"
+        app:layout_constraintTop_toBottomOf="@+id/Mbti_txt_explanation3" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Mbti_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Mbti_txt_explanation4">
+
+        <EditText
+            android:id="@+id/Mbti_txt_box1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/mbti_search_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/Mbti_txt_box2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/mbti_search_btn"
+            app:layout_constraintStart_toEndOf="@+id/Mbti_txt_box1"
+            app:layout_constraintTop_toTopOf="@+id/Mbti_txt_box1" />
+
+        <EditText
+            android:id="@+id/Mbti_txt_box3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/mbti_search_btn"
+            app:layout_constraintStart_toEndOf="@+id/Mbti_txt_box2"
+            app:layout_constraintTop_toTopOf="@+id/Mbti_txt_box1" />
+
+        <EditText
+            android:id="@+id/Mbti_txt_box4"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/mbti_search_btn"
+            app:layout_constraintStart_toEndOf="@+id/Mbti_txt_box3"
+            app:layout_constraintTop_toTopOf="@+id/Mbti_txt_box1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/Mbti_txt_explanatory_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="세상의 소금형 \n \n 한번 시작한 일은 끝까지 해내는 사람들"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Mbti_box" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/Login_btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/login_btn_kit"
+        android:text="MBTI 톡 시작하기"
+        android:textSize="17sp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
