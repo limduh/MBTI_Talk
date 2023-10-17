@@ -32,6 +32,8 @@ class SignUpActivity : AppCompatActivity() {
         // FirebaseAuth, Realtime DB 초기화
         firebaseAuth = FirebaseAuth.getInstance()
         val database = FirebaseDatabase.getInstance().getReference("Users")
+        val btnBack = binding.SignUpBtnBack
+
 
         binding.SignUpBtnSignUp.setOnClickListener {
             // 유저가 입력한 회원가입 정보 가져오기

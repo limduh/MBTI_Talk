@@ -21,6 +21,7 @@ class LogInActivity : AppCompatActivity() {
 //        val etxtId = binding.LoginEtxtId
 //        val etxtPassword = binding.LoginEtxtPassword
         val btnLogin = binding.LoginBtnLogin
+        val btnSignUp = binding.loginTxtSignUp
         firebaseAuth = FirebaseAuth.getInstance()
         val etxtId="test1@naver.com"
         val password="sdjkdj"
@@ -35,6 +36,10 @@ class LogInActivity : AppCompatActivity() {
 //            } else {
                 resultLogin(etxtId, password)
             }
+        btnSignUp.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+        }
         }
 //    }
 
