@@ -41,11 +41,11 @@ class SignUpActivity : AppCompatActivity() {
 //            val SignupActivity_age = binding.SignUpEtxtAge.text.toString().toInt()
 //            val SignupActivity_nickName = binding.SignUpEtxtNickName.text.toString()
 
-            val SignupActivity_id = "aaaan@naver.com"
+            val SignupActivity_id = "test2@naver.com"
             val SignupActivity_pass = "sdjkdj"
             val SignupActivity_confirmPass = "sdjkdj"
             val SignupActivity_age = 23
-            val SignupActivity_nickName = "뷰린"
+            val SignupActivity_nickName = "실험"
 
             firebaseAuth?.createUserWithEmailAndPassword(SignupActivity_id, SignupActivity_pass)
                 ?.addOnCompleteListener(this) { task ->
@@ -54,8 +54,7 @@ class SignUpActivity : AppCompatActivity() {
                             this, "계정 생성 완료.",
                             Toast.LENGTH_SHORT
                         ).show()
-                        val firebaseUser = firebaseAuth.currentUser
-                        val userId = firebaseUser?.uid
+                        val userId = firebaseAuth.currentUser?.uid
                         if (userId != null) {
 
                             val user = UserData(

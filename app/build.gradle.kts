@@ -42,6 +42,7 @@ android {
     // Android 4.0 ~
     buildFeatures{
         viewBinding = true
+        dataBinding = true
     }
 }
 
