@@ -304,48 +304,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/SignUp_btn_Woman"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_button_gender_on"
-            android:tint="#969696"
+        <RadioButton
+            android:id="@+id/SignUp_radiobtn_female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="여자"
             app:layout_constraintStart_toStartOf="@+id/appCompatTextView7"
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView7" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView5"
+        <RadioButton
+            android:id="@+id/SignUp_radiobtn_male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:text="여성"
-            app:layout_constraintBottom_toBottomOf="@+id/SignUp_btn_Woman"
-            app:layout_constraintStart_toEndOf="@+id/SignUp_btn_Woman"
-            app:layout_constraintTop_toTopOf="@+id/SignUp_btn_Woman" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/SignUp_btn_Man"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="32dp"
-            android:src="@drawable/ic_button_gender_off"
-            android:tint="#969696"
-            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView5"
-            app:layout_constraintStart_toEndOf="@+id/appCompatTextView5"
-            app:layout_constraintTop_toTopOf="@+id/appCompatTextView5" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:text="남성"
-            app:layout_constraintBottom_toBottomOf="@+id/SignUp_btn_Man"
-            app:layout_constraintStart_toEndOf="@+id/SignUp_btn_Man"
-            app:layout_constraintTop_toTopOf="@+id/SignUp_btn_Man" />
-
+            android:text="남자"
+            android:layout_marginStart="100dp"
+            app:layout_constraintStart_toEndOf="@+id/SignUp_radiobtn_female"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView7" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
