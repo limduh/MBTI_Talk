@@ -22,7 +22,7 @@ class LogInActivity : AppCompatActivity() {
 //        val etxtPassword = binding.LoginEtxtPassword
         val btnLogin = binding.LoginBtnLogin
         firebaseAuth = FirebaseAuth.getInstance()
-        val etxtId="test2@naver.com"
+        val etxtId="test1@naver.com"
         val password="sdjkdj"
 
         btnLogin.setOnClickListener {
