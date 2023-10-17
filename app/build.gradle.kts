@@ -67,4 +67,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
     implementation ("com.github.qamarelsafadi:CurvedBottomNavigation:0.1.3")
 
+    // design round image view
+    implementation("com.makeramen:roundedimageview:2.3.0")
+
 }

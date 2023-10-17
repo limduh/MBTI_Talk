@@ -12,10 +12,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
             android:text="프로필"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -23,14 +24,93 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="유저번호"
-            android:textSize="10sp"
+            android:layout_marginTop="16dp"
+            android:text="유저번호 :"
+            android:textColor="@color/gray"
+            android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor=""
+            app:layout_constraintStart_toStartOf="@+id/appCompatTextView2"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView2" />
 
-            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/Profile_txt_uid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="5daf5aefad5faef"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView4"
+            app:layout_constraintStart_toEndOf="@+id/appCompatTextView4"
+            app:layout_constraintTop_toTopOf="@+id/appCompatTextView4" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/Profile_btn_Modify"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_pen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="아이디 : "
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/appCompatTextView4"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView4" />
+
+        <!--        아이디는 이메일 주소임-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/Profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="tedsfdfd@adfdfads.com"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView5"
+            app:layout_constraintStart_toEndOf="@+id/appCompatTextView5"
+            app:layout_constraintTop_toTopOf="@+id/appCompatTextView5" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="닉네임 : "
+            android:textColor="@color/gray"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/appCompatTextView5"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView5" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/Profile_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="닉네임 내용"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView6"
+            app:layout_constraintStart_toEndOf="@+id/appCompatTextView6"
+            app:layout_constraintTop_toTopOf="@+id/appCompatTextView6" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/profile_image_circle_kit"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_profiletest"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Profile_btn_Modify" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 <!--    <TextView-->
@@ -45,42 +125,7 @@
 <!--        app:layout_constraintStart_toEndOf="@+id/textView10"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/Progile_uid" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/Progile_email"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginTop="97dp"-->
-<!--        android:layout_marginEnd="12dp"-->
-<!--        android:layout_marginBottom="11dp"-->
-<!--        android:text="TextView"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/Progile_age"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textView8"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/Progile_uid"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginEnd="35dp"-->
-<!--        android:layout_marginBottom="14dp"-->
-<!--        android:text="TextView"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/Progile_gender"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textView11"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/Progile_nickname" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/Progile_nickname"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:layout_marginBottom="9dp"-->
-<!--        android:text="TextView"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/Progile_uid"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/textView12"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/Progile_age" />-->
 
 <!--    <TextView-->
 <!--        android:id="@+id/Progile_age"-->
@@ -94,79 +139,7 @@
 <!--        app:layout_constraintStart_toEndOf="@+id/textView13"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/Progile_email" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView8"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:layout_marginTop="97dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        android:layout_marginBottom="14dp"-->
-<!--        android:gravity="center"-->
-<!--        android:text="E-mail"-->
-<!--        android:textSize="20dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/textView13"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/Progile_email"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView10"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:layout_marginEnd="19dp"-->
-<!--        android:layout_marginBottom="353dp"-->
-<!--        android:gravity="center"-->
-<!--        android:text="성별"-->
-<!--        android:textSize="20dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/Progile_gender"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView11" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView11"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:layout_marginBottom="14dp"-->
-<!--        android:gravity="center"-->
-<!--        android:text="UID"-->
-<!--        android:textSize="20dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/textView10"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/Progile_uid"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView12" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView12"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:layout_marginEnd="18dp"-->
-<!--        android:layout_marginBottom="19dp"-->
-<!--        android:gravity="center"-->
-<!--        android:text="닉네임"-->
-<!--        android:textSize="20dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/textView11"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/Progile_nickname"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView13" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView13"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:layout_marginEnd="18dp"-->
-<!--        android:layout_marginBottom="8dp"-->
-<!--        android:gravity="center"-->
-<!--        android:text="나이"-->
-<!--        android:textSize="20dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/textView12"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/Progile_age"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView8" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
