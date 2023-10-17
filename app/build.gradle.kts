@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.mbti_talk"
-    compileSdk = 34
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.example.mbti_talk"
@@ -66,5 +66,8 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
     implementation ("com.github.qamarelsafadi:CurvedBottomNavigation:0.1.3")
+
+    // design round image view
+    implementation("com.makeramen:roundedimageview:2.3.0")
 
 }

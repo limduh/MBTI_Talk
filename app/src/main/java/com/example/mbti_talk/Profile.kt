@@ -36,7 +36,7 @@ class Profile : AppCompatActivity() {
                     val userData = snapshot.getValue(UserData::class.java)
                     if (userData != null) {
                         binding.ProfileEmail.text = "${userData.user_email}"
-                        binding.ProfileUid.text = "${userData.uid}"
+                        binding.ProfileTxtUid.text = "${userData.uid}"
                         binding.ProfileNickname.text = "${userData.user_nickName}"
                         binding.ProfileAge.text = "${userData.user_age}"
                         binding.ProfileGender.text = "${userData.gender}"
