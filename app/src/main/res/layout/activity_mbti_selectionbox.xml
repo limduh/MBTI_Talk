@@ -108,7 +108,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/Mbti_selecbox_txt_box1_1"
                         android:layout_width="130dp"
                         android:layout_height="70dp"
@@ -157,7 +157,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
 
-                    <EditText
+                    <TextView
                         android:id="@+id/Mbti_selecbox__txt_box1_2"
                         android:layout_width="130dp"
                         android:layout_height="70dp"
@@ -222,7 +222,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/Mbti_selecbox_txt_box2_1"
                         android:layout_width="130dp"
                         android:layout_height="70dp"
@@ -271,7 +271,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
 
-                    <EditText
+                    <TextView
                         android:id="@+id/Mbti_selecbox__txt_box2_2"
                         android:layout_width="130dp"
                         android:layout_height="70dp"
@@ -336,7 +336,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/Mbti_selecbox_txt_box3_1"
                         android:layout_width="130dp"
                         android:layout_height="70dp"
@@ -385,7 +385,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
 
-                    <EditText
+                    <TextView
                         android:id="@+id/Mbti_selecbox__txt_box3_2"
                         android:layout_width="130dp"
                         android:layout_height="70dp"
@@ -452,7 +452,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/Mbti_selecbox_txt_box4_1"
                         android:layout_width="130dp"
                         android:layout_height="70dp"
@@ -501,7 +501,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
 
-                    <EditText
+                    <TextView
                         android:id="@+id/Mbti_selecbox__txt_box4_2"
                         android:layout_width="130dp"
                         android:layout_height="70dp"
