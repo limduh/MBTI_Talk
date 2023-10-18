@@ -55,7 +55,7 @@ class LogInActivity : AppCompatActivity() {
                         // 로그인 성공 토스팅
                         Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
                         // 메인 페이지 이동
-                        val intent = Intent(this, Profile::class.java)
+                        val intent = Intent(this, SignUpMbtiActivity::class.java)
                         startActivity(intent)
                         finish() // 로그인 화면 종료
                     } else {
