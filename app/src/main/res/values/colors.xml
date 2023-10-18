@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#969696</color>
     <color name="red">#FF4C4C</color>
+    <color name="mbti_default">#D8D8D8</color>
+    <color name="mbti_selection">#FFECBD</color>
 </resources>
