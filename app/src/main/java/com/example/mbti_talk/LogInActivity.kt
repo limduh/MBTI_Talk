@@ -3,6 +3,7 @@ package com.example.mbti_talk
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
@@ -34,7 +35,7 @@ class LogInActivity : AppCompatActivity() {
         etxtId.setText(get_email)
         etxtPassword.setText(get_password)
 
-
+        // 로그인 버튼 클릭 시
         btnLogin.setOnClickListener {
             val id = etxtId.text.toString()
             val password = etxtPassword.text.toString()
@@ -46,6 +47,7 @@ class LogInActivity : AppCompatActivity() {
                 resultLogin(id, password)
             }
         }
+
         btnSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
@@ -79,7 +81,7 @@ class LogInActivity : AppCompatActivity() {
                     // 로그인 성공 토스팅
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
                     // 메인 페이지 이동
-                    val intent = Intent(this, Profile::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish() // 로그인 화면 종료
                 } else {
