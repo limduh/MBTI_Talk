@@ -14,12 +14,6 @@ import com.google.firebase.auth.FirebaseAuth
 
 class LogInActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLogInBinding
-    private lateinit var firebaseAuth: FirebaseAuth
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityLogInBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         val etxtId = binding.LoginEtxtId
         val etxtPassword = binding.LoginEtxtPassword
@@ -103,6 +97,7 @@ class LogInActivity : AppCompatActivity() {
                     Toast.makeText(this, "적어주신 email로 링크를 보냈습니다.", Toast.LENGTH_LONG).show()
                 }
             }
+
     }
 }
 
