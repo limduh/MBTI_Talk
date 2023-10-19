@@ -70,4 +70,8 @@ dependencies {
     // design round image view
     implementation("com.makeramen:roundedimageview:2.3.0")
 
+    // gson converter
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
 }
