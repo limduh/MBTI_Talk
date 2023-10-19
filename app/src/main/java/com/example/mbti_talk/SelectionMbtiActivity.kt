@@ -1,5 +1,6 @@
 package com.example.mbti_talk
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +17,6 @@ class SelectionMbtiActivity : AppCompatActivity() {
 
     // 파이어베이스 데이터베이스 초기화
     private lateinit var database: DatabaseReference
-    private var selectedMbtiOptions = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,20 +61,12 @@ class SelectionMbtiActivity : AppCompatActivity() {
         if (selectedEI.isNotEmpty() && selectedSN.isNotEmpty() && selectedTF.isNotEmpty() && selectedJP.isNotEmpty()) {
             val combinedMbti = "$selectedEI$selectedSN$selectedTF$selectedJP"
 
-            val uId = firebaseAuth.currentUser?.uid
-            if (uId != null) {
-                val userRef = database.child("Users").child(uId)
 
-                userRef.child("mbti").setValue(combinedMbti).addOnSuccessListener {
-                    Toast.makeText(this, "MBTI가 입력되었습니다!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, SignUpMbtiActivity::class.java)
+            intent.putExtra("COMBINED_MBTI", combinedMbti)
+            startActivity(intent)
 
-                    selectedMbtiOptions.clear()
-                }
-                    .addOnFailureListener { error ->
-                        Toast.makeText(this, "MBTI 값 업데이트 중 오류 발생: $error", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-            }
+
         }
     }
 }
