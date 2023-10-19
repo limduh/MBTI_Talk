@@ -20,6 +20,9 @@
             android:name=".MainFriendActivity"
             android:exported="false" />
         <activity
+            android:name=".DetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".Chat.ChatActivity"
             android:exported="false" />
         <activity
