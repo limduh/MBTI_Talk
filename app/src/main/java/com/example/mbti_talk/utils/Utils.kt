@@ -29,7 +29,7 @@ class Utils {
     //해당 그래들을 추가해야 사용할 수 있다.
 
     private fun saveData(context: Context, item: UserData) {
-        val prefs = context.getSharedPreferences("UserInfo", Activity.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
         val editor = prefs.edit()
         val gson = GsonBuilder().create()
         editor.putString("save", gson.toJson(item))
@@ -38,9 +38,9 @@ class Utils {
     }
 
     private fun loadData(context: Context): ArrayList<Item> {
-        val prefs = context.getSharedPreferences("UserInfo", Activity.MODE_PRIVATE)
-        //여기서 Activity는 왜쓰이는지 모름. 물어보기
+        val prefs = context.getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
         val allEntries: Map<String, *> = prefs.all
+        // 저장된 모든 값을 불러오기 위해 쓴 코드임  Map<String, *> 여기서 *는 제네릭 타임의 와일드 카드로서, 모든 값을 나타낸다.
         val load = ArrayList<Item>()
         val gson = GsonBuilder().create()
         for ((key, value) in allEntries) {

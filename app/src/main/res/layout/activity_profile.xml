@@ -13,7 +13,8 @@
             android:id="@+id/Profile_Frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ExtraText">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appCompatTextView2"
