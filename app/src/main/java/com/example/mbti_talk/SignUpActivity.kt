@@ -1,6 +1,5 @@
 package com.example.mbti_talk
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -13,7 +12,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 // Firebase 를 사용하여 사용자 회원가입 처리, Realtime DB에 유저 정보 저장
-
+//
 class SignUpActivity : AppCompatActivity() {
 
     // 뷰바인딩
