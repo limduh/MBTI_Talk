@@ -93,6 +93,9 @@
             android:layout_height="80dp"
             android:background="@drawable/mbti_search_btn"
             android:clipToOutline="true"
+            android:text=""
+            android:gravity="center"
+            android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -102,6 +105,9 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="10dp"
+            android:text=""
+            android:gravity="center"
+            android:textSize="40sp"
             android:background="@drawable/mbti_search_btn"
             app:layout_constraintStart_toEndOf="@+id/Mbti_txt_box1"
             app:layout_constraintTop_toTopOf="@+id/Mbti_txt_box1" />
@@ -111,6 +117,9 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="10dp"
+            android:text=""
+            android:gravity="center"
+            android:textSize="40sp"
             android:background="@drawable/mbti_search_btn"
             app:layout_constraintStart_toEndOf="@+id/Mbti_txt_box2"
             app:layout_constraintTop_toTopOf="@+id/Mbti_txt_box1" />
@@ -120,6 +129,9 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="10dp"
+            android:text=""
+            android:gravity="center"
+            android:textSize="40sp"
             android:background="@drawable/mbti_search_btn"
             app:layout_constraintStart_toEndOf="@+id/Mbti_txt_box3"
             app:layout_constraintTop_toTopOf="@+id/Mbti_txt_box1" />
@@ -139,7 +151,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Mbti_box" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/Login_btn_login"
+        android:id="@+id/Mbti_btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
