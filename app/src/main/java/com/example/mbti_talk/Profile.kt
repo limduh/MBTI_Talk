@@ -19,8 +19,10 @@ class Profile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         //FB초기화
         firebaseAuth = FirebaseAuth.getInstance()
+
         //로그인한 유저의 UID
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
@@ -39,7 +41,7 @@ class Profile : AppCompatActivity() {
                         binding.ProfileTxtUid.text = "${userData.uid}"
                         binding.ProfileNickname.text = "${userData.user_nickName}"
                         binding.ProfileAge.text = "${userData.user_age}"
-                        binding.ProfileGender.text = "${userData.gender}"
+                        binding.ProfileGender.text = "${userData.user_gender}"
                     }
                 }
             }
