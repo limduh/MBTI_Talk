@@ -1,5 +1,6 @@
 package com.example.mbti_talk
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.mbti_talk.databinding.ActivityProfileBinding
@@ -19,6 +20,11 @@ class Profile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.ProfileMbtiBtn.setOnClickListener {
+            val intent = Intent(this, SignUpMbtiActivity::class.java)
+            startActivity(intent)
+        }
 
         //FB초기화
         firebaseAuth = FirebaseAuth.getInstance()

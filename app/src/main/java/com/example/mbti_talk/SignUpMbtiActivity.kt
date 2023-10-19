@@ -15,7 +15,7 @@ class SignUpMbtiActivity:AppCompatActivity() {
         binding = ActivityMbtiInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val selectMBTI = binding.MbtiTxtBox1
+        val selectMBTI = binding.MbtiBox
 
         selectMBTI.setOnClickListener {
             val intent = Intent(this, SelectionMbtiActivity::class.java)
