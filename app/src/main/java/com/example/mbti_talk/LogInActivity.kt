@@ -1,15 +1,14 @@
 package com.example.mbti_talk
 
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mbti_talk.Main.MainActivity
 import com.example.mbti_talk.databinding.ActivityLogInBinding
 import com.google.firebase.auth.FirebaseAuth
 
