@@ -11,4 +11,6 @@ data class UserData(
     val user_gender: String = "",
     val user_mbti: String = "",
     val user_profile: Int = 0,
+    val user_addFriend: MutableList<String> = mutableListOf("", "", "", "", ""),
+    val user_blockFriend: MutableList<String> = mutableListOf("", "", "", "", ""),
 )
