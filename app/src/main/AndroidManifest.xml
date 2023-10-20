@@ -22,6 +22,9 @@
         <activity
             android:name=".DetailActivity"
             android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".PostWriteActivity"-->
+<!--            android:exported="false"/>-->
         <activity
             android:name=".Chat.ChatActivity"
             android:exported="false" />
@@ -38,7 +41,7 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".LogInActivity"
+            android:name=".PostWriteActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
