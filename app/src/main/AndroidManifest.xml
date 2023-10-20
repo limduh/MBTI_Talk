@@ -23,6 +23,9 @@
             android:name=".DetailActivity"
             android:exported="false" />
         <activity
+            android:name=".PostWriteActivity"
+            android:exported="false"/>
+        <activity
             android:name=".Chat.ChatActivity"
             android:exported="false" />
         <activity
