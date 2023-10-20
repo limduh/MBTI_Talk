@@ -1,9 +1,11 @@
-package com.example.mbti_talk
+package com.example.mbti_talk.Main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mbti_talk.Adapter.UserAdapter
+import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.ActivityMainBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
