@@ -1,13 +1,15 @@
-package com.example.mbti_talk
+package com.example.mbti_talk.Adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mbti_talk.Profile
+import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.UserListBinding
 
-// 이 어댑터는 RecyclerView에 사용됨. 각 아이템은 사용자 정보를 나타내며, 유저가 아이템 클릭 시, 해당 유저의 프로필 화면으로 이동 기능 추가
+// 이 어댑터는 RecyclerView에 사용됨. 각 아이템은 사용자 정보를 나타내며, 유저가 리스트 클릭 시, 해당 유저의 프로필 화면으로 이동 기능 추가
 
 class UserAdapter(private val userList: List<UserData>) : RecyclerView.Adapter<UserAdapter.Holder>() {
 
