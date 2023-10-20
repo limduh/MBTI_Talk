@@ -90,6 +90,4 @@ class PostActivity : AppCompatActivity() {
         // addValueEventListener() 메서드로 DatabaseReference에 ValueEventListener를 추가한다.
 //        FBRef.contentRef.addValueEventListener(postListener)
     }
-    }
-
 }
