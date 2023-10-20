@@ -49,7 +49,7 @@ class FriendAdapter (private val friendList: List<UserData>) : RecyclerView.Adap
         holder.friend_profile.setImageResource(friend.user_profile)
     }
 
-    // Rv.ViewHolder 를 확장한 클래스. 각 목록에 대한 뷰 요소 저장
+    // RecyclerView.ViewHolder 를 확장한 클래스. 각 목록에 대한 뷰 요소 저장
     inner class Holder(binding: FriendListBinding) : RecyclerView.ViewHolder(binding.root) {
 
         val friend_nickname = binding.etFriendNickName // 닉네임 텍스트뷰
