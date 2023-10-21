@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var adapter: UserAdapter // RecyclerView 에 사용될 어댑터 초기화
 
-    lateinit var userList: MutableList<UserData> // 유저 목록을 저장 위한 MutableList를 초기화. 유저 데이터는 RecyclerView 에 표시됨.
+    private lateinit var userList: MutableList<UserData> // 유저 목록을 저장 위한 MutableList를 초기화. 유저 데이터는 RecyclerView 에 표시됨.
 
     private lateinit var userDB: DatabaseReference // FB Realtime DB와 연동하기 위한 레퍼런스를 초기화
 
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         binding.mainRv.adapter = adapter
         binding.mainRv.layoutManager = LinearLayoutManager(this)
 
-        // FB Realtime DB 에서 사용자 데이터 가져오기
+        // RDB 에서 사용자 데이터 가져오기
         userDB.limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (userSnapshot in snapshot.children) {

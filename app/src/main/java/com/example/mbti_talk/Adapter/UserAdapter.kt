@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mbti_talk.DetailActivity
 import com.example.mbti_talk.Profile
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.UserListBinding
@@ -21,10 +22,15 @@ class UserAdapter(private val userList: List<UserData>) : RecyclerView.Adapter<U
 
         val user_list = binding.clListItem // 유저 리스트 바인딩
 
-        // 유저 리스트 클릭 시 프로필로 이동
+        // user list 클릭 시 DetailActivity 로 이동
         user_list.setOnClickListener {
-            // startActivity 함수를 사용하여 새로운 Profile 로 이동하는 인텐트를 생성하고 실행. 이 경우 Profile::class.java로 지정된 Profile 로 이동
-            val intent = Intent(parent.context, Profile::class.java)
+            // startActivity 함수를 사용하여 User Detail 로 이동하는 인텐트를 생성하고 실행. 이 경우 DetailActivity::class.java로 지정된 Profile 로 이동
+            val intent = Intent(parent.context, DetailActivity::class.java)
+
+            // 클릭한 user data 를 DetailActivity 로 전달
+            val userPosition = Intent(parent.context, DetailActivity::class.java)
+            intent.putExtra("userPosition", userPosition)
+
             startActivity(parent.context, intent, null)
         }
         // 클릭 이벤트를 처리한 후, Holder(binding)을 반환
