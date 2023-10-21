@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mbti_talk.DetailActivity
 import com.example.mbti_talk.Profile
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.UserListBinding
@@ -24,8 +25,9 @@ class FriendAdapter (private val friendList: List<UserData>) : RecyclerView.Adap
 
         // 친구 리스트 클릭 시 프로필로 이동
         friend_list.setOnClickListener {
-            // 뷰바인딩 초기화하고, 리스트 데이터를 해당 위젯에 설정
-            val intent = Intent(parent.context, Profile::class.java)
+
+            // startActivity 함수를 사용하여 Friend Detail 로 이동하는 인텐트를 생성하고 실행. 이 경우 DetailActivity::class.java로 지정된 Profile 로 이동
+            val intent = Intent(parent.context, DetailActivity::class.java)
             startActivity(parent.context, intent, null)
         }
 
