@@ -143,7 +143,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="세상의 소금형 \n \n 한번 시작한 일은 끝까지 해내는 사람들"
+        android:text=""
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
