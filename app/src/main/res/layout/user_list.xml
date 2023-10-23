@@ -35,13 +35,13 @@
             android:id="@+id/et_nickName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:text="wrgergergerg" />
         <TextView
             android:id="@+id/et_age"
             android:layout_marginStart="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""/>
+            android:text="37"/>
 
     </LinearLayout>
 
@@ -55,13 +55,13 @@
             android:id="@+id/et_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:text="남" />
         <TextView
             android:id="@+id/et_mbti"
             android:layout_marginStart="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""/>
+            android:text="ENFJ"/>
 
     </LinearLayout>
 

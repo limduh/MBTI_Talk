@@ -48,7 +48,7 @@ class FriendAdapter (private val friendList: List<UserData>) : RecyclerView.Adap
         holder.friend_age.text = friend.user_age.toString()
         holder.friend_gender.text = friend.user_gender
         holder.friend_mbti.text = friend.user_mbti
-        holder.friend_profile.setImageResource(friend.user_profile)
+//        holder.friend_profile.setImageResource(friend.user_profile)
     }
 
     // RecyclerView.ViewHolder 를 확장한 클래스. 각 목록에 대한 뷰 요소 저장
