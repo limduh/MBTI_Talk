@@ -20,8 +20,7 @@ data class UserData(
 
 @Parcelize
 data class PostData(
-    val postId: String = "", // 게시물 고유 식별자
-    val uid: String = "", // 게시물을 작성한 사용자의 UID
+    val uid: String = "", // 게시물 고유 식별자
     val title: String = "",
     val content: String = "",
     val time: String = ""

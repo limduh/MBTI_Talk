@@ -9,6 +9,8 @@ import com.example.mbti_talk.databinding.ActivityPostWriteBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -18,42 +20,37 @@ class PostWriteActivity: AppCompatActivity() {
     lateinit var binding: ActivityPostWriteBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
+    val storage = Firebase.storage("gs://mbti-talk-f2a04.appspot.com")
     private var prevX = 0f
     private var prevY = 0f
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPostWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // FirebaseAuth, Realtime DB 초기화
-        firebaseAuth = FirebaseAuth.getInstance()
-        val database = FirebaseDatabase.getInstance().getReference("Users")
         val btnBack = binding.postbackarrow
         btnBack.setOnClickListener {
             finish()
         }
+        firebaseAuth = FirebaseAuth.getInstance()
+        val database = FirebaseDatabase.getInstance().reference
 
         binding.postSave.setOnClickListener {
+            val uid = firebaseAuth.currentUser?.uid
             val title = binding.postTitle.text.toString()
             val content = binding.postEtContent.text.toString()
+            val time = getTime()
+            val combinedpost = "$uid$title$content$time"
+            if (uid != null) {
+                val userRef = database.child("Users").child(uid)
 
-            if (title.isNotEmpty() && content.isNotEmpty()) {
-                val time = getTime()
-                val postId = database.push().key
-                if (postId != null) {
-                    val post = PostData(postId, title, content, time)
-                    database.child(postId).setValue(post)
+                userRef.child("post").setValue(combinedpost)
 
                     Toast.makeText(this, "게시글 입력 완료", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
                     Toast.makeText(this, "게시글을 저장하는데 실패했습니다.", Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Toast.makeText(this, "제목과 내용을 모두 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
-        }
-
 
         binding.postImage.setOnTouchListener { v, event ->
             when (event.action) {
@@ -89,4 +86,17 @@ class PostWriteActivity: AppCompatActivity() {
 
         return dateFormat
     }
+//    fun addItem(user:PostData):String {
+//        val id = FirebaseData.mydata.push().key!!
+//        constructor()
+//        constructor(title: String, content: String, image: String) {
+//            this.title = title
+//            this.con = maintext
+//            this.image = image
+//        }
+//    }
+
+}
+class User {
+
 }
