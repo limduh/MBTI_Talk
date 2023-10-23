@@ -31,8 +31,8 @@ class LogInActivity : AppCompatActivity() {
         val etxtFindPw = binding.loginTxtFindPW
 
         //회원가입시 바로 로그인 정보 입력
-        etxtId.setText(get_email)
-        etxtPassword.setText(get_password)
+//        etxtId.setText(get_email)
+//        etxtPassword.setText(get_password)
 
         // 로그인 버튼 클릭 시
         btnLogin.setOnClickListener {

@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         userList = mutableListOf() // 사용자 데이터 목록 초기화 (이 데이터는 FB 에서 가져옴)
         userDB =
             Firebase.database.reference.child("Users") // FB Realtime DB 초기화하고 "Users" 레퍼런스 가져오기
-        adapter = UserAdapter(userList) // RecyclerView 어댑터 초기화
+        adapter = UserAdapter(this, userList) // RecyclerView 어댑터 초기화
 
         // RecyclerView와 어댑터 연결
         binding.mainRv.adapter = adapter
