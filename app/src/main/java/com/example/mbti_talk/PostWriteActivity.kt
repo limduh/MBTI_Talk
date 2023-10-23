@@ -31,8 +31,8 @@ class PostWriteActivity: AppCompatActivity() {
                     val newY = v.y + deltaY
 
                     // 이미지가 화면을 벗어나지 않도록 제한합니다.
-                    val maxX = binding.postPage.width - v.width
-                    val maxY = binding.postPage.height - v.height
+                    val maxX = binding.postEtContent.width - v.width
+                    val maxY = binding.postEtContent.height - v.height
                     v.x = Math.min(maxX.toFloat(), Math.max(0f, newX))
                     v.y = Math.min(maxY.toFloat(), Math.max(0f, newY))
 
