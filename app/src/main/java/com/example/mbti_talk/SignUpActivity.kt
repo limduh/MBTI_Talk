@@ -43,13 +43,13 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         //라디오버튼 누르면 이곳으로 값을 전해준다.
-        var gender = ""
+        var user_gender = ""
 
         //라디오버튼 누를때 로직
         binding.SignUpRadioGroup.setOnCheckedChangeListener { _, checkedId ->
             when(checkedId) {
-                R.id.SignUp_radioMale -> gender = "남자"
-                R.id.SignUp_radioFemale -> gender = "여자"
+                R.id.SignUp_radioMale -> user_gender = "남자"
+                R.id.SignUp_radioFemale -> user_gender = "여자"
             }
         }
 
@@ -82,8 +82,8 @@ class SignUpActivity : AppCompatActivity() {
                                 Toast.makeText(this, "계정 생성 완료.", Toast.LENGTH_SHORT).show()
                                 val userId = firebaseAuth.currentUser?.uid
                                 if (userId != null) {
-                                    Log.d("SignUp","#dudu+ $gender")
-                                    val user = UserData(SignupActivity_id, SignupActivity_age, SignupActivity_nickName, userId, gender)
+                                    Log.d("SignUp","#dudu+ $user_gender")
+                                    val user = UserData(SignupActivity_id, SignupActivity_age, SignupActivity_nickName, userId, user_gender)
                                     // DB저장
                                     database.child(userId).setValue(user)
                                 }
