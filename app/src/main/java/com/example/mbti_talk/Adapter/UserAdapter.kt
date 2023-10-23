@@ -1,5 +1,6 @@
 package com.example.mbti_talk.Adapter
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,7 +13,7 @@ import com.example.mbti_talk.databinding.UserListBinding
 
 // 이 어댑터는 RecyclerView에 사용됨. 각 아이템은 사용자 정보를 나타내며, 유저가 리스트 클릭 시, 해당 유저의 프로필 화면으로 이동 기능 추가
 
-class UserAdapter(private val userList: List<UserData>) : RecyclerView.Adapter<UserAdapter.Holder>() {
+class UserAdapter(private  val mContext: Context, private val userList: List<UserData>) : RecyclerView.Adapter<UserAdapter.Holder>() {
 
 
     // onCreateViewHolder 함수는 ViewHolder 객체를 생성, 초기화
@@ -20,20 +21,6 @@ class UserAdapter(private val userList: List<UserData>) : RecyclerView.Adapter<U
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = UserListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        val user_list = binding.clListItem // 유저 리스트 바인딩
-
-        // user list 클릭 시 DetailActivity 로 이동
-        user_list.setOnClickListener {
-            // startActivity 함수를 사용하여 User Detail 로 이동하는 인텐트를 생성하고 실행. 이 경우 DetailActivity::class.java로 지정된 Profile 로 이동
-            val intent = Intent(parent.context, DetailActivity::class.java)
-
-            // 클릭한 user data 를 DetailActivity 로 전달
-            val userPosition = Intent(parent.context, DetailActivity::class.java)
-            intent.putExtra("userPosition", userPosition)
-
-            startActivity(parent.context, intent, null)
-        }
-        // 클릭 이벤트를 처리한 후, Holder(binding)을 반환
         return Holder(binding)
     }
 
@@ -54,7 +41,17 @@ class UserAdapter(private val userList: List<UserData>) : RecyclerView.Adapter<U
         holder.user_age.text = user.user_age.toString()
         holder.user_gender.text = user.user_gender
         holder.user_mbti.text = user.user_mbti
-        holder.user_profile.setImageResource(user.user_profile)
+//        holder.user_profile.setImageResource(user.user_profile)
+
+        // user list 클릭 시 DetailActivity 로 이동
+        holder.user_list.setOnClickListener {
+            // startActivity 함수를 사용하여 User Detail 로 이동하는 인텐트를 생성하고 실행. 이 경우 DetailActivity::class.java로 지정된 Profile 로 이동
+            val intent = Intent(mContext, DetailActivity::class.java)
+            // 클릭한 user data 를 DetailActivity 로 전달
+            intent.putExtra("userId", user.user_uid)
+            startActivity(mContext, intent, null)
+        }
+        // 클릭 이벤트를 처리한 후, Holder(binding)을 반환
 
     }
 
@@ -69,7 +66,7 @@ class UserAdapter(private val userList: List<UserData>) : RecyclerView.Adapter<U
     // XML 레이아웃에서 정의한 뷰들을 멤버 변수로 가진다.
     // 이 뷰들에 유저 데이터 설정, 아이템 이벤트를 처리
     inner class Holder(binding: UserListBinding) : RecyclerView.ViewHolder(binding.root) {
-
+        val user_list = binding.clListItem // 유저 리스트 바인딩
         val user_nickname = binding.etNickName // 닉네임 텍스트뷰
         val user_age = binding.etAge // 나이 텍스트뷰
         val user_gender = binding.etGender // 성별 텍스트뷰

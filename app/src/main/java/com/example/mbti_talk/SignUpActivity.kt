@@ -83,7 +83,7 @@ class SignUpActivity : AppCompatActivity() {
                                 val userId = firebaseAuth.currentUser?.uid
                                 if (userId != null) {
                                     Log.d("SignUp","#dudu+ $user_gender")
-                                    val user = UserData(SignupActivity_id, SignupActivity_age, SignupActivity_nickName, userId, user_gender)
+                                    val user = UserData(SignupActivity_id, SignupActivity_age, SignupActivity_nickName, userId, user_gender )
                                     // DB저장
                                     database.child(userId).setValue(user)
                                 }
