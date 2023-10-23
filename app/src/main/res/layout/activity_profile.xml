@@ -256,6 +256,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 <!--아래메뉴부분-->
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/Profile_const_MyActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -308,7 +309,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/profile_btn_MyWriteList">
 
@@ -328,13 +328,129 @@
                         app:layout_constraintBottom_toBottomOf="@+id/ic_bulletin"
                         app:layout_constraintStart_toEndOf="@+id/ic_bulletin"
                         app:layout_constraintTop_toTopOf="@+id/ic_bulletin" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <!--차단목록 아이콘+글씨 묶어서 버튼으로 활용-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/profile_btn_cutoff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_btn_MyLikeList">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ic_img_cutoff"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/ic_cutoff"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="차단목록 관리"
+                        app:layout_constraintBottom_toBottomOf="@+id/ic_img_cutoff"
+                        app:layout_constraintStart_toEndOf="@+id/ic_img_cutoff"
+                        app:layout_constraintTop_toTopOf="@+id/ic_img_cutoff" />
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/Profile_const_AccountManage"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:layout_constraintTop_toBottomOf="@+id/Profile_const_MyActivity"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_margin="20dp"
+    >
 
-            //전체네모임 아래는
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/Profile_txt_AccountManage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="계정관리"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+<!--    로그아웃 그림+글 묶어놈 const을 하나의 버튼으로 사용하기 위함-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Profile_btn_Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Profile_txt_AccountManage">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView6"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/ic_logout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="로그아웃"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView6"
+            app:layout_constraintStart_toEndOf="@+id/appCompatImageView6"
+            app:layout_constraintTop_toTopOf="@+id/appCompatImageView6" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    회원탈퇴 그림+글 묶어놈 const을 하나의 버튼으로 사용하기 위함-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Profile_btn_Memberout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Profile_btn_Logout">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/Profile_img_Memberout"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/ic_caution_red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="회원탈퇴"
+            app:layout_constraintBottom_toBottomOf="@+id/Profile_img_Memberout"
+            app:layout_constraintStart_toEndOf="@+id/Profile_img_Memberout"
+            app:layout_constraintTop_toTopOf="@+id/Profile_img_Memberout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--    계정관리 레이아웃 화면-->
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--            //전체네모임 아래는-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
