@@ -1,10 +1,11 @@
-package com.example.mbti_talk
+package com.example.mbti_talk.post
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mbti_talk.PostData
 import com.example.mbti_talk.databinding.ActivityPostListBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -13,7 +14,7 @@ import com.google.firebase.database.ValueEventListener
 class PostActivity : AppCompatActivity() {
     lateinit var binding: ActivityPostListBinding
     lateinit var postAdapter: PostAdapter
-    private val postList = mutableListOf<UserData>()
+    private val postList = mutableListOf<PostData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +74,7 @@ class PostActivity : AppCompatActivity() {
 
                 for (data in snapshot.children) {
                     val key = data.key
-                    val item = data.getValue(UserData::class.java)
+                    val item = data.getValue(PostData::class.java)
                     Log.d("ContentListActivity", "item: ${item}")
                     // 리스트에 읽어 온 데이터를 넣어준다.
                     postList.add(item!!)

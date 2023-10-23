@@ -11,10 +11,18 @@ data class UserData(
     val user_age: Int = 0,
     val user_nickName: String = "",
     val uid: String = "",
-    val gender: String = "",
     val user_gender: String = "",
     val user_mbti: String = "",
     val user_profile: Int = 0,
     val user_addFriend: MutableList<String> = mutableListOf("", "", "", "", ""),
     val user_blockFriend: MutableList<String> = mutableListOf("", "", "", "", ""),
+) : Parcelable
+
+@Parcelize
+data class PostData(
+    val postId: String = "", // 게시물 고유 식별자
+    val uid: String = "", // 게시물을 작성한 사용자의 UID
+    val title: String = "",
+    val content: String = "",
+    val time: String = ""
 ) : Parcelable

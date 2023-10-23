@@ -1,17 +1,18 @@
-package com.example.mbti_talk
+package com.example.mbti_talk.post
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mbti_talk.PostData
+import com.example.mbti_talk.R
 
 class PostAdapter(
-    val items: MutableList<UserData>
+    val items: MutableList<PostData>
 ) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
     // View Holder를 생성하고 View를 붙여주는 메서드
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v =
             LayoutInflater.from(parent.context).inflate(R.layout.activity_post_item, parent, false)
         return ViewHolder(v)
@@ -28,22 +29,16 @@ class PostAdapter(
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        init {
-//            itemView.setOnLongClickListener {
-//                onItemLongClick(itemView.findViewById(R.id.imageArea))
-//                true
-//            }
-//        }
 
-        fun bindTtems(items: UserData) {
+        fun bindTtems(items: PostData) {
             val title = itemView.findViewById<TextView>(R.id.titleArea)
             val content = itemView.findViewById<TextView>(R.id.contentArea)
             val time = itemView.findViewById<TextView>(R.id.timeArea)
 //            val imageUrl = itemView.findViewById<ImageView>(R.id.imageArea)
 
-//            title.text = items.title
-//            content.text = items.content
-//            time.text = items.time
+            title.text = items.title
+            content.text = items.content
+            time.text = items.time
 
         }
     }
