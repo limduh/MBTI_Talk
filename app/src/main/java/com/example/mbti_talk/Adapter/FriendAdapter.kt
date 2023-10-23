@@ -46,7 +46,7 @@ class FriendAdapter (private val friendList: List<UserData>) : RecyclerView.Adap
         // 아이템 데이터 설정
         holder.friend_nickname.text = friend.user_nickName
         holder.friend_age.text = friend.user_age.toString()
-        holder.friend_gender.text = friend.gender
+        holder.friend_gender.text = friend.user_gender
         holder.friend_mbti.text = friend.user_mbti
         holder.friend_profile.setImageResource(friend.user_profile)
     }
