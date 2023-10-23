@@ -43,10 +43,11 @@
             app:layout_constraintTop_toBottomOf="@+id/SignUp_txt_title" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-10dp"
-            android:text="아이디"
+            android:text="이메일"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/SignUp_const_IdBox"
@@ -67,7 +68,7 @@
                 android:id="@+id/SignUp_etxt_ID"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:hint="아이디"
+                android:hint="이메일"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -89,8 +90,9 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="영문 소문자와 숫자만 사용하여, 4~12자의 아이디를 입력해주세요."
+            android:text="이메일 형식의 아이디를 입력해주세요."
             android:textColor="#FF4C4C"
+
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="@+id/SignUp_const_IdBox"
             app:layout_constraintTop_toBottomOf="@id/SignUp_const_IdBox" />
@@ -98,6 +100,7 @@
 
         <!--        비밀번호 입력칸-->
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-10dp"
@@ -194,7 +197,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/SignUp_etxt_Pw_check"
                 app:layout_constraintTop_toTopOf="parent" />
 
-<!--10.16일 2시8분-->
+            <!--10.16일 2시8분-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -304,22 +307,36 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <RadioButton
-            android:id="@+id/SignUp_radiobtn_female"
+        <RadioGroup
+            android:id="@+id/SignUp_radio_Group"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="여자"
-            app:layout_constraintStart_toStartOf="@+id/appCompatTextView7"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView7" />
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/SignUp_btn_SignUp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.436"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <RadioButton
-            android:id="@+id/SignUp_radiobtn_male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="남자"
-            android:layout_marginStart="100dp"
-            app:layout_constraintStart_toEndOf="@+id/SignUp_radiobtn_female"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView7" />
+            <RadioButton
+                android:id="@+id/SignUp_radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="남자"
+                app:layout_constraintStart_toEndOf="@+id/SignUp_radio_Group"
+                app:layout_constraintStart_toStartOf="@+id/SignUp_radiobtn_female" />
+
+            <RadioButton
+                android:id="@+id/SignUp_radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:text="여자"
+                app:layout_constraintStart_toEndOf="@+id/SignUp_radiobtn_male"
+                app:layout_constraintStart_toStartOf="@+id/SignUp_radio_Group" />
+
+
+        </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -27,43 +27,43 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // 뷰 바인딩 초기화, 해당 바인딩을 현재 액티비티 레이아웃으로 설정
-        binding = ActivityDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        detailDB = Firebase.database.reference.child("Users") // FB Realtime DB 초기화하고 "Users" 레퍼런스 가져오기
-
-        // RDB 에서 사용자 데이터 가져오기
-        detailDB.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                // 가져온 데이터를 UserData 객체로 변환
-                for (snapshot in snapshot.children) {
-                    val user = snapshot.getValue(UserData::class.java)
-                    // 가져온 데이터를 UserData 객체로 변환 후, userList 에 추가
-                    if (user != null) {
-                        dataList.add(user)
-                    }
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-
-                // DB 가져오는 과정에서 오류 발생 시, 오류 메시지 출력
-                Toast.makeText(this@DetailActivity, "데이터를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
-            }
-        })
-
-        // Intent 에서 userPosition 받음
-        val userDetail = intent.getParcelableExtra<UserData>("userDetail") as UserData
-
-        // userData 를 사용하여 Detail 정보 표시
-        // ex) nickName 표시하는 TextView 를 찾아서 설정
-        val detailNickname = binding.DetailTxtNickname
-        detailNickname.text = userDetail.user_nickName
-
-        val detailMbti = binding.DetailTxtMbti
-        detailMbti.text = userDetail.user_mbti
-
-        val detailAge = binding.DetailTxtAge
-        detailAge.text = userDetail.user_age.toString()
+//        binding = ActivityDetailBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
+//
+//        detailDB = Firebase.database.reference.child("Users") // FB Realtime DB 초기화하고 "Users" 레퍼런스 가져오기
+//
+//        // RDB 에서 사용자 데이터 가져오기
+//        detailDB.addListenerForSingleValueEvent(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//
+//                // 가져온 데이터를 UserData 객체로 변환
+//                for (snapshot in snapshot.children) {
+//                    val user = snapshot.getValue(UserData::class.java)
+//                    // 가져온 데이터를 UserData 객체로 변환 후, userList 에 추가
+//                    if (user != null) {
+//                        dataList.add(user)
+//                    }
+//                }
+//            }
+//            override fun onCancelled(error: DatabaseError) {
+//
+//                // DB 가져오는 과정에서 오류 발생 시, 오류 메시지 출력
+//                Toast.makeText(this@DetailActivity, "데이터를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//
+//        // Intent 에서 userPosition 받음
+//        val userDetail = intent.getParcelableExtra<UserData>("userDetail") as UserData
+//
+//        // userData 를 사용하여 Detail 정보 표시
+//        // ex) nickName 표시하는 TextView 를 찾아서 설정
+//        val detailNickname = binding.DetailTxtNickname
+//        detailNickname.text = userDetail.user_nickName
+//
+//        val detailMbti = binding.DetailTxtMbti
+//        detailMbti.text = userDetail.user_mbti
+//
+//        val detailAge = binding.DetailTxtAge
+//        detailAge.text = userDetail.user_age.toString()
     }
 }
