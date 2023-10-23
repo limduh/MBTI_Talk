@@ -27,12 +27,12 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // 뷰 바인딩 초기화, 해당 바인딩을 현재 액티비티 레이아웃으로 설정
-//        binding = ActivityDetailBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//
-//        detailDB = Firebase.database.reference.child("Users") // FB Realtime DB 초기화하고 "Users" 레퍼런스 가져오기
-//
-//        // RDB 에서 사용자 데이터 가져오기
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        detailDB = Firebase.database.reference.child("Users") // FB Realtime DB 초기화하고 "Users" 레퍼런스 가져오기
+
+        // RDB 에서 사용자 데이터 가져오기
 //        detailDB.addListenerForSingleValueEvent(object : ValueEventListener {
 //            override fun onDataChange(snapshot: DataSnapshot) {
 //
