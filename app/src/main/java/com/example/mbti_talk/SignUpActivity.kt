@@ -1,18 +1,20 @@
 package com.example.mbti_talk
 
+
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mbti_talk.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+
 
 // Firebase 를 사용하여 사용자 회원가입 처리, Realtime DB에 유저 정보 저장
-////
+
 class SignUpActivity : AppCompatActivity() {
 
     // 뷰바인딩
@@ -23,6 +25,8 @@ class SignUpActivity : AppCompatActivity() {
 
     // 파이어베이스 데이터베이스 초기화
     private lateinit var database: DatabaseReference
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +42,20 @@ class SignUpActivity : AppCompatActivity() {
             finish()
         }
 
+        //라디오버튼 누르면 이곳으로 값을 전해준다.
+        var gender = ""
+
+        //라디오버튼 누를때 로직
+        binding.SignUpRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when(checkedId) {
+                R.id.SignUp_radioMale -> gender = "남자"
+                R.id.SignUp_radioFemale -> gender = "여자"
+            }
+        }
+
+
+
+
 
         binding.SignUpBtnSignUp.setOnClickListener {
             // 유저가 입력한 회원가입 정보 가져오기
@@ -46,6 +64,11 @@ class SignUpActivity : AppCompatActivity() {
             val SignupActivity_confirmPass = binding.SignUpEtxtPwCheck.text.toString()
             val SignupActivity_age = binding.SignUpEtxtAge.text.toString().toInt()
             val SignupActivity_nickName = binding.SignUpEtxtNickName.text.toString()
+
+            //var resulttvSelectCheckBox = tvSelectCheckBox.text.toString()
+
+
+
 
             if (SignupActivity_id.isNotEmpty() && SignupActivity_pass.isNotEmpty() && SignupActivity_confirmPass.isNotEmpty()) {
                 // 비밀번호 일치 여부 확인
@@ -59,7 +82,8 @@ class SignUpActivity : AppCompatActivity() {
                                 Toast.makeText(this, "계정 생성 완료.", Toast.LENGTH_SHORT).show()
                                 val userId = firebaseAuth.currentUser?.uid
                                 if (userId != null) {
-                                    val user = UserData(SignupActivity_id, SignupActivity_age, SignupActivity_nickName, userId, "남")
+                                    Log.d("SignUp","#dudu+ $gender")
+                                    val user = UserData(SignupActivity_id, SignupActivity_age, SignupActivity_nickName, userId, gender)
                                     // DB저장
                                     database.child(userId).setValue(user)
                                 }
@@ -71,7 +95,9 @@ class SignUpActivity : AppCompatActivity() {
                                 startActivity(intent)
                             } else {
                                 Toast.makeText(this, "계정 생성 실패", Toast.LENGTH_SHORT).show()
+
                             }
+
                         }
                 } else {
                     Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
@@ -81,8 +107,9 @@ class SignUpActivity : AppCompatActivity() {
             else{
                 Toast.makeText(this, "작성하지 않은곳이 있네요 !!", Toast.LENGTH_SHORT).show()
             }
+            return@setOnClickListener
+
         }
     }
 }
-
 
