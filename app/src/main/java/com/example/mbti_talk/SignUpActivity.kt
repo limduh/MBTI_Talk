@@ -65,7 +65,6 @@ class SignUpActivity : AppCompatActivity() {
             val SignupActivity_age = binding.SignUpEtxtAge.text.toString().toInt()
             val SignupActivity_nickName = binding.SignUpEtxtNickName.text.toString()
 
-            //var resulttvSelectCheckBox = tvSelectCheckBox.text.toString()
 
 
 
@@ -89,9 +88,7 @@ class SignUpActivity : AppCompatActivity() {
                                 }
 
                                 val intent = Intent(this, LogInActivity::class.java)
-                                //put extra 정보 저장
-                                intent.putExtra("email", SignupActivity_id)
-                                intent.putExtra("password", SignupActivity_pass)
+
                                 startActivity(intent)
                             } else {
                                 Toast.makeText(this, "계정 생성 실패", Toast.LENGTH_SHORT).show()
