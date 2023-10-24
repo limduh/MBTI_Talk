@@ -15,11 +15,3 @@ data class UserData(
     val user_mbti: String = "",
     val user_profile: String = ""
 ) : Parcelable
-
-@Parcelize
-data class PostData(
-    val uid: String = "", // 게시물 고유 식별자
-    val title: String = "",
-    val content: String = "",
-    val time: String = ""
-) : Parcelable
