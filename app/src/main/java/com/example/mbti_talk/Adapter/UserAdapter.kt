@@ -19,7 +19,9 @@ class UserAdapter(private  val mContext: Context, private val userList: List<Use
     // onCreateViewHolder 함수는 ViewHolder 객체를 생성, 초기화
     // ItemBinding.inflate() 함수를 통해 XML 레이아웃 파일에서 뷰를 inflate, 그 뷰를 사용하여 Holder 객체를 생성
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val binding = UserListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        var binding = UserListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        binding = UserListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return Holder(binding)
     }
