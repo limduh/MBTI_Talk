@@ -4,14 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.example.mbti_talk.ChatFragment
-import com.example.mbti_talk.FriendFindFragment
-import com.example.mbti_talk.FriendListFragment
-import com.example.mbti_talk.MyProfileFragment
-import com.example.mbti_talk.PostFragment
 import com.example.mbti_talk.R
 import com.example.mbti_talk.databinding.ActivityBottomBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.mbti_talk.FriendFind.FriendFindFragment
+import com.example.mbti_talk.post.PostFragment
+import com.example.mbti_talk.Chat.ChatFragment
+import com.example.mbti_talk.FriendList.FriendListFragment
+import com.example.mbti_talk.MyProfile.MyProfileFragment
+
+
 
 class BottomActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBottomBinding
@@ -19,6 +20,7 @@ class BottomActivity : AppCompatActivity() {
     private lateinit var fragmentManager: FragmentManager
 
     //각 프래그먼트 선언
+
     private val friendListFragment = FriendListFragment()
     private val postFragment = PostFragment()
     private val friendFindFragment = FriendFindFragment()
