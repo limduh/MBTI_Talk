@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.mbti_talk"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -60,6 +60,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.2.0") // 원래는 22.1.2 이나 도연 프로젝트에서는 22.2.0 으로만 빌드됨.
     implementation("com.google.firebase:firebase-database-ktx:20.2.2")
     implementation("com.google.firebase:firebase-auth:22.2.0")
+    implementation("com.google.firebase:firebase-storage-ktx")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -75,4 +76,8 @@ dependencies {
     // gson converter
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //google로그인
+    implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 }
