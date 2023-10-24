@@ -34,14 +34,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var userDB: DatabaseReference // FB Realtime DB와 연동하기 위한 레퍼런스를 초기화
 
-    companion object {
-//        const val HOME_ITEM = R.id.homeFragment  서치프래그먼트없음
-//        const val OFFERS_ITEM = R.id.offersFragment
-//        const val MORE_ITEM = R.id.moreFragment
-//        const val SECTION_ITEM = R.id.sectionFragment
-//        const val CART_ITEM = R.id.cartFragment
-//        const val BLANK_ITEM = R.id.blankFragment 바텀에 연결할 페이지가 없음
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

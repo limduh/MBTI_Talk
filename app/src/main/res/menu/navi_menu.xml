@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/friend" app:showAsAction="ifRoom" android:enabled="true"
+        android:icon="@drawable/ic_launcher_foreground" android:title="친구목록" />
+    <item android:id="@+id/post" app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_launcher_foreground" android:title="게시판" />
+    <item android:id="@+id/findfriend" app:showAsAction="ifRoom"
+        android:enabled="true" android:icon="@drawable/ic_launcher_foreground" android:title="친구찾기" />
+    <item android:id="@+id/chat" app:showAsAction="ifRoom"
+        android:enabled="true" android:icon="@drawable/ic_launcher_foreground" android:title="채팅" />
+    <item android:id="@+id/myprofile" app:showAsAction="ifRoom"
+        android:enabled="true" android:icon="@drawable/ic_launcher_foreground" android:title="내 프로필" />
+</menu>
