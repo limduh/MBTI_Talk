@@ -33,7 +33,7 @@ class BottomActivity : AppCompatActivity() {
 
         fragmentManager = supportFragmentManager
         //초기화면 설정 ▽
-        currentFragment = friendFindFragment
+        currentFragment = friendListFragment
 
         supportFragmentManager.beginTransaction().replace(R.id.Bottom_frame, FriendFindFragment()).commit()
 
@@ -61,7 +61,7 @@ class BottomActivity : AppCompatActivity() {
                     true
                 }
 
-                "내프로필" -> {
+                "내 프로필" -> {
                     switchFragment(myProfileFragment)
                     true
                 }
