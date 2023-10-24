@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView18"
+            android:id="@+id/Detail_txt_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -47,9 +47,9 @@
             android:text="여"
             android:textColor="@color/white"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView18"
-            app:layout_constraintStart_toEndOf="@+id/appCompatTextView18"
-            app:layout_constraintTop_toTopOf="@+id/appCompatTextView18" />
+            app:layout_constraintBottom_toBottomOf="@+id/Detail_txt_nickname"
+            app:layout_constraintStart_toEndOf="@+id/Detail_txt_nickname"
+            app:layout_constraintTop_toTopOf="@+id/Detail_txt_nickname" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/Detail_btn_friendAdd"
