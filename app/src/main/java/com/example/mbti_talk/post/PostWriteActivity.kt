@@ -22,6 +22,7 @@ import java.util.Locale
 
 class PostWriteActivity : AppCompatActivity() {
 
+
     lateinit var binding: ActivityPostWriteBinding
     private lateinit var firebaseAuth: FirebaseAuth
     val storage = Firebase.storage("gs://mbti-talk-f2a04.appspot.com")
@@ -42,6 +43,7 @@ class PostWriteActivity : AppCompatActivity() {
     )
 
 
+    //imsi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPostWriteBinding.inflate(layoutInflater)
