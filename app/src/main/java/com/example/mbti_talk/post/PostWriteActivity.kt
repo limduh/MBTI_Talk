@@ -87,9 +87,6 @@ class PostWriteActivity : AppCompatActivity() {
                         val id = addItem(user)
                         Toast.makeText(this@PostWriteActivity, "게시글 입력 완료", Toast.LENGTH_SHORT)
                             .show()
-                        val intent = Intent(this, PostActivity::class.java)
-                        intent.putExtra("POSTLIST", id)
-                        startActivity(intent)
                         finish()
                     } else {
                         Toast.makeText(this@PostWriteActivity, "이미지 업로드 실패", Toast.LENGTH_SHORT)
