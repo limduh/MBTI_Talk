@@ -1,13 +1,15 @@
 package com.example.mbti_talk.post
 
 import android.Manifest
-import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mbti_talk.databinding.ActivityPostWriteBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -20,11 +22,28 @@ import java.util.Locale
 
 class PostWriteActivity : AppCompatActivity() {
 
+
     lateinit var binding: ActivityPostWriteBinding
     private lateinit var firebaseAuth: FirebaseAuth
     val storage = Firebase.storage("gs://mbti-talk-f2a04.appspot.com")
     private var prevX = 0f
     private var prevY = 0f
+
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private val permission33 = arrayOf(
+        Manifest.permission.READ_MEDIA_IMAGES,
+        Manifest.permission.READ_MEDIA_AUDIO,
+        Manifest.permission.READ_MEDIA_VIDEO,
+    )
+
+    private val permission = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    )
+
+
+    //imsi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPostWriteBinding.inflate(layoutInflater)
@@ -37,7 +56,23 @@ class PostWriteActivity : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance().reference
 
         binding.appCompatImageView5.setOnClickListener {
-            permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (checkSelfPermission(Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED)
+                    requestPermissions(permission33, 100)
+                else {
+                    galleryLauncher.launch("image/*")
+                }
+            } else {
+                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                    checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    requestPermissions(permission, 100)
+                }else {
+                    galleryLauncher.launch("image/*")
+                }
+
+            }
         }
 
         binding.postSave.setOnClickListener {
@@ -63,6 +98,7 @@ class PostWriteActivity : AppCompatActivity() {
                 Toast.makeText(this@PostWriteActivity, "이미지를 선택해주세요", Toast.LENGTH_SHORT).show()
             }
         }
+
         binding.postImage.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
@@ -91,6 +127,28 @@ class PostWriteActivity : AppCompatActivity() {
             true
         }
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+            when (requestCode) {
+                100 -> {
+                    Toast.makeText(
+                        this@PostWriteActivity,
+                        "권한 허용됨",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    galleryLauncher.launch("image/*")
+
+                }
+            }
+        }
+    }
+
     fun getTime(): String {
         val currentDateTime = Calendar.getInstance().time
         val dateFormat =
@@ -98,6 +156,7 @@ class PostWriteActivity : AppCompatActivity() {
 
         return dateFormat
     }
+
     fun addItem(user: PostData): String {
         val id = FirebaseData.mydata.push().key!!
         user.uid = id
@@ -140,6 +199,7 @@ class PostWriteActivity : AppCompatActivity() {
             callback(taskSnapshot.metadata?.name)
         }
     }
+
     fun makeFilePath(path: String, userId: String, uri: Uri): String {
         val mimeType = contentResolver.getType(uri) ?: "/none" // MIME 타입 ex) images/jpeg
         val ext = mimeType.split("/")[1] // 확장자 ex) jpeg
@@ -148,6 +208,7 @@ class PostWriteActivity : AppCompatActivity() {
         return filename
     }
 }
+
 class PostData {
     var uid: String = "" // 게시물 고유 식별자
     var title: String = ""
