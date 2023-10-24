@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mbti_talk.Main.BottomActivity
 import com.example.mbti_talk.Main.MainActivity
 import com.example.mbti_talk.databinding.ActivityLogInBinding
+import com.example.mbti_talk.utils.Utils
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -107,8 +108,17 @@ class LogInActivity : AppCompatActivity() {
         firebaseAuth.signInWithEmailAndPassword(id, pass)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    // Firebase에 로그인한 정보 가져오고 해당 사용자 UID 얻음
+                    val user = firebaseAuth.currentUser
+                    val uid = user?.uid
+                    Log.d("로그인 정보 가져옴", "UID ==== ${uid}")
+
+                    // Utils 클래스를 사용하여 사용자의 UID를 저장
+                    Utils.setMyUid(this, uid.toString())
+
                     // 로그인 성공 토스팅
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+
                     // 메인 페이지 이동
                     val intent = Intent(this, SignUpMbtiActivity::class.java)
                     startActivity(intent)
