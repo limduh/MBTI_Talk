@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.mbti_talk.SignUpMbtiActivity
 import com.example.mbti_talk.UserData
-import com.example.mbti_talk.databinding.ActivityProfileBinding
+import com.example.mbti_talk.databinding.FragmentMyProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener
 class MyProfileFragment : Fragment() {
 
     private lateinit var database: DatabaseReference
-    private lateinit var binding: ActivityProfileBinding
+    private lateinit var binding: FragmentMyProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
@@ -28,7 +28,7 @@ class MyProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = ActivityProfileBinding.inflate(inflater, container, false)
+        binding = FragmentMyProfileBinding.inflate(inflater, container, false)
         val view = binding.root
 
         binding.ProfileMbtiBtn.setOnClickListener {
