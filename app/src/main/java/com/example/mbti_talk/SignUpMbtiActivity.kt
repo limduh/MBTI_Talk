@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mbti_talk.Main.MainActivity
 import com.example.mbti_talk.databinding.ActivityMbtiInputBinding
-import com.example.mbti_talk.post.PostActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -54,7 +53,7 @@ class SignUpMbtiActivity : AppCompatActivity() {
                             "MBTI가 업데이트 되었습니다.",
                             Toast.LENGTH_SHORT
                         ).show()
-                        val intent = Intent(this,PostActivity::class.java)
+                        val intent = Intent(this,MainActivity::class.java)
                         startActivity(intent)
                     }
                         .addOnFailureListener { error ->

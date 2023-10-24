@@ -11,7 +11,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mbti_talk.databinding.ActivityPostWriteBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -54,9 +53,6 @@ class PostWriteActivity : AppCompatActivity() {
                         val id = addItem(user)
                         Toast.makeText(this@PostWriteActivity, "게시글 입력 완료", Toast.LENGTH_SHORT)
                             .show()
-                        val intent = Intent(this, PostActivity::class.java)
-                        intent.putExtra("POSTLIST", id)
-                        startActivity(intent)
                         finish()
                     } else {
                         Toast.makeText(this@PostWriteActivity, "이미지 업로드 실패", Toast.LENGTH_SHORT)
