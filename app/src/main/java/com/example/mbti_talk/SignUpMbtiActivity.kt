@@ -53,8 +53,7 @@ class SignUpMbtiActivity : AppCompatActivity() {
                             "MBTI가 업데이트 되었습니다.",
                             Toast.LENGTH_SHORT
                         ).show()
-                        val intent = Intent(this,MainActivity::class.java)
-                        startActivity(intent)
+                       finish()
                     }
                         .addOnFailureListener { error ->
                             Toast.makeText(this, "MBTI 값 업데이트 중 오류 발생: $error", Toast.LENGTH_SHORT)

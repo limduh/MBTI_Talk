@@ -19,6 +19,7 @@ class TestActivity : AppCompatActivity() {
             fragment1Btn.setOnClickListener {
                 setFragment(PostFragment())
             }
+
         }
         setFragment(PostFragment()) // 프로그램 시작화면을 FirstFragment로 시작하기 위해서 씀
     }
