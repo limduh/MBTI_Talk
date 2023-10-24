@@ -8,6 +8,8 @@ import com.google.gson.GsonBuilder
 
 class Utils {
 
+    val PREFS_NAME = "mbti"
+    val PREF_KEY = "mbti_uid"
 
 //Utils자료 참고 // 강의내용 참고 코드
     //SharedPreferences와 Preferences의 차이 : 여러개의 정보를 저장할거냐 or 정보한개만 저장할거냐 인데,
@@ -49,8 +51,32 @@ class Utils {
         }
         return load
     }
+    /**
+     * 마지막 검색어를 Shared Preferences에 저장합니다.
+     *
+     * @param context 호출하는 컨텍스트 (일반적으로 Activity 또는 Application)
+     * @param query 저장하려는 검색어 문자열
+     */
+    fun setMyUid(context: Context, query: String) {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit().putString(PREF_KEY, query).apply()
+    }
+
+    /**
+     * Shared Preferences에서 마지막 검색어를 가져옵니다.
+     *
+     * @param context 호출하는 컨텍스트 (일반적으로 Activity 또는 Application)
+     * @return 마지막으로 저장된 검색어 문자열. 저장된 값이 없으면 null을 반환합니다.
+     */
+    fun getMyUid(context: Context): String? {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        return prefs.getString(PREF_KEY, null)
+    }
 
 }
+
+
+
 
 // 참고 코드
 //    fun getPrefBookmarkItems(context: Context): ArrayList<Item> {
