@@ -13,9 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MBTI_Talk"
         tools:targetApi="31">
-
         <activity
-            android:name=".post.PostWriteActivity"
+            android:name=".post.PostActivity"
             android:exported="false"/>
         <activity
             android:name=".Main.MainActivity"
@@ -42,7 +41,7 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".TestActivity"
+            android:name=".post.PostWriteActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -32,7 +32,7 @@ class PostAdapter(private val postList: List<PostData>) : RecyclerView.Adapter<P
             binding.PostItemTitle.text = postData.title
             binding.PostItemContent.text = postData.content
             binding.PostItemTime.text = postData.time
-//            binding.PostItemImgPost.setImageURI(postData.image)
+//            binding.PostItemImgPost.
         }
     }
 }
