@@ -21,11 +21,26 @@ import java.util.Locale
 
 class PostWriteActivity : AppCompatActivity() {
 
+
     lateinit var binding: ActivityPostWriteBinding
     private lateinit var firebaseAuth: FirebaseAuth
     val storage = Firebase.storage("gs://mbti-talk-f2a04.appspot.com")
     private var prevX = 0f
     private var prevY = 0f
+
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private val permission33 = arrayOf(
+        Manifest.permission.READ_MEDIA_IMAGES,
+        Manifest.permission.READ_MEDIA_AUDIO,
+        Manifest.permission.READ_MEDIA_VIDEO,
+    )
+
+    private val permission = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPostWriteBinding.inflate(layoutInflater)
