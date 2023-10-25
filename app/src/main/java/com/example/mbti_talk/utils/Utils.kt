@@ -30,4 +30,5 @@ object Utils {
         val prefs = context.getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
         return prefs.getString("save", null)
     }
+
 }

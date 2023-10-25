@@ -1,6 +1,7 @@
 package com.example.mbti_talk.FriendList
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,8 @@ class FriendListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Log.d("FriendListFragment", "onViewCreated")
+
         // 친구 데이터 목록 및 RDB 초기화
         friendDB = Firebase.database.reference.child("Users") // RDB 에 대한 ref 초기화하고 "Users" 노드로부터 친구 목록 데이터 가져옴
         friendadapter = UserAdapter(requireContext(), friendList) // Rv 에 사용될 어댑터 초기화
@@ -54,16 +57,26 @@ class FriendListFragment : Fragment() {
         binding.friendlistFragRv.adapter = friendadapter
         binding.friendlistFragRv.layoutManager = LinearLayoutManager(requireContext())
 
-        // 사용자 데이터를 RDB 에서 가져오기
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("FriendListFragment", "onResume")
+    // 사용자 데이터를 RDB 에서 가져오기
         friendDB.limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 // Data 가져오기 성공 시 실행
                 for (userSnapshot in snapshot.children) {
                     // 각 유저 정보를 UserData 객체로 받아오기
                     val user = userSnapshot.getValue(UserData::class.java)
-                    if (user != null) {
-                        friendList.add(user) // user data 목록에 추가
-                    }
+
+
+                    Log.d("FriendListFragment", "user_uid = ${user?.user_uid}")
+
+//                    if (user != null) {
+//                        friendList.add(user) // user data 목록에 추가
+//                    }
                 }
                 friendadapter.notifyDataSetChanged() // 어댑터에게 데이터 변경을 알림
             }
@@ -73,5 +86,6 @@ class FriendListFragment : Fragment() {
                 Toast.makeText(requireContext(), "데이터를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
             }
         })
+
     }
 }
