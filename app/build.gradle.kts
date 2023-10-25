@@ -82,6 +82,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
     implementation("com.google.android.gms:play-services-auth:20.7.0")
 
-    implementation ("com.github.bumptech.glide:glide:4.12.0") // Glide 라이브러리
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0") // Glide 컴파일러
+    //Glide 라이브러리, Glide 컴파일러
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 }
