@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import com.bumptech.glide.Glide
 import com.example.mbti_talk.Adapter.UserAdapter
 import com.example.mbti_talk.Main.MainFriendActivity
 import com.example.mbti_talk.databinding.ActivityDetailBinding
@@ -20,6 +21,7 @@ import com.google.firebase.database.core.Constants
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 
 class DetailActivity : AppCompatActivity() {
 
@@ -86,6 +88,17 @@ class DetailActivity : AppCompatActivity() {
                         ageTextView.text = age.toString()
                         genderTextView.text = gender
                         mbtiTextView.text = mbti
+
+                        // Firebase Storage 에서 프로필 이미지 가져오기
+                        val storage = FirebaseStorage.getInstance()
+                        val imgRef = storage.getReference("images/${userData.child("user_profile").getValue<String?>()}")
+
+                        // Glide 라이브러리를 사용하여 imgRef 에 있는 이미지를 user_profile 에 표시
+                        Glide.with(binding.root.context)
+                            .load(imgRef)
+                            .centerCrop()
+                            .error(android.R.drawable.stat_notify_error)
+                            .into(profileImageView)
 
                     } else {
                         // 사용자 정보를 가져오지 못한 경우
