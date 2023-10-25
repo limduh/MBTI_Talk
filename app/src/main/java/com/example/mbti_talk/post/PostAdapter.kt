@@ -41,12 +41,9 @@ class PostAdapter(private val postList: List<PostData>) : RecyclerView.Adapter<R
             binding.PostItemTitle.text = postData.title
             binding.PostItemContent.text = postData.content
             binding.PostItemTime.text = postData.time
-
-            Glide.with(binding.root.context)
-                .load(postData.image)
-                .centerCrop()
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(binding.PostItemImgPost)
+            Glide.with(binding.root)
+                .load(Uri.parse(postData.image))
+                .into(PostItemImgPost)
         }
     }
 }
