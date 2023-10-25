@@ -20,7 +20,7 @@ class ChatActivity : AppCompatActivity() {
     lateinit var mDB: DatabaseReference
     private lateinit var receiverRoom:String //받는 대화방
     private lateinit var senderRoom:String  //보낸 대화방
-    //메세지 담을 리스트
+    //메세지 담을 리스트sss
     private lateinit var messageList:ArrayList<Message>
 
 
