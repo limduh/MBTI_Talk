@@ -58,8 +58,16 @@ class UserAdapter(private val mContext: Context, private val userList: List<User
         holder.user_age.text = user.user_age.toString()
         holder.user_gender.text = user.user_gender
         holder.user_mbti.text = user.user_mbti
-        holder.user_profile.setImageURI(user.user_profile.toUri())
 
+        // Firebase Storage 에서 프로필 이미지 가져오기
+        val storage = FirebaseStorage.getInstance()
+        val imgRef = storage.getReference("images/${user.user_profile}")
+        // Glide 라이브러리를 사용하여 imgRef 에 있는 이미지를 user_profile 에 표시
+        Glide.with(holder.itemView.context)
+            .load(imgRef)
+            .centerCrop()
+            .error(android.R.drawable.stat_notify_error)
+            .into(holder.user_profile)
 
         // user list 클릭 시 DetailActivity 로 이동
         holder.user_list.setOnClickListener {
