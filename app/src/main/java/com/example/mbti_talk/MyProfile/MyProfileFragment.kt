@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.mbti_talk.SignUpMbtiActivity
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentMyProfileBinding
@@ -15,6 +17,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
 
 
 class MyProfileFragment : Fragment() {
@@ -23,6 +26,7 @@ class MyProfileFragment : Fragment() {
     private lateinit var binding: FragmentMyProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
 
+    private lateinit var ProfileImg:AppCompatImageView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -57,7 +61,19 @@ class MyProfileFragment : Fragment() {
                             binding.ProfileNickname.text = "${userData.user_nickName}"
                             binding.ProfileAge.text = "${userData.user_age}"
                             binding.ProfileGender.text = "${userData.user_gender}"
+
+                            // Firebase Storage 에서 프로필 이미지 가져오기
+                            val storage = FirebaseStorage.getInstance()
+                            val imgRef = storage.getReference("images/${userData.user_profile}")
+
+                            // Glide 라이브러리를 사용하여 프로필 이미지 설정
+                            Glide.with(requireContext())
+                                .load(imgRef)
+                                .centerCrop()
+                                .error(android.R.drawable.stat_notify_error)
+                                .into(binding.ProfileImg)
                         }
+
                     }
                 }
 

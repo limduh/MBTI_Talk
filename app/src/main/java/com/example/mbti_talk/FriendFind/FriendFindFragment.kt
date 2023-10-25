@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mbti_talk.Adapter.UserAdapter
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentFriendFindBinding
+import com.example.mbti_talk.utils.Utils
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -56,13 +57,15 @@ class FriendFindFragment : Fragment() {
         binding.FriendFindFragRv.layoutManager = LinearLayoutManager(requireContext())
 
         // 사용자 데이터를 RDB 에서 가져오기
+        val currentUserUid = Utils.getMyUid(requireContext())
         userDB.limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 // Data 가져오기 성공 시 실행
                 for (userSnapshot in snapshot.children) {
                     // 각 유저 정보를 UserData 객체로 받아오기
                     val user = userSnapshot.getValue(UserData::class.java)
-                    if (user != null) {
+                    // 사용자 본인 정보는 친구찾기 페이지에 표시되지 않음.
+                    if (user != null && user.user_uid != currentUserUid) {
                         userList.add(user) // user data 목록에 추가
                     }
                 }

@@ -59,6 +59,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx:22.2.0") // 원래는 22.1.2 이나 도연 프로젝트에서는 22.2.0 으로만 빌드됨.
     implementation("com.google.firebase:firebase-database-ktx:20.2.2")
+    implementation("com.firebaseui:firebase-ui-storage:8.0.2") //glideModule 때문에 추가
     implementation("com.google.firebase:firebase-auth:22.2.0")
     implementation("com.google.firebase:firebase-storage-ktx")
     testImplementation("junit:junit:4.13.2")

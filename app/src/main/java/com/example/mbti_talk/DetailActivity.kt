@@ -1,11 +1,14 @@
 package com.example.mbti_talk
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import com.bumptech.glide.Glide
 import com.example.mbti_talk.Adapter.UserAdapter
 import com.example.mbti_talk.Main.MainFriendActivity
 import com.example.mbti_talk.databinding.ActivityDetailBinding
@@ -18,6 +21,7 @@ import com.google.firebase.database.core.Constants
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 
 class DetailActivity : AppCompatActivity() {
 
@@ -30,6 +34,8 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var ageTextView: AppCompatTextView
     private lateinit var genderTextView: AppCompatTextView
     private lateinit var mbtiTextView: AppCompatTextView
+    // ImageView 초기화
+    private lateinit var profileImageView: AppCompatImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +49,8 @@ class DetailActivity : AppCompatActivity() {
         ageTextView = binding.DetailTxtAge
         genderTextView = binding.DetailTxtGender
         mbtiTextView = binding.DetailTxtMbti
+        // ImageView 초기화
+        profileImageView = binding.DetailIvProfile
 
         // "현재 사용자"의 UID 가져옴
         val myId = Utils.getMyUid(this)
@@ -80,6 +88,17 @@ class DetailActivity : AppCompatActivity() {
                         ageTextView.text = age.toString()
                         genderTextView.text = gender
                         mbtiTextView.text = mbti
+
+                        // Firebase Storage 에서 프로필 이미지 가져오기
+                        val storage = FirebaseStorage.getInstance()
+                        val imgRef = storage.getReference("images/${userData.child("user_profile").getValue<String?>()}")
+
+                        // Glide 라이브러리를 사용하여 imgRef 에 있는 이미지를 user_profile 에 표시
+                        Glide.with(binding.root.context)
+                            .load(imgRef)
+                            .centerCrop()
+                            .error(android.R.drawable.stat_notify_error)
+                            .into(profileImageView)
 
                     } else {
                         // 사용자 정보를 가져오지 못한 경우
