@@ -1,6 +1,7 @@
 package com.example.mbti_talk.FriendFind
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,6 +43,9 @@ class FriendFindFragment : Fragment() {
     * 여기서 view는 onCreateView에서 반환한 뷰 */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Log.d("FriendFindFragment", "onViewCreated")
+
 
         // RecyclerView 및 어댑터 초기화
         userDB = Firebase.database.reference.child("Users")

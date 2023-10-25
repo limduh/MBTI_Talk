@@ -25,6 +25,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class LogInActivity : AppCompatActivity() {
 
@@ -33,6 +39,7 @@ class LogInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLogInBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var friendDB: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +65,7 @@ class LogInActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        friendDB = Firebase.database.reference.child("Users") // RDB 에 대한 ref 초기화하고 "Users" 노드로부터 친구 목록 데이터 가져옴
 
         //구글 이미지 누를때 이벤트
         imageViewGoogle.setOnClickListener {
@@ -119,10 +127,37 @@ class LogInActivity : AppCompatActivity() {
                     // 로그인 성공 토스팅
                     Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
 
-                    // 메인 페이지 이동
-                    val intent = Intent(this, SignUpMbtiActivity::class.java)
-                    startActivity(intent)
-                    finish() // 로그인 화면 종료
+
+                    friendDB.child(uid.toString()).addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                // 데이터가 존재하는 경우
+                                val userData = dataSnapshot.getValue(UserData::class.java)
+
+                                Log.d("FirebaseDatabase", "User Data: $userData")
+
+                                if(!userData?.user_mbti.isNullOrEmpty()){
+                                    val intent = Intent(this@LogInActivity, BottomActivity::class.java)
+                                    startActivity(intent)
+                                    finish() // 로그인 화면 종료
+                                }else {
+                                    // 메인 페이지 이동
+                                    val intent = Intent(this@LogInActivity, SignUpMbtiActivity::class.java)
+                                    startActivity(intent)
+                                    finish() // 로그인 화면 종료
+                                }
+
+                            } else {
+                                // UID에 해당하는 데이터가 없는 경우
+                                Log.d("FirebaseDatabase", "User not found")
+                            }
+                        }
+
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            // 쿼리가 취소되었을 때 호출됩니다.
+                            Log.d("FirebaseDatabase", "onCancelled", databaseError.toException())
+                        }
+                    })
                 } else {
                     //로그인 실패
                     Toast.makeText(this, "아이디 또는 비밀번호가 올바르지 않습니다.", Toast.LENGTH_SHORT)
