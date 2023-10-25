@@ -106,7 +106,6 @@ class FriendListFragment : Fragment() {
                     Toast.makeText(requireContext(), "친구를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onCancelled(databaseError: DatabaseError) { // DB 오류 처리하고 메시지 로깅
                 Log.d("FirebaseDatabase", "onCancelled", databaseError.toException())
             }
