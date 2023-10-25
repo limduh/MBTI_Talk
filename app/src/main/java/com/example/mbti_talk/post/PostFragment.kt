@@ -2,6 +2,7 @@ package com.example.mbti_talk.post
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,7 +43,7 @@ class PostFragment : Fragment() {
         }
         // 데이터베이스에서 데이터 읽어오기
 
-        userDB.limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
+        userDB.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 val tempList = mutableListOf<PostData>()
@@ -56,6 +57,9 @@ class PostFragment : Fragment() {
                 postList.addAll(tempList)
                 postAdapter.notifyDataSetChanged()
                 postList.reverse()
+                for (item in postList) {
+                    Log.d("ImageData", "Image URL: ${item.image}")
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
