@@ -5,12 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mbti_talk.Adapter.UserAdapter
 import com.example.mbti_talk.UserData
-import com.example.mbti_talk.databinding.FragmentFriendFindBinding
 import com.example.mbti_talk.databinding.FragmentFriendListBinding
 import com.example.mbti_talk.utils.Utils
 import com.google.firebase.database.DataSnapshot
@@ -25,6 +23,7 @@ class FriendListFragment : Fragment() {
     private lateinit var binding: FragmentFriendListBinding
     private lateinit var friendadapter: UserAdapter
     private val friendList: MutableList<UserData> = mutableListOf()
+    private lateinit var userDB: DatabaseReference
     private lateinit var friendDB: DatabaseReference
 
     // onCreateView 함수는 Fragment가 생성될 때 호출. Fragment의 사용자 인터페이스 레이아웃을 초기화
@@ -51,7 +50,8 @@ class FriendListFragment : Fragment() {
         Log.d("FriendListFragment", "onViewCreated")
 
         // 친구 데이터 목록 및 RDB 초기화
-        friendDB = Firebase.database.reference // RDB 에 대한 ref 초기화하고 "Users" 노드로부터 친구 목록 데이터 가져옴
+        userDB = Firebase.database.reference.child("Users")
+        friendDB = Firebase.database.reference.child("Friends")
         friendadapter = UserAdapter(requireContext(), friendList) // Rv 에 사용될 어댑터 초기화
 
         // RecyclerView에 어댑터 설정
@@ -71,7 +71,9 @@ class FriendListFragment : Fragment() {
     }
 
     private fun loadFriends(currentUserUid: String) {
-        friendDB.child("Friends").child(currentUserUid).addListenerForSingleValueEvent(object : ValueEventListener {
+        friendDB
+            .child(currentUserUid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 Log.d("FirebaseDatabase", "loadFriends onDataChange")
 
@@ -101,7 +103,9 @@ class FriendListFragment : Fragment() {
     }
 
     private fun loadFriendData(friendUid: String, isLast:Boolean) {
-        friendDB.child("Users").child(friendUid).addListenerForSingleValueEvent(object : ValueEventListener {
+        userDB
+            .child(friendUid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(friendDataSnapshot: DataSnapshot) {
                 if (friendDataSnapshot.exists()) {
                     val friendData = friendDataSnapshot.getValue(UserData::class.java)
@@ -120,6 +124,4 @@ class FriendListFragment : Fragment() {
             }
         })
     }
-
-
 }
