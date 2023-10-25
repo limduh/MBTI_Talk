@@ -41,9 +41,6 @@
             android:name=".SelectionMbtiActivity"
             android:exported="false" />
         <activity
-            android:name=".Profile"
-            android:exported="false" />
-        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
