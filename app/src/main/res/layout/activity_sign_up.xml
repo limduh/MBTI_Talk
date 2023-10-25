@@ -6,10 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/SignUp_btn_back"
@@ -42,6 +47,47 @@
             android:background="@drawable/login_hline_kit"
             app:layout_constraintTop_toBottomOf="@+id/SignUp_txt_title" />
 
+
+        <!--tools:srcCompat="@tools:sample/avatars" />-->
+
+        <TextView
+            android:id="@+id/image_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내 사진 업로드 "
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/appCompatImageView5"
+            app:layout_constraintTop_toTopOf="@+id/appCompatImageView5"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/LoginImageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SignUp_V_hline"
+            app:srcCompat="@drawable/signup_profile_img" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView5"
+            android:layout_width="73dp"
+            android:layout_height="66dp"
+            android:layout_marginEnd="120dp"
+            android:padding="10dp"
+
+
+            android:src="@drawable/ic_photo"
+            app:layout_constraintBottom_toBottomOf="@+id/LoginImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SignUp_V_hline"
+            app:layout_constraintVertical_bias="1.0" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/appCompatTextView16"
             android:layout_width="wrap_content"
@@ -58,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="180dp"
             android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +114,7 @@
                 android:id="@+id/SignUp_etxt_ID"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:hint="이메일"
+                android:hint="이메일 형식으로 입력해 주세요"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -88,11 +134,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이메일 형식의 아이디를 입력해주세요."
+            android:visibility="invisible"
             android:textColor="#FF4C4C"
-
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="@+id/SignUp_const_IdBox"
             app:layout_constraintTop_toBottomOf="@id/SignUp_const_IdBox" />
@@ -146,11 +193,13 @@
 
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="영문 대문자와 소문자, 숫자, 특수문자 중 2가지 이상을 조합하여\n6~20자로 입력해주세요."
             android:textColor="#FF4C4C"
             android:textSize="10sp"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/SignUp_const_PwBox"
             app:layout_constraintTop_toBottomOf="@+id/SignUp_const_PwBox" />
 
@@ -201,8 +250,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
         <!--        닉네임 확인-->
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -221,7 +268,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -234,6 +281,7 @@
                 android:hint="12자 이내의 닉네임을 입력해주세요."
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="1" />
@@ -249,8 +297,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
         <!--        나이-->
@@ -272,7 +318,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="24dp"
             android:hint="1~200까지의 숫자만 입력해 주세요."
             android:textSize="13sp"
@@ -285,7 +331,7 @@
             android:id="@+id/appCompatTextView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="24dp"
             android:text="성별"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -299,7 +345,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/login_btn_kit"
             android:text="회원가입"
             android:textColor="@color/white"
@@ -309,14 +355,14 @@
 
         <RadioGroup
             android:id="@+id/SignUp_radio_Group"
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
-            app:layout_constraintBottom_toTopOf="@+id/SignUp_btn_SignUp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.436"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SignUp_etxt_Age">
 
             <RadioButton
                 android:id="@+id/SignUp_radioMale"
@@ -338,6 +384,8 @@
 
         </RadioGroup>
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
