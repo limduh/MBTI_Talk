@@ -43,7 +43,7 @@ class UserAdapter(private val mContext: Context, private val userList: List<User
     // position 은 현재 ViewHolder 가 Binding 될 항목의 위치를 나타냄
     // userList[position] 을 사용하여 해당 위치의 UserData 가져옴
 
-    /* onBindViewHolder는 RecyclerV가 화면에 Item 표시 or Item 이 화면에 스크롤되거나 새 아이템 나타날 때 호출
+    /* onBindViewHolder는 RV가 화면에 Item 표시 or Item 이 화면에 스크롤되거나 새 아이템 나타날 때 호출
     holder 는 RV,ViewHolder 객체. Item View 의 레이아웃 내부의 서브 뷰 접근할 수 있다.
     position 은 현재 Item 위치 나타내는 Index. 이 위치에 해당하는 Data 를 가져와 Item View 에 표시
 
@@ -62,6 +62,7 @@ class UserAdapter(private val mContext: Context, private val userList: List<User
         // Firebase Storage 에서 프로필 이미지 가져오기
         val storage = FirebaseStorage.getInstance()
         val imgRef = storage.getReference("images/${user.user_profile}")
+
         // Glide 라이브러리를 사용하여 imgRef 에 있는 이미지를 user_profile 에 표시
         Glide.with(holder.itemView.context)
             .load(imgRef)
