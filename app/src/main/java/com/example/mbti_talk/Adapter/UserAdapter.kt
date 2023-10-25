@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mbti_talk.DetailActivity
-import com.example.mbti_talk.Profile
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.UserListBinding
 
