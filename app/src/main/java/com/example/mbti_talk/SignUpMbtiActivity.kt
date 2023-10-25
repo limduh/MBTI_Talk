@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mbti_talk.Main.BottomActivity
 import com.example.mbti_talk.Main.MainActivity
 import com.example.mbti_talk.databinding.ActivityMbtiInputBinding
-import com.example.mbti_talk.post.PostActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 

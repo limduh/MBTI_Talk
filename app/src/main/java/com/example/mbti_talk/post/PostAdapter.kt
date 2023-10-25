@@ -1,20 +1,25 @@
 package com.example.mbti_talk.post
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.mbti_talk.R
 import com.example.mbti_talk.databinding.ActivityPostItemBinding
 
 
-class PostAdapter(private val postList: List<PostData>) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
+class PostAdapter(private val postList: List<PostData>) :
+    RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
     // onCreateViewHolder 메서드에서 뷰홀더를 생성합니다.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val binding = ActivityPostItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ActivityPostItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PostViewHolder(binding)
     }
 
@@ -27,12 +32,17 @@ class PostAdapter(private val postList: List<PostData>) : RecyclerView.Adapter<P
     override fun getItemCount(): Int {
         return postList.size
     }
-    inner class PostViewHolder(val binding: ActivityPostItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    inner class PostViewHolder(val binding: ActivityPostItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(postData: PostData) {
             binding.PostItemTitle.text = postData.title
             binding.PostItemContent.text = postData.content
             binding.PostItemTime.text = postData.time
-//            binding.PostItemImgPost.
+
+            Glide.with(binding.root.context)
+                .load(postData.image)
+                .into(binding.PostItemImgPost)
         }
     }
 }
