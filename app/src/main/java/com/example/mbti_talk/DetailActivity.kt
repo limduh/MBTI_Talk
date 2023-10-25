@@ -1,10 +1,12 @@
 package com.example.mbti_talk
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.mbti_talk.Adapter.UserAdapter
 import com.example.mbti_talk.Main.MainFriendActivity
@@ -30,6 +32,8 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var ageTextView: AppCompatTextView
     private lateinit var genderTextView: AppCompatTextView
     private lateinit var mbtiTextView: AppCompatTextView
+    // ImageView 초기화
+    private lateinit var profileImageView: AppCompatImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +47,8 @@ class DetailActivity : AppCompatActivity() {
         ageTextView = binding.DetailTxtAge
         genderTextView = binding.DetailTxtGender
         mbtiTextView = binding.DetailTxtMbti
+        // ImageView 초기화
+        profileImageView = binding.DetailIvProfile
 
         // "현재 사용자"의 UID 가져옴
         val myId = Utils.getMyUid(this)
