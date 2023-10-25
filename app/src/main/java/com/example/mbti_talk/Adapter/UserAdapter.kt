@@ -4,16 +4,24 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mbti_talk.DetailActivity
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.UserListBinding
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
+import com.google.firebase.storage.storage
+import java.text.SimpleDateFormat
+import java.util.Date
 
 // 이 어댑터는 RecyclerView에 사용됨. 각 아이템은 사용자 정보를 나타내며, 유저가 리스트 클릭 시, 해당 유저의 프로필 화면으로 이동 기능 추가
 
-class UserAdapter(private  val mContext: Context, private val userList: List<UserData>) : RecyclerView.Adapter<UserAdapter.Holder>() {
-
+class UserAdapter(private val mContext: Context, private val userList: List<UserData>) : RecyclerView.Adapter<UserAdapter.Holder>() {
 
     // onCreateViewHolder 함수는 ViewHolder 객체를 생성, 초기화
     // ItemBinding.inflate() 함수를 통해 XML 레이아웃 파일에서 뷰를 inflate, 그 뷰를 사용하여 Holder 객체를 생성
@@ -50,7 +58,8 @@ class UserAdapter(private  val mContext: Context, private val userList: List<Use
         holder.user_age.text = user.user_age.toString()
         holder.user_gender.text = user.user_gender
         holder.user_mbti.text = user.user_mbti
-//        holder.user_profile.setImageResource(user.user_profile)
+        holder.user_profile.setImageURI(user.user_profile.toUri())
+
 
         // user list 클릭 시 DetailActivity 로 이동
         holder.user_list.setOnClickListener {
@@ -72,6 +81,7 @@ class UserAdapter(private  val mContext: Context, private val userList: List<Use
         val user_age = binding.etAge // 나이 텍스트뷰
         val user_gender = binding.etGender // 성별 텍스트뷰
         val user_mbti = binding.etMbti // mbti 텍스트뷰
-//        val user_profile = binding.ivProfile // 프로필 이미지뷰
+        val user_profile = binding.ivProfile // 프로필 이미지뷰
+
     }
 }
