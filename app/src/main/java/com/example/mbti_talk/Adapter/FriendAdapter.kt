@@ -1,5 +1,6 @@
 package com.example.mbti_talk.Adapter
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,7 +15,7 @@ import kotlinx.coroutines.NonDisposableHandle.parent
 
 // 이 어댑터는 RecyclerView에 사용됨. 각 아이템은 사용자의 친구 정보를 나타내며, 유저가 리스트 클릭 시, 해당 유저의 프로필 화면으로 이동 기능 추가
 
-class FriendAdapter (private val friendList: List<UserData>) : RecyclerView.Adapter<FriendAdapter.Holder>() {
+class FriendAdapter (private val mContext: Context, private val friendList: List<UserData>) : RecyclerView.Adapter<FriendAdapter.Holder>() {
 
     // onCreateViewHolder 함수는 ViewHolder 객체를 생성, 초기화
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -49,11 +50,20 @@ class FriendAdapter (private val friendList: List<UserData>) : RecyclerView.Adap
         holder.friend_gender.text = friend.user_gender
         holder.friend_mbti.text = friend.user_mbti
 //        holder.friend_profile.setImageResource(friend.user_profile)
+
+        // friend list 클릭 시 DetailActivity 로 이동
+        holder.friend_list.setOnClickListener {
+            // startActivity 함수를 사용하여 User Detail 로 이동하는 인텐트를 생성하고 실행. 이 경우 DetailActivity::class.java로 지정된 Profile 로 이동
+            val intent = Intent(mContext, DetailActivity::class.java)
+            // 클릭한 user data 를 DetailActivity 로 전달
+            intent.putExtra("userId", friend.user_uid)
+            startActivity(mContext, intent, null)
+        }
     }
 
     // RecyclerView.ViewHolder 를 확장한 클래스. 각 목록에 대한 뷰 요소 저장
     inner class Holder(binding: FriendListBinding) : RecyclerView.ViewHolder(binding.root) {
-
+        val friend_list = binding.clListFriend // 친구 리스트 바인딩
         val friend_nickname = binding.etFriendNickName // 닉네임 텍스트뷰
         val friend_age = binding.etFriendAge // 나이 텍스트뷰
         val friend_gender = binding.etFriendGender // 성별 텍스트뷰

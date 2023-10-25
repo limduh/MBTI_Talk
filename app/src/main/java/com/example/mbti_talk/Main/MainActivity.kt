@@ -27,11 +27,8 @@ class MainActivity : AppCompatActivity() {
 
     // MainActivity 클래스의 멤버 변수들을 선언
     lateinit var binding: ActivityMainBinding // 뷰바인딩 초기화
-
     lateinit var adapter: UserAdapter // RecyclerView 에 사용될 어댑터 초기화
-
     private lateinit var userList: MutableList<UserData> // 유저 목록을 저장 위한 MutableList를 초기화. 유저 데이터는 RecyclerView 에 표시됨.
-
     private lateinit var userDB: DatabaseReference // FB Realtime DB와 연동하기 위한 레퍼런스를 초기화
 
 

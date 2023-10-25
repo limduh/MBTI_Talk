@@ -45,12 +45,15 @@ class PostFragment : Fragment() {
         userDB.limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                val tempList = mutableListOf<PostData>()
                 for (data in snapshot.children) {
                     val item = data.getValue(PostData::class.java)
                     if (item != null) {
-                        postList.add(item)
+                        tempList.add(item)
                     }
                 }
+                postList.clear()
+                postList.addAll(tempList)
                 postAdapter.notifyDataSetChanged()
                 postList.reverse()
             }
