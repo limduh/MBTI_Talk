@@ -87,37 +87,4 @@ class BottomActivity : AppCompatActivity() {
     }
 }
 
-        // OnNavigationItemSelectedListener를 통해 탭 아이템 선택 시 이벤트를 처리
-        // navi_menu.xml 에서 설정했던 각 아이템들의 id를 통해 알맞은 프래그먼트로 변경하게 한다.
-
-//        bnv_main.run { setOnNavigationItemSelectedListener {
-//            when(it.itemId) {
-//                R.id.friend -> {
-//                    // 다른 프래그먼트 화면으로 이동하는 기능
-//                    val friendList = FriendListFragment()
-//                    supportFragmentManager.beginTransaction().replace(R.id.Bottom_frame, ).commit()
-//                }
-//                R.id.post -> {
-//                    val boardFragment = BoardFragment()
-//                    supportFragmentManager.beginTransaction().replace(R.id.Bottom_frame, boardFragment).commit()
-//                }
-//                R.id.findfriend -> {
-//                    val settingFragment = SettingFragment()
-//                    supportFragmentManager.beginTransaction().replace(R.id.Bottom_frame, settingFragment).commit()
-//                }
-//
-//                R.id.chat -> {
-//                    val settingFragment = SettingFragment()
-//                    supportFragmentManager.beginTransaction().replace(R.id.Bottom_frame, settingFragment).commit()
-//                }
-//
-//                R.id.myprofile -> {
-//                    val settingFragment = SettingFragment()
-//                    supportFragmentManager.beginTransaction().replace(R.id.Bottom_frame, settingFragment).commit()
-//                }
-//            }
-//            true
-//        }
-//            selectedItemId = R.id.friend
-//        }
 

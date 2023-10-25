@@ -24,9 +24,12 @@
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="#FFFFFF"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navi_menu" />
+
+<!--    app:labelVisibilityMode="labeled"로 메뉴의 글씨가 항상 표시되게 변경-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
