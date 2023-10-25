@@ -32,10 +32,10 @@
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/Mbti_btn_enter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Mbti_selecbox_V_hline"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/Mbti_selecbox_mainboard"
@@ -286,6 +286,33 @@
                     android:textAlignment="center"
                     android:textSize="40sp" />
             </RadioGroup>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="친구의 친구가 껴도 좋다."
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/Mbti_selecbox_1"
+                app:layout_constraintStart_toStartOf="@+id/Mbti_selecbox_1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="center"
+                android:text="친구의 친구가 끼는건\n불편하다."
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/Mbti_selecbox_1"
+                app:layout_constraintEnd_toEndOf="@+id/Mbti_selecbox_1" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
