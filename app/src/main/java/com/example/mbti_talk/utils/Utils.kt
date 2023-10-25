@@ -6,7 +6,7 @@ import android.content.Context
 import com.example.mbti_talk.UserData
 import com.google.gson.GsonBuilder
 
-class Utils {
+object Utils {
 
 
     /**
@@ -15,7 +15,7 @@ class Utils {
      * @param context 호출하는 컨텍스트 (일반적으로 Activity 또는 Application)
      * @param query 저장하려는 검색어 문자열
      */
-    fun saveLastSearch(context: Context, query: String) {
+    fun setMyUid(context: Context, query: String) {
         val prefs = context.getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
         prefs.edit().putString("save", query).apply()
     }
@@ -26,7 +26,7 @@ class Utils {
      * @param context 호출하는 컨텍스트 (일반적으로 Activity 또는 Application)
      * @return 마지막으로 저장된 검색어 문자열. 저장된 값이 없으면 null을 반환합니다.
      */
-    fun getLastSearch(context: Context): String? {
+    fun getMyUid(context: Context): String? {
         val prefs = context.getSharedPreferences("UserInfo", Context.MODE_PRIVATE)
         return prefs.getString("save", null)
     }
