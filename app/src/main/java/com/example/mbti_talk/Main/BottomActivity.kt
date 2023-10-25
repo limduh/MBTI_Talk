@@ -2,6 +2,7 @@ package com.example.mbti_talk.Main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.mbti_talk.R
@@ -35,13 +36,17 @@ class BottomActivity : AppCompatActivity() {
 
         fragmentManager = supportFragmentManager
         //초기화면 설정 ▽
-        currentFragment = friendListFragment
 
         supportFragmentManager.beginTransaction().replace(R.id.Bottom_frame, FriendFindFragment()).commit()
+
+        fragmentManager.beginTransaction().replace(R.id.Bottom_frame, friendListFragment).commit()
+        currentFragment = friendListFragment
+
 
         // 하단 탭이 눌렸을 때 화면을 전환하기 위해선 이벤트 처리하기 위해 BottomNavigationView 객체 생성
         val bnv_main = binding.BottomNav
         bnv_main.setOnItemSelectedListener { menuItem ->
+            Log.d("BottomActivity", "bnv_main menuItem.title => ${menuItem.title}")
             when (menuItem.title) {
                 "친구목록" -> {
                     switchFragment(friendListFragment)
@@ -73,6 +78,8 @@ class BottomActivity : AppCompatActivity() {
         }
     }
     private fun switchFragment(fragment: Fragment) {
+        Log.d("BottomActivity", "switchFragment => ${fragment.tag}")
+
         if (fragment != currentFragment) {
             fragmentManager.beginTransaction().replace(R.id.Bottom_frame, fragment).commit()
             currentFragment = fragment
