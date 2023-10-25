@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".post.PostDetailActivity">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/PostDetail_const_title"
         android:layout_width="match_parent"
@@ -27,7 +26,6 @@
             app:layout_constraintStart_toEndOf="@+id/PostDetail_backarrow"
             app:layout_constraintTop_toTopOf="@+id/PostDetail_backarrow" />
 
-
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/PostDetail_backarrow"
             android:layout_width="40dp"
@@ -38,7 +36,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_left_arrow" />
-
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/PostDetail_title"
@@ -84,7 +81,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/PostDetail_const_content"
         android:layout_width="match_parent"
@@ -92,8 +88,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/post_title_line"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PostDetail_const_title"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/PostDetail_const_title">
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/PostDetail_content_scroll"
@@ -117,7 +112,6 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
         </androidx.core.widget.NestedScrollView>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

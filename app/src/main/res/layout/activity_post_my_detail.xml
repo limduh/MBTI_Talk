@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".post.PostMyDetailActivity">
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/PostDetailMy_const_title"
         android:layout_width="match_parent"
@@ -27,7 +25,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/PostDetailMy_backarrow"
             app:layout_constraintStart_toEndOf="@+id/PostDetailMy_backarrow"
             app:layout_constraintTop_toTopOf="@+id/PostDetailMy_backarrow" />
-
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/PostDetailMy_backarrow"
@@ -93,9 +90,9 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="16dp"
+            android:maxLines="3"
             android:paddingStart="10dp"
             android:text="게시물 제목"
-            android:maxLines="3"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -130,7 +127,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/PostDetailMy_const_content"
         android:layout_width="match_parent"
@@ -138,8 +134,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/post_title_line"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PostDetailMy_const_title"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/PostDetailMy_const_title">
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/PostDetailMy_content_scroll"
@@ -166,7 +161,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
