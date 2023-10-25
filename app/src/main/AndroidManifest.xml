@@ -17,6 +17,9 @@
         android:theme="@style/Theme.MBTI_Talk"
         tools:targetApi="31">
         <activity
+            android:name=".post.PostMyDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".post.PostDetailActivity"
             android:exported="false" />
         <activity
