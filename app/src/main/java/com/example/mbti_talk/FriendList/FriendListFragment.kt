@@ -12,6 +12,7 @@ import com.example.mbti_talk.Adapter.UserAdapter
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentFriendFindBinding
 import com.example.mbti_talk.databinding.FragmentFriendListBinding
+import com.example.mbti_talk.utils.Utils
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -50,7 +51,7 @@ class FriendListFragment : Fragment() {
         Log.d("FriendListFragment", "onViewCreated")
 
         // 친구 데이터 목록 및 RDB 초기화
-        friendDB = Firebase.database.reference.child("Users") // RDB 에 대한 ref 초기화하고 "Users" 노드로부터 친구 목록 데이터 가져옴
+        friendDB = Firebase.database.reference // RDB 에 대한 ref 초기화하고 "Users" 노드로부터 친구 목록 데이터 가져옴
         friendadapter = UserAdapter(requireContext(), friendList) // Rv 에 사용될 어댑터 초기화
 
         // RecyclerView에 어댑터 설정
@@ -60,32 +61,65 @@ class FriendListFragment : Fragment() {
 
     }
 
+
+
     override fun onResume() {
         super.onResume()
         Log.d("FriendListFragment", "onResume")
-    // 사용자 데이터를 RDB 에서 가져오기
-        friendDB.limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                // Data 가져오기 성공 시 실행
-                for (userSnapshot in snapshot.children) {
-                    // 각 유저 정보를 UserData 객체로 받아오기
-                    val user = userSnapshot.getValue(UserData::class.java)
+        val currentUserUid = Utils.getMyUid(requireContext())
+        loadFriends(currentUserUid.toString())
+    }
 
+    private fun loadFriends(currentUserUid: String) {
+        friendDB.child("Friends").child(currentUserUid).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                Log.d("FirebaseDatabase", "loadFriends onDataChange")
 
-                    Log.d("FriendListFragment", "user_uid = ${user?.user_uid}")
-
-//                    if (user != null) {
-//                        friendList.add(user) // user data 목록에 추가
-//                    }
+                if (dataSnapshot.exists()) {
+                    val size = dataSnapshot.children.count()
+                    Log.d("FirebaseDatabase", "dataSnapshot.exists() size = $size")
+                    var cnt = 0
+                    for (friendUidSnapshot in dataSnapshot.children) {
+                        val friendUid = friendUidSnapshot.key
+                        if (friendUid != null) {
+                            if(cnt==size-1)
+                                loadFriendData(friendUid,true)
+                            else
+                                loadFriendData(friendUid,false)
+                        }
+                        cnt++
+                    }
+                } else {
+                    Log.d("FirebaseDatabase", "No friends found for UID: $currentUserUid")
                 }
-                friendadapter.notifyDataSetChanged() // 어댑터에게 데이터 변경을 알림
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                // 처리 중 오류 발생 시 토스트 표시
-                Toast.makeText(requireContext(), "데이터를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.d("FirebaseDatabase", "onCancelled", databaseError.toException())
             }
         })
-
     }
+
+    private fun loadFriendData(friendUid: String, isLast:Boolean) {
+        friendDB.child("Users").child(friendUid).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(friendDataSnapshot: DataSnapshot) {
+                if (friendDataSnapshot.exists()) {
+                    val friendData = friendDataSnapshot.getValue(UserData::class.java)
+                    if (friendData != null) {
+                        friendList.add(friendData)
+                        if(isLast)
+                            friendadapter.notifyDataSetChanged()
+                    }
+                } else {
+                    Log.d("FirebaseDatabase", "Friend data not found for UID: $friendUid")
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.d("FirebaseDatabase", "onCancelled", databaseError.toException())
+            }
+        })
+    }
+
+
 }
