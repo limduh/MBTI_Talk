@@ -108,7 +108,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Detail_Const_Appbar">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView4"
+            android:id="@+id/Detail_Iv_Profile"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="32dp"
@@ -132,7 +132,7 @@
             android:textColor="#969696"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/Detail_txt_Mbti"
-            app:layout_constraintStart_toEndOf="@+id/appCompatImageView4"
+            app:layout_constraintStart_toEndOf="@+id/Detail_Iv_Profile"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
