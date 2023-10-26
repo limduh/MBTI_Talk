@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView3"
+            android:id="@+id/Detail_Back_arrow"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:padding="15dp"
@@ -34,7 +34,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/appCompatImageView3"
+            app:layout_constraintStart_toEndOf="@+id/Detail_Back_arrow"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
