@@ -1,6 +1,7 @@
 package com.example.mbti_talk.post
 
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.mbti_talk.R
 import com.example.mbti_talk.databinding.ActivityPostItemBinding
+import com.google.firebase.storage.FirebaseStorage
 
 
 class PostAdapter(private val postList: List<PostData>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -42,11 +44,14 @@ class PostAdapter(private val postList: List<PostData>) : RecyclerView.Adapter<R
             binding.PostItemContent.text = postData.content
             binding.PostItemTime.text = postData.time
 
-            Glide.with(binding.root.context)
-                .load(postData.image)
-                .centerCrop()
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(binding.PostItemImgPost)
+            val storage = FirebaseStorage.getInstance()
+            val reference = storage.reference.child("images/${postData.image}")
+            reference.downloadUrl.addOnSuccessListener {
+                Log.d("bind", "image${postData.image}")
+                Glide.with(binding.root)
+                    .load(it)
+                    .into(PostItemImgPost)
+            }
         }
     }
 }
