@@ -72,7 +72,7 @@ class FriendListFragment : Fragment() {
 
         // 현재 유저의 친구 데이터베이스를 쿼리합니다. (정보요청)
         friendDB
-            .child(currentUserUid) // friendDb 아무래 currentUserUid 를 키로 갖는 하위 노드 찾음.
+            .child(currentUserUid) // friendDb 아래 currentUserUid 를 키로 갖는 하위 노드 찾음.
             .addListenerForSingleValueEvent(object : ValueEventListener { // alfsv 함수는 데이터 변경을 단 한번만 기다림.
             override fun onDataChange(dataSnapshot: DataSnapshot) { // RDB 에서 데이터 검색 성공 시 실행되는 콜백 함수.
                 Log.d("FirebaseDatabase", "loadFriends onDataChange")
