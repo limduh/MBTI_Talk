@@ -63,6 +63,7 @@ class FriendListFragment : Fragment() {
         // RecyclerView에 어댑터 설정
         binding.friendlistFragRv.adapter = friendadapter
         binding.friendlistFragRv.layoutManager = LinearLayoutManager(requireContext())
+
     }
 
     // 현재 사용자의 uid 기반으로 친구 목록을 로드하는 함수. 친구 수 계산 후 각 친구 uid 반복하여 'loadFriendData' 함수 사용하여 친구 데이터 불러옴. friendAdapter 는 모든 친구 데이터를 불러온 후 한번만 알림을 받음.
