@@ -84,7 +84,7 @@ class PostWriteActivity : AppCompatActivity() {
                 uploadImage(uri) {
                     if (it != null) {
                         val user = PostData(title, content, time, it)
-                        val id = addItem(user)
+                        addItem(user)
                         Toast.makeText(this@PostWriteActivity, "게시글 입력 완료", Toast.LENGTH_SHORT)
                             .show()
                         finish()
