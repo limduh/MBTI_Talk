@@ -128,5 +128,9 @@ class DetailActivity : AppCompatActivity() {
             Toast.makeText(this@DetailActivity, "친구 추가가 완료되었습니다.", Toast.LENGTH_SHORT).show()
             startActivity(intent)
         }
+        // 뒤로가기 누르면 현 액티비티 종료
+        binding.DetailBackArrow.setOnClickListener {
+            finish()
+        }
     }
 }
