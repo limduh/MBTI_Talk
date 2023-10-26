@@ -98,33 +98,33 @@ class PostWriteActivity : AppCompatActivity() {
             }
         }
 
-        binding.postImage.setOnTouchListener { v, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    // 이미지 터치 시 이동을 시작합니다.
-                    prevX = event.rawX
-                    prevY = event.rawY
-                }
-
-                MotionEvent.ACTION_MOVE -> {
-                    // 이미지를 이동합니다.
-                    val deltaX = event.rawX - prevX
-                    val deltaY = event.rawY - prevY
-                    val newX = v.x + deltaX
-                    val newY = v.y + deltaY
-
-                    // 이미지가 화면을 벗어나지 않도록 제한합니다.
-                    val maxX = binding.postConstContent.width - v.width
-                    val maxY = binding.postConstContent.height - v.height
-                    v.x = Math.min(maxX.toFloat(), Math.max(0f, newX))
-                    v.y = Math.min(maxY.toFloat(), Math.max(0f, newY))
-
-                    prevX = event.rawX
-                    prevY = event.rawY
-                }
-            }
-            true
-        }
+//        binding.postImage.setOnTouchListener { v, event ->
+//            when (event.action) {
+//                MotionEvent.ACTION_DOWN -> {
+//                    // 이미지 터치 시 이동을 시작합니다.
+//                    prevX = event.rawX
+//                    prevY = event.rawY
+//                }
+//
+//                MotionEvent.ACTION_MOVE -> {
+//                    // 이미지를 이동합니다.
+//                    val deltaX = event.rawX - prevX
+//                    val deltaY = event.rawY - prevY
+//                    val newX = v.x + deltaX
+//                    val newY = v.y + deltaY
+//
+//                    // 이미지가 화면을 벗어나지 않도록 제한합니다.
+//                    val maxX = binding.postConstContent.width - v.width
+//                    val maxY = binding.postConstContent.height - v.height
+//                    v.x = Math.min(maxX.toFloat(), Math.max(0f, newX))
+//                    v.y = Math.min(maxY.toFloat(), Math.max(0f, newY))
+//
+//                    prevX = event.rawX
+//                    prevY = event.rawY
+//                }
+//            }
+//            true
+//        }
     }
 
     override fun onRequestPermissionsResult(
