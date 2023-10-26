@@ -1,5 +1,6 @@
 package com.example.mbti_talk.post
 
+import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,7 +17,8 @@ import com.example.mbti_talk.databinding.ActivityPostItemBinding
 import com.google.firebase.storage.FirebaseStorage
 
 
-class PostAdapter(private val postList: List<PostData>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PostAdapter(private val postList: List<PostData>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // onCreateViewHolder 메서드에서 뷰홀더를 생성합니다.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -39,6 +41,20 @@ class PostAdapter(private val postList: List<PostData>) : RecyclerView.Adapter<R
 
     inner class PostViewHolder(val binding: ActivityPostItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                val context = itemView.context
+                val postData = postList[position]
+
+                val intent = Intent(context, PostDetailActivity::class.java)
+                intent.putExtra("title", postData.title)
+                intent.putExtra("content", postData.content)
+                intent.putExtra("image", postData.image)
+                context.startActivity(intent)
+            }
+        }
+
         fun bind(postData: PostData) = binding.apply {
             binding.PostItemTitle.text = postData.title
             binding.PostItemContent.text = postData.content

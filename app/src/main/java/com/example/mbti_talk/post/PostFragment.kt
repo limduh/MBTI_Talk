@@ -2,6 +2,7 @@ package com.example.mbti_talk.post
 
 import android.content.Intent
 import android.os.Bundle
+import android.service.autofill.UserData
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -66,6 +67,7 @@ class PostFragment : Fragment() {
                 Toast.makeText(requireContext(), "데이터를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
             }
         })
+        userDB.child("Users")
         return binding.root
     }
 }
