@@ -2,6 +2,7 @@ package com.example.mbti_talk.Adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
@@ -24,14 +25,15 @@ class FriendAdapter (private val mContext: Context, private val friendList: List
         // 친구 리스트 클릭 시 프로필로 이동
         friend_list.setOnClickListener {
 
-            // startActivity 함수를 사용하여 Friend Detail 로 이동하는 인텐트를 생성하고 실행. 이 경우 DetailActivity::class.java로 지정된 Profile 로 이동
+            // startActivity 함수를 사용하여 Detail 로 이동하는 인텐트를 생성하고 실행.
             val intent = Intent(parent.context, DetailActivity::class.java)
+            // 키값을 list 로 줌
+            intent.putExtra("viewtype", "list")
+            Log.d("FriendAdapter", "viewtype = list")
             startActivity(parent.context, intent, null)
         }
-
         return Holder(binding)
     }
-
     // 목록에 있는 리스트 수를 반환
     override fun getItemCount(): Int {
         return friendList.size
@@ -50,14 +52,14 @@ class FriendAdapter (private val mContext: Context, private val friendList: List
 
         // friend list 클릭 시 DetailActivity 로 이동
         holder.friend_list.setOnClickListener {
-            // startActivity 함수를 사용하여 User Detail 로 이동하는 인텐트를 생성하고 실행. 이 경우 DetailActivity::class.java로 지정된 Profile 로 이동
+            // startActivity 함수를 사용하여 User Detail 로 이동하는 인텐트를 생성하고 실행. 이 경우 FriendDetailActivity::class.java로 지정된 Profile 로 이동
             val intent = Intent(mContext, DetailActivity::class.java)
             // 클릭한 user data 를 DetailActivity 로 전달
             intent.putExtra("userId", friend.user_uid)
+            intent.putExtra("viewtype", "list")
             startActivity(mContext, intent, null)
         }
     }
-
     // RecyclerView.ViewHolder 를 확장한 클래스. 각 목록에 대한 뷰 요소 저장
     inner class Holder(binding: FriendListBinding) : RecyclerView.ViewHolder(binding.root) {
         val friend_list = binding.clListFriend // 친구 리스트 바인딩
@@ -67,5 +69,4 @@ class FriendAdapter (private val mContext: Context, private val friendList: List
         val friend_mbti = binding.etFriendMbti // mbti 텍스트뷰
         val friend_profile = binding.ivFriendProfile // 프로필 이미지뷰
     }
-
 }

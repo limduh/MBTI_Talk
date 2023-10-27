@@ -38,33 +38,33 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 인증, DB, 리스트 adapter 초기화
-        userList = mutableListOf() // 사용자 데이터 목록 초기화 (이 데이터는 FB 에서 가져옴)
-        userDB =
-            Firebase.database.reference.child("Users") // FB Realtime DB 초기화하고 "Users" 레퍼런스 가져오기
-        adapter = UserAdapter(this, userList) // RecyclerView 어댑터 초기화
-
-        // RecyclerView와 어댑터 연결
-        binding.mainRv.adapter = adapter
-        binding.mainRv.layoutManager = LinearLayoutManager(this)
-
-        // RDB 에서 사용자 데이터 가져오기
-        userDB.limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (userSnapshot in snapshot.children) {
-                    // 각 사용자의 데이터를 UserData 객체로 가져와 목록 추가
-                    val user = userSnapshot.getValue(UserData::class.java)
-                    if (user != null) {
-                        userList.add(user)
-                    }
-                }
-                adapter.notifyDataSetChanged() // 어댑터에게 데이터가 변경되었음을 알립니다.
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // 처리 중 오류 발생 시 토스트 표시
-                Toast.makeText(this@MainActivity, "데이터를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
-            }
-        })
+//        // 인증, DB, 리스트 adapter 초기화
+//        userList = mutableListOf() // 사용자 데이터 목록 초기화 (이 데이터는 FB 에서 가져옴)
+//        userDB =
+//            Firebase.database.reference.child("Users") // FB Realtime DB 초기화하고 "Users" 레퍼런스 가져오기
+//        adapter = UserAdapter(this, userList) // RecyclerView 어댑터 초기화
+//
+//        // RecyclerView와 어댑터 연결
+//        binding.mainRv.adapter = adapter
+//        binding.mainRv.layoutManager = LinearLayoutManager(this)
+//
+//        // RDB 에서 사용자 데이터 가져오기
+//        userDB.limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                for (userSnapshot in snapshot.children) {
+//                    // 각 사용자의 데이터를 UserData 객체로 가져와 목록 추가
+//                    val user = userSnapshot.getValue(UserData::class.java)
+//                    if (user != null) {
+//                        userList.add(user)
+//                    }
+//                }
+//                adapter.notifyDataSetChanged() // 어댑터에게 데이터가 변경되었음을 알립니다.
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                // 처리 중 오류 발생 시 토스트 표시
+//                Toast.makeText(this@MainActivity, "데이터를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
+//            }
+//        })
     }
 }

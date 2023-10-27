@@ -1,5 +1,6 @@
 package com.example.mbti_talk.FriendList
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mbti_talk.Adapter.UserAdapter
+import com.example.mbti_talk.DetailActivity
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentFriendListBinding
 import com.example.mbti_talk.utils.Utils
@@ -55,10 +57,18 @@ class FriendListFragment : Fragment() {
         userDB = Firebase.database.reference.child("Users")
         friendDB = Firebase.database.reference.child("Friends")
 
+        // RecyclerView 및 어댑터 초기화
+        userDB = Firebase.database.reference.child("Users")
+        friendadapter = UserAdapter({
+            // 클릭한 user data 를 DetailActivity 로 전달
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("userId", it) // uid 줌
+            intent.putExtra("viewtype", "list") // 키값 find 줌
+            startActivity(intent)
+        }, friendList)
+
         val currentUserUid = Utils.getMyUid(requireContext()) // util 함수 통해 현재 사용자 uid 가져오기
         loadFriends(currentUserUid.toString()) // 현재 사용자 uid를 통해 친구 목록 가져오기
-
-        friendadapter = UserAdapter(requireContext(), friendList) // Rv 에 사용될 어댑터 초기화
 
         // RecyclerView에 어댑터 설정
         binding.friendlistFragRv.adapter = friendadapter
