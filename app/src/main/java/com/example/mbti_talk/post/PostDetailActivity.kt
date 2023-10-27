@@ -16,9 +16,12 @@ class PostDetailActivity : AppCompatActivity() {
         val title = intent.getStringExtra("title")
         val content = intent.getStringExtra("content")
         val image = intent.getStringExtra("image")
+        val nickname = intent.getStringExtra("nickname")
+        val profile = intent.getStringExtra("profile")
 
         binding.PostDetailTitle.text = title
         binding.PostDetailEtContent.text = content
+        binding.PostDetailUserName.text = nickname
 
         val storage = FirebaseStorage.getInstance()
         val reference = storage.reference.child("images/$image")
@@ -26,6 +29,12 @@ class PostDetailActivity : AppCompatActivity() {
             Glide.with(this)
                 .load(it)
                 .into(binding.PostDetailImage)
+        }
+        val profileReference = storage.reference.child("images/$profile")
+        profileReference.downloadUrl.addOnSuccessListener {
+            Glide.with(this)
+                .load(it)
+                .into(binding.PostDetailUserpicture)
         }
 
 

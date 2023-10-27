@@ -51,6 +51,8 @@ class PostAdapter(private val postList: List<PostData>) :
                 intent.putExtra("title", postData.title)
                 intent.putExtra("content", postData.content)
                 intent.putExtra("image", postData.image)
+                intent.putExtra("nickname", postData.user_nickName)
+                intent.putExtra("profile", postData.user_profile)
                 context.startActivity(intent)
             }
         }
@@ -59,6 +61,7 @@ class PostAdapter(private val postList: List<PostData>) :
             binding.PostItemTitle.text = postData.title
             binding.PostItemContent.text = postData.content
             binding.PostItemTime.text = postData.time
+            binding.PostItemTxtUserNickname.text = postData.user_nickName
 
             val storage = FirebaseStorage.getInstance()
             val reference = storage.reference.child("images/${postData.image}")
@@ -67,6 +70,13 @@ class PostAdapter(private val postList: List<PostData>) :
                 Glide.with(binding.root)
                     .load(it)
                     .into(PostItemImgPost)
+            }
+            val profileReference = storage.reference.child("images/${postData.user_profile}")
+            profileReference.downloadUrl.addOnSuccessListener {
+                Log.d("bind", "image${postData.user_profile}")
+                Glide.with(binding.root)
+                    .load(it)
+                    .into(PostItemImgUserprofile)
             }
         }
     }

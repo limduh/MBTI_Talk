@@ -11,10 +11,14 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.ActivityPostWriteBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.text.SimpleDateFormat
@@ -67,7 +71,7 @@ class PostWriteActivity : AppCompatActivity() {
                     checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
                 ) {
                     requestPermissions(permission, 100)
-                }else {
+                } else {
                     galleryLauncher.launch("image/*")
                 }
 
@@ -98,33 +102,33 @@ class PostWriteActivity : AppCompatActivity() {
             }
         }
 
-        binding.postImage.setOnTouchListener { v, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    // 이미지 터치 시 이동을 시작합니다.
-                    prevX = event.rawX
-                    prevY = event.rawY
-                }
-
-                MotionEvent.ACTION_MOVE -> {
-                    // 이미지를 이동합니다.
-                    val deltaX = event.rawX - prevX
-                    val deltaY = event.rawY - prevY
-                    val newX = v.x + deltaX
-                    val newY = v.y + deltaY
-
-                    // 이미지가 화면을 벗어나지 않도록 제한합니다.
-                    val maxX = binding.postConstContent.width - v.width
-                    val maxY = binding.postConstContent.height - v.height
-                    v.x = Math.min(maxX.toFloat(), Math.max(0f, newX))
-                    v.y = Math.min(maxY.toFloat(), Math.max(0f, newY))
-
-                    prevX = event.rawX
-                    prevY = event.rawY
-                }
-            }
-            true
-        }
+//        binding.postImage.setOnTouchListener { v, event ->
+//            when (event.action) {
+//                MotionEvent.ACTION_DOWN -> {
+//                    // 이미지 터치 시 이동을 시작합니다.
+//                    prevX = event.rawX
+//                    prevY = event.rawY
+//                }
+//
+//                MotionEvent.ACTION_MOVE -> {
+//                    // 이미지를 이동합니다.
+//                    val deltaX = event.rawX - prevX
+//                    val deltaY = event.rawY - prevY
+//                    val newX = v.x + deltaX
+//                    val newY = v.y + deltaY
+//
+//                    // 이미지가 화면을 벗어나지 않도록 제한합니다.
+//                    val maxX = binding.postConstContent.width - v.width
+//                    val maxY = binding.postConstContent.height - v.height
+//                    v.x = Math.min(maxX.toFloat(), Math.max(0f, newX))
+//                    v.y = Math.min(maxY.toFloat(), Math.max(0f, newY))
+//
+//                    prevX = event.rawX
+//                    prevY = event.rawY
+//                }
+//            }
+//            true
+//        }
     }
 
     override fun onRequestPermissionsResult(
@@ -157,23 +161,47 @@ class PostWriteActivity : AppCompatActivity() {
     }
 
     fun addItem(user: PostData): String {
-        val id = FirebaseData.mydata.push().key!!
-        user.uid = id
-        FirebaseData.mydata.child(id).setValue(user)
-        return id
+        val userUid = FirebaseAuth.getInstance().currentUser?.uid
+        user.user_uid = userUid ?: ""
+
+        val userRef = FirebaseData.database.getReference("Users").child(userUid!!)
+        userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val userData = snapshot.getValue(UserData::class.java)
+                if (userData != null) {
+                    val user_nickName = userData.user_nickName
+                    val user_profile = userData.user_profile
+
+                    if (user_nickName != null && user_profile != null) {
+                        user.apply {
+                            this.user_nickName = user_nickName
+                            this.user_profile = user_profile
+                        }
+                        FirebaseData.mydata.child(userUid!! + Calendar.getInstance().time)
+                            .setValue(user)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@PostWriteActivity, "닉네임과 프로필 사진 받기 실패", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+        return userUid
 
     }
 
     //권한 요청하기
-    val permissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (isGranted) {
-                galleryLauncher.launch("image/*")
-            } else {
-                Toast.makeText(baseContext, "외부 저장소 읽기 권한을 승인해야 사용할 수 있습니다.", Toast.LENGTH_LONG)
-                    .show()
-            }
-        }
+//    val permissionLauncher =
+//        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+//            if (isGranted) {
+//                galleryLauncher.launch("image/*")
+//            } else {
+//                Toast.makeText(baseContext, "외부 저장소 읽기 권한을 승인해야 사용할 수 있습니다.", Toast.LENGTH_LONG)
+//                    .show()
+//            }
+//        }
 
     //이미지 갤러리 불러오기
     val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
@@ -209,15 +237,16 @@ class PostWriteActivity : AppCompatActivity() {
 }
 
 class PostData {
-    var uid: String = "" // 게시물 고유 식별자
+    var user_uid: String = "" // 게시물 고유 식별자
     var title: String = ""
     var content: String = ""
     var time: String = ""
     var image: String = ""
+    var user_nickName: String = ""
+    var user_profile: String = ""
 
     constructor()
     constructor(title: String, content: String, time: String, image: String) {
-
         this.title = title
         this.content = content
         this.time = time
