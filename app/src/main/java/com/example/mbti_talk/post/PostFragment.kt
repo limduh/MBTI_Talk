@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.mbti_talk.databinding.ActivityPostListBinding
+import com.example.mbti_talk.utils.Utils
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -23,14 +25,20 @@ class PostFragment : Fragment() {
     lateinit var binding: ActivityPostListBinding
     private val postList = mutableListOf<PostData>()
     private lateinit var postAdapter: PostAdapter
-    private lateinit var userDB: DatabaseReference
+    private lateinit var postDB: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = ActivityPostListBinding.inflate(inflater, container, false)
-        userDB = Firebase.database.reference.child("posts")
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        postDB = Firebase.database.reference.child("posts")
         postAdapter = PostAdapter(postList)
 
         // 리사이클러뷰, 어뎁터 연결
@@ -42,10 +50,10 @@ class PostFragment : Fragment() {
             val intent = Intent(requireContext(), PostWriteActivity::class.java)
             startActivity(intent)
         }
+
+
         // 데이터베이스에서 데이터 읽어오기
-
-        userDB.addValueEventListener(object : ValueEventListener {
-
+        postDB.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val tempList = mutableListOf<PostData>()
                 for (data in snapshot.children) {
@@ -67,8 +75,6 @@ class PostFragment : Fragment() {
                 Toast.makeText(requireContext(), "데이터를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
             }
         })
-        userDB.child("Users")
-        return binding.root
     }
 }
 
