@@ -76,6 +76,8 @@ class UserAdapter(private val mContext: Context, private val userList: List<User
             val intent = Intent(mContext, DetailActivity::class.java)
             // 클릭한 user data 를 DetailActivity 로 전달
             intent.putExtra("userId", user.user_uid)
+            intent.putExtra("userNickname",user.user_nickName)
+            intent.putExtra("userEmail",user.user_email)
             startActivity(mContext, intent, null)
         }
     }

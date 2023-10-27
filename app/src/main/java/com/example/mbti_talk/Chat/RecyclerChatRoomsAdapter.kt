@@ -2,11 +2,13 @@ package com.example.mbti_talk.Chat
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mbti_talk.R
+import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.ListChatroomItemBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -61,14 +63,14 @@ class RecyclerChatRoomsAdapter(val context: Context) :
                     for (data in snapshot.children) {
                         holder.chatRoomKey = data.key.toString()!!             //채팅방 키 초기화
                         holder.opponentUser = data.getValue<User>()!!         //상대방 정보 초기화
-                        holder.txt_name.text = data.getValue<User>()!!.name.toString()     //상대방 이름 초괴화
+                        holder.txt_name.text = data.getValue<UserData>()!!.user_nickName.toString()     //상대방 이름 초괴화
                     }
                 }
             })
         holder.background.setOnClickListener()               //채팅방 항목 선택 시
         {
             var intent = Intent(context, ChatRoomActivity::class.java)
-            intent.putExtra("ChatRoom", chatRooms.get(position))      //채팅방 정보
+            intent.putExtra("ChatRoom", chatRooms.get(position)) //채팅방 정보
             intent.putExtra("Opponent", holder.opponentUser)          //상대방 사용자 정보
             intent.putExtra("ChatRoomKey", chatRoomKeys[position])     //채팅방 키 정보
             context.startActivity(intent)                            //해당 채팅방으로 이동
@@ -145,7 +147,7 @@ class RecyclerChatRoomsAdapter(val context: Context) :
 
     inner class ViewHolder(itemView: ListChatroomItemBinding) :
         RecyclerView.ViewHolder(itemView.root) {
-        var opponentUser = User("", "")
+        var opponentUser = User("","")
         var chatRoomKey = ""
         var background = itemView.background
         var txt_name = itemView.txtName
