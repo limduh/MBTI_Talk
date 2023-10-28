@@ -1,15 +1,14 @@
-package com.example.mbti_talk
+package com.example.mbti_talk.MBTI
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mbti_talk.databinding.ActivityMbtiSelectionboxBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class SelectionMbtiActivity : AppCompatActivity() {
+class MbtiActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMbtiSelectionboxBinding
 
     // Authentication 초기화

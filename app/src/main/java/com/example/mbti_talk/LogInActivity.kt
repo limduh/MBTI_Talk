@@ -1,9 +1,7 @@
 package com.example.mbti_talk
 
 import android.app.Activity
-import android.app.Instrumentation.ActivityResult
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -13,11 +11,10 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mbti_talk.MBTI.SignUpMbtiActivity
 import com.example.mbti_talk.Main.BottomActivity
-import com.example.mbti_talk.Main.MainActivity
 import com.example.mbti_talk.databinding.ActivityLogInBinding
 import com.example.mbti_talk.utils.Utils
-import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

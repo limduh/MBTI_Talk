@@ -1,4 +1,4 @@
-package com.example.mbti_talk
+package com.example.mbti_talk.MBTI
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mbti_talk.Main.BottomActivity
-import com.example.mbti_talk.Main.MainActivity
 import com.example.mbti_talk.databinding.ActivityMbtiInputBinding
-import com.example.mbti_talk.post.PostFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -24,7 +22,7 @@ class SignUpMbtiActivity : AppCompatActivity() {
         val selectMBTI = binding.MbtiBox
 
         selectMBTI.setOnClickListener {
-            val intent = Intent(this, SelectionMbtiActivity::class.java)
+            val intent = Intent(this, MbtiActivity::class.java)
             startActivity(intent)
         }
         val combineMbti = intent.getStringExtra("COMBINED_MBTI")

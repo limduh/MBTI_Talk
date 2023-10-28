@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.example.mbti_talk.SignUpMbtiActivity
+import com.example.mbti_talk.MBTI.SignUpMbtiActivity
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentMyProfileBinding
 import com.google.firebase.auth.FirebaseAuth
