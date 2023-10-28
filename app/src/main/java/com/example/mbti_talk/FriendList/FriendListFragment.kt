@@ -64,6 +64,8 @@ class FriendListFragment : Fragment() {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("userId", it) // uid 줌
             intent.putExtra("viewtype", "list") // 키값 find 줌
+
+
             startActivity(intent)
         }, friendList)
 

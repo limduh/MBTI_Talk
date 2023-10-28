@@ -67,7 +67,7 @@ class ChatRoomActivity : AppCompatActivity() {
     fun initializeListener() {   //버튼 클릭 시 리스너 초기화
         btn_exit.setOnClickListener()
         {
-            startActivity(Intent(this@ChatRoomActivity, ChatFragment::class.java))
+          finish()
         }
         btn_submit.setOnClickListener()
         {
