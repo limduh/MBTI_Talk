@@ -74,7 +74,7 @@ class RecyclerChatRoomsAdapter(val context: Context) :
             intent.putExtra("Opponent", holder.opponentUser)          //상대방 사용자 정보
             intent.putExtra("ChatRoomKey", chatRoomKeys[position])     //채팅방 키 정보
             context.startActivity(intent)                            //해당 채팅방으로 이동
-            (context as AppCompatActivity).finish()
+
         }
 
         if (chatRooms[position].messages!!.size > 0) {         //채팅방 메시지가 존재하는 경우
