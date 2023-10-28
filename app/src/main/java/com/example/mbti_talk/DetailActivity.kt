@@ -1,6 +1,5 @@
 package com.example.mbti_talk
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,10 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.bumptech.glide.Glide
-import com.example.mbti_talk.Chat.ChatRoom
-import com.example.mbti_talk.Chat.ChatRoomActivity
-import com.example.mbti_talk.Chat.User
-import com.example.mbti_talk.Main.MainFriendActivity
 import com.example.mbti_talk.databinding.ActivityDetailBinding
 import com.example.mbti_talk.utils.Utils
 import com.google.firebase.auth.FirebaseAuth
@@ -154,9 +149,7 @@ class DetailActivity : AppCompatActivity() {
             }
             // 클릭 이벤트 처리
             // Intent 사용하여 MainFriendActivity 로 이동
-            val intent = Intent(this, MainFriendActivity::class.java)
             Toast.makeText(this@DetailActivity, "친구 추가가 완료되었습니다.", Toast.LENGTH_SHORT).show()
-            startActivity(intent)
         }
         // 뒤로가기 누르면 현 액티비티 종료
         binding.DetailBackArrow.setOnClickListener {
@@ -242,6 +235,6 @@ fun goToChatRoom(chatRoom: ChatRoom, chatRoomKey: String, userID: User) {
     intent.putExtra("ChatRoomKey", chatRoomKey)
     startActivity(intent)
     finish()
-}
+ }
 }
 
