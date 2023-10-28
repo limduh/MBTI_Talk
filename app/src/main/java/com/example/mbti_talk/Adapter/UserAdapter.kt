@@ -1,14 +1,9 @@
 package com.example.mbti_talk.Adapter
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View.OnClickListener
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.mbti_talk.DetailActivity
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.UserListBinding
 import com.google.firebase.storage.FirebaseStorage
