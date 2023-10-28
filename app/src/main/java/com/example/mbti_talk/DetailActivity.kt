@@ -10,9 +10,11 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.bumptech.glide.Glide
 import com.example.mbti_talk.databinding.ActivityDetailBinding
 import com.example.mbti_talk.utils.Utils
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
@@ -30,6 +32,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var ageTextView: AppCompatTextView
     private lateinit var genderTextView: AppCompatTextView
     private lateinit var mbtiTextView: AppCompatTextView
+
     // ImageView 초기화
     private lateinit var profileImageView: AppCompatImageView
 
@@ -73,20 +76,27 @@ class DetailActivity : AppCompatActivity() {
 
         // RDB 에서 사용자 데이터 가져오기 ( 주요 목적은 사용자 ID(uid)를 기반으로 DB에서 해당 user 정보를 찾아내고, 화면 표시 위해 userData에 저장. 한 번에 한 사용자의 정보만 가져옴.)
 
-        detailDB.addListenerForSingleValueEvent(object : ValueEventListener { // RDB에서 데이터를 읽어오기 위한 리스너를 설정. 데이터의 한 번 읽기 작업을 수행
+        detailDB.addListenerForSingleValueEvent(object :
+            ValueEventListener { // RDB에서 데이터를 읽어오기 위한 리스너를 설정. 데이터의 한 번 읽기 작업을 수행
             override fun onDataChange(snapshot: DataSnapshot) { // 데이터를 성공적으로 읽어왔을 때 호출.snapshot은 데이터베이스에서 가져온 정보(=uid)
-                Log.d("DetailActivity", "snapshot.exists() = ${snapshot.exists()}") // snapshot.exists()를 통해 스냅샷이 데이터를 포함하는지 여부를 확인
+                Log.d(
+                    "DetailActivity",
+                    "snapshot.exists() = ${snapshot.exists()}"
+                ) // snapshot.exists()를 통해 스냅샷이 데이터를 포함하는지 여부를 확인
 
                 if (snapshot.exists()) { // 데이터 스냅샷 존재 확인. 스냅샷이 데이터 포함 시 이 블록 안으로 진입
                     lateinit var userData: DataSnapshot
 
                     // 선택한 유저 데이터 찾기
                     if (userID != null) {
-                        userData = snapshot.child(userID) // userID가 null이 아닌 경우, snapshot.child(userID)를 사용하여 snapshot에서 해당 사용자 ID에 해당하는 데이터 스냅샷을 가져옴. 이는 특정 사용자의 데이터를 나타내며, userData 변수에 저장
+                        userData =
+                            snapshot.child(userID) // userID가 null이 아닌 경우, snapshot.child(userID)를 사용하여 snapshot에서 해당 사용자 ID에 해당하는 데이터 스냅샷을 가져옴. 이는 특정 사용자의 데이터를 나타내며, userData 변수에 저장
 
                         // 데이터에서 이름, 나이, 성별, MBTI 정보 가져오기 (RDB 에서 특정 유저 정보를 가져와 변수에 저장하는 부분. DB의 트리 구조와 각 데이터 유형에 맞게 데이터 뽑아옴)
-                        val name = userData.child("user_nickName").getValue<String?>() // userData라는 DataSnapshot에서 "user_nickName"이라는 자식 경로에 있는 값을 가져옴.
-                        val age = userData.child("user_age").getValue<Int?>() // 여기서는 user 데이터 아래에 nickname, age, gender, mbti 라는 자식 경로로 데이터가 저장되어있음
+                        val name = userData.child("user_nickName")
+                            .getValue<String?>() // userData라는 DataSnapshot에서 "user_nickName"이라는 자식 경로에 있는 값을 가져옴.
+                        val age = userData.child("user_age")
+                            .getValue<Int?>() // 여기서는 user 데이터 아래에 nickname, age, gender, mbti 라는 자식 경로로 데이터가 저장되어있음
                         val gender = userData.child("user_gender").getValue<String?>()
                         val mbti = userData.child("user_mbti").getValue<String?>()
 
@@ -98,7 +108,11 @@ class DetailActivity : AppCompatActivity() {
 
                         // Firebase Storage 에서 프로필 이미지 가져오기
                         val storage = FirebaseStorage.getInstance()
-                        val imgRef = storage.getReference("images/${userData.child("user_profile").getValue<String?>()}")
+                        val imgRef = storage.getReference(
+                            "images/${
+                                userData.child("user_profile").getValue<String?>()
+                            }"
+                        )
 
                         // Glide 라이브러리를 사용하여 imgRef 에 있는 이미지를 user_profile 에 표시
                         Glide.with(binding.root.context)
@@ -109,7 +123,11 @@ class DetailActivity : AppCompatActivity() {
 
                     } else {
                         // 사용자 정보를 가져오지 못한 경우
-                        Toast.makeText(this@DetailActivity, "사용자 정보를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@DetailActivity,
+                            "사용자 정보를 가져오는데 실패했습니다.",
+                            Toast.LENGTH_SHORT
+                        ).show()
 
                     }
                 }
@@ -137,5 +155,86 @@ class DetailActivity : AppCompatActivity() {
         binding.DetailBackArrow.setOnClickListener {
             finish()
         }
+        //채팅하기 버튼 누름
+        binding.DetailBtnChat.setOnClickListener {
+            detailDB.addListenerForSingleValueEvent(object :
+                ValueEventListener { // RDB에서 데이터를 읽어오기 위한 리스너를 설정. 데이터의 한 번 읽기 작업을 수행
+                override fun onDataChange(snapshot: DataSnapshot) { // 데이터를 성공적으로 읽어왔을 때 호출.snapshot은 데이터베이스에서 가져온 정보(=uid)
+                    if (snapshot.exists()) { // 데이터 스냅샷 존재 확인. 스냅샷이 데이터 포함 시 이 블록 안으로 진입
+                        lateinit var userData: DataSnapshot
+                        // 선택한 유저 데이터 찾기
+                        if (userID != null) {
+                            userData =
+                                snapshot.child(userID)
+                            val name = userData.child("user_nickName").getValue<String?>()
+                            val useremail = userData.child("user_email").getValue<String?>()
+                            val opponent = User(name, userID, useremail) //채팅할 상대방 정보
+                            Log.d("Detail","name=${name}")
+                            Log.d("Detail","userID=${userID}")
+                            Log.d("Detail","useremail=${useremail}")
+                            var database =
+                                FirebaseDatabase.getInstance()
+                                    .getReference("ChatRoom")    //넣을 database reference 세팅
+                            var chatRoom = ChatRoom(
+                                //추가할 채팅방 정보 세팅
+                                mapOf(myId!! to true, userID!! to true), null
+                            )
+
+                            val chatRoomKey = if (myId!! < userID!!) {
+                                "${myId}-${userID}"
+                            } else {
+                                "${userID}-${myId}"
+                            }
+                            var myUid = FirebaseAuth.getInstance().uid!!//내 Uid
+                            database.child("chatRooms").child(chatRoomKey).child("users")
+                                .child(myUid)
+                                .addListenerForSingleValueEvent(object : ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        val isUserInChatRoom =
+                                            snapshot.getValue(Boolean::class.java)
+                                        if (isUserInChatRoom == true) {
+                                            // 사용자가 해당 채팅방에 있는 경우, 해당 채팅방으로 이동
+                                            val intent = Intent(this@DetailActivity, ChatRoomActivity::class.java)
+                                            intent.putExtra("ChatRoomKey", chatRoomKey)
+                                            intent.putExtra("ChatRoom", chatRoom)
+                                            intent.putExtra("Opponent", opponent)
+                                            startActivity(intent)
+                                        } else {                                                                         //채팅방이 없는경우
+                                            database.child("chatRooms").child(chatRoomKey)
+                                                .setValue(chatRoom)
+                                                .addOnSuccessListener {// 채팅방 새로 생성 후 이동
+                                                    goToChatRoom(chatRoom, chatRoomKey, opponent)
+                                                }
+                                        }
+                                    }
+                                    override fun onCancelled(error: DatabaseError) {
+                                        // 처리 중 오류가 발생한 경우
+                                    }
+                                })
+
+                        } else {
+                            // 사용자 정보를 가져오지 못한 경우
+                            Toast.makeText(this@DetailActivity, "사용자 정보를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    // DB 가져오는 과정에서 오류 발생 시, 오류 메시지 출력
+                    Toast.makeText(this@DetailActivity, "데이터를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
+                }
+            })
+
+        }
     }
+
+
+fun goToChatRoom(chatRoom: ChatRoom, chatRoomKey: String, userID: User) {
+    val intent = Intent(this, ChatRoomActivity::class.java)
+    intent.putExtra("ChatRoom", chatRoom)
+    intent.putExtra("Opponent", userID)
+    intent.putExtra("ChatRoomKey", chatRoomKey)
+    startActivity(intent)
+    finish()
+ }
 }
+
