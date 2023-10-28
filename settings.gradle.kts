@@ -18,4 +18,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MBTI_Talk"
 include(":app")
- 
+include (":wavybottomnavigation")
