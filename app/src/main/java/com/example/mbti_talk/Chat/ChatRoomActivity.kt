@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Message
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mbti_talk.Chat.ChatFragment
 import com.example.mbti_talk.Chat.ChatRoom
 import com.example.mbti_talk.Chat.User
+import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.ActivityChatRoomBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -25,7 +27,7 @@ import java.util.TimeZone
 
 class ChatRoomActivity : AppCompatActivity() {
     lateinit var binding: ActivityChatRoomBinding
-    lateinit var btn_exit: Button
+    lateinit var btn_exit: ImageView
     lateinit var btn_submit: Button
     lateinit var txt_title: TextView
     lateinit var edt_message: EditText
