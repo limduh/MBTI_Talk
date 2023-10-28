@@ -63,6 +63,7 @@
             app:layout_constraintTop_toTopOf="@+id/Detail_btn_chat" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/Detail_txt_friendAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="친구추가"
