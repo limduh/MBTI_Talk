@@ -128,8 +128,8 @@ class DetailActivity : AppCompatActivity() {
         friendAdd.setOnClickListener {
             // RDB 의 "Friends" 레퍼런스에 사용자 uid 추가
             if (userID != null) {
-                val friendsRef = Firebase.database.reference.child("Friends").child(myId.toString())
-                friendsRef.child(userID).setValue(true)
+//                val friendsRef = Firebase.database.reference.child("Friends").child(myId.toString())
+//                friendsRef.child(userID).setValue(true)
             }
             // 클릭 이벤트 처리
             // Intent 사용하여 MainFriendActivity 로 이동
