@@ -38,7 +38,7 @@
             android:name=".post.PostWriteActivity"
             android:exported="false" />
         <activity
-            android:name=".Chat.ChatActivity"
+            android:name=".Chat.ChatRoomActivity"
             android:exported="false" />
         <activity
             android:name=".MBTI.SignUpMbtiActivity"

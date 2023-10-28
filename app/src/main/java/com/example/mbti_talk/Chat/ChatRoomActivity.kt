@@ -2,14 +2,16 @@ package com.example.mbti_talk.Chat
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Message
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mbti_talk.FriendList.FriendListFragment
+import com.example.mbti_talk.Chat.ChatFragment
+import com.example.mbti_talk.Chat.ChatRoom
+import com.example.mbti_talk.Chat.User
 import com.example.mbti_talk.databinding.ActivityChatRoomBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -47,27 +49,26 @@ class ChatRoomActivity : AppCompatActivity() {
     fun initializeProperty() {  //변수 초기화
         myUid = FirebaseAuth.getInstance().currentUser?.uid!!              //현재 로그인한 유저 id
         firebaseDatabase = FirebaseDatabase.getInstance().reference!!
-        chatRoom = intent.getSerializableExtra("ChatRoom") as ChatRoom
+
+        chatRoom = intent.getSerializableExtra("ChatRoom") as ChatRoom      //채팅방 정보
         chatRoomKey = intent.getStringExtra("ChatRoomKey")!!            //채팅방 키
-        opponentUser = intent.getSerializableExtra("Opponent")as User  //상대방 유저 정보
+        opponentUser = intent.getSerializableExtra("Opponent") as User    //상대방 유저 정보
     }
 
     fun initializeView() {    //뷰 초기화
         edt_message = binding.edtMessage
         recycler_talks = binding.recyclerMessages
         btn_submit = binding.btnSubmit
-        btn_exit = binding.btnExit
+        btn_exit=binding.btnExit
         txt_title = binding.txtTItle
-        txt_title.text = opponentUser.name
+        txt_title.text = opponentUser!!.name ?: ""
     }
 
     fun initializeListener() {   //버튼 클릭 시 리스너 초기화
-        binding.btnExit.setOnClickListener()
+        btn_exit.setOnClickListener()
         {
-         finish()
-            Toast.makeText(this,"종료합니다",Toast.LENGTH_SHORT).show()
+          finish()
         }
-
         btn_submit.setOnClickListener()
         {
             putMessage()
@@ -83,8 +84,7 @@ class ChatRoomActivity : AppCompatActivity() {
 
     fun setupChatRoomKey() {            //chatRoomKey 없을 경우 초기화 후 목록 초기화
         FirebaseDatabase.getInstance().getReference("ChatRoom")
-            .child("chatRooms").orderByChild("${chatRoomKey}/${myUid}")
-            .equalTo(true)    //나의 Uid가 포함된 목록이 있는지 확인
+            .child("chatRooms").orderByChild("${chatRoomKey}/${myUid}").equalTo(true)    //나의 Uid가 포함된 목록이 있는지 확인
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {}
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -98,8 +98,7 @@ class ChatRoomActivity : AppCompatActivity() {
     }
 
     fun putMessage() {       //메시지 전송
-        var message =
-            Message(myUid, getDateTimeString(), edt_message.text.toString())    //메시지 정보 초기화
+        var message = Message(myUid, getDateTimeString(), edt_message.text.toString())    //메시지 정보 초기화
 
         FirebaseDatabase.getInstance().getReference("ChatRoom").child("chatRooms")
             .child(chatRoomKey).child("messages")                   //현재 채팅방에 메시지 추가
