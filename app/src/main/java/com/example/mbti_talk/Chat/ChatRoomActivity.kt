@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Message
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mbti_talk.Chat.ChatFragment
 import com.example.mbti_talk.Chat.ChatRoom
 import com.example.mbti_talk.Chat.User
+import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.ActivityChatRoomBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -25,14 +27,14 @@ import java.util.TimeZone
 
 class ChatRoomActivity : AppCompatActivity() {
     lateinit var binding: ActivityChatRoomBinding
-    lateinit var btn_exit: Button
+    lateinit var btn_exit: ImageView
     lateinit var btn_submit: Button
     lateinit var txt_title: TextView
     lateinit var edt_message: EditText
     lateinit var firebaseDatabase: DatabaseReference
     lateinit var recycler_talks: RecyclerView
     lateinit var chatRoom: ChatRoom
-    lateinit var opponentUser: User
+    lateinit var opponentUser: UserData
     lateinit var chatRoomKey: String
     lateinit var myUid: String
 
@@ -52,7 +54,7 @@ class ChatRoomActivity : AppCompatActivity() {
 
         chatRoom = intent.getSerializableExtra("ChatRoom") as ChatRoom      //채팅방 정보
         chatRoomKey = intent.getStringExtra("ChatRoomKey")!!            //채팅방 키
-        opponentUser = intent.getSerializableExtra("Opponent") as User    //상대방 유저 정보
+        opponentUser = intent.getSerializableExtra("Opponent") as UserData    //상대방 유저 정보
     }
 
     fun initializeView() {    //뷰 초기화
@@ -61,7 +63,7 @@ class ChatRoomActivity : AppCompatActivity() {
         btn_submit = binding.btnSubmit
         btn_exit=binding.btnExit
         txt_title = binding.txtTItle
-        txt_title.text = opponentUser!!.name ?: ""
+        txt_title.text = opponentUser!!.user_nickName ?: ""
     }
 
     fun initializeListener() {   //버튼 클릭 시 리스너 초기화
@@ -121,6 +123,6 @@ class ChatRoomActivity : AppCompatActivity() {
 
     fun setupRecycler() {            //목록 초기화 및 업데이트
         recycler_talks.layoutManager = LinearLayoutManager(this)
-        recycler_talks.adapter = RecyclerMessagesAdapter(this, chatRoomKey, opponentUser.uid)
+        recycler_talks.adapter = RecyclerMessagesAdapter(this, chatRoomKey, opponentUser.user_uid)
     }
 }

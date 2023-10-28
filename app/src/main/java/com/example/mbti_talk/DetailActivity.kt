@@ -176,9 +176,6 @@ class DetailActivity : AppCompatActivity() {
                             val name = userData.child("user_nickName").getValue<String?>()
                             val useremail = userData.child("user_email").getValue<String?>()
                             val opponent = User(name, userID, useremail) //채팅할 상대방 정보
-                            Log.d("Detail","name=${name}")
-                            Log.d("Detail","userID=${userID}")
-                            Log.d("Detail","useremail=${useremail}")
                             var database =
                                 FirebaseDatabase.getInstance()
                                     .getReference("ChatRoom")    //넣을 database reference 세팅
