@@ -34,7 +34,7 @@ class ChatRoomActivity : AppCompatActivity() {
     lateinit var firebaseDatabase: DatabaseReference
     lateinit var recycler_talks: RecyclerView
     lateinit var chatRoom: ChatRoom
-    lateinit var opponentUser: UserData
+    lateinit var opponentUser: User
     lateinit var chatRoomKey: String
     lateinit var myUid: String
 
@@ -54,7 +54,7 @@ class ChatRoomActivity : AppCompatActivity() {
 
         chatRoom = intent.getSerializableExtra("ChatRoom") as ChatRoom      //채팅방 정보
         chatRoomKey = intent.getStringExtra("ChatRoomKey")!!            //채팅방 키
-        opponentUser = intent.getSerializableExtra("Opponent") as UserData    //상대방 유저 정보
+        opponentUser = intent.getSerializableExtra("Opponent") as User    //상대방 유저 정보
     }
 
     fun initializeView() {    //뷰 초기화
@@ -63,7 +63,7 @@ class ChatRoomActivity : AppCompatActivity() {
         btn_submit = binding.btnSubmit
         btn_exit=binding.btnExit
         txt_title = binding.txtTItle
-        txt_title.text = opponentUser!!.user_nickName ?: ""
+        txt_title.text = opponentUser!!.name ?: ""
     }
 
     fun initializeListener() {   //버튼 클릭 시 리스너 초기화
@@ -123,6 +123,6 @@ class ChatRoomActivity : AppCompatActivity() {
 
     fun setupRecycler() {            //목록 초기화 및 업데이트
         recycler_talks.layoutManager = LinearLayoutManager(this)
-        recycler_talks.adapter = RecyclerMessagesAdapter(this, chatRoomKey, opponentUser.user_uid)
+        recycler_talks.adapter = RecyclerMessagesAdapter(this, chatRoomKey, opponentUser.uid)
     }
 }

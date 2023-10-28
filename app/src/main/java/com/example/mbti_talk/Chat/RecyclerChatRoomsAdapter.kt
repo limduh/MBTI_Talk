@@ -33,7 +33,7 @@ class RecyclerChatRoomsAdapter(val context: Context) :
     fun setupAllUserList() {     //전체 채팅방 목록 초기화 및 업데이트
         FirebaseDatabase.getInstance().getReference("ChatRoom").child("chatRooms")
             .orderByChild("users/$myUid").equalTo(true)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
+            .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {}
                 override fun onDataChange(snapshot: DataSnapshot) {
                     chatRooms.clear()
