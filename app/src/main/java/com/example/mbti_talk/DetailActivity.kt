@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -64,6 +65,8 @@ class DetailActivity : AppCompatActivity() {
 
         // MainActivity로부터 전달받은 intent를 통해 "선택한 사용자"의 UID를 가져옴
         val userID = intent.getStringExtra("userId")
+        val username=intent.getStringExtra("userNickname")
+        val useremail=intent.getStringExtra("userEmail")
 
         // 친구목록, 친구찾기 탭에서 viewtype을 받음
         val viewType = intent.getStringExtra("viewtype")
