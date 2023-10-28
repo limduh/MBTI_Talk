@@ -3,6 +3,7 @@ package com.example.mbti_talk.Main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.mbti_talk.R
@@ -12,10 +13,21 @@ import com.example.mbti_talk.post.PostFragment
 import com.example.mbti_talk.Chat.ChatFragment
 import com.example.mbti_talk.FriendList.FriendListFragment
 import com.example.mbti_talk.MyProfile.MyProfileFragment
-
+import com.tauheed.wavybottomnavigation.WavyBottomNavigation
 
 
 class BottomActivity : AppCompatActivity() {
+
+    companion object {
+        private const val ID_FRIEND = 1
+        private const val ID_POST = 2
+        private const val ID_SEARCH = 3
+        private const val ID_CHAT = 4
+        private const val ID_MYPAGE = 5
+    }
+
+
+
     private lateinit var binding: ActivityBottomBinding
     private lateinit var currentFragment: Fragment
     private lateinit var fragmentManager: FragmentManager
@@ -38,44 +50,105 @@ class BottomActivity : AppCompatActivity() {
         //초기화면 설정 ▽
 
         supportFragmentManager.beginTransaction().replace(R.id.Bottom_frame, FriendFindFragment()).commit()
-
         fragmentManager.beginTransaction().replace(R.id.Bottom_frame, friendListFragment).commit()
         currentFragment = friendListFragment
 
+        binding.bottomNavigation.apply {
+            add(
+                WavyBottomNavigation.Model(
+                    ID_FRIEND,
+//                    R.drawable.ic_home
+                    R.drawable.ic_friend
+                )
+            )
+            add(
+                WavyBottomNavigation.Model(
+                    ID_POST,
+//                    R.drawable.ic_explore
+                    R.drawable.ic_bulletin
+                )
+            )
+            add(
+                WavyBottomNavigation.Model(
+                    ID_SEARCH,
+//                    R.drawable.ic_message
+                    R.drawable.ic_search
+                )
+            )
+            add(
+                WavyBottomNavigation.Model(
+                    ID_CHAT,
+//                    R.drawable.ic_notification
+                    R.drawable.ic_chat
+                )
+            )
+            add(
+                WavyBottomNavigation.Model(
+                    ID_MYPAGE,
+//                    R.drawable.ic_account
+                    R.drawable.ic_mypage
+                )
+            )
 
-        // 하단 탭이 눌렸을 때 화면을 전환하기 위해선 이벤트 처리하기 위해 BottomNavigationView 객체 생성
-        val bnv_main = binding.BottomNav
-        bnv_main.setOnItemSelectedListener { menuItem ->
-            Log.d("BottomActivity", "bnv_main menuItem.title => ${menuItem.title}")
-            when (menuItem.title) {
-                "친구목록" -> {
-                    switchFragment(friendListFragment)
-                    true
+            setCount(ID_CHAT, "3")
+
+            setOnShowListener {
+                val name = when (it.id) {
+                    ID_FRIEND -> {
+//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#D84879"))
+                        binding.BottomFrame
+                        switchFragment(friendListFragment)
+                        "HOME"
+                    }
+                    ID_POST -> {
+//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#4CAF50"))
+                        binding.BottomFrame
+                        switchFragment(postFragment)
+                        "EXPLORE"
+                    }
+                    ID_SEARCH -> {
+//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#ffa500"))
+                        binding.BottomFrame
+                        "MESSAGE"
+                        switchFragment(friendFindFragment)
+                    }
+                    ID_CHAT -> {
+//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#ff69b4"))
+                        binding.BottomFrame
+                        "NOTIFICATION"
+                        switchFragment(chatFragment)
+                    }
+                    ID_MYPAGE -> {
+//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#6495ed"))
+                        binding.BottomFrame
+                        "ACCOUNT"
+                        switchFragment(myProfileFragment)
+                    }
+                    else -> ""
                 }
 
-                "게시판" -> {
-                    switchFragment(postFragment)
-                    true
-                }
-
-                "친구찾기" -> {
-                    switchFragment(friendFindFragment)
-                    true
-                }
-
-                "채팅" -> {
-                    switchFragment(chatFragment)
-                    true
-                }
-
-                "내 프로필" -> {
-                    switchFragment(myProfileFragment)
-                    true
-                }
-
-                else -> false
             }
+
+            setOnClickMenuListener {
+                val name = when (it.id) {
+                    ID_FRIEND -> "FRIEND"
+                    ID_POST -> "POST"
+                    ID_SEARCH -> "SEARCH"
+                    ID_CHAT -> "CHAT"
+                    ID_MYPAGE -> "MYPAGE"
+                    else -> ""
+                }
+            }
+
+            setOnReselectListener {
+                Toast.makeText(context, "item ${it.id} is reselected.", Toast.LENGTH_LONG).show()
+            }
+
+            show(ID_FRIEND)
+
         }
+
+
     }
     private fun switchFragment(fragment: Fragment) {
         Log.d("BottomActivity", "switchFragment => ${fragment.tag}")

@@ -1,7 +1,6 @@
 package com.example.mbti_talk
 
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,26 +9,17 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.bumptech.glide.Glide
-import com.example.mbti_talk.Adapter.UserAdapter
-import com.example.mbti_talk.Chat.ChatRoom
-import com.example.mbti_talk.Chat.ChatRoomActivity
-import com.example.mbti_talk.Chat.User
 import com.example.mbti_talk.Main.MainFriendActivity
 import com.example.mbti_talk.databinding.ActivityDetailBinding
 import com.example.mbti_talk.utils.Utils
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.core.Constants
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-
-
 
 class DetailActivity : AppCompatActivity() {
 
@@ -65,8 +55,6 @@ class DetailActivity : AppCompatActivity() {
 
         // MainActivity로부터 전달받은 intent를 통해 "선택한 사용자"의 UID를 가져옴
         val userID = intent.getStringExtra("userId")
-        val username=intent.getStringExtra("userNickname")
-        val useremail=intent.getStringExtra("userEmail")
 
         // 친구목록, 친구찾기 탭에서 viewtype을 받음
         val viewType = intent.getStringExtra("viewtype")
@@ -153,63 +141,5 @@ class DetailActivity : AppCompatActivity() {
         binding.DetailBackArrow.setOnClickListener {
             finish()
         }
-        //채팅하기 버튼 누름
-        binding.DetailBtnChat.setOnClickListener {
-            val opponent = User(username,userID,useremail) //채팅할 상대방 정보
-            Log.d("DetailActivity","username=${username}")
-            Log.d("DetailActivity","userID=${userID}")
-            Log.d("DetailActivity","useremail=${useremail}")
-            var database =
-                FirebaseDatabase.getInstance()
-                    .getReference("ChatRoom")    //넣을 database reference 세팅
-            var chatRoom = ChatRoom(
-                //추가할 채팅방 정보 세팅
-                mapOf(myId!! to true, userID!! to true), null
-            )
-            Log.d("DetailActivity","chatroom=${chatRoom.users}")
-
-            val chatRoomKey = if (myId!! < userID!!) {
-                "${myId}-${userID}"
-            } else {
-                "${userID}-${myId}"
-            }
-            Log.d("DetailActivity","chatroomkey=${chatRoomKey}")
-            var myUid = FirebaseAuth.getInstance().uid!!//내 Uid
-            database.child("chatRooms").child(chatRoomKey).child("users").child(myUid)
-                .addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onCancelled(error: DatabaseError) {
-                        // 처리 중 오류가 발생한 경우
-                    }
-
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val isUserInChatRoom = snapshot.getValue(Boolean::class.java)
-                        if (isUserInChatRoom == true) {
-                            // 사용자가 해당 채팅방에 있는 경우, 해당 채팅방으로 이동
-                            val intent = Intent(this@DetailActivity, ChatRoomActivity::class.java)
-                            intent.putExtra("ChatRoomKey", chatRoomKey)
-                            intent.putExtra("ChatRoom", chatRoom)
-                            intent.putExtra("Opponent", opponent)
-                            startActivity(intent)
-                        } else {                                                                         //채팅방이 없는경우
-                            database.child("chatRooms").child(chatRoomKey).setValue(chatRoom)
-                                .addOnSuccessListener {// 채팅방 새로 생성 후 이동
-                                    goToChatRoom(chatRoom, chatRoomKey, opponent)
-                                }
-                        }
-                    }
-                })
-        }
-    }
-
-
-    fun goToChatRoom(chatRoom: ChatRoom, chatRoomKey: String, userID: User) {
-        val intent = Intent(this, ChatRoomActivity::class.java)
-        Log.d("DetailActivity","chatroom2=${chatRoom.users}")
-        intent.putExtra("ChatRoom", chatRoom)
-        intent.putExtra("Opponent", userID)
-        intent.putExtra("ChatRoomKey", chatRoomKey)
-        startActivity(intent)
-        finish()
     }
 }
-
