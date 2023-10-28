@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mbti_talk.MBTI.SignUpMbtiActivity
+import com.example.mbti_talk.MBTI.MbtiActivity
 import com.example.mbti_talk.Main.BottomActivity
 import com.example.mbti_talk.databinding.ActivityLogInBinding
 import com.example.mbti_talk.utils.Utils
@@ -139,7 +139,7 @@ class LogInActivity : AppCompatActivity() {
                                     finish() // 로그인 화면 종료
                                 }else {
                                     // 메인 페이지 이동
-                                    val intent = Intent(this@LogInActivity, SignUpMbtiActivity::class.java)
+                                    val intent = Intent(this@LogInActivity, MbtiActivity::class.java)
                                     startActivity(intent)
                                     finish() // 로그인 화면 종료
                                 }
