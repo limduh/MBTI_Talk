@@ -26,7 +26,6 @@ class FriendFindFragment : Fragment() {
     private lateinit var adapter: UserAdapter
     private val userList: MutableList<UserData> = mutableListOf()
     private lateinit var userDB: DatabaseReference
-
     //
     // onCreateView 함수는 Fragment가 생성될 때 호출. Fragment의 사용자 인터페이스 레이아웃을 초기화
     override fun onCreateView(
@@ -52,15 +51,15 @@ class FriendFindFragment : Fragment() {
 
 
         // RecyclerView 및 어댑터 초기화
-//        userDB = Firebase.database.reference.child("Users")
-//        adapter = UserAdapter({
-//            // 클릭한 user data 를 DetailActivity 로 전달
-//            val intent = Intent(context, DetailActivity::class.java)
-//
-//            intent.putExtra("userId", it) // uid 줌
-//            intent.putExtra("viewtype", "Find") // 키값 find 줌
-//            startActivity(intent)
-//        }, userList)
+        userDB = Firebase.database.reference.child("Users")
+        adapter = UserAdapter({
+            // 클릭한 user data 를 DetailActivity 로 전달
+            val intent = Intent(context, DetailActivity::class.java)
+
+            intent.putExtra("userId", it) // uid 줌
+            intent.putExtra("viewtype", "Find") // 키값 find 줌
+            startActivity(intent)
+        }, userList)
 
         // RecyclerView에 어댑터 설정
         binding.FriendFindFragRv.adapter = adapter

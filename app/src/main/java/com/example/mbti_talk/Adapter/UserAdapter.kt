@@ -15,7 +15,7 @@ import com.google.firebase.storage.FirebaseStorage
 
 // 이 어댑터는 RecyclerView에 사용됨. 각 아이템은 사용자 정보를 나타내며, 유저가 리스트 클릭 시, 해당 유저의 프로필 화면으로 이동 기능 추가
 
-class UserAdapter(private val mContext: Context, private val userList: List<UserData>) : RecyclerView.Adapter<UserAdapter.Holder>() {
+class UserAdapter(private val clickListener: (String) -> Unit, private val userList: List<UserData>) : RecyclerView.Adapter<UserAdapter.Holder>() {
 
     // onCreateViewHolder 함수는 ViewHolder 객체를 생성, 초기화
     // ItemBinding.inflate() 함수를 통해 XML 레이아웃 파일에서 뷰를 inflate, 그 뷰를 사용하여 Holder 객체를 생성
@@ -23,7 +23,6 @@ class UserAdapter(private val mContext: Context, private val userList: List<User
         var binding = UserListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         binding = UserListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
         return Holder(binding)
     }
 
@@ -66,13 +65,7 @@ class UserAdapter(private val mContext: Context, private val userList: List<User
 
         // user list 클릭 시 DetailActivity 로 이동
         holder.user_list.setOnClickListener {
-            // startActivity 함수를 사용하여 User Detail 로 이동하는 인텐트를 생성하고 실행. 이 경우 DetailActivity::class.java로 지정된 Profile 로 이동
-            val intent = Intent(mContext, DetailActivity::class.java)
-            // 클릭한 user data 를 DetailActivity 로 전달
-            intent.putExtra("userId", user.user_uid)
-            intent.putExtra("userNickname",user.user_nickName)
-            intent.putExtra("userEmail",user.user_email)
-            startActivity(mContext, intent, null)
+            clickListener(user.user_uid)
         }
     }
 
