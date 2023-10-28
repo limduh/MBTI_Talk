@@ -53,6 +53,7 @@ class DetailActivity : AppCompatActivity() {
         // "현재 사용자"의 UID 가져옴
         val myId = Utils.getMyUid(this)
 
+
         // MainActivity로부터 전달받은 intent를 통해 "선택한 사용자"의 UID를 가져옴
         val userID = intent.getStringExtra("userId")
 
