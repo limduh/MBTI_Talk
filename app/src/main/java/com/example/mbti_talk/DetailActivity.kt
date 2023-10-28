@@ -234,6 +234,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+
 fun goToChatRoom(chatRoom: ChatRoom, chatRoomKey: String, userID: User) {
     val intent = Intent(this, ChatRoomActivity::class.java)
     intent.putExtra("ChatRoom", chatRoom)
@@ -243,3 +244,4 @@ fun goToChatRoom(chatRoom: ChatRoom, chatRoomKey: String, userID: User) {
     finish()
 }
 }
+
