@@ -86,4 +86,6 @@ dependencies {
     //Glide 라이브러리, Glide 컴파일러
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation(project(":wavybottomnavigation"))
+
 }

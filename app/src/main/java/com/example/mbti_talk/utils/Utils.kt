@@ -1,5 +1,6 @@
 package com.example.mbti_talk.utils
 
+
 import android.app.Activity
 import android.content.ClipData.Item
 import android.content.Context
