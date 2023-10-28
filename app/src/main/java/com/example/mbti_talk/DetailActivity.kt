@@ -29,6 +29,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 
 
+
 class DetailActivity : AppCompatActivity() {
 
     // DetailActivity 클래스의 멤버 변수들을 선언
@@ -40,7 +41,6 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var ageTextView: AppCompatTextView
     private lateinit var genderTextView: AppCompatTextView
     private lateinit var mbtiTextView: AppCompatTextView
-
     // ImageView 초기화
     private lateinit var profileImageView: AppCompatImageView
 
@@ -64,8 +64,17 @@ class DetailActivity : AppCompatActivity() {
 
         // MainActivity로부터 전달받은 intent를 통해 "선택한 사용자"의 UID를 가져옴
         val userID = intent.getStringExtra("userId")
-        val username=intent.getStringExtra("userNickname")
-        val useremail=intent.getStringExtra("userEmail")
+
+        // 친구목록, 친구찾기 탭에서 viewtype을 받음
+        val viewType = intent.getStringExtra("viewtype")
+        Log.d("DetailActivity", "viewType = $viewType")
+        viewType?.let {
+            // 키값이 list 일 경우에만, 친구추가 사라짐.
+            if (it == "list") {
+                binding.DetailBtnFriendAdd.visibility = View.GONE
+                binding.DetailTxtFriendAdd.visibility = View.GONE
+            }
+        }
 
         Log.d("DetailActivity", "My userID = $myId")
         Log.d("DetailActivity", "Selected userID = $userID")
@@ -75,27 +84,20 @@ class DetailActivity : AppCompatActivity() {
 
         // RDB 에서 사용자 데이터 가져오기 ( 주요 목적은 사용자 ID(uid)를 기반으로 DB에서 해당 user 정보를 찾아내고, 화면 표시 위해 userData에 저장. 한 번에 한 사용자의 정보만 가져옴.)
 
-        detailDB.addListenerForSingleValueEvent(object :
-            ValueEventListener { // RDB에서 데이터를 읽어오기 위한 리스너를 설정. 데이터의 한 번 읽기 작업을 수행
+        detailDB.addListenerForSingleValueEvent(object : ValueEventListener { // RDB에서 데이터를 읽어오기 위한 리스너를 설정. 데이터의 한 번 읽기 작업을 수행
             override fun onDataChange(snapshot: DataSnapshot) { // 데이터를 성공적으로 읽어왔을 때 호출.snapshot은 데이터베이스에서 가져온 정보(=uid)
-                Log.d(
-                    "DetailActivity",
-                    "snapshot.exists() = ${snapshot.exists()}"
-                ) // snapshot.exists()를 통해 스냅샷이 데이터를 포함하는지 여부를 확인
+                Log.d("DetailActivity", "snapshot.exists() = ${snapshot.exists()}") // snapshot.exists()를 통해 스냅샷이 데이터를 포함하는지 여부를 확인
 
                 if (snapshot.exists()) { // 데이터 스냅샷 존재 확인. 스냅샷이 데이터 포함 시 이 블록 안으로 진입
                     lateinit var userData: DataSnapshot
 
                     // 선택한 유저 데이터 찾기
                     if (userID != null) {
-                        userData =
-                            snapshot.child(userID) // userID가 null이 아닌 경우, snapshot.child(userID)를 사용하여 snapshot에서 해당 사용자 ID에 해당하는 데이터 스냅샷을 가져옴. 이는 특정 사용자의 데이터를 나타내며, userData 변수에 저장
+                        userData = snapshot.child(userID) // userID가 null이 아닌 경우, snapshot.child(userID)를 사용하여 snapshot에서 해당 사용자 ID에 해당하는 데이터 스냅샷을 가져옴. 이는 특정 사용자의 데이터를 나타내며, userData 변수에 저장
 
                         // 데이터에서 이름, 나이, 성별, MBTI 정보 가져오기 (RDB 에서 특정 유저 정보를 가져와 변수에 저장하는 부분. DB의 트리 구조와 각 데이터 유형에 맞게 데이터 뽑아옴)
-                        val name = userData.child("user_nickName")
-                            .getValue<String?>() // userData라는 DataSnapshot에서 "user_nickName"이라는 자식 경로에 있는 값을 가져옴.
-                        val age = userData.child("user_age")
-                            .getValue<Int?>() // 여기서는 user 데이터 아래에 nickname, age, gender, mbti 라는 자식 경로로 데이터가 저장되어있음
+                        val name = userData.child("user_nickName").getValue<String?>() // userData라는 DataSnapshot에서 "user_nickName"이라는 자식 경로에 있는 값을 가져옴.
+                        val age = userData.child("user_age").getValue<Int?>() // 여기서는 user 데이터 아래에 nickname, age, gender, mbti 라는 자식 경로로 데이터가 저장되어있음
                         val gender = userData.child("user_gender").getValue<String?>()
                         val mbti = userData.child("user_mbti").getValue<String?>()
 
@@ -107,11 +109,7 @@ class DetailActivity : AppCompatActivity() {
 
                         // Firebase Storage 에서 프로필 이미지 가져오기
                         val storage = FirebaseStorage.getInstance()
-                        val imgRef = storage.getReference(
-                            "images/${
-                                userData.child("user_profile").getValue<String?>()
-                            }"
-                        )
+                        val imgRef = storage.getReference("images/${userData.child("user_profile").getValue<String?>()}")
 
                         // Glide 라이브러리를 사용하여 imgRef 에 있는 이미지를 user_profile 에 표시
                         Glide.with(binding.root.context)
@@ -122,11 +120,7 @@ class DetailActivity : AppCompatActivity() {
 
                     } else {
                         // 사용자 정보를 가져오지 못한 경우
-                        Toast.makeText(
-                            this@DetailActivity,
-                            "사용자 정보를 가져오는데 실패했습니다.",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this@DetailActivity, "사용자 정보를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
 
                     }
                 }

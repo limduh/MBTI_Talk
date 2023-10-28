@@ -63,7 +63,6 @@
             android:clipToOutline="true"
             android:outlineProvider="background"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_profiletest"
             app:layout_constraintBottom_toBottomOf="@+id/PostDetail_title"
             app:layout_constraintEnd_toStartOf="@+id/PostDetail_UserName"
             app:layout_constraintTop_toTopOf="@+id/PostDetail_title" />
@@ -88,6 +87,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:src="@drawable/ic_caution2"
+        android:background="@drawable/post_title_line"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PostDetail_const_title" />
