@@ -1,6 +1,5 @@
 package com.example.mbti_talk.Main
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,14 +17,13 @@ import com.tauheed.wavybottomnavigation.WavyBottomNavigation
 
 
 class BottomActivity : AppCompatActivity() {
-    //제발살려주세여 땡ㄱㅕ오고싶어여 탈주하고싶다
 
     companion object {
-        private const val ID_HOME = 1
-        private const val ID_EXPLORE = 2
-        private const val ID_MESSAGE = 3
-        private const val ID_NOTIFICATION = 4
-        private const val ID_ACCOUNT = 5
+        private const val ID_FRIEND = 1
+        private const val ID_POST = 2
+        private const val ID_SEARCH = 3
+        private const val ID_CHAT = 4
+        private const val ID_MYPAGE = 5
     }
 
 
@@ -58,65 +56,73 @@ class BottomActivity : AppCompatActivity() {
         binding.bottomNavigation.apply {
             add(
                 WavyBottomNavigation.Model(
-                    ID_HOME,
+                    ID_FRIEND,
 //                    R.drawable.ic_home
                     R.drawable.ic_friend
                 )
             )
             add(
                 WavyBottomNavigation.Model(
-                    ID_EXPLORE,
+                    ID_POST,
 //                    R.drawable.ic_explore
                     R.drawable.ic_bulletin
                 )
             )
             add(
                 WavyBottomNavigation.Model(
-                    ID_MESSAGE,
+                    ID_SEARCH,
 //                    R.drawable.ic_message
                     R.drawable.ic_search
                 )
             )
             add(
                 WavyBottomNavigation.Model(
-                    ID_NOTIFICATION,
+                    ID_CHAT,
 //                    R.drawable.ic_notification
                     R.drawable.ic_chat
                 )
             )
             add(
                 WavyBottomNavigation.Model(
-                    ID_ACCOUNT,
+                    ID_MYPAGE,
 //                    R.drawable.ic_account
                     R.drawable.ic_mypage
                 )
             )
 
-            setCount(ID_NOTIFICATION, "100")
+            setCount(ID_CHAT, "3")
 
             setOnShowListener {
                 val name = when (it.id) {
-                    ID_HOME -> {
-                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#D84879"))
+                    ID_FRIEND -> {
+//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#D84879"))
+                        binding.BottomFrame
                         switchFragment(friendListFragment)
                         "HOME"
                     }
-                    ID_EXPLORE -> {
-                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#4CAF50"))
+                    ID_POST -> {
+//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#4CAF50"))
+                        binding.BottomFrame
                         switchFragment(postFragment)
                         "EXPLORE"
                     }
-                    ID_MESSAGE -> {
-                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#ffa500"))
+                    ID_SEARCH -> {
+//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#ffa500"))
+                        binding.BottomFrame
                         "MESSAGE"
+                        switchFragment(friendFindFragment)
                     }
-                    ID_NOTIFICATION -> {
-                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#ff69b4"))
+                    ID_CHAT -> {
+//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#ff69b4"))
+                        binding.BottomFrame
                         "NOTIFICATION"
+                        switchFragment(chatFragment)
                     }
-                    ID_ACCOUNT -> {
-                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#6495ed"))
+                    ID_MYPAGE -> {
+//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#6495ed"))
+                        binding.BottomFrame
                         "ACCOUNT"
+                        switchFragment(myProfileFragment)
                     }
                     else -> ""
                 }
@@ -125,11 +131,11 @@ class BottomActivity : AppCompatActivity() {
 
             setOnClickMenuListener {
                 val name = when (it.id) {
-                    ID_HOME -> "HOME"
-                    ID_EXPLORE -> "EXPLORE"
-                    ID_MESSAGE -> "MESSAGE"
-                    ID_NOTIFICATION -> "NOTIFICATION"
-                    ID_ACCOUNT -> "ACCOUNT"
+                    ID_FRIEND -> "FRIEND"
+                    ID_POST -> "POST"
+                    ID_SEARCH -> "SEARCH"
+                    ID_CHAT -> "CHAT"
+                    ID_MYPAGE -> "MYPAGE"
                     else -> ""
                 }
             }
@@ -138,47 +144,11 @@ class BottomActivity : AppCompatActivity() {
                 Toast.makeText(context, "item ${it.id} is reselected.", Toast.LENGTH_LONG).show()
             }
 
-            show(ID_HOME)
+            show(ID_FRIEND)
 
         }
 
 
-
-
-
-//        // 하단 탭이 눌렸을 때 화면을 전환하기 위해선 이벤트 처리하기 위해 BottomNavigationView 객체 생성
-//        val bnv_main = binding.BottomNav
-//        bnv_main.setOnItemSelectedListener { menuItem ->
-//            Log.d("BottomActivity", "bnv_main menuItem.title => ${menuItem.title}")
-//            when (menuItem.title) {
-//                "친구목록" -> {
-//                    switchFragment(friendListFragment)
-//                    true
-//                }
-//
-//                "게시판" -> {
-//                    switchFragment(postFragment)
-//                    true
-//                }
-//
-//                "친구찾기" -> {
-//                    switchFragment(friendFindFragment)
-//                    true
-//                }
-//
-//                "채팅" -> {
-//                    switchFragment(chatFragment)
-//                    true
-//                }
-//
-//                "내 프로필" -> {
-//                    switchFragment(myProfileFragment)
-//                    true
-//                }
-//
-//                else -> false
-//            }
-//        }
     }
     private fun switchFragment(fragment: Fragment) {
         Log.d("BottomActivity", "switchFragment => ${fragment.tag}")
