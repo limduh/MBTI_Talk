@@ -18,6 +18,7 @@ import com.tauheed.wavybottomnavigation.WavyBottomNavigation
 
 
 class BottomActivity : AppCompatActivity() {
+    //제발살려주세여 땡ㄱㅕ오고싶어여 탈주하고싶다
 
     companion object {
         private const val ID_HOME = 1
