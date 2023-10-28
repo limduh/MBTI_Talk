@@ -18,7 +18,6 @@
             android:id="@+id/PostDetail_txt_appbartext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:text="모든게시물"
             android:textSize="17sp"
             android:textStyle="bold"
