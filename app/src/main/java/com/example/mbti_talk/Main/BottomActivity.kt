@@ -59,31 +59,36 @@ class BottomActivity : AppCompatActivity() {
             add(
                 WavyBottomNavigation.Model(
                     ID_HOME,
-                    R.drawable.ic_home
+//                    R.drawable.ic_home
+                    R.drawable.ic_friend
                 )
             )
             add(
                 WavyBottomNavigation.Model(
                     ID_EXPLORE,
-                    R.drawable.ic_explore
+//                    R.drawable.ic_explore
+                    R.drawable.ic_bulletin
                 )
             )
             add(
                 WavyBottomNavigation.Model(
                     ID_MESSAGE,
-                    R.drawable.ic_message
+//                    R.drawable.ic_message
+                    R.drawable.ic_search
                 )
             )
             add(
                 WavyBottomNavigation.Model(
                     ID_NOTIFICATION,
-                    R.drawable.ic_notification
+//                    R.drawable.ic_notification
+                    R.drawable.ic_chat
                 )
             )
             add(
                 WavyBottomNavigation.Model(
                     ID_ACCOUNT,
-                    R.drawable.ic_account
+//                    R.drawable.ic_account
+                    R.drawable.ic_mypage
                 )
             )
 
