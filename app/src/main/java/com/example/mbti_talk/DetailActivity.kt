@@ -53,7 +53,6 @@ class DetailActivity : AppCompatActivity() {
         // "현재 사용자"의 UID 가져옴
         val myId = Utils.getMyUid(this)
 
-
         // MainActivity로부터 전달받은 intent를 통해 "선택한 사용자"의 UID를 가져옴
         val userID = intent.getStringExtra("userId")
 
@@ -129,8 +128,8 @@ class DetailActivity : AppCompatActivity() {
         friendAdd.setOnClickListener {
             // RDB 의 "Friends" 레퍼런스에 사용자 uid 추가
             if (userID != null) {
-//                val friendsRef = Firebase.database.reference.child("Friends").child(myId.toString())
-//                friendsRef.child(userID).setValue(true)
+                val friendsRef = Firebase.database.reference.child("Friends").child(myId.toString())
+                friendsRef.child(userID).setValue(true)
             }
             // 클릭 이벤트 처리
             // Intent 사용하여 MainFriendActivity 로 이동
