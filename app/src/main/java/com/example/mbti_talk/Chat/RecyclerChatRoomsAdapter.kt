@@ -33,7 +33,7 @@ class RecyclerChatRoomsAdapter(val context: Context) :
     fun setupAllUserList() {     //전체 채팅방 목록 초기화 및 업데이트
         FirebaseDatabase.getInstance().getReference("ChatRoom").child("chatRooms")
             .orderByChild("users/$myUid").equalTo(true)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
+            .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {}
                 override fun onDataChange(snapshot: DataSnapshot) {
                     chatRooms.clear()
@@ -55,7 +55,7 @@ class RecyclerChatRoomsAdapter(val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var userIdList = chatRooms[position].users!!.keys    //채팅방에 포함된 사용자 키 목록
         var opponent = userIdList.first { !it.equals(myUid) }  //상대방 사용자 키
-        FirebaseDatabase.getInstance().getReference("Users").orderByChild("user_uid")   //상대방 사용자 키를 포함하는 채팅방 불러오기
+        FirebaseDatabase.getInstance().getReference("Users").orderByChild("user_uid")   //상대방 사용자 키를 포함하는 정보 불러오기
             .equalTo(opponent)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {}
@@ -63,18 +63,19 @@ class RecyclerChatRoomsAdapter(val context: Context) :
                     for (data in snapshot.children) {
                         holder.chatRoomKey = data.key.toString()!!             //채팅방 키 초기화
                         holder.opponentUser = data.getValue<User>()!!         //상대방 정보 초기화
-                        holder.txt_name.text = data.getValue<UserData>()!!.user_nickName.toString()     //상대방 이름 초괴화
+                        holder.txt_name.text = data.getValue<UserData>()!!.user_nickName.toString() //상대방 이름 초괴화
+
                     }
                 }
             })
         holder.background.setOnClickListener()               //채팅방 항목 선택 시
         {
             var intent = Intent(context, ChatRoomActivity::class.java)
-            intent.putExtra("ChatRoom", chatRooms.get(position)) //채팅방 정보
+            intent.putExtra("ChatRoom", chatRooms.get(position))      //채팅방 정보
+            Log.d("ChatRoomAdapter","opponent=${holder.opponentUser}")
             intent.putExtra("Opponent", holder.opponentUser)          //상대방 사용자 정보
             intent.putExtra("ChatRoomKey", chatRoomKeys[position])     //채팅방 키 정보
             context.startActivity(intent)                            //해당 채팅방으로 이동
-
         }
 
         if (chatRooms[position].messages!!.size > 0) {         //채팅방 메시지가 존재하는 경우

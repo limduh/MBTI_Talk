@@ -11,12 +11,12 @@
         android:id="@+id/txt_TItle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="5dp"
         android:text="홍길동"
         android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/btn_exit"
+        app:layout_constraintStart_toEndOf="@+id/btn_exit"
+        app:layout_constraintTop_toTopOf="@+id/btn_exit" />
 
     <TextView
         android:id="@+id/textView2"
@@ -107,12 +107,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:listitem="@layout/list_talk_item_mine" />
 
-    <Button
+    <ImageView
         android:id="@+id/btn_exit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:text="Button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_left_arrow" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
