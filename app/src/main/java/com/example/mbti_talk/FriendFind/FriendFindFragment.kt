@@ -26,7 +26,7 @@ class FriendFindFragment : Fragment() {
     private lateinit var adapter: UserAdapter
     private val userList: MutableList<UserData> = mutableListOf()
     private lateinit var userDB: DatabaseReference
-//
+    //
     // onCreateView 함수는 Fragment가 생성될 때 호출. Fragment의 사용자 인터페이스 레이아웃을 초기화
     override fun onCreateView(
         /* inflater 매개변수는 XML 레이아웃 파일을 Fragment의 레이아웃으로 확장
@@ -88,3 +88,5 @@ class FriendFindFragment : Fragment() {
         })
     }
 }
+
+

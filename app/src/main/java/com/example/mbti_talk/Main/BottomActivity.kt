@@ -19,11 +19,11 @@ import com.tauheed.wavybottomnavigation.WavyBottomNavigation
 class BottomActivity : AppCompatActivity() {
 
     companion object {
-        private const val ID_FRIEND = 1
-        private const val ID_POST = 2
-        private const val ID_SEARCH = 3
-        private const val ID_CHAT = 4
-        private const val ID_MYPAGE = 5
+        private const val ID_FRIEND = 0
+        private const val ID_POST = 1
+        private const val ID_SEARCH = 2
+        private const val ID_CHAT = 3
+        private const val ID_MYPAGE = 4
     }
 
 
@@ -50,8 +50,8 @@ class BottomActivity : AppCompatActivity() {
         //초기화면 설정 ▽
 
         supportFragmentManager.beginTransaction().replace(R.id.Bottom_frame, FriendFindFragment()).commit()
-        fragmentManager.beginTransaction().replace(R.id.Bottom_frame, friendListFragment).commit()
-        currentFragment = friendListFragment
+        fragmentManager.beginTransaction().replace(R.id.Bottom_frame, friendFindFragment).commit()
+        currentFragment = friendFindFragment
 
         binding.bottomNavigation.apply {
             add(
@@ -144,7 +144,7 @@ class BottomActivity : AppCompatActivity() {
                 Toast.makeText(context, "item ${it.id} is reselected.", Toast.LENGTH_LONG).show()
             }
 
-            show(ID_FRIEND)
+            show(ID_SEARCH)
 
         }
 

@@ -41,10 +41,10 @@
             android:name=".Chat.ChatRoomActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpMbtiActivity"
+            android:name=".MBTI.SignUpMbtiActivity"
             android:exported="false" />
         <activity
-            android:name=".SelectionMbtiActivity"
+            android:name=".MBTI.MbtiActivity"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
