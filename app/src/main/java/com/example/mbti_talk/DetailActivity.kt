@@ -1,5 +1,6 @@
 package com.example.mbti_talk
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,9 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.bumptech.glide.Glide
+import com.example.mbti_talk.Chat.ChatRoom
+import com.example.mbti_talk.Chat.ChatRoomActivity
+import com.example.mbti_talk.Chat.User
 import com.example.mbti_talk.databinding.ActivityDetailBinding
 import com.example.mbti_talk.utils.Utils
 import com.google.firebase.auth.FirebaseAuth
@@ -168,7 +172,11 @@ class DetailActivity : AppCompatActivity() {
                                 snapshot.child(userID)
                             val name = userData.child("user_nickName").getValue<String?>()
                             val useremail = userData.child("user_email").getValue<String?>()
-                            val opponent = User(name, userID, useremail) //채팅할 상대방 정보
+                            val user_age=userData.child("user_age").getValue<Int?>()
+                            val user_gender = userData.child("user_gender").getValue<String?>()
+                            val user_mbti = userData.child("user_mbti").getValue<String?>()
+                            if(name !=null&& useremail !=null&& user_age!=null&& user_gender!=null&& user_mbti!=null ){
+                                val opponent = UserData(useremail, user_age, name, userID, user_gender, user_mbti) //채팅할 상대방 정보
                             var database =
                                 FirebaseDatabase.getInstance()
                                     .getReference("ChatRoom")    //넣을 database reference 세팅
@@ -209,7 +217,7 @@ class DetailActivity : AppCompatActivity() {
                                     }
                                 })
 
-                        } else {
+                        } }else {
                             // 사용자 정보를 가져오지 못한 경우
                             Toast.makeText(this@DetailActivity, "사용자 정보를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
                         }
@@ -225,10 +233,10 @@ class DetailActivity : AppCompatActivity() {
     }
 
 
-fun goToChatRoom(chatRoom: ChatRoom, chatRoomKey: String, userID: User) {
+fun goToChatRoom(chatRoom: ChatRoom, chatRoomKey: String, opponent: UserData) {
     val intent = Intent(this, ChatRoomActivity::class.java)
     intent.putExtra("ChatRoom", chatRoom)
-    intent.putExtra("Opponent", userID)
+    intent.putExtra("Opponent", opponent)
     intent.putExtra("ChatRoomKey", chatRoomKey)
     startActivity(intent)
     finish()

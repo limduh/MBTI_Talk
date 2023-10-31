@@ -94,7 +94,6 @@ class RecyclerMessagesAdapter(
         var txtMessage = itemView.txtMessage
         var txtDate = itemView.txtDate
         var txtIsShown = itemView.txtIsShown
-
         fun bind(position: Int) {           //메시지 UI 항목 초기화
             var message = messages[position]
             var sendDate = message.sended_date
