@@ -171,11 +171,18 @@ class PostWriteActivity : AppCompatActivity() {
                 if (userData != null) {
                     val user_nickName = userData.user_nickName
                     val user_profile = userData.user_profile
+                    val user_mbti = userData.user_mbti
+                    val user_gender = userData.user_gender
+                    val user_age = userData.user_age
+
 
                     if (user_nickName != null && user_profile != null) {
                         user.apply {
                             this.user_nickName = user_nickName
                             this.user_profile = user_profile
+                            this.user_mbti = user_mbti
+                            this.user_gender = user_gender
+                            this.user_age = user_age
                         }
                         FirebaseData.mydata.child(userUid!! + Calendar.getInstance().time)
                             .setValue(user)
@@ -244,6 +251,9 @@ class PostData {
     var image: String = ""
     var user_nickName: String = ""
     var user_profile: String = ""
+    var user_mbti: String = ""
+    var user_gender: String = ""
+    var user_age: Int = 0
 
     constructor()
     constructor(title: String, content: String, time: String, image: String) {
