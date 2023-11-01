@@ -45,6 +45,12 @@
             android:name=".Chat.ChatRoomActivity"
             android:exported="false" />
         <activity
+            android:name=".MBTI.MbtiResultActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".MBTI.MbtiTestActivity"
+            android:exported="false"/>
+        <activity
             android:name=".MBTI.SignUpMbtiActivity"
             android:exported="false" />
         <activity
