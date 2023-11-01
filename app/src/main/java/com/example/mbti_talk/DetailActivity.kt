@@ -159,7 +159,7 @@ class DetailActivity : AppCompatActivity() {
         binding.DetailBackArrow.setOnClickListener {
             finish()
         }
-        //채팅하기 버튼 누름
+        //채팅하기 버튼 누름 요기좀 바뀜
         binding.DetailBtnChat.setOnClickListener {
             detailDB.addListenerForSingleValueEvent(object :
                 ValueEventListener { // RDB에서 데이터를 읽어오기 위한 리스너를 설정. 데이터의 한 번 읽기 작업을 수행
