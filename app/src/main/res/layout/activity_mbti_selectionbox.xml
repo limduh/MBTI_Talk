@@ -85,7 +85,7 @@
             <RadioGroup
                 android:id="@+id/Mbti_selecbox_1"
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:layout_marginTop="-20dp"
                 android:background="@drawable/mbti_search_btn"
                 android:gravity="center"
@@ -100,7 +100,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_leftbtn"
                     android:button="@null"
-                    android:text="E"
                     android:textAlignment="center"
                     android:textSize="40sp" />
 
@@ -117,7 +116,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_rightbtn"
                     android:button="@null"
-                    android:text="I"
                     android:textAlignment="center"
                     android:textSize="40sp" />
             </RadioGroup>
@@ -140,7 +138,7 @@
             <RadioGroup
                 android:id="@+id/Mbti_selecbox_2"
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:layout_marginTop="-20dp"
                 android:background="@drawable/mbti_search_btn"
                 android:gravity="center"
@@ -155,7 +153,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_leftbtn"
                     android:button="@null"
-                    android:text="S"
                     android:textAlignment="center"
                     android:textSize="40sp" />
 
@@ -172,7 +169,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_rightbtn"
                     android:button="@null"
-                    android:text="N"
                     android:textAlignment="center"
                     android:textSize="40sp" />
             </RadioGroup>
@@ -195,7 +191,7 @@
             <RadioGroup
                 android:id="@+id/Mbti_selecbox_3"
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:layout_marginTop="-20dp"
                 android:background="@drawable/mbti_search_btn"
                 android:gravity="center"
@@ -210,7 +206,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_leftbtn"
                     android:button="@null"
-                    android:text="T"
                     android:textAlignment="center"
                     android:textSize="40sp" />
 
@@ -227,7 +222,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_rightbtn"
                     android:button="@null"
-                    android:text="F"
                     android:textAlignment="center"
                     android:textSize="40sp" />
             </RadioGroup>
@@ -250,7 +244,7 @@
             <RadioGroup
                 android:id="@+id/Mbti_selecbox_4"
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:layout_marginTop="-20dp"
                 android:background="@drawable/mbti_search_btn"
                 android:gravity="center"
@@ -265,7 +259,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_leftbtn"
                     android:button="@null"
-                    android:text="J"
                     android:textAlignment="center"
                     android:textSize="40sp" />
 
@@ -282,36 +275,201 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_rightbtn"
                     android:button="@null"
-                    android:text="P"
                     android:textAlignment="center"
                     android:textSize="40sp" />
             </RadioGroup>
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="E"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toTopOf="@+id/appCompatTextView20"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView20"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextView20" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appCompatTextView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="25dp"
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
-                android:text="친구의 친구가 껴도 좋다."
-                android:textSize="10sp"
+                android:text="친구의 친구가 \n 껴도 좋다."
+                android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/Mbti_selecbox_1"
                 app:layout_constraintStart_toStartOf="@+id/Mbti_selecbox_1" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="I"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toTopOf="@+id/appCompatTextView21"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView21"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextView21" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appCompatTextView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="3dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="8dp"
                 android:gravity="center"
-                android:text="친구의 친구가 끼는건\n불편하다."
-                android:textSize="10sp"
+                android:text="친구의 친구가 끼는건 \n 불편하다."
+                android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/Mbti_selecbox_1"
                 app:layout_constraintEnd_toEndOf="@+id/Mbti_selecbox_1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="S"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toTopOf="@+id/appCompatTextViewS"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatTextViewS"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextViewS" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextViewS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="내가 좋아하는 사람은 \n 상식이 풍부한 사람"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/Mbti_selecbox_2"
+                app:layout_constraintStart_toStartOf="@+id/Mbti_selecbox_2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextViewN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="N"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toTopOf="@+id/appCompatTextViewN2"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatTextViewN2"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextViewN2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextViewN2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="내가 좋아하는 사람은 \n 상상력이 풍부한 사람"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/Mbti_selecbox_2"
+                app:layout_constraintEnd_toEndOf="@+id/Mbti_selecbox_2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextViewT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="T"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toTopOf="@+id/appCompatTextViewNT2"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatTextViewNT2"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextViewNT2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextViewNT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="내 관심사는 일에 \n 초점이 맞춰저 있다."
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/Mbti_selecbox_3"
+                app:layout_constraintStart_toStartOf="@+id/Mbti_selecbox_3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextViewF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="F"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toTopOf="@+id/appCompatTextViewF2"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatTextViewF2"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextViewF2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextViewF2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="내 관심사는 사람에 \n 초점이 맞춰저 있다."
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/Mbti_selecbox_3"
+                app:layout_constraintEnd_toEndOf="@+id/Mbti_selecbox_3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextViewJ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="J"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toTopOf="@+id/appCompatTextViewJ2"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatTextViewJ2"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextViewJ2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextViewJ2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="미리 일을 끝내고 \n 다음 일을 준비한다."
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/Mbti_selecbox_4" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextViewP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="P"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toTopOf="@+id/appCompatTextViewP2"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatTextViewP2"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextViewP2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextViewP2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="미뤄뒀다가 한 번에 \n 일을 처리한다."
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/Mbti_selecbox_4"
+                app:layout_constraintEnd_toEndOf="@+id/Mbti_selecbox_4" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
