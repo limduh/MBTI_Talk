@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mbti_talk.Adapter.UserAdapter
 import com.example.mbti_talk.DetailActivity
+import com.example.mbti_talk.Main.FilterDialogFragment
+import com.example.mbti_talk.R
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentFriendFindBinding
 import com.example.mbti_talk.utils.Utils
@@ -26,7 +29,7 @@ class FriendFindFragment : Fragment() {
     private lateinit var adapter: UserAdapter
     private val userList: MutableList<UserData> = mutableListOf()
     private lateinit var userDB: DatabaseReference
-    //
+
     // onCreateView 함수는 Fragment가 생성될 때 호출. Fragment의 사용자 인터페이스 레이아웃을 초기화
     override fun onCreateView(
         /* inflater 매개변수는 XML 레이아웃 파일을 Fragment의 레이아웃으로 확장
@@ -86,6 +89,13 @@ class FriendFindFragment : Fragment() {
                 Toast.makeText(requireContext(), "데이터를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
             }
         })
+        // filter_btn을 찾아 클릭 이벤트를 처리
+        val filterButton = view.findViewById<AppCompatImageButton>(R.id.filter_btn)
+        filterButton.setOnClickListener {
+            // FilterDialogFragment를 표시
+            val filterDialog = FilterDialogFragment()
+            filterDialog.show(childFragmentManager, "FilterDialog")
+        }
     }
 }
 
