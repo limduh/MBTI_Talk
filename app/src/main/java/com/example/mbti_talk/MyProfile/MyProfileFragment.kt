@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.mbti_talk.MBTI.MbtiActivity
+import com.example.mbti_talk.MBTI.MbtiTestActivity
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentMyProfileBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -36,7 +37,7 @@ class MyProfileFragment : Fragment() {
         val view = binding.root
 
         binding.ProfileMbtiBtn.setOnClickListener {
-            val intent = Intent(requireContext(), MbtiActivity::class.java)
+            val intent = Intent(requireContext(), MbtiTestActivity::class.java)
             startActivity(intent)
         }
 
