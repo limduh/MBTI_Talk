@@ -209,9 +209,7 @@ class LogInActivity : AppCompatActivity() {
             val credential = GoogleAuthProvider.getCredential(account.idToken, null)
             firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
                 if (task.isSuccessful) {
-                    //로그인후 넘어가는 곳 변경해봄 (바텀네비연결)
-//                    val intent = Intent(this, MainActivity::class.java)
-                    val intent = Intent(this, BottomActivity::class.java)
+                    val intent = Intent(this, SignUpActivity2::class.java)
                     startActivity(intent)
 
                     Toast.makeText(this, "계정이 생성되었습니다.", Toast.LENGTH_SHORT).show()
