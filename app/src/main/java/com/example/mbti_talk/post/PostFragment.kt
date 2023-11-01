@@ -62,13 +62,10 @@ class PostFragment : Fragment() {
                         tempList.add(item)
                     }
                 }
+                tempList.sortByDescending { it.time }
                 postList.clear()
                 postList.addAll(tempList)
                 postAdapter.notifyDataSetChanged()
-                postList.reverse()
-                for (item in postList) {
-                    Log.d("ImageData", "Image URL: ${item.image}")
-                }
             }
 
             override fun onCancelled(error: DatabaseError) {

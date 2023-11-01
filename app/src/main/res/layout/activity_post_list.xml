@@ -9,11 +9,6 @@
         tools:context=".board.ContentListActivity">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/mbti_search_btn"/>
-
-        <ImageView
             android:id="@+id/imageView"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -51,11 +46,12 @@
             android:id="@+id/contentWriteBtn"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:layout_margin="30dp"
-            android:src="@drawable/ic_add_plus"
+            android:layout_margin="10dp"
             android:elevation="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:src="@drawable/ic_add_post_write"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
