@@ -2,11 +2,10 @@ package com.example.mbti_talk
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import java.io.Serializable
 
 
 // FB 와 연결되어 있습니다.
-//@Parcelize
+@Parcelize
 data class UserData(
     val user_email: String = "",
     val user_age: Int = 0,
@@ -15,5 +14,4 @@ data class UserData(
     val user_gender: String = "",
     val user_mbti: String = "",
     val user_profile: String = ""
-): Serializable {
-}
+) : Parcelable

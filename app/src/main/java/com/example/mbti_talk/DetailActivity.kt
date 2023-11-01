@@ -175,8 +175,9 @@ class DetailActivity : AppCompatActivity() {
                             val user_age=userData.child("user_age").getValue<Int?>()
                             val user_gender = userData.child("user_gender").getValue<String?>()
                             val user_mbti = userData.child("user_mbti").getValue<String?>()
-                            if(name !=null&& useremail !=null&& user_age!=null&& user_gender!=null&& user_mbti!=null ){
-                                val opponent = UserData(useremail, user_age, name, userID, user_gender, user_mbti) //채팅할 상대방 정보
+                            val user_pofile=userData.child("user_profile").getValue<String?>()
+                            if(name !=null&& useremail !=null&& user_age!=null&& user_gender!=null&& user_mbti!=null&&user_pofile!=null ){
+                                val opponent = UserData(useremail, user_age, name, userID, user_gender, user_mbti,user_pofile) //채팅할 상대방 정보
                             var database =
                                 FirebaseDatabase.getInstance()
                                     .getReference("ChatRoom")    //넣을 database reference 세팅

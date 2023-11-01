@@ -148,7 +148,7 @@ class RecyclerChatRoomsAdapter(val context: Context) :
 
     inner class ViewHolder(itemView: ListChatroomItemBinding) :
         RecyclerView.ViewHolder(itemView.root) {
-        var opponentUser = UserData("",0,"","","","")
+        var opponentUser = UserData("",0,"","","","","")
         var chatRoomKey = ""
         var background = itemView.background
         var txt_name = itemView.txtName

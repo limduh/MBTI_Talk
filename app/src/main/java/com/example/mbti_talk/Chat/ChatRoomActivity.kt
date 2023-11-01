@@ -43,10 +43,13 @@ class ChatRoomActivity : AppCompatActivity() {
 
         chatRoom = intent.getSerializableExtra("ChatRoom") as ChatRoom      //채팅방 정보
         chatRoomKey = intent.getStringExtra("ChatRoomKey")!! //채팅방 키
-        opponentUser = intent.getSerializableExtra("Opponent") as UserData//상대방 유저 정보
+        opponentUser = intent.getParcelableExtra("Opponent")!! //상대방 유저 정보
+
+
         initializeView()
         initializeListener()
         setupChatRooms()
+
     }
 
 
