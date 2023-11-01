@@ -19,20 +19,31 @@
     <com.tauheed.wavybottomnavigation.WavyBottomNavigation
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:mbn_circleColor="#ffffff"
+        android:layout_height="70dp"
+        app:mbn_circleColor="#000000"
         app:mbn_backgroundBottomColor="#ffffff"
         app:mbn_countBackgroundColor="#ff6f00"
         app:mbn_countTextColor="#ffffff"
         app:mbn_countTypeface="fonts/SourceSansPro-Regular.ttf"
         app:mbn_defaultIconColor="#90a4ae"
         app:mbn_rippleColor="#2f424242"
-        app:mbn_selectedIconColor="#3c415e"
+        app:mbn_selectedIconColor="#FFFFFF"
         app:mbn_shadowColor="#1f212121"
         app:mbn_hasAnimation="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+<!--    android:layout_gravity="bottom" // 해당내용은 constraintLayout에서 필요없어서 잠시 빼놓음-->
+<!--    app:mbn_circleColor="#ffffff" // 웨이브 이펙트의 원형 색상을 흰색으로 설정합니다.-->
+<!--    app:mbn_backgroundBottomColor="#ffffff": 바의 배경 색상을 흰색으로 설정합니다.-->
+<!--    app:mbn_countBackgroundColor="#ff6f00": 알림 카운트 배경 색상을 설정합니다.-->
+<!--    app:mbn_countTextColor="#ffffff": 알림 카운트 텍스트 색상을 흰색으로 설정합니다.-->
+<!--    app:mbn_countTypeface="fonts/SourceSansPro-Regular.ttf": 알림 카운트 텍스트의 글꼴을 설정합니다. 해당 글꼴 파일은 assets/fonts 폴더에 있어야 합니다.-->
+<!--    app:mbn_defaultIconColor="#90a4ae": 기본 상태에서의 아이콘 색상을 설정합니다.-->
+<!--    app:mbn_rippleColor="#2f424242": 물결 효과의 색상을 설정합니다.-->
+<!--    app:mbn_selectedIconColor="#3c415e": 선택된 상태에서의 아이콘 색상을 설정합니다.-->
+<!--    app:mbn_shadowColor="#1f212121": 그림자 색상을 설정합니다.-->
+<!--    app:mbn_hasAnimation="true": 웨이브 이펙트 애니메이션 사용 여부를 설정합니다.-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

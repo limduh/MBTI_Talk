@@ -10,10 +10,13 @@ import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 import android.os.Build
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.databinding.DataBindingUtil
@@ -43,6 +46,8 @@ class WavyBottomNavigationCell @JvmOverloads constructor(
         this,
         true
     )
+
+
 
     var defaultIconColor = 0
         set(value) {
@@ -148,7 +153,8 @@ class WavyBottomNavigationCell @JvmOverloads constructor(
     private var progress = 0f
         set(value) {
             field = value
-            binding.fl.y = (1f - progress) * 18f.dp(context) - 3f.dp(context)
+            //binding.fl.y = (1f - progress) * 18f.dp(context) - 3f.dp(context)이 값을 줄이니, 아이콘이 올라옴
+            binding.fl.y = (1f - progress) * 6f.dp(context) - 3f.dp(context)
 
             ImageViewCompat.setImageTintList(
                 binding.iv,
@@ -169,9 +175,11 @@ class WavyBottomNavigationCell @JvmOverloads constructor(
             )
 
             val m = 24.dp(context)
+            //▽애니메이션 적용값
             binding.vCircle.x =
                 (1f - progress) * (if (isFromLeft) -m else m) + ((measuredWidth - 48f.dp(context)) / 2f)
-            binding.vCircle.y = (1f - progress) * measuredHeight + 6.dp(context)
+            //▽선택된 원형(검은원) 올리는 부분 - 0.dp(context)이부분을 + 어쩌고로하면내려가고, -로하면 올라간다.
+            binding.vCircle.y = (1f - progress) * measuredHeight - 0.dp(context)
         }
 
     var isEnabledCell = false
@@ -203,7 +211,6 @@ class WavyBottomNavigationCell @JvmOverloads constructor(
         allowDraw = true//todo need Delete
         draw()
     }
-
     private fun draw() {
         if (!allowDraw)
             return

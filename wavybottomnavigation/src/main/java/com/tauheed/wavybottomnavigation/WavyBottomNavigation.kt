@@ -367,4 +367,5 @@ class WavyBottomNavigation : FrameLayout {
         var count: String = WavyBottomNavigationCell.EMPTY_VALUE
 
     }
+
 }

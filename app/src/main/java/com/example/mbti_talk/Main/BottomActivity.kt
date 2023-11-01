@@ -14,6 +14,7 @@ import com.example.mbti_talk.Chat.ChatFragment
 import com.example.mbti_talk.FriendList.FriendListFragment
 import com.example.mbti_talk.MyProfile.MyProfileFragment
 import com.tauheed.wavybottomnavigation.WavyBottomNavigation
+import com.tauheed.wavybottomnavigation.WavyBottomNavigationCell
 
 
 class BottomActivity : AppCompatActivity() {
