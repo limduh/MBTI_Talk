@@ -1,6 +1,7 @@
 package com.example.mbti_talk.Chat
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +49,11 @@ class RecyclerMessagesAdapter(
                         messages.add(data.getValue<Message>()!!)         //메시지 목록에 추가
                         messageKeys.add(data.key!!)                        //메시지 키 목록에 추가
                     }
+                    Log.d("RecyclerMessage","getMessage=${messages.size}")
+//                    for(message in messages){
+//                        message.confirmed=true
+//                    }
+
                     notifyDataSetChanged()          //화면 업데이트
                     recyclerView.scrollToPosition(messages.size - 1)    //스크롤 최 하단으로 내리기
                 }
@@ -94,7 +100,6 @@ class RecyclerMessagesAdapter(
         var txtMessage = itemView.txtMessage
         var txtDate = itemView.txtDate
         var txtIsShown = itemView.txtIsShown
-
         fun bind(position: Int) {           //메시지 UI 항목 초기화
             var message = messages[position]
             var sendDate = message.sended_date
@@ -133,13 +138,24 @@ class RecyclerMessagesAdapter(
             return dateText
         }
 
-        fun setShown(position: Int) {          //메시지 확인하여 서버로 전송
-            FirebaseDatabase.getInstance().getReference("ChatRoom")
-                .child("chatRooms").child(chatRoomKey!!).child("messages")
-                .child(messageKeys[position]).child("confirmed").setValue(true)
+        fun setShown(position: Int) {
+            val messageKey = messageKeys[position]
+            val databaseReference = FirebaseDatabase.getInstance().getReference("ChatRoom")
+                .child("chatRooms").child(chatRoomKey!!).child("messages").child(messageKey)
 
+            databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        databaseReference.child("confirmed").setValue(true)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+
+            })
         }
     }
+
 
     inner class MyMessageViewHolder(itemView: ListTalkItemMineBinding) :       // 내 메시지용 ViewHolder
         RecyclerView.ViewHolder(itemView.root) {

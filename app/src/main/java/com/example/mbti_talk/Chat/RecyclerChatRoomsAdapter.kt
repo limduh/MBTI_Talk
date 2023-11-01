@@ -62,7 +62,7 @@ class RecyclerChatRoomsAdapter(val context: Context) :
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (data in snapshot.children) {
                         holder.chatRoomKey = data.key.toString()!!             //채팅방 키 초기화
-                        holder.opponentUser = data.getValue<User>()!!         //상대방 정보 초기화
+                        holder.opponentUser = data.getValue<UserData>()!!         //상대방 정보 초기화
                         holder.txt_name.text = data.getValue<UserData>()!!.user_nickName.toString() //상대방 이름 초괴화
 
                     }
@@ -148,7 +148,7 @@ class RecyclerChatRoomsAdapter(val context: Context) :
 
     inner class ViewHolder(itemView: ListChatroomItemBinding) :
         RecyclerView.ViewHolder(itemView.root) {
-        var opponentUser = User("","")
+        var opponentUser = UserData("",0,"","","","","")
         var chatRoomKey = ""
         var background = itemView.background
         var txt_name = itemView.txtName
