@@ -32,7 +32,7 @@ class BottomActivity : AppCompatActivity() {
     private lateinit var currentFragment: Fragment
     private lateinit var fragmentManager: FragmentManager
 
-    //각 프래그먼트 선언
+    //각 프래그먼트 선언asdfasdfasdf
 
     private val friendListFragment = FriendListFragment()
     private val postFragment = PostFragment()
