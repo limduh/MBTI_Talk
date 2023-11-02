@@ -77,6 +77,7 @@ class FriendFindFragment : Fragment() {
         binding.FriendFindFragRv.adapter = adapter
         binding.FriendFindFragRv.layoutManager = LinearLayoutManager(requireContext())
 
+        userList.clear()
         // 사용자 데이터를 RDB 에서 가져오기
         val currentUserUid = Utils.getMyUid(requireContext())
         userDB.limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
