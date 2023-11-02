@@ -62,6 +62,7 @@ class MyProfileFragment : Fragment() {
                             binding.ProfileNickname.text = "${userData.user_nickName}"
                             binding.ProfileAge.text = "${userData.user_age}"
                             binding.ProfileGender.text = "${userData.user_gender}"
+                            binding.ProfileMbti.text = "${userData.user_mbti}"
 
                             // Firebase Storage 에서 프로필 이미지 가져오기
                             val storage = FirebaseStorage.getInstance()

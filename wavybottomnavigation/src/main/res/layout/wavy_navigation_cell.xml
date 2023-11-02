@@ -8,8 +8,8 @@
 
         <View
             android:id="@+id/v_circle"
-            android:layout_width="48dp"
-            android:layout_height="48dp" />
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
 
         <FrameLayout
             android:id="@+id/fl"
@@ -18,14 +18,17 @@
             android:layout_centerHorizontal="true"
             android:elevation="6dp"
             android:padding="8dp"
-            tools:targetApi="lollipop">
+            >
+<!--            tools:targetApi="lollipop"해당구문삭제-->
 
             <ImageView
                 android:id="@+id/iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="10dp" />
+                android:padding="10dp"
+                />
+<!--이미지뷰에서 패딩은, 아이콘 패딩임. 패딩을 늘릴수록 아이콘은 작아짐-->
 
             <TextView
                 android:id="@+id/tv_count"

@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mbti_talk.Main.BottomActivity
 import com.example.mbti_talk.MyProfile.MyProfileFragment
 import com.example.mbti_talk.R
+import com.example.mbti_talk.post.FirebaseData
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import java.util.Locale
 
 class MbtiResultActivity : AppCompatActivity() {
@@ -41,13 +45,25 @@ class MbtiResultActivity : AppCompatActivity() {
 
         iv_ResImg.setImageResource(imageResource)
 
-        val btn_retry: Button = findViewById(R.id.btn_res_retry)
+
+        val btn_retry: Button = findViewById(R.id.btn_res_end)
         btn_retry.setOnClickListener {
 
             val intent = Intent(this, BottomActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             intent.putExtra("startFragment", "MyProfileFragment") // 시작 Fragment 정보를 전달
             startActivity(intent)
+
+            val uId = FirebaseAuth.getInstance().currentUser?.uid
+
+            if (uId != null) {
+                val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uId)
+                userRef.child("user_mbti").setValue(resultString).addOnSuccessListener {
+                    Toast.makeText(this, "MBTI가 업데이트 되었습니다.", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener { error ->
+                    Toast.makeText(this, "MBTI 값 업데이트 중 오류 발생: $error", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }
