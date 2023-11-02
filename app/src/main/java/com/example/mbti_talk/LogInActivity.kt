@@ -134,6 +134,7 @@ class LogInActivity : AppCompatActivity() {
                                 Log.d("FirebaseDatabase", "User Data: $userData")
 
                                 if(!userData?.user_mbti.isNullOrEmpty()){
+                                    Utils.setMyMbti(this@LogInActivity, userData?.user_mbti.toString()) // userData?.user_mbti.toString()에서 유저 MBTI를 문자열로 변환. Utils.setMyMbti 함수를 호출하여 해당 MBTI 저장
                                     val intent = Intent(this@LogInActivity, BottomActivity::class.java)
                                     startActivity(intent)
                                     finish() // 로그인 화면 종료
@@ -209,6 +210,8 @@ class LogInActivity : AppCompatActivity() {
             val credential = GoogleAuthProvider.getCredential(account.idToken, null)
             firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
                 if (task.isSuccessful) {
+
+
                     //로그인후 넘어가는 곳 변경해봄 (바텀네비연결)
 //                    val intent = Intent(this, MainActivity::class.java)
                     val intent = Intent(this, BottomActivity::class.java)
