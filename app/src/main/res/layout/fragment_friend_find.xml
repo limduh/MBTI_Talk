@@ -35,9 +35,9 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/filter_btn1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:id="@+id/filter_btn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/filter_btn1"
             android:src="@drawable/filter_icon"
             android:layout_marginStart="20dp"
@@ -61,9 +61,9 @@
             android:layout_height="30dp"
             android:src="@drawable/filter_group_kit"
             android:layout_marginStart="20dp"
-            app:layout_constraintStart_toEndOf="@id/filter_btn1"
-            app:layout_constraintTop_toTopOf="@id/filter_btn1"
-            app:layout_constraintBottom_toBottomOf="@id/filter_btn1"/>
+            app:layout_constraintStart_toEndOf="@id/filter_btn"
+            app:layout_constraintTop_toTopOf="@id/filter_btn"
+            app:layout_constraintBottom_toBottomOf="@id/filter_btn"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"

@@ -1,5 +1,6 @@
 package com.example.mbti_talk.FriendFind
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,10 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mbti_talk.Adapter.UserAdapter
 import com.example.mbti_talk.DetailActivity
+import com.example.mbti_talk.Main.FilterDialogFragment
+import com.example.mbti_talk.R
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentFriendFindBinding
 import com.example.mbti_talk.utils.Utils
@@ -26,7 +30,8 @@ class FriendFindFragment : Fragment() {
     private lateinit var adapter: UserAdapter
     private val userList: MutableList<UserData> = mutableListOf()
     private lateinit var userDB: DatabaseReference
-    //
+    lateinit var mContext: Context
+
     // onCreateView 함수는 Fragment가 생성될 때 호출. Fragment의 사용자 인터페이스 레이아웃을 초기화
     override fun onCreateView(
         /* inflater 매개변수는 XML 레이아웃 파일을 Fragment의 레이아웃으로 확장
@@ -37,6 +42,13 @@ class FriendFindFragment : Fragment() {
         // XML 레이아웃을 화면에 그리기 위해 바인딩 객체 생성
         binding = FragmentFriendFindBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    /* onAttach 함수: Fragment가 Activity에 연결되었을 때 호출되는 콜백 메서드
+    이 메서드를 통해 Fragment는 연결된 Activity의 context 가져올 수 있음 */
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context // mContext 변수에 context 할당
     }
 
     /* onCreateView 이후 호출
@@ -75,8 +87,15 @@ class FriendFindFragment : Fragment() {
                     val user = userSnapshot.getValue(UserData::class.java)
                     // 사용자 본인 정보는 친구찾기 페이지에 표시되지 않음.
                     if (user != null && user.user_uid != currentUserUid) {
+
+                        // Utils 에서 저장한 compat 을 불러오기
+                        val compat = Utils.getCompat(Utils.getMyMbti(mContext), user.user_mbti) // 유저 MBTI와 친구 MBTI를 비교하여 compat 변수에 등급 할당
+                        user.user_compat = compat.toString() //해당 등급 문자열로 저장
+
+                        Log.d("friendfind", "myMbti=${Utils.getMyMbti(mContext)} otherMbti=${user.user_mbti} compat=${user.user_compat})")
                         userList.add(user) // user data 목록에 추가
                     }
+                    userList.sortBy { it.user_compat } // userList라는 사용자 목록을 user_compat 기준으로 오름차순 정렬
                 }
                 adapter.notifyDataSetChanged() // 어댑터에게 데이터 변경을 알림
             }
@@ -86,7 +105,12 @@ class FriendFindFragment : Fragment() {
                 Toast.makeText(requireContext(), "데이터를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
             }
         })
+        // filter_btn을 찾아 클릭 이벤트를 처리
+        val filterButton = view.findViewById<AppCompatImageButton>(R.id.filter_btn)
+        filterButton.setOnClickListener {
+            // FilterDialogFragment를 표시
+            val filterDialog = FilterDialogFragment()
+            filterDialog.show(childFragmentManager, "FilterDialog")
+        }
     }
 }
-
-

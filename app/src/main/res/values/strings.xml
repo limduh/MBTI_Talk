@@ -3,4 +3,59 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="default_web_client_id" translatable="false">751430456068-ek5vvgaetu4qof3rk7o8qeaebnid32r8.apps.googleusercontent.com</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="question1_title">외향형 - 내향형 (E-I)</string>
+    <string name="question1_1">Q1. 데이트가 없는 주말에 나는</string>
+    <string name="question1_1_answer1">단톡에 연락해서 친구들과 약속을 잡는다</string>
+    <string name="question1_1_answer2">침대랑 하루 종일 물아일체가 된다</string>
+
+    <string name="question1_2">Q2. 친구의 소개로 소개팅에 나온 나는</string>
+    <string name="question1_2_answer1">먼저 말 걸면서 분위기를 띄운다</string>
+    <string name="question1_2_answer2">말을 걸어올 때까지 기다리고 본다</string>
+
+    <string name="question1_3">Q3. 데이트 중 길에서 연인의 친구를 만난다면 나는</string>
+    <string name="question1_3_answer1">자연스럽게 웃으며 대한다</string>
+    <string name="question1_3_answer2">무생물이 되어 조용히 있는다</string>
+
+    <!-- 질문2 -->
+    <string name="question2_title">감각형 - 직관형 (N-S)</string>
+    <string name="question2_1">Q1. 데이트 중 맛있어 보이는 밥집을 발견한 나는</string>
+    <string name="question2_1_answer1">간판에서 맛집의 기운이 느껴진다 맛집 각이야</string>
+    <string name="question2_1_answer2">유명하고 리뷰도 많으니까 맛은 보장되어 있겠군</string>
+
+    <string name="question2_2">Q2. 오늘 본 영화를 궁금해하는 연인에게 나는</string>
+    <string name="question2_2_answer1">좀비랑 싸우는데 주인공이 완전 멋져 보는 내내 소름 돋았어</string>
+    <string name="question2_2_answer2">주인공이 좀비 바이러스가 퍼져서 치료하기 위한 영화야</string>
+
+    <string name="question2_3">Q3. 연인에게 줄 선물을 고르게 된 나는</string>
+    <string name="question2_3_answer1">실용성은 없어도 예쁘고 기억에 남을 선물</string>
+    <string name="question2_3_answer2">연인에게 요즘 가장 필요할 것 같은 선물</string>
+
+    <!-- 질문3 -->
+    <string name="question3_title">사고형 - 감정형 (T-F)</string>
+    <string name="question3_1">Q1. 연인과 사소한 일로 다퉜을 때 나는</string>
+    <string name="question3_1_answer1">ㅇㅇ점은 꼭 고쳐줬으면 좋겠어 이렇게 하면 되잖아</string>
+    <string name="question3_1_answer2">나!! 진짜!! 너무!!! 화났어!!!!!</string>
+
+    <string name="question3_2">Q2. 축 처진 연인이 우울하다고 말했을 때 나는</string>
+    <string name="question3_2_answer1">왜 우울해? 뭐 때문에 우울한 거야?</string>
+    <string name="question3_2_answer2">5초 만에 감정이입 완료. 같이 글썽거린다</string>
+
+    <string name="question3_3">Q3. 힘들게 이벤트를 준비한 나를 신나게 할 연인의 칭찬은?</string>
+    <string name="question3_3_answer1">고마워 요즘 바쁠 텐데 언제 이런 걸 생각했어?</string>
+    <string name="question3_3_answer2">사랑해 최고야 나 완전 감동했어</string>
+
+    <!-- 질문4 -->
+    <string name="question4_title">판단형 - 인식형 (J-P)</string>
+    <string name="question4_1">Q1. 데이트 룩을 고를 때 나는</string>
+    <string name="question4_1_answer1">전날부터 머리부터 발끝까지 세팅해 준다</string>
+    <string name="question4_1_answer2">나가기 직전 마음에 드는 옷을 입는다</string>
+
+    <string name="question4_2">Q2. 썸 중에 연인이 집에 놀러 온다고 했을 때 나는</string>
+    <string name="question4_2_answer1">쓰레기 버리기부터 화장실 청소까지 한다</string>
+    <string name="question4_2_answer2">보이는 곳만 일단 급하게 치워둔다</string>
+
+    <string name="question4_3">Q3. 커플 해외여행 계획을 짜게 된 나는</string>
+    <string name="question4_3_answer1">할 거면 제대로! 일별로 세부 일정을 정리한다</string>
+    <string name="question4_3_answer2">비행기 표만 끊어두고 계획의 80% 끝난다고 생각한다</string>
 </resources>

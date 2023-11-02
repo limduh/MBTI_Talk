@@ -1,5 +1,6 @@
 package com.example.mbti_talk.Main
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -109,6 +110,7 @@ class BottomActivity : AppCompatActivity() {
                     ID_MYPAGE -> {
                         binding.BottomFrame
                         switchFragment(myProfileFragment)
+
                     }
                     else -> ""
                 }
@@ -130,10 +132,16 @@ class BottomActivity : AppCompatActivity() {
                 Toast.makeText(context, "item ${it.id} is reselected.", Toast.LENGTH_LONG).show()
             }
 
-            show(ID_SEARCH)
-
         }
-
+        val startFragment: String = intent.getStringExtra("startFragment") ?: ""
+        if (startFragment == "MyProfileFragment") {
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.Bottom_frame,myProfileFragment)
+            fragmentTransaction.commit()
+            binding.bottomNavigation.show(ID_MYPAGE)
+        } else {
+            binding.bottomNavigation.show(ID_SEARCH)
+        }
 
     }
     private fun switchFragment(fragment: Fragment) {
