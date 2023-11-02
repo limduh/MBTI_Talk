@@ -44,9 +44,9 @@
 
         <ImageView
             android:id="@+id/contentWriteBtn"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_margin="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_margin="20dp"
             android:elevation="1dp"
             android:src="@drawable/ic_add_post_write"
             app:layout_constraintBottom_toTopOf="@+id/recyclerview"

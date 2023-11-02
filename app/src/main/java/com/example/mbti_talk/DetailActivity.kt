@@ -159,7 +159,7 @@ class DetailActivity : AppCompatActivity() {
         binding.DetailBackArrow.setOnClickListener {
             finish()
         }
-        //채팅하기 버튼 누름
+        //채팅하기 버튼 누름 요기좀 바뀜
         binding.DetailBtnChat.setOnClickListener {
             detailDB.addListenerForSingleValueEvent(object :
                 ValueEventListener { // RDB에서 데이터를 읽어오기 위한 리스너를 설정. 데이터의 한 번 읽기 작업을 수행
@@ -172,7 +172,12 @@ class DetailActivity : AppCompatActivity() {
                                 snapshot.child(userID)
                             val name = userData.child("user_nickName").getValue<String?>()
                             val useremail = userData.child("user_email").getValue<String?>()
-                            val opponent = User(name, userID, useremail) //채팅할 상대방 정보
+                            val user_age=userData.child("user_age").getValue<Int?>()
+                            val user_gender = userData.child("user_gender").getValue<String?>()
+                            val user_mbti = userData.child("user_mbti").getValue<String?>()
+                            val user_pofile=userData.child("user_profile").getValue<String?>()
+                            if(name !=null&& useremail !=null&& user_age!=null&& user_gender!=null&& user_mbti!=null&&user_pofile!=null ){
+                                val opponent = UserData(useremail, user_age, name, userID, user_gender, user_mbti,user_pofile) //채팅할 상대방 정보
                             var database =
                                 FirebaseDatabase.getInstance()
                                     .getReference("ChatRoom")    //넣을 database reference 세팅
@@ -213,7 +218,7 @@ class DetailActivity : AppCompatActivity() {
                                     }
                                 })
 
-                        } else {
+                        } }else {
                             // 사용자 정보를 가져오지 못한 경우
                             Toast.makeText(this@DetailActivity, "사용자 정보를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
                         }
@@ -229,10 +234,10 @@ class DetailActivity : AppCompatActivity() {
     }
 
 
-fun goToChatRoom(chatRoom: ChatRoom, chatRoomKey: String, userID: User) {
+fun goToChatRoom(chatRoom: ChatRoom, chatRoomKey: String, opponent: UserData) {
     val intent = Intent(this, ChatRoomActivity::class.java)
     intent.putExtra("ChatRoom", chatRoom)
-    intent.putExtra("Opponent", userID)
+    intent.putExtra("Opponent", opponent)
     intent.putExtra("ChatRoomKey", chatRoomKey)
     startActivity(intent)
     finish()
