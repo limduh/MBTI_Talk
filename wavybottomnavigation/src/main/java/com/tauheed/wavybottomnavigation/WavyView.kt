@@ -35,7 +35,9 @@ class WavyView @JvmOverloads constructor(
     private var bezierOuterHeight = 0f
     private var bezierInnerWidth = 0f
     private var bezierInnerHeight = 0f
+    //▽바텀 아래 파지는 부분 높이 조절
     private val shadowHeight = 8f.dp(context)
+
 
     var color = 0
         set(value) {
@@ -124,6 +126,12 @@ class WavyView @JvmOverloads constructor(
         bezierInnerWidth = 124f.dp(context)
         bezierInnerHeight = 16f.dp(context)
 
+//        bezierX는 웨이브 중앙의 X 좌표를 나타냅니다.
+//        bezierOuterWidth는 웨이브의 전체 너비를 나타냅니다.
+//        bezierOuterHeight는 웨이브의 높이를 나타냅니다.
+//        extra는 그림자 높이를 나타내는 값으로, 여기서는 shadowHeight로 초기화됩니다.
+
+
         val extra = shadowHeight
         outerArray[0] = PointF(0f, bezierOuterHeight + extra)
         outerArray[1] = PointF((bezierX - bezierOuterWidth / 2), bezierOuterHeight + extra)
@@ -185,6 +193,7 @@ class WavyView @JvmOverloads constructor(
         canvas.drawPath(path, paint!!)
     }
 
+    //inner는, 바텀에서 파지는 효과를 담당하는 것으로 추측됨 (값변화 시, 아래 바텀 파지는 부분이 변경됨 확인
     private fun calculateInner() {
         val extra = shadowHeight
         innerArray[0] = PointF(0f, bezierInnerHeight + extra)
