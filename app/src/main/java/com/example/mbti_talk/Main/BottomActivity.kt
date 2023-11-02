@@ -58,35 +58,30 @@ class BottomActivity : AppCompatActivity() {
             add(
                 WavyBottomNavigation.Model(
                     ID_FRIEND,
-//                    R.drawable.ic_home
                     R.drawable.ic_friend
                 )
             )
             add(
                 WavyBottomNavigation.Model(
                     ID_POST,
-//                    R.drawable.ic_explore
                     R.drawable.ic_bulletin
                 )
             )
             add(
                 WavyBottomNavigation.Model(
                     ID_SEARCH,
-//                    R.drawable.ic_message
                     R.drawable.ic_search
                 )
             )
             add(
                 WavyBottomNavigation.Model(
                     ID_CHAT,
-//                    R.drawable.ic_notification
                     R.drawable.ic_chat
                 )
             )
             add(
                 WavyBottomNavigation.Model(
                     ID_MYPAGE,
-//                    R.drawable.ic_account
                     R.drawable.ic_mypage
                 )
             )
@@ -96,33 +91,23 @@ class BottomActivity : AppCompatActivity() {
             setOnShowListener {
                 val name = when (it.id) {
                     ID_FRIEND -> {
-//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#D84879"))
                         binding.BottomFrame
                         switchFragment(friendListFragment)
-                        "HOME"
                     }
                     ID_POST -> {
-//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#4CAF50"))
                         binding.BottomFrame
                         switchFragment(postFragment)
-                        "EXPLORE"
                     }
                     ID_SEARCH -> {
-//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#ffa500"))
                         binding.BottomFrame
-                        "MESSAGE"
                         switchFragment(friendFindFragment)
                     }
                     ID_CHAT -> {
-//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#ff69b4"))
                         binding.BottomFrame
-                        "NOTIFICATION"
                         switchFragment(chatFragment)
                     }
                     ID_MYPAGE -> {
-//                        binding.BottomFrame.setBackgroundColor(Color.parseColor("#6495ed"))
                         binding.BottomFrame
-                        "ACCOUNT"
                         switchFragment(myProfileFragment)
                     }
                     else -> ""
