@@ -139,6 +139,8 @@ class LogInActivity : AppCompatActivity() {
                                     Log.d("FirebaseDatabase", "User Data: $userData")
 
                                     if (!userData?.user_mbti.isNullOrEmpty()) {
+                                        // userData?.user_mbti.toString()에서 유저 MBTI를 문자열로 변환. Utils.setMyMbti 함수를 호출하여 해당 MBTI 저장
+                                        Utils.setMyMbti(this@LogInActivity, userData?.user_mbti.toString())
                                         val intent =
                                             Intent(this@LogInActivity, BottomActivity::class.java)
                                         startActivity(intent)
