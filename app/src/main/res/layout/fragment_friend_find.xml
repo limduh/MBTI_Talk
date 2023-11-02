@@ -36,8 +36,8 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/filter_btn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/filter_btn1"
             android:src="@drawable/filter_icon"
             android:layout_marginStart="20dp"
