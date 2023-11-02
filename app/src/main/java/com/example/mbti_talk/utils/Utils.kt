@@ -2,7 +2,7 @@ package com.example.mbti_talk.utils
 
 
 import android.content.Context
-import com.example.mbti_talk.Mbti
+import com.example.mbti_talk.MBTI.Mbti
 
 object Utils {
     /**
