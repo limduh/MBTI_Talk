@@ -1,4 +1,4 @@
-package com.example.mbti_talk
+package com.example.mbti_talk.MBTI
 
 object Mbti {
     enum class GRADE {

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.mbti_talk.R
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.UserListBinding
 import com.google.firebase.storage.FirebaseStorage
@@ -62,6 +63,14 @@ class UserAdapter(private val clickListener: (String) -> Unit, private val userL
         holder.user_list.setOnClickListener {
             clickListener(user.user_uid)
         }
+
+        // 궁합 이미지 설정
+        when (user.user_compat) {
+            "A" -> holder.user_compat.setImageResource(R.drawable.perfect_icon)
+            "B" -> holder.user_compat.setImageResource(R.drawable.good_icon)
+            "C" -> holder.user_compat.setImageResource(R.drawable.soso_icon)
+            "D" -> holder.user_compat.setImageResource(R.drawable.bad_icon)
+        }
     }
 
     // Holder 클래스는 ViewHolder 패턴을 구현
@@ -74,6 +83,7 @@ class UserAdapter(private val clickListener: (String) -> Unit, private val userL
         val user_gender = binding.etGender // 성별 텍스트뷰
         val user_mbti = binding.etMbti // mbti 텍스트뷰
         val user_profile = binding.ivProfile // 프로필 이미지뷰
+        val user_compat = binding.ivGrade // 궁합 이미지뷰
 
     }
 }
