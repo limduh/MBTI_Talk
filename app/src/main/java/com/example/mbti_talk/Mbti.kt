@@ -4,6 +4,7 @@ object Mbti {
     enum class GRADE {
         A, B, C, D
     }
+    // compatData hashMap은 MBTI 유형을 키로 가지며, 각 MBTI 유형에 대한 호환성 데이터를 값으로(A,B,C,D)
     val compatData = hashMapOf(
         "INFJ" to hashMapOf(
             GRADE.A to listOf("ENFP", "ENTP"),
