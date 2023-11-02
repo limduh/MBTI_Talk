@@ -23,7 +23,7 @@
         app:layout_constraintHeight_percent="0.12"
         android:background="@android:color/transparent"
         app:mbn_circleColor="#000000"
-        app:mbn_backgroundBottomColor="#FF0000"
+        app:mbn_backgroundBottomColor="#FFFFFF"
         app:mbn_countBackgroundColor="#ff6f00"
         app:mbn_countTextColor="#ffffff"
         app:mbn_countTypeface="fonts/SourceSansPro-Regular.ttf"
