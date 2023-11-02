@@ -47,6 +47,11 @@ class WavyBottomNavigationCell @JvmOverloads constructor(
         true
     )
 
+//    // 아이콘 아래 라벨텍스트를 붙이기 위해 변수선언
+//    private val iconLabel: TextView = TextView(context).apply {
+//        layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+//        gravity = Gravity.CENTER
+//    }
 
 
     var defaultIconColor = 0
@@ -153,14 +158,16 @@ class WavyBottomNavigationCell @JvmOverloads constructor(
     private var progress = 0f
         set(value) {
             field = value
-            //binding.fl.y = (1f - progress) * 18f.dp(context) - 3f.dp(context)이 값을 줄이니, 아이콘이 올라옴
-            binding.fl.y = (1f - progress) * 6f.dp(context) - 3f.dp(context)
+            //초기값 : binding.fl.y = (1f - progress) * 18f.dp(context) - 3f.dp(context)이 값을 줄이니, 아이콘이 올라옴
+            binding.fl.y = (1f - progress) * 1f.dp(context) - 5f.dp(context)
 
             ImageViewCompat.setImageTintList(
                 binding.iv,
                 ofColorStateList(if (progress == 1f) selectedIconColor else defaultIconColor)
             )
-            val scale = (1f - progress) * (-0.2f) + 1f
+            //▽아이콘 크기 설정 가장 뒤의 f값조절
+            val scale = (1f - progress) * (-0.2f) + 1.2f
+//            초기값  : val scale = (1f - progress) * (-0.2f) + 1f
             binding.iv.scaleX = scale
             binding.iv.scaleY = scale
 
@@ -177,9 +184,11 @@ class WavyBottomNavigationCell @JvmOverloads constructor(
             val m = 24.dp(context)
             //▽애니메이션 적용값
             binding.vCircle.x =
+                //                (1f - progress) * (if (isFromLeft) -m else m) + ((measuredWidth - 48f.dp(context)) / 2f)초기값
                 (1f - progress) * (if (isFromLeft) -m else m) + ((measuredWidth - 48f.dp(context)) / 2f)
             //▽선택된 원형(검은원) 올리는 부분 - 0.dp(context)이부분을 + 어쩌고로하면내려가고, -로하면 올라간다.
             binding.vCircle.y = (1f - progress) * measuredHeight - 0.dp(context)
+            //binding.vCircle.y = (1f - progress) * measuredHeight + 6.dp(context)초기값
         }
 
     var isEnabledCell = false
