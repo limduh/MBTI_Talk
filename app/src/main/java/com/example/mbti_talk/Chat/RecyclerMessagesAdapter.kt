@@ -49,10 +49,10 @@ class RecyclerMessagesAdapter(
                         messages.add(data.getValue<Message>()!!)         //메시지 목록에 추가
                         messageKeys.add(data.key!!)                        //메시지 키 목록에 추가
                     }
+                    for(message in messages){
+                            message.confirmed=true
+                    }
                     Log.d("RecyclerMessage","getMessage=${messages.size}")
-//                    for(message in messages){
-//                        message.confirmed=true
-//                    }
 
                     notifyDataSetChanged()          //화면 업데이트
                     recyclerView.scrollToPosition(messages.size - 1)    //스크롤 최 하단으로 내리기
