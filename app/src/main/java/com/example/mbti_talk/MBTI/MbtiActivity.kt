@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mbti_talk.Main.BottomActivity
 import com.example.mbti_talk.databinding.ActivityMbtiInputBinding
+import com.example.mbti_talk.utils.Utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -54,6 +55,7 @@ class MbtiActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
                         val intent = Intent(this, BottomActivity::class.java)
+                        Utils.setMyMbti(this, combineMbti) // Utils.setMyMbti 함수를 호출하여 해당 MBTI를 저장
                         startActivity(intent)
                     }
                         .addOnFailureListener { error ->

@@ -131,17 +131,26 @@ class FriendListFragment : Fragment() {
         userDB
             .child(friendUid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(friendDataSnapshot: DataSnapshot) {
-                    if (friendDataSnapshot.exists()) {
-                        // friendDataSnapshot에서 UserData 클래스로 데이터 변환
-                        val friendData = friendDataSnapshot.getValue(UserData::class.java)
+                override fun onDataChange(friendSnapshot: DataSnapshot) {
+                    if (friendSnapshot.exists()) {
+
+                        // friendSnapshot에서 UserData 클래스로 데이터 변환
+                        val friend = friendSnapshot.getValue(UserData::class.java)
                         // 읽어온 친구 데이터를 friendList에 추가
-                        if (friendData != null) {
-                            friendList.add(friendData)
+                        if (friend != null) {
+
+                            // Utils 에서 저장한 Compat 을 불러오기
+                            val compat = Utils.getCompat(Utils.getMyMbti(requireContext()),friend.user_mbti) // 유저 MBTI와 친구 MBTI를 비교하여 compat 변수에 등급 할당
+                            friend.user_compat = compat.toString() //해당 등급 문자열로 저장
+
+                            Log.d("friendList", "myMbti=${Utils.getMyMbti(requireContext())} otherMbti=${friend.user_mbti} compat=${friend.user_compat})")
+                            friendList.add(friend) // friend 목록에 추가
+
                             // 만약 마지막 친구 데이터를 가져왔다면, 어댑터에 변경을 알림.
                             if(isLast)
                                 friendadapter.notifyDataSetChanged()
                         }
+                        friendList.sortBy { it.user_compat } // friendList 라는 사용자 목록을 user_compat 기준으로 오름차순 정렬
                     } else {
                         // 해당 친구 데이터가 존재하지 않을 경우, 로그에 메시지 기록
                         Log.d("FirebaseDatabase", "Friend data not found for UID: $friendUid")

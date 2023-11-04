@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.mbti_talk.MBTI.MbtiActivity
+import com.example.mbti_talk.MBTI.MbtiTestActivity
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentMyProfileBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -36,7 +37,7 @@ class MyProfileFragment : Fragment() {
         val view = binding.root
 
         binding.ProfileMbtiBtn.setOnClickListener {
-            val intent = Intent(requireContext(), MbtiActivity::class.java)
+            val intent = Intent(requireContext(), MbtiTestActivity::class.java)
             startActivity(intent)
         }
 
@@ -61,6 +62,7 @@ class MyProfileFragment : Fragment() {
                             binding.ProfileNickname.text = "${userData.user_nickName}"
                             binding.ProfileAge.text = "${userData.user_age}"
                             binding.ProfileGender.text = "${userData.user_gender}"
+                            binding.ProfileMbti.text = "${userData.user_mbti}"
 
                             // Firebase Storage 에서 프로필 이미지 가져오기
                             val storage = FirebaseStorage.getInstance()
