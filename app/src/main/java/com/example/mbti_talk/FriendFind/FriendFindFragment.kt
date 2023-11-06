@@ -81,10 +81,29 @@ class FriendFindFragment : Fragment() {
         // 사용자 데이터를 RDB 에서 가져오기
         val currentUserUid = Utils.getMyUid(requireContext())
 
+        fun applyFilterConditions(ageCondition: Int?, genderCondition: String?, mbtiCondition: String?) {
+            Utils.saveFilterConditions(requireContext(), ageCondition, genderCondition, mbtiCondition)
+
+            val (filteredAge, filteredGender, filteredMbti) = Utils.getFilterConditions(requireContext())
+
+            val filteredList = userList.filter { user ->
+                val ageMatches = filteredAge?.let { user.user_age >= it } ?: true
+                val genderMatches = filteredGender?.let { user.user_gender.equals(it) } ?: true
+                val mbtiMatches = filteredMbti?.let { user.user_mbti == it } ?: true
+
+                ageMatches && genderMatches && mbtiMatches
+            }
+            userList.clear()
+            userList.addAll(filteredList)
+            adapter.notifyDataSetChanged()
+
+        }
+
+
         userDB
-//            .orderByChild("user_age")
-//            .startAt(24.0)
-//            .endAt(29.0)
+            .orderByChild("user_age")
+            .startAt(20.0)
+            .endAt(30.0)
             .limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 // Data 가져오기 성공 시 실행
@@ -108,7 +127,7 @@ class FriendFindFragment : Fragment() {
 
             override fun onCancelled(error: DatabaseError) {
                 // 처리 중 오류 발생 시 토스트 표시
-                Toast.makeText(requireContext(), "데이터를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "해당 데이터는 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
             }
         })
         // filter_btn을 찾아 클릭 이벤트를 처리
