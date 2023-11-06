@@ -154,4 +154,3 @@ class BottomActivity : AppCompatActivity() {
     }
 }
 
-

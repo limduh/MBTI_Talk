@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mbti_talk.R
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.ListChatroomItemBinding
@@ -16,6 +17,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.getValue
+import com.google.firebase.storage.FirebaseStorage
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.TimeZone
@@ -64,10 +66,19 @@ class RecyclerChatRoomsAdapter(val context: Context) :
                         holder.chatRoomKey = data.key.toString()!!             //채팅방 키 초기화
                         holder.opponentUser = data.getValue<UserData>()!!         //상대방 정보 초기화
                         holder.txt_name.text = data.getValue<UserData>()!!.user_nickName.toString() //상대방 이름 초괴화
+                        val storage = FirebaseStorage.getInstance()
+                        val imgRef = storage.getReference("images/${holder.opponentUser.user_profile}")
 
+                        // Glide 라이브러리를 사용하여 imgRef 에 있는 이미지를 profile 에 표시
+                        Glide.with(holder.itemView.context)
+                            .load(imgRef)
+                            .centerCrop()
+                            .error(android.R.drawable.stat_notify_error)
+                            .into(holder.profile)
                     }
                 }
             })
+
         holder.background.setOnClickListener()               //채팅방 항목 선택 시
         {
             var intent = Intent(context, ChatRoomActivity::class.java)
@@ -154,6 +165,8 @@ class RecyclerChatRoomsAdapter(val context: Context) :
         var txt_name = itemView.txtName
         var txt_message = itemView.txtMessage
         var txt_date = itemView.txtMessageDate
+        var profile=itemView.ChatroomIamge
     }
+
 
 }

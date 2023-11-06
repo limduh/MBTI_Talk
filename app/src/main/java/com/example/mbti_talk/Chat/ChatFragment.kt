@@ -29,6 +29,7 @@ class ChatFragment : Fragment() {
         recycler_chatroom.layoutManager = LinearLayoutManager(requireContext())
         recycler_chatroom.adapter = RecyclerChatRoomsAdapter(requireContext())
 
+
         return view
     }
 }
