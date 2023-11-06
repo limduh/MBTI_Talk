@@ -15,7 +15,13 @@ class FilterDialogFragment : DialogFragment() {
     ): View? {
         val binding = FragmentDialogFilterBinding.inflate(inflater, container, false)
 
+        // "적용" 버튼 클릭 이벤트 처리
+        binding.applyBtn.setOnClickListener {
+            dismiss()
+        }
+
         return binding.root
     }
+
 }
 
