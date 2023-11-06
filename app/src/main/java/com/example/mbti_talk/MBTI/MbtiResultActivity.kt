@@ -24,7 +24,7 @@ class MbtiResultActivity : AppCompatActivity() {
 
         val resultTypes = listOf(
             listOf("E", "I"),
-            listOf("N", "S"),
+            listOf("S", "N"),
             listOf("T", "F"),
             listOf("J", "P")
         )
@@ -46,11 +46,11 @@ class MbtiResultActivity : AppCompatActivity() {
         iv_ResImg.setImageResource(imageResource)
 
 
-        val btn_retry: Button = findViewById(R.id.btn_res_end)
-        btn_retry.setOnClickListener {
+
+        val btn_end: Button = findViewById(R.id.btn_res_end)
+        btn_end.setOnClickListener {
 
             val intent = Intent(this, BottomActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             intent.putExtra("startFragment", "MyProfileFragment") // 시작 Fragment 정보를 전달
             startActivity(intent)
 
