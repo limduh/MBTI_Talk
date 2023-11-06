@@ -67,17 +67,16 @@ class FriendFindFragment : Fragment() {
         adapter = UserAdapter({
             // 클릭한 user data 를 DetailActivity 로 전달
             val intent = Intent(context, DetailActivity::class.java)
-
             intent.putExtra("userId", it) // uid 줌
             intent.putExtra("viewtype", "Find") // 키값 find 줌
             startActivity(intent)
-        }, userList)
+        })
 
         // RecyclerView에 어댑터 설정
         binding.FriendFindFragRv.adapter = adapter
         binding.FriendFindFragRv.layoutManager = LinearLayoutManager(requireContext())
 
-        userList.clear()
+
         // 사용자 데이터를 RDB 에서 가져오기
         val currentUserUid = Utils.getMyUid(requireContext())
 
@@ -102,8 +101,6 @@ class FriendFindFragment : Fragment() {
 
         userDB
             .orderByChild("user_age")
-            .startAt(20.0)
-            .endAt(30.0)
             .limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 // Data 가져오기 성공 시 실행
@@ -122,6 +119,7 @@ class FriendFindFragment : Fragment() {
                     }
                     userList.sortBy { it.user_compat } // userList라는 사용자 목록을 user_compat 기준으로 오름차순 정렬
                 }
+                adapter.setList(userList)
                 adapter.notifyDataSetChanged() // 어댑터에게 데이터 변경을 알림
             }
 
@@ -130,12 +128,18 @@ class FriendFindFragment : Fragment() {
                 Toast.makeText(requireContext(), "해당 데이터는 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
             }
         })
+
         // filter_btn을 찾아 클릭 이벤트를 처리
         val filterButton = view.findViewById<AppCompatImageButton>(R.id.filter_btn)
         filterButton.setOnClickListener {
             // FilterDialogFragment를 표시
             val filterDialog = FilterDialogFragment()
+
             filterDialog.show(childFragmentManager, "FilterDialog")
+
+            val usrNewList = userList.filter { it.user_mbti.contains("I") && it.user_age >20 && it.user_age <30 && it.user_gender.equals("남자")}
+            adapter.setList(usrNewList)
+
         }
     }
 }

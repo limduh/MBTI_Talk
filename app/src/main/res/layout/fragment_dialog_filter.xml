@@ -139,28 +139,29 @@
             android:id="@+id/chipGroup_mbti_SN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:orientation="horizontal"
-            app:singleSelection="true"
+            app:layout_constraintBottom_toBottomOf="@id/chipGroup_mbti_EI"
             app:layout_constraintStart_toEndOf="@id/chipGroup_mbti_EI"
-            app:layout_constraintBottom_toBottomOf="@id/chipGroup_mbti_EI">
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:id="@+id/filter_chip_S"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="S"
                 android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"/>
+                android:text="S"
+                app:chipBackgroundColor="@drawable/chip_checked" />
 
             <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:id="@+id/filter_chip_N"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N"
                 android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"/>
+                android:text="N"
+                app:chipBackgroundColor="@drawable/chip_checked" />
         </com.google.android.material.chip.ChipGroup>
 
         <com.google.android.material.chip.ChipGroup
@@ -196,28 +197,29 @@
             android:id="@+id/chipGroup_mbti_JP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:orientation="horizontal"
-            app:singleSelection="true"
+            app:layout_constraintBottom_toBottomOf="@id/chipGroup_mbti_TF"
             app:layout_constraintStart_toEndOf="@id/chipGroup_mbti_TF"
-            app:layout_constraintBottom_toBottomOf="@id/chipGroup_mbti_TF">
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:id="@+id/filter_chip_J"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="J"
                 android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"/>
+                android:text="J"
+                app:chipBackgroundColor="@drawable/chip_checked" />
 
             <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:id="@+id/filter_chip_P"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="P"
                 android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"/>
+                android:text="P"
+                app:chipBackgroundColor="@drawable/chip_checked" />
         </com.google.android.material.chip.ChipGroup>
 
         <androidx.appcompat.widget.AppCompatButton

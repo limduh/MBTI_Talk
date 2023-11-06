@@ -11,17 +11,23 @@ import com.google.firebase.storage.FirebaseStorage
 
 // 이 어댑터는 RecyclerView에 사용됨. 각 아이템은 사용자 정보를 나타내며, 유저가 리스트 클릭 시, 해당 유저의 프로필 화면으로 이동 기능 추가
 
-class UserAdapter(private val clickListener: (String) -> Unit, private val userList: List<UserData>) : RecyclerView.Adapter<UserAdapter.Holder>() {
+class UserAdapter(private val clickListener: (String) -> Unit) : RecyclerView.Adapter<UserAdapter.Holder>() {
+
+    var userList = mutableListOf<UserData>()
 
     // onCreateViewHolder 함수는 ViewHolder 객체를 생성, 초기화
     // ItemBinding.inflate() 함수를 통해 XML 레이아웃 파일에서 뷰를 inflate, 그 뷰를 사용하여 Holder 객체를 생성
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         var binding = UserListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
         binding = UserListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return Holder(binding)
     }
 
+    fun setList (list: List<UserData>){
+        userList.clear()
+        userList.addAll(list)
+        notifyDataSetChanged()
+    }
     // RecyclerView 에 표시할 항목의 총 수를 반환
     override fun getItemCount(): Int {
         // userList 에 있는 항목의 수를 반환
