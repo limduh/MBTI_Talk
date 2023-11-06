@@ -80,7 +80,12 @@ class FriendFindFragment : Fragment() {
         userList.clear()
         // 사용자 데이터를 RDB 에서 가져오기
         val currentUserUid = Utils.getMyUid(requireContext())
-        userDB.limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
+
+        userDB
+//            .orderByChild("user_age")
+//            .startAt(24.0)
+//            .endAt(29.0)
+            .limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 // Data 가져오기 성공 시 실행
                 for (userSnapshot in snapshot.children) {

@@ -61,24 +61,24 @@ object Utils {
         return prefs.getString("save", "")
     }
 
-    // 필터 조건을 저장하는 함수
-    fun saveFilterConditions(context: Context, ageCondition: Int?, genderCondition: String?, mbtiCondition: String?) {
-        val prefs = context.getSharedPreferences("FilterPreferences", Context.MODE_PRIVATE)
-        val editor = prefs.edit()
-        editor.putInt("ageCondition", ageCondition ?: -1) // -1은 조건이 선택되지 않은 상태를 나타냅니다.
-        editor.putString("genderCondition", genderCondition)
-        editor.putString("mbtiCondition", mbtiCondition)
-        editor.apply()
-    }
-
-    // 저장된 필터 조건을 불러오는 함수
-    fun getFilterConditions(context: Context): Triple<Int?, String?, String?> {
-        val prefs = context.getSharedPreferences("FilterPreferences", Context.MODE_PRIVATE)
-        val ageCondition = prefs.getInt("ageCondition", -1)
-        val genderCondition = prefs.getString("genderCondition", null)
-        val mbtiCondition = prefs.getString("mbtiCondition", null)
-
-        return Triple(ageCondition.takeIf { it != -1 }, genderCondition, mbtiCondition)
-    }
+//    // 필터 조건을 저장하는 함수
+//    fun saveFilterConditions(context: Context, ageCondition: Int?, genderCondition: String?, mbtiCondition: String?) {
+//        val prefs = context.getSharedPreferences("FilterPreferences", Context.MODE_PRIVATE)
+//        val editor = prefs.edit()
+//        editor.putInt("ageCondition", ageCondition ?: -1) // -1은 조건이 선택되지 않은 상태를 나타냅니다.
+//        editor.putString("genderCondition", genderCondition)
+//        editor.putString("mbtiCondition", mbtiCondition)
+//        editor.apply()
+//    }
+//
+//    // 저장된 필터 조건을 불러오는 함수
+//    fun getFilterConditions(context: Context): Triple<Int?, String?, String?> {
+//        val prefs = context.getSharedPreferences("FilterPreferences", Context.MODE_PRIVATE)
+//        val ageCondition = prefs.getInt("ageCondition", -1)
+//        val genderCondition = prefs.getString("genderCondition", null)
+//        val mbtiCondition = prefs.getString("mbtiCondition", null)
+//
+//        return Triple(ageCondition.takeIf { it != -1 }, genderCondition, mbtiCondition)
+//    }
 
 }
