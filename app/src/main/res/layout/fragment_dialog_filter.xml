@@ -81,7 +81,6 @@
             app:values="@array/initial_range_slider_values"
             android:contentDescription="age_slider"/>
 
-
 <!--        MBTI-->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/filter_txt_mbti"
