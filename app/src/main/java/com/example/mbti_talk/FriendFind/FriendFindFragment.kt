@@ -134,22 +134,25 @@ class FriendFindFragment : Fragment() {
             val filterDialog = FilterDialogFragment() // FilterDialogFragment 클래스의 인스턴스를 생성
 
             filterDialog.setChipClickListener(object :FilterDialogFragment.OnDialogChipClickListener {
-                // 유저가 "적용"버튼 클릭 시 호출되는 함수(사용자가 설정한 필터 조건을 파라미터로 받음)
-                override fun onChipApply(gender: String, minValue: Int, maxValue: Int, mbtiEI: String, mbtiSN: String, mbtiTF: String, mbtiJP: String) {
+                override fun onChipApply(gender_male: String, gender_female: String, minValue: Int, maxValue: Int, mbtiEI: String, mbtiSN: String, mbtiTF: String, mbtiJP: String) {
 
-                    Log.d("FriendFindFragment", "#jblee >>>> $gender, $minValue, $maxValue,$mbtiEI,$mbtiSN,$mbtiTF,$mbtiJP")
+                    val isBothGenderSelected = gender_male.isNotEmpty() && gender_female.isNotEmpty()
 
-                    // userlist 라는 사용자 목록 필터링하여 새로운 목록인 usrNewList 생성. 이 과정에서 유저 나이, 성별, mbti 가 유저가 설정한 필터 조건과 일치하는 지 확인 후, 일치하는 유저만 usrNewList 에 포함
                     val usrNewList = userList.filter { user ->
                         val ageMatches = (user.user_age in minValue..maxValue) || (minValue == 0 && maxValue == 0)
-                        val genderMatches = user.user_gender.equals(gender, ignoreCase = true) || gender.isEmpty()
+                        val genderMatches = when {
+                            isBothGenderSelected -> true
+                            gender_male.isNotEmpty() -> user.user_gender.equals(gender_male, ignoreCase = true)
+                            gender_female.isNotEmpty() -> user.user_gender.equals(gender_female, ignoreCase = true)
+                            else -> true
+                        }
                         val mbtiMatches = user.user_mbti.contains(mbtiEI) && user.user_mbti.contains(mbtiSN) &&
                                 user.user_mbti.contains(mbtiTF) && user.user_mbti.contains(mbtiJP)
 
                         ageMatches && genderMatches && mbtiMatches
                     }
 
-                    // 어댑터에 필터링 된 유저 목록 설정. 필터링 된 유저 목록이 화면에 표시
+                    Log.d("FriendFindFragment", "#jblee >>>> ${usrNewList.size} users found with filter")
                     adapter.setList(usrNewList)
                 }
             })
