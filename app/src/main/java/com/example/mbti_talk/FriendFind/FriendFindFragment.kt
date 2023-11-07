@@ -129,17 +129,31 @@ class FriendFindFragment : Fragment() {
             }
         })
 
+        // 필터 버튼 클릭 시 다이얼로그 표시하고, 유저가 필터 설정 변경 후 '적용' 버튼 클릭하면 필터링 된 유저 목록 업데이트되어 화면에 표시. 필터 조건 따라 유저 목록 동적으로 변경
         binding.filterBtn.setOnClickListener {
-            val filterDialog = FilterDialogFragment()
+            val filterDialog = FilterDialogFragment() // FilterDialogFragment 클래스의 인스턴스를 생성
 
             filterDialog.setChipClickListener(object :FilterDialogFragment.OnDialogChipClickListener {
+                // 유저가 "적용"버튼 클릭 시 호출되는 함수(사용자가 설정한 필터 조건을 파라미터로 받음)
                 override fun onChipApply(gender: String, minValue: Int, maxValue: Int, mbtiEI: String, mbtiSN: String, mbtiTF: String, mbtiJP: String) {
+
                     Log.d("FriendFindFragment", "#jblee >>>> $gender, $minValue, $maxValue,$mbtiEI,$mbtiSN,$mbtiTF,$mbtiJP")
 
-                    val usrNewList = userList.filter { it.user_mbti.contains("") && it.user_age >0 && it.user_age <0 && it.user_gender.equals("")}
+                    // userlist 라는 사용자 목록 필터링하여 새로운 목록인 usrNewList 생성. 이 과정에서 유저 나이, 성별, mbti 가 유저가 설정한 필터 조건과 일치하는 지 확인 후, 일치하는 유저만 usrNewList 에 포함
+                    val usrNewList = userList.filter { user ->
+                        val ageMatches = (user.user_age in minValue..maxValue) || (minValue == 0 && maxValue == 0)
+                        val genderMatches = user.user_gender.equals(gender, ignoreCase = true) || gender.isEmpty()
+                        val mbtiMatches = user.user_mbti.contains(mbtiEI) && user.user_mbti.contains(mbtiSN) &&
+                                user.user_mbti.contains(mbtiTF) && user.user_mbti.contains(mbtiJP)
+
+                        ageMatches && genderMatches && mbtiMatches
+                    }
+
+                    // 어댑터에 필터링 된 유저 목록 설정. 필터링 된 유저 목록이 화면에 표시
                     adapter.setList(usrNewList)
                 }
             })
+            // 필터 설정 다이얼로그를 화면에 표시
             filterDialog.show(childFragmentManager, "FilterDialog")
         }
     }
