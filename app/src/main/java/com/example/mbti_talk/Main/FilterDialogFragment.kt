@@ -34,16 +34,14 @@ class FilterDialogFragment : DialogFragment() {
         val binding = FragmentDialogFilterBinding.inflate(inflater, container, false)
 
         // 각 필터 설정 요소에 대한 변경 이벤트 처리 설정
-        binding.chipGroupGender.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                R.id.filter_chip_man -> {
-                    gender_male = "남자"
-                }
-                R.id.filter_chip_woman -> {
-                    gender_female = "여자"
-                }
-            }
+
+        binding.filterChipMan.setOnClickListener {
+            binding.filterChipMan.setSelected(!binding.filterChipMan.isSelected)
         }
+        binding.filterChipWoman.setOnClickListener {
+            binding.filterChipWoman.setSelected(!binding.filterChipWoman.isSelected)
+        }
+
 
         binding.filterSliderAge.addOnChangeListener { slider, value, fromUser ->
 
@@ -99,6 +97,11 @@ class FilterDialogFragment : DialogFragment() {
         // "적용" 버튼 클릭 이벤트 처리
         binding.applyBtn.setOnClickListener {
             // 설정 필터 값 가져온 후, 유효성 검사 수행
+
+            gender_male = if(binding.filterChipMan.isSelected){"남자"}else{""}
+            gender_female = if(binding.filterChipWoman.isSelected){"여자"}else{""}
+
+
             minValue = binding.filterSliderAge.values[0].toInt()
             maxValue = binding.filterSliderAge.values[1].toInt()
 
