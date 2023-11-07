@@ -7,20 +7,20 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/mbti_test_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
         android:layout_margin="10dp"
-        android:text="나의 MBTI 테스트"
+        android:text="나의\nMBTI 테스트"
         android:textColor="@color/white"
-        android:textSize="13sp"/>
+        android:textSize="14sp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/mbti_activity_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
         android:layout_margin="10dp"
         android:textColor="@color/white"
-        android:text="나의 MBTI 입력하기"
-        android:textSize="13sp"/>
+        android:text="나의\nMBTI 입력하기"
+        android:textSize="14sp"/>
 
 </LinearLayout>

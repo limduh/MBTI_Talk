@@ -93,13 +93,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/PostItem_like"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/ic_like_off"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/PostItem_Constraintbox"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:layout_constraintBottom_toBottomOf="@+id/PostItem_img_Post"
-            app:layout_constraintEnd_toEndOf="@+id/PostItem_img_Post" />
+            app:layout_constraintEnd_toEndOf="@+id/PostItem_img_Post">
+
+            <ImageView
+                android:id="@+id/PostItem_like"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/post_like_select_btn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <View
             android:id="@+id/view2"
