@@ -26,10 +26,34 @@ class MbtiquestFragment : Fragment() {
     )
 
     private val questionTexts = listOf(
-        listOf(R.string.question1_1, R.string.question1_2, R.string.question1_3, R.string.question1_4, R.string.question1_5),
-        listOf(R.string.question2_1, R.string.question2_2, R.string.question2_3, R.string.question2_4, R.string.question2_5),
-        listOf(R.string.question3_1, R.string.question3_2, R.string.question3_3, R.string.question3_4, R.string.question3_5),
-        listOf(R.string.question4_1, R.string.question4_2, R.string.question4_3, R.string.question4_4, R.string.question4_5)
+        listOf(
+            R.string.question1_1,
+            R.string.question1_2,
+            R.string.question1_3,
+            R.string.question1_4,
+            R.string.question1_5
+        ),
+        listOf(
+            R.string.question2_1,
+            R.string.question2_2,
+            R.string.question2_3,
+            R.string.question2_4,
+            R.string.question2_5
+        ),
+        listOf(
+            R.string.question3_1,
+            R.string.question3_2,
+            R.string.question3_3,
+            R.string.question3_4,
+            R.string.question3_5
+        ),
+        listOf(
+            R.string.question4_1,
+            R.string.question4_2,
+            R.string.question4_3,
+            R.string.question4_4,
+            R.string.question4_5
+        )
     )
 
     private val questionAnswers = listOf(
@@ -71,7 +95,11 @@ class MbtiquestFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         val view = inflater.inflate(R.layout.activity_mbti_quest, container, false)
 
@@ -95,7 +123,7 @@ class MbtiquestFragment : Fragment() {
         )
 
 
-        for (i in questionTextView.indices){
+        for (i in questionTextView.indices) {
             questionTextView[i].text = getString(questionTexts[questionType][i])
 
             val radioButton1 = answerRadioGroup[i].getChildAt(0) as RadioButton
@@ -113,6 +141,7 @@ class MbtiquestFragment : Fragment() {
         val mbtiQuestionBack: ImageView = view.findViewById(R.id.mbti_question_back)
         mbtiQuestionBack.setOnClickListener {
             val bottomActivityIntent = Intent(activity, BottomActivity::class.java)
+            bottomActivityIntent.putExtra("startFragment", "MyProfileFragment") // 추가된 부분
             startActivity(bottomActivityIntent)
             activity?.finish() // 현재 Fragment가 속한 Activity 종료
         }
@@ -125,31 +154,30 @@ class MbtiquestFragment : Fragment() {
             view.findViewById(R.id.rg_answer_5)
         )
 
-        val btn_next : Button = view.findViewById(R.id.btn_next)
+        val btn_next: Button = view.findViewById(R.id.btn_next)
+        btn_next.isEnabled = false
+        answerRadioGroup.forEach {
+            it.setOnCheckedChangeListener { _, _ ->
+                val isAllAnswered = answerRadioGroup.all { it.checkedRadioButtonId != -1 }
+                btn_next.isEnabled = isAllAnswered
 
-
-        btn_next.setOnClickListener {
-
-            val isAllAnswered = answerRadioGroup.all { it.checkedRadioButtonId != -1 }
-
-            if(isAllAnswered) {
-                val responses = answerRadioGroup.map {radioGroup ->   // << 2,1,2
-                    val firstRadioButton = radioGroup.getChildAt(0) as RadioButton
-                    if(firstRadioButton.isChecked) 1 else 2
+                if (isAllAnswered) {
+                    btn_next.setBackgroundResource(R.drawable.mbti_quest_enabled_btn)
+                } else {
+                    btn_next.setBackgroundResource(R.drawable.mbti_quest_disabled_btn)
                 }
-
-                (activity as? MbtiTestActivity)?.questionnaireResults?.addResponses(responses)
-                (activity as? MbtiTestActivity)?.moveToNextQuestion()
-
-            }else {
-                Toast.makeText(context, "모든 질문에 답해주세요.", Toast.LENGTH_SHORT).show()
             }
         }
+        btn_next.setOnClickListener {
+            val responses = answerRadioGroup.map { radioGroup ->   // << 2,1,2
+                val firstRadioButton = radioGroup.getChildAt(0) as RadioButton
+                if (firstRadioButton.isChecked) 1 else 2
+            }
+
+            (activity as? MbtiTestActivity)?.questionnaireResults?.addResponses(responses)
+            (activity as? MbtiTestActivity)?.moveToNextQuestion()
+        }
     }
-
-
-
-
 
 
     companion object {

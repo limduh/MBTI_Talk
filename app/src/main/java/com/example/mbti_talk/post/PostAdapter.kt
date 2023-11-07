@@ -17,7 +17,7 @@ import com.example.mbti_talk.databinding.ActivityPostItemBinding
 import com.google.firebase.storage.FirebaseStorage
 
 
-class PostAdapter(private val postList: List<PostData>) :
+class PostAdapter(private var postList: List<PostData>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // onCreateViewHolder 메서드에서 뷰홀더를 생성합니다.
@@ -82,5 +82,9 @@ class PostAdapter(private val postList: List<PostData>) :
                     .into(PostItemImgUserprofile)
             }
         }
+    }
+    fun updateList(newList: List<PostData>) {
+        postList = newList
+        notifyDataSetChanged()
     }
 }
