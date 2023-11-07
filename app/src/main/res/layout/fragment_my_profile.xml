@@ -28,11 +28,11 @@
                     android:id="@+id/appCompatTextView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="32dp"
-                    android:text="프로필"
+                    android:text="내 프로필"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,28 +45,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/appCompatTextView2">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="유저번호 :"
-                        android:textColor="@color/gray"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/Profile_txt_uid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="5daf5aefad5faef"
-                        app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView4"
-                        app:layout_constraintStart_toEndOf="@+id/appCompatTextView4"
-                        app:layout_constraintTop_toTopOf="@+id/appCompatTextView4" />
-
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/appCompatTextView5"
@@ -129,7 +107,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="상메내용상메내용상메내용상메내용상메내용상메내메내용상메"
+                        android:maxLines="2"
+                        android:text="상메내용상메내용상메내용상메내용상메내용"
                         app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView12"
                         app:layout_constraintStart_toEndOf="@+id/appCompatTextView12"
                         app:layout_constraintTop_toTopOf="@+id/appCompatTextView12"
@@ -164,8 +143,9 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/mbti_default"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
@@ -178,23 +158,20 @@
                         android:textColor="@color/gray"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView9"
-                        app:layout_constraintEnd_toStartOf="@+id/appCompatTextView9"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/appCompatTextView9" />
+                        app:layout_constraintBottom_toTopOf="@+id/Profile_mbti"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteX="78dp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/Profile_mbti"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         android:text="ISTJ"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/appCompatTextView10"
-                        app:layout_constraintStart_toStartOf="@+id/appCompatTextView10"
-                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView10" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView10"
+                        tools:layout_editor_absoluteX="91dp" />
 
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -205,6 +182,7 @@
                         android:textColor="@color/gray"
                         android:textSize="12sp"
                         android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/Profile_age"
                         app:layout_constraintEnd_toStartOf="@+id/appCompatTextView11"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/appCompatTextView10"
@@ -214,13 +192,12 @@
                         android:id="@+id/Profile_age"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         android:text="20"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/appCompatTextView9"
-                        app:layout_constraintStart_toStartOf="@+id/appCompatTextView9"
-                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView9" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView9"
+                        tools:layout_editor_absoluteX="214dp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/appCompatTextView11"
@@ -230,45 +207,44 @@
                         android:textColor="@color/gray"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView9"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/appCompatTextView9"
-                        app:layout_constraintTop_toTopOf="@+id/appCompatTextView9" />
+                        app:layout_constraintBottom_toTopOf="@+id/Profile_gender"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteX="311dp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/Profile_gender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         android:text="남"
                         android:textSize="15sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/appCompatTextView11"
-                        app:layout_constraintStart_toStartOf="@+id/appCompatTextView11"
-                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView11" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView11"
+                        tools:layout_editor_absoluteX="315dp" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/Profile_mbti_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="검사/수정하기"
-                        android:textColor="@color/white"
-                        android:textSize="13sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/Profile_mbti"
-                        app:layout_constraintStart_toStartOf="@+id/Profile_mbti"
-                        app:layout_constraintTop_toBottomOf="@+id/Profile_mbti" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <!--아래메뉴부분-->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/Profile_mbti_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="검사/수정하기"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/Profile_const_MyActivity"
+                    app:layout_constraintStart_toStartOf="@+id/Profile_const_MyActivity"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/Profile_const_MyActivity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="90dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
@@ -450,6 +426,29 @@
                             app:layout_constraintTop_toTopOf="@+id/Profile_img_Memberout" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/appCompatTextView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="유저번호 :"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/Profile_btn_Memberout" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/Profile_txt_uid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="32dp"
+                        android:text="5daf5aefad5faef"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/appCompatTextView4"
+                        app:layout_constraintTop_toTopOf="@+id/appCompatTextView4" />
 
 
                     <!--    계정관리 레이아웃 화면-->
