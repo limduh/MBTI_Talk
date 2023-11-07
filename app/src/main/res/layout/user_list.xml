@@ -4,124 +4,149 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_list_item"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
-
+    android:layout_height="110dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_user"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        app:cardCornerRadius="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/iv_profile"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:scaleType="centerCrop" />
+            android:layout_height="match_parent">
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_user"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="16dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="centerCrop" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/et_nickName"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:text="김종현"
+                android:layout_marginTop="7dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/cv_user"
+                app:layout_constraintTop_toTopOf="@+id/cv_user" />
+
+            <TextView
+                android:id="@+id/et_age"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/detail_man_kit"
+                android:gravity="center"
+                android:paddingHorizontal="3dp"
+                android:paddingVertical="1dp"
+                android:text="37"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/et_gender"
+                app:layout_constraintStart_toEndOf="@+id/et_gender"
+                app:layout_constraintTop_toTopOf="@+id/et_gender" />
+
+            <TextView
+                android:id="@+id/et_gender"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="18dp"
+                android:background="@drawable/detail_man_kit"
+                android:gravity="center"
+                android:text="남"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/et_nickName"
+                app:layout_constraintStart_toEndOf="@+id/et_nickName"
+                app:layout_constraintTop_toTopOf="@+id/et_nickName" />
+
+            <TextView
+                android:id="@+id/et_mbti"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/detail_man_kit"
+                android:gravity="center"
+                android:paddingHorizontal="6dp"
+                android:text="ENFJ"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/et_age"
+                app:layout_constraintStart_toEndOf="@+id/et_age"
+                app:layout_constraintTop_toTopOf="@+id/et_age" />
+
+            <LinearLayout
+                android:id="@+id/ll_heart"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@+id/et_nickName"
+                app:layout_constraintTop_toBottomOf="@+id/et_nickName">
+
+                <ImageView
+                    android:id="@+id/iv_heart1"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="3dp"
+                    android:src="@drawable/ic_love" />
+
+                <ImageView
+                    android:id="@+id/iv_heart2"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="3dp"
+                    android:src="@drawable/ic_love" />
+
+                <ImageView
+                    android:id="@+id/iv_heart3"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="3dp"
+                    android:src="@drawable/ic_love" />
+
+                <ImageView
+                    android:id="@+id/iv_heart4"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="3dp"
+                    android:src="@drawable/ic_love" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/et_nickName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="김종현"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/cv_user"
-        app:layout_constraintTop_toTopOf="@+id/cv_user" />
-
-    <TextView
-        android:id="@+id/et_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/detail_man_kit"
-        android:paddingHorizontal="3dp"
-        android:paddingVertical="1dp"
-        android:text="37"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/et_gender"
-        app:layout_constraintStart_toEndOf="@+id/et_gender"
-        app:layout_constraintTop_toTopOf="@+id/et_gender" />
-
-    <TextView
-        android:id="@+id/et_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/detail_man_kit"
-        android:paddingHorizontal="3dp"
-        android:paddingVertical="1dp"
-        android:text="남"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/et_nickName"
-        app:layout_constraintStart_toEndOf="@+id/et_nickName"
-        app:layout_constraintTop_toTopOf="@+id/et_nickName" />
-
-    <TextView
-        android:id="@+id/et_mbti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/detail_man_kit"
-        android:paddingHorizontal="3dp"
-        android:paddingVertical="1dp"
-        android:text="ENFJ"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/et_age"
-        app:layout_constraintStart_toEndOf="@+id/et_age"
-        app:layout_constraintTop_toTopOf="@+id/et_age" />
-
-    <LinearLayout
-        android:id="@+id/ll_heart"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/et_nickName"
-        app:layout_constraintTop_toBottomOf="@+id/et_nickName">
-
-        <ImageView
-            android:id="@+id/iv_heart1"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_love" />
-
-        <ImageView
-            android:id="@+id/iv_heart2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_love" />
-
-        <ImageView
-            android:id="@+id/iv_heart3"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_love" />
-
-        <ImageView
-            android:id="@+id/iv_heart4"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_love" />
-
-    </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

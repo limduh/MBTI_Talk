@@ -43,10 +43,16 @@ class UserAdapter(private val clickListener: (String) -> Unit, private val userL
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val user = userList[position]
 
+        var gender = "남"
+
+        if(user.user_gender.equals("여자")) {
+            gender = "여"
+            holder.user_gender.setBackgroundResource(R.drawable.detail_woman_kit)
+        }
         // 아이템 데이터 설정
         holder.user_nickname.text = user.user_nickName
         holder.user_age.text = user.user_age.toString()
-        holder.user_gender.text = user.user_gender
+        holder.user_gender.text = gender
         holder.user_mbti.text = user.user_mbti
 
         // Firebase Storage 에서 프로필 이미지 가져오기
