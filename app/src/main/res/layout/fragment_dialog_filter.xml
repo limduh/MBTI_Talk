@@ -27,7 +27,7 @@
             android:id="@+id/chipGroup_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:singleSelection="true"
+            app:singleSelection="false"
             app:chipSpacingHorizontal="30dp"
             app:layout_constraintStart_toStartOf="@id/filter_txt_gender"
             app:layout_constraintTop_toBottomOf="@id/filter_txt_gender">
@@ -49,17 +49,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="여자"
-                android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"
-                app:layout_constraintStart_toEndOf="@id/filter_chip_man"
-                app:layout_constraintTop_toBottomOf="@id/filter_txt_gender"/>
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:id="@+id/filter_chip_both"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="둘다"
                 android:layout_marginTop="20dp"
                 app:chipBackgroundColor="@drawable/chip_checked"
                 app:layout_constraintStart_toEndOf="@id/filter_chip_man"

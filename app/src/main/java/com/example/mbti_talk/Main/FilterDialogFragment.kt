@@ -18,7 +18,8 @@ class FilterDialogFragment : DialogFragment() {
     private lateinit var buttonClickListener: OnDialogChipClickListener
 
     // 유저가 선택한 필터 설정을 저장할 변수 초기화
-    var gender = ""
+    var gender_male = ""
+    var gender_female = ""
     var minValue = 0 // 최소나이
     var maxValue = 0 // 최대나이
     var mbtiEI = ""
@@ -36,13 +37,10 @@ class FilterDialogFragment : DialogFragment() {
         binding.chipGroupGender.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
                 R.id.filter_chip_man -> {
-                    gender = "남자"
+                    gender_male = "남자"
                 }
                 R.id.filter_chip_woman -> {
-                    gender = "여자"
-                }
-                R.id.filter_chip_both -> {
-                    gender = "둘다"
+                    gender_female = "여자"
                 }
             }
         }
@@ -104,20 +102,19 @@ class FilterDialogFragment : DialogFragment() {
             minValue = binding.filterSliderAge.values[0].toInt()
             maxValue = binding.filterSliderAge.values[1].toInt()
 
-            if (binding.chipGroupGender.checkedChipId == View.NO_ID ||
-                binding.chipGroupMbtiEI.checkedChipId == View.NO_ID ||
-                binding.chipGroupMbtiSN.checkedChipId == View.NO_ID ||
-                binding.chipGroupMbtiTF.checkedChipId == View.NO_ID ||
-                binding.chipGroupMbtiJP.checkedChipId == View.NO_ID) {
+//            if (binding.chipGroupMbtiEI.checkedChipId == View.NO_ID ||
+//                binding.chipGroupMbtiSN.checkedChipId == View.NO_ID ||
+//                binding.chipGroupMbtiTF.checkedChipId == View.NO_ID ||
+//                binding.chipGroupMbtiJP.checkedChipId == View.NO_ID) {
+//
+//                // 하나 이상의 Chip 그룹이 선택되지 않았을 때
+//                Toast.makeText(requireContext(), "MBTI를 모두 선택해주세요.", Toast.LENGTH_SHORT).show()
+//            } else {
+//                // 설정한 필터를 리스너 통해 전달 후 다이얼로그 닫기
+                buttonClickListener.onChipApply(gender_male, gender_female, minValue, maxValue, mbtiEI,mbtiSN,mbtiTF,mbtiJP)
+//            }
 
-                // 하나 이상의 Chip 그룹이 선택되지 않았을 때
-                Toast.makeText(requireContext(), "MBTI를 모두 선택해주세요.", Toast.LENGTH_SHORT).show()
-            } else {
-                // 설정한 필터를 리스너 통해 전달 후 다이얼로그 닫기
-                buttonClickListener.onChipApply(gender,minValue, maxValue,mbtiEI,mbtiSN,mbtiTF,mbtiJP)
-            }
-
-            Log.d("FilterDialogFragment","#jblee > $gender, $minValue, $maxValue,$mbtiEI,$mbtiSN,$mbtiTF,$mbtiJP")
+            Log.d("FilterDialogFragment","#jblee > $gender_male, $gender_female, $minValue, $maxValue,$mbtiEI,$mbtiSN,$mbtiTF,$mbtiJP")
             dismiss()
 
         }
@@ -126,7 +123,7 @@ class FilterDialogFragment : DialogFragment() {
 
     // 필터 설정 다이얼로그에서 사용할 리스너 정의
     interface OnDialogChipClickListener {
-        fun onChipApply(gender: String, minValue: Int, maxValue: Int,mbtiEI: String, mbtiSN: String, mbtiTF: String, mbtiJP: String)
+        fun onChipApply(gender_male: String, gender_female: String, minValue: Int, maxValue: Int,mbtiEI: String, mbtiSN: String, mbtiTF: String, mbtiJP: String)
     }
 
     // 필터 설정 다이얼로그에서 사용할 리스너 설정하는 메서드
