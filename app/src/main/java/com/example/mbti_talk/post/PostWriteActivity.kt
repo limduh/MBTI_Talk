@@ -5,6 +5,10 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.InputFilter
+import android.text.Spanned
+import android.text.TextWatcher
 import android.util.Log
 import android.view.MotionEvent
 import android.widget.Toast
@@ -31,8 +35,6 @@ class PostWriteActivity : AppCompatActivity() {
     lateinit var binding: ActivityPostWriteBinding
     private lateinit var firebaseAuth: FirebaseAuth
     val storage = Firebase.storage("gs://mbti-talk-f2a04.appspot.com")
-    private var prevX = 0f
-    private var prevY = 0f
 
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -58,7 +60,7 @@ class PostWriteActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         val database = FirebaseDatabase.getInstance().reference
 
-        binding.appCompatImageView5.setOnClickListener {
+        binding.postImageSelect.setOnClickListener {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 if (checkSelfPermission(Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED)
@@ -82,7 +84,7 @@ class PostWriteActivity : AppCompatActivity() {
             val title = binding.postTitle.text.toString()
             val content = binding.postEtContent.text.toString()
             val time = getTime()
-            val uri = binding.appCompatImageView5.tag as? Uri
+            val uri = binding.postImageSelect.tag as? Uri
             if (uri != null) {
                 Log.d("vec", "Selected Image Uri: $uri")
                 uploadImage(uri) {
@@ -102,34 +104,28 @@ class PostWriteActivity : AppCompatActivity() {
             }
         }
 
-//        binding.postImage.setOnTouchListener { v, event ->
-//            when (event.action) {
-//                MotionEvent.ACTION_DOWN -> {
-//                    // 이미지 터치 시 이동을 시작합니다.
-//                    prevX = event.rawX
-//                    prevY = event.rawY
-//                }
-//
-//                MotionEvent.ACTION_MOVE -> {
-//                    // 이미지를 이동합니다.
-//                    val deltaX = event.rawX - prevX
-//                    val deltaY = event.rawY - prevY
-//                    val newX = v.x + deltaX
-//                    val newY = v.y + deltaY
-//
-//                    // 이미지가 화면을 벗어나지 않도록 제한합니다.
-//                    val maxX = binding.postConstContent.width - v.width
-//                    val maxY = binding.postConstContent.height - v.height
-//                    v.x = Math.min(maxX.toFloat(), Math.max(0f, newX))
-//                    v.y = Math.min(maxY.toFloat(), Math.max(0f, newY))
-//
-//                    prevX = event.rawX
-//                    prevY = event.rawY
-//                }
-//            }
-//            true
-//        }
+        val editText = binding.postEtContent
+
+        val filter = object : InputFilter {
+            override fun filter(source: CharSequence?, start: Int, end: Int, dest: Spanned?, dstart: Int, dend: Int): CharSequence? {
+                val inputText = dest.toString() + source.toString()
+                if (inputText.length <= 500) {
+                    return null
+                } else {
+                    showToast("500자를 초과할 수 없습니다.")
+                    return source?.subSequence(0, 500 - dest.toString().length)
+                }
+            }
+        }
+
+        editText.filters = arrayOf(filter)
     }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -199,20 +195,9 @@ class PostWriteActivity : AppCompatActivity() {
 
     }
 
-    //권한 요청하기
-//    val permissionLauncher =
-//        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-//            if (isGranted) {
-//                galleryLauncher.launch("image/*")
-//            } else {
-//                Toast.makeText(baseContext, "외부 저장소 읽기 권한을 승인해야 사용할 수 있습니다.", Toast.LENGTH_LONG)
-//                    .show()
-//            }
-//        }
-
     //이미지 갤러리 불러오기
     val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        binding.appCompatImageView5.tag = uri
+        binding.postImageSelect.tag = uri
         binding.postImage.setImageURI(uri)
     }
 

@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.17"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -21,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="게시물 작성"
-            android:textSize="17sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/postbackarrow"
             app:layout_constraintStart_toEndOf="@+id/postbackarrow"
@@ -51,6 +50,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
@@ -75,40 +75,63 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/postbackarrow" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/postImageSelect"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_photo"
+            app:layout_constraintEnd_toStartOf="@+id/post_save"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:text="이미지"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/postImageSelect"
+            app:layout_constraintStart_toStartOf="@+id/postImageSelect"
+            app:layout_constraintTop_toBottomOf="@+id/postImageSelect" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/postImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:padding="10dp"
-        android:background="@drawable/post_title_line"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_const_title" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/post_const_content"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/post_content_scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/post_title_line"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postImage">
+        app:layout_constraintTop_toBottomOf="@+id/post_const_title">
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/post_content_scroll"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/post_const_content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.9"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/postImage">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/postImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToOutline="true"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/post_et_content"
@@ -118,44 +141,38 @@
                 android:gravity="top|left"
                 android:hint="내용을 입력하세요."
                 android:padding="10dp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/postImage"
                 tools:ignore="TouchTargetSizeCheck" />
 
-        </androidx.core.widget.NestedScrollView>
+            <View
+                android:id="@+id/post_v_hlin"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="15dp"
+                android:background="@drawable/login_hline_kit"
+                app:layout_constraintBottom_toBottomOf="@+id/postImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <View
-            android:id="@+id/post_v_hlin"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="15dp"
-            android:background="@drawable/login_hline_kit"
-            app:layout_constraintBottom_toTopOf="@+id/appCompatImageView5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/post_txt_Restriction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="이미지 1장 , 글자수 0/500"
-            android:textColor="#969696"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/appCompatImageView5" />
+            <TextView
+                android:id="@+id/writecount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="최대 500자 이하"
+                android:textColor="#A4A4A4"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/post_et_content" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView5"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_photo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

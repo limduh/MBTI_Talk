@@ -10,7 +10,7 @@
         android:id="@+id/tv_resTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:text="당신의 MBTI는?"
         android:textColor="#009688"
         android:textSize="30sp"
@@ -23,9 +23,9 @@
         android:id="@+id/tv_resValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="ESTJ"
-        android:textColor="#0E1C6E"
+        android:textColor="#000000"
         android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,40 +36,35 @@
         android:id="@+id/iv_resImg"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
         android:src="@drawable/ic_google"
-        app:layout_constraintBottom_toTopOf="@+id/btn_res_retry"
+        app:layout_constraintBottom_toTopOf="@+id/tv_resString"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_resValue" />
 
-
-    <Button
-        android:id="@+id/btn_res_retry"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_resString"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginBottom="10dp"
-        android:text="다시하기"
-        android:textColor="@color/white"
-        android:textSize="18sp"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:text="세상의 소금형 \n 한번 시작한 일은 끝까지 해내는 사람들"
+        android:textColor="@color/black"
+        android:textSize="25sp"
         android:textStyle="bold"
-
         app:layout_constraintBottom_toTopOf="@+id/btn_res_end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_res_end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="26dp"
         android:text="검사 저장하기"
         android:textColor="@color/white"
+        android:background="@color/mbti_default"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
