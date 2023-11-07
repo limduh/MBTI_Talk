@@ -44,40 +44,10 @@ class FriendFindFragment : Fragment() {
     ): View? {
         // XML 레이아웃을 화면에 그리기 위해 바인딩 객체 생성
         binding = FragmentFriendFindBinding.inflate(inflater, container, false)
+
         return binding.root
 
-        binding.filterBtn.setOnClickListener {
-            val filterDialog = FilterDialogFragment()
 
-            // 버튼 클릭 이벤트 설정
-            filterDialog.buttonClickListener = object : FilterDialogFragment.OnDialogChipClickListener {
-                override fun onChipGroubGender(gender: String) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun filterSliderAge(minValue: Int, maxValue: Int) {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onChipGroupMbtiEI(mbtiEI: String) {
-                    Log.d("FriendFindFragment", "onChipGroupMbtiEI: $mbtiEI")
-                }
-
-                override fun onChipGroupMbtiSN(mbtiSN: String) {
-                    Log.d("FriendFindFragment", "onChipGroupMbtiSN: $mbtiSN")
-                }
-
-                override fun onChipGroupMbtiTF(mbtiTF: String) {
-                    Log.d("FriendFindFragment", "onChipGroupMbtiTF: $mbtiTF")
-                }
-
-                override fun onChipGroupMbtiJP(mbtiJP: String) {
-                    Log.d("FriendFindFragment", "onChipGroupMbtiJP: $mbtiJP")
-                }
-            }
-
-            filterDialog.show(childFragmentManager, "FilterDialog")
-        }
     }
 
     /* onAttach 함수: Fragment가 Activity에 연결되었을 때 호출되는 콜백 메서드
@@ -165,17 +135,22 @@ class FriendFindFragment : Fragment() {
             }
         })
 
-        // filter_btn을 찾아 클릭 이벤트를 처리
-        val filterButton = view.findViewById<AppCompatImageButton>(R.id.filter_btn)
-        filterButton.setOnClickListener {
-            // FilterDialogFragment를 표시
+
+        binding.filterBtn.setOnClickListener {
             val filterDialog = FilterDialogFragment()
+            filterDialog.setChipClickListener(object :FilterDialogFragment.OnDialogChipClickListener {
+                override fun onChipApply(gender: String, minValue: Int, maxValue: Int, mbtiEI: String, mbtiSN: String, mbtiTF: String, mbtiJP: String) {
+                    Log.d("FriendFindFragment", "#jblee >>>> $gender, $minValue, $maxValue,$mbtiEI,$mbtiSN,$mbtiTF,$mbtiJP")
+
+                    val usrNewList = userList.filter { it.user_mbti.contains("") && it.user_age >0 && it.user_age <0 && it.user_gender.equals("")}
+                    adapter.setList(usrNewList)
+
+                }
+            })
 
             filterDialog.show(childFragmentManager, "FilterDialog")
-
-            val usrNewList = userList.filter { it.user_mbti.contains("") && it.user_age >0 && it.user_age <0 && it.user_gender.equals("")}
-            adapter.setList(usrNewList)
-
         }
+
+
     }
 }
