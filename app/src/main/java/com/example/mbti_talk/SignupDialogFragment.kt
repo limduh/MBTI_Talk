@@ -35,7 +35,7 @@ class SignupDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.dialog_signup, container, false)
+        return inflater.inflate(R.layout.dialog_signout, container, false)
     }
 
     companion object {
