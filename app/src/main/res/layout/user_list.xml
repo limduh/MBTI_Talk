@@ -40,7 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="김종현"
-            android:textSize="16sp"
+            android:fontFamily="@font/orbit_regular"
+            android:textSize="18sp"
             android:textStyle="bold"/>
 
         <TextView
