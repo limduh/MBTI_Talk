@@ -48,6 +48,8 @@ class UserAdapter(private val clickListener: (String) -> Unit, private val userL
         if(user.user_gender.equals("여자")) {
             gender = "여"
             holder.user_gender.setBackgroundResource(R.drawable.detail_woman_kit)
+            holder.user_age.setBackgroundResource(R.drawable.detail_woman_kit)
+            holder.user_mbti.setBackgroundResource(R.drawable.detail_woman_kit)
         }
         // 아이템 데이터 설정
         holder.user_nickname.text = user.user_nickName

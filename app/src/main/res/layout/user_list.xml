@@ -62,7 +62,7 @@
             <TextView
                 android:id="@+id/et_age"
                 android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_height="25dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/detail_man_kit"
                 android:gravity="center"
@@ -78,8 +78,8 @@
 
             <TextView
                 android:id="@+id/et_gender"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginStart="18dp"
                 android:background="@drawable/detail_man_kit"
                 android:gravity="center"
@@ -94,7 +94,7 @@
             <TextView
                 android:id="@+id/et_mbti"
                 android:layout_width="wrap_content"
-                android:layout_height="28dp"
+                android:layout_height="25dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/detail_man_kit"
                 android:gravity="center"
