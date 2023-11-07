@@ -87,7 +87,6 @@ class BottomActivity : AppCompatActivity() {
                 )
             )
 
-            setCount(ID_CHAT, "3")
 
             setOnShowListener {
                 val name = when (it.id) {
