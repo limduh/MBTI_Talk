@@ -9,7 +9,7 @@
         android:id="@+id/PostItem_const"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
             android:layout_marginEnd="10dp"
             android:maxLines="1"
             android:text="게시물제목"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/PostItem_img_Post"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="10dp"
             android:maxLines="2"
             android:text="게시물내용입니다"
@@ -49,7 +48,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="10dp"
             android:maxLines="1"
             android:text="시간"
@@ -63,7 +61,7 @@
             android:id="@+id/PostItem_img_userprofile"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/profile_image_circle_kit"
             android:clipToOutline="true"
             android:outlineProvider="background"
@@ -95,28 +93,35 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:src="@drawable/ic_like_off"
-            app:layout_constraintBottom_toTopOf="@+id/view2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/PostItem_img_Post" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/PostItem_Constraintbox"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/PostItem_img_Post"
+            app:layout_constraintEnd_toEndOf="@+id/PostItem_img_Post">
+
+            <ImageView
+                android:id="@+id/PostItem_like"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/post_like_select_btn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <View
             android:id="@+id/view2"
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:background="#90716D6D"
+            android:background="#d8d8d8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/PostItem_img_userprofile" />
+            app:layout_constraintTop_toBottomOf="@+id/PostItem_img_Post" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

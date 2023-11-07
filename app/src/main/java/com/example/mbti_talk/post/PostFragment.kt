@@ -45,6 +45,13 @@ class PostFragment : Fragment() {
         binding.recyclerview.adapter = postAdapter
         binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
 
+        binding.postListSearchBtn.setOnClickListener {
+            val searchText = binding.postListSearch.text.toString().trim()
+            val filteredList = filterPosts(searchText) // 검색 결과를 가져옴
+            postAdapter.updateList(filteredList) // 어댑터에 업데이트된 결과 전달
+
+        }
+
         // 글쓰기 버튼을 클릭 했을 경우 ContentWriteActivity로 이동한다.
         binding.contentWriteBtn.setOnClickListener {
             val intent = Intent(requireContext(), PostWriteActivity::class.java)
@@ -73,5 +80,19 @@ class PostFragment : Fragment() {
             }
         })
     }
+    private fun filterPosts(query: String): List<PostData> {
+        if (query.isBlank()) {
+            return postList // 검색어가 비어있으면 전체 목록 반환
+        }
+
+        val filteredList = mutableListOf<PostData>()
+        for (data in postList) {
+            if (data.user_nickName.contains(query, true) || data.title.contains(query, true)) {
+                filteredList.add(data) // 검색어와 일치하는 게시물 추가
+            }
+        }
+        return filteredList
+    }
 }
+
 
