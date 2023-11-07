@@ -67,8 +67,8 @@ class FriendListFragment : Fragment() {
 
 
             startActivity(intent)
-        }, friendList)
-
+        })
+        friendadapter.setList(friendList)
         val currentUserUid = Utils.getMyUid(requireContext()) // util 함수 통해 현재 사용자 uid 가져오기
         loadFriends(currentUserUid.toString()) // 현재 사용자 uid를 통해 친구 목록 가져오기
 
