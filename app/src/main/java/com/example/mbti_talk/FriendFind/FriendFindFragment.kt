@@ -46,8 +46,6 @@ class FriendFindFragment : Fragment() {
         binding = FragmentFriendFindBinding.inflate(inflater, container, false)
 
         return binding.root
-
-
     }
 
     /* onAttach 함수: Fragment가 Activity에 연결되었을 때 호출되는 콜백 메서드
@@ -67,7 +65,6 @@ class FriendFindFragment : Fragment() {
 
         Log.d("FriendFindFragment", "onViewCreated")
 
-
         // RecyclerView 및 어댑터 초기화
         userDB = Firebase.database.reference.child("Users")
         adapter = UserAdapter({
@@ -81,7 +78,6 @@ class FriendFindFragment : Fragment() {
         // RecyclerView에 어댑터 설정
         binding.FriendFindFragRv.adapter = adapter
         binding.FriendFindFragRv.layoutManager = LinearLayoutManager(requireContext())
-
 
         // 사용자 데이터를 RDB 에서 가져오기
         val currentUserUid = Utils.getMyUid(requireContext())
@@ -101,9 +97,7 @@ class FriendFindFragment : Fragment() {
             userList.clear()
             userList.addAll(filteredList)
             adapter.notifyDataSetChanged()
-
         }
-
 
         userDB
             .orderByChild("user_age")
@@ -135,22 +129,18 @@ class FriendFindFragment : Fragment() {
             }
         })
 
-
         binding.filterBtn.setOnClickListener {
             val filterDialog = FilterDialogFragment()
+
             filterDialog.setChipClickListener(object :FilterDialogFragment.OnDialogChipClickListener {
                 override fun onChipApply(gender: String, minValue: Int, maxValue: Int, mbtiEI: String, mbtiSN: String, mbtiTF: String, mbtiJP: String) {
                     Log.d("FriendFindFragment", "#jblee >>>> $gender, $minValue, $maxValue,$mbtiEI,$mbtiSN,$mbtiTF,$mbtiJP")
 
                     val usrNewList = userList.filter { it.user_mbti.contains("") && it.user_age >0 && it.user_age <0 && it.user_gender.equals("")}
                     adapter.setList(usrNewList)
-
                 }
             })
-
             filterDialog.show(childFragmentManager, "FilterDialog")
         }
-
-
     }
 }
