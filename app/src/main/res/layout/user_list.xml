@@ -39,8 +39,9 @@
             android:id="@+id/et_nickName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="wrgergergerg"
-            android:textSize="16sp" />
+            android:text="김종현"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/et_age_bracket1"
