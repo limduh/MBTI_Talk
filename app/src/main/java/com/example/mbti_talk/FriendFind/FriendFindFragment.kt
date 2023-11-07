@@ -110,7 +110,7 @@ class FriendFindFragment : Fragment() {
                     // 사용자 본인 정보는 친구찾기 페이지에 표시되지 않음.
                     if (user != null && user.user_uid != currentUserUid) {
 
-                        // Utils 에서 저장한 compat 을 불러오기
+                        // Utils 에서 저장한 compat을 불러오기
                         val compat = Utils.getCompat(Utils.getMyMbti(mContext), user.user_mbti) // 유저 MBTI와 친구 MBTI를 비교하여 compat 변수에 등급 할당
                         user.user_compat = compat.toString() //해당 등급 문자열로 저장
 
