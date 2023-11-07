@@ -9,12 +9,13 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_user"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="8dp">
 
         <ImageView
             android:id="@+id/iv_profile"
@@ -40,9 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="김종현"
-            android:fontFamily="@font/orbit_regular"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textSize="15sp"
+            />
 
         <TextView
             android:id="@+id/et_age_bracket1"
