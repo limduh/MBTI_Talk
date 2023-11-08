@@ -66,7 +66,7 @@ class MyProfileFragment : Fragment() {
         binding.ProfileBtnMemberout.setOnClickListener {
             signoutDialog()
         }
-
+        //
 
         // Firebase 초기화
         firebaseAuth = FirebaseAuth.getInstance()
