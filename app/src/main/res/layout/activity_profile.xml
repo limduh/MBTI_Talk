@@ -246,7 +246,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="검사/수정하기"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/appCompatTextView13"
