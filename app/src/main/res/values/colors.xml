@@ -6,4 +6,7 @@
     <color name="red">#FF4C4C</color>
     <color name="mbti_default">#D8D8D8</color>
     <color name="mbti_selection">#FFECBD</color>
+    <color name="filter_toolbar">#F5F5F5</color>
+    <color name="filter_background">#EAEDEE</color>
+    <color name="filter_text">#252525</color>
 </resources>
