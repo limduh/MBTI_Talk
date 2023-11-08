@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -17,8 +18,7 @@ import com.example.mbti_talk.databinding.ActivityPostItemBinding
 import com.google.firebase.storage.FirebaseStorage
 
 
-class PostAdapter(private var postList: List<PostData>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PostAdapter(private var postList: List<PostData>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // onCreateViewHolder 메서드에서 뷰홀더를 생성합니다.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -56,6 +56,7 @@ class PostAdapter(private var postList: List<PostData>) :
                 intent.putExtra("user_profile", postData.user_profile)
                 intent.putExtra("user_mbti", postData.user_mbti)
                 intent.putExtra("user_gender", postData.user_gender)
+                intent.putExtra("time", postData.time)
                 context.startActivity(intent)
             }
         }
@@ -81,10 +82,27 @@ class PostAdapter(private var postList: List<PostData>) :
                     .load(it)
                     .into(PostItemImgUserprofile)
             }
+
+            binding.PostItemLike.setOnClickListener {
+                postData.likeByUser = !postData.likeByUser
+
+                if (postData.likeByUser) {
+                    postData.likeCount++
+                    binding.PostItemLike.setImageResource(R.drawable.ic_post_like_on)
+                    Toast.makeText(itemView.context, "좋아요를 눌렀습니다.", Toast.LENGTH_SHORT).show()
+                } else {
+                    postData.likeCount--
+                    binding.PostItemLike.setImageResource(R.drawable.ic_post_like_off)
+                    Toast.makeText(itemView.context, "좋아요를 취소했습니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
     fun updateList(newList: List<PostData>) {
         postList = newList
         notifyDataSetChanged()
+    }
+    fun getLikedPosts(): List<PostData> {
+        return postList.filter { it.likeByUser }
     }
 }

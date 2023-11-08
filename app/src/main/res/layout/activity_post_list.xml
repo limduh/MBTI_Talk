@@ -17,15 +17,15 @@
             android:background="@drawable/post_search_background"
             android:hint="제목 또는 닉네임 입력"
             android:maxLength="15"
-            android:singleLine="true"
             android:padding="5dp"
+            android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintBottom_toBottomOf="@+id/post_spinner"
             app:layout_constraintEnd_toStartOf="@+id/contentWriteBtn"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            app:layout_constraintStart_toEndOf="@+id/post_spinner"
+            app:layout_constraintTop_toTopOf="@+id/post_spinner" />
 
         <ImageView
             android:id="@+id/post_list_search_btn"
@@ -37,18 +37,17 @@
             app:layout_constraintEnd_toEndOf="@+id/post_list_search"
             app:layout_constraintTop_toTopOf="@+id/post_list_search" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <Spinner
+            android:id="@+id/post_spinner"
+            android:layout_width="130dp"
+            android:layout_height="35dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:text="모든 게시물"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
+            android:background="@drawable/post_spinner_design"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:dropDownVerticalOffset="40dp" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
@@ -58,7 +57,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView" />
+            app:layout_constraintTop_toBottomOf="@id/post_spinner" />
 
         <ImageView
             android:id="@+id/contentWriteBtn"
@@ -76,8 +75,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="글쓰기"
-            android:textSize="10sp"
             android:textColor="@color/black"
+            android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="@+id/contentWriteBtn"
             app:layout_constraintStart_toStartOf="@+id/contentWriteBtn"
             app:layout_constraintTop_toBottomOf="@+id/contentWriteBtn" />

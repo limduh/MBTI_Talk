@@ -301,7 +301,7 @@
                             android:id="@+id/ic_bulletin"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
-                            android:src="@drawable/ic_like_off"
+                            android:src="@drawable/ic_post_like_off"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -309,7 +309,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:text="내가 공감한 글"
+                            android:text="내가 좋아요한 글"
                             app:layout_constraintBottom_toBottomOf="@+id/ic_bulletin"
                             app:layout_constraintStart_toEndOf="@+id/ic_bulletin"
                             app:layout_constraintTop_toTopOf="@+id/ic_bulletin" />
