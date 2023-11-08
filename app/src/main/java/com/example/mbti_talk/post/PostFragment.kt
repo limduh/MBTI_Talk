@@ -122,8 +122,9 @@ class PostFragment : Fragment() {
         return filteredList
     }
     private fun loadAllPosts() {
-
+        postAdapter.updateList(postList)
     }
+
     private fun loadMyPosts() {
         val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
 
@@ -135,6 +136,8 @@ class PostFragment : Fragment() {
     }
     private fun loadLikedPosts() {
         val likedPosts = postAdapter.getLikedPosts()
+
+
     }
 }
 

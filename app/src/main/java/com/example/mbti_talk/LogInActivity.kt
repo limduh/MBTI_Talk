@@ -41,6 +41,8 @@ class LogInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.AppTheme)
+
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

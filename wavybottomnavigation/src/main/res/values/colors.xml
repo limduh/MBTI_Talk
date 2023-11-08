@@ -11,7 +11,6 @@
     <color name="colorPrimaryDark">#18c0d4</color>
     <color name="colorAccent">#D84879</color>
 
-
     <declare-styleable name="WavyBottomNavigation">
         <attr name="mbn_defaultIconColor" format="color" />
         <attr name="mbn_selectedIconColor" format="color" />
