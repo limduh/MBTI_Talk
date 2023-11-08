@@ -1,9 +1,8 @@
 package com.example.mbti_talk.post
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.service.autofill.UserData
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +29,7 @@ class PostFragment : Fragment() {
     private lateinit var postAdapter: PostAdapter
     private lateinit var postDB: DatabaseReference
 
+    private lateinit var mContext: Context
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,11 +38,16 @@ class PostFragment : Fragment() {
         return binding.root
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         postDB = Firebase.database.reference.child("posts")
-        postAdapter = PostAdapter(postList)
+        postAdapter = PostAdapter(postList, Utils.getMyUid(mContext))
 
         // 리사이클러뷰, 어뎁터 연결
         binding.recyclerview.adapter = postAdapter
@@ -132,13 +137,14 @@ class PostFragment : Fragment() {
             val myPosts = postList.filter { it.user_uid == currentUserUid }
             postAdapter.updateList(myPosts)
         }
-
     }
+
     private fun loadLikedPosts() {
         val likedPosts = postAdapter.getLikedPosts()
-
+        postAdapter.updateList(likedPosts)
 
     }
+
 }
 
 

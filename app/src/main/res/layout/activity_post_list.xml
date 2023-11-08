@@ -43,6 +43,7 @@
             android:layout_height="35dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
+            android:gravity="center_vertical"
             android:background="@drawable/post_spinner_design"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
