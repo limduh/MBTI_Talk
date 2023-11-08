@@ -17,6 +17,7 @@ import com.example.mbti_talk.Main.BottomActivity
 import com.example.mbti_talk.R
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentMyProfileBinding
+import com.example.mbti_talk.post.PostLikeActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -40,6 +41,13 @@ class MyProfileFragment : Fragment() {
     ): View? {
         binding = FragmentMyProfileBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        // profile_btn_MyLikeList 클릭 이벤트 추가
+        binding.profileBtnMyLikeList.setOnClickListener {
+            // 사용자가 좋아요한 글들을 보여주는 화면으로 이동
+            val intent = Intent(requireContext(), PostLikeActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.ProfileMbtiBtn.setOnClickListener {
             showMbtiChoiceDialog()

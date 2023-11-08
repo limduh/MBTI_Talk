@@ -50,6 +50,7 @@
                         android:id="@+id/appCompatTextView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
                         android:text="아이디 : "
                         android:textColor="@color/gray"
                         android:textSize="12sp"
@@ -90,29 +91,6 @@
                         app:layout_constraintStart_toEndOf="@+id/appCompatTextView6"
                         app:layout_constraintTop_toTopOf="@+id/appCompatTextView6" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextView12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="상태\n메세지 : "
-                        android:textColor="@color/gray"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/appCompatTextView6"
-                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView6" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:maxLines="2"
-                        android:text="상메내용상메내용상메내용상메내용상메내용"
-                        app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView12"
-                        app:layout_constraintStart_toEndOf="@+id/appCompatTextView12"
-                        app:layout_constraintTop_toTopOf="@+id/appCompatTextView12"
-                        app:layout_constraintWidth_percent="0.5" />
-
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/Profile_img"
@@ -129,15 +107,6 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <!--수정버튼-->
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/Profile_btn_Modify"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:src="@drawable/ic_pen"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout3"
@@ -301,7 +270,7 @@
                             android:id="@+id/ic_bulletin"
                             android:layout_width="15dp"
                             android:layout_height="15dp"
-                            android:src="@drawable/ic_like_off"
+                            android:src="@drawable/ic_post_like_off"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -309,7 +278,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:text="내가 공감한 글"
+                            android:text="내가 좋아요한 글"
                             app:layout_constraintBottom_toBottomOf="@+id/ic_bulletin"
                             app:layout_constraintStart_toEndOf="@+id/ic_bulletin"
                             app:layout_constraintTop_toTopOf="@+id/ic_bulletin" />
@@ -354,7 +323,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/Profile_const_AccountManage"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="130dp"
                     android:layout_margin="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -428,28 +397,6 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:text="유저번호 :"
-                        android:textColor="@color/gray"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/Profile_btn_Memberout" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/Profile_txt_uid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="32dp"
-                        android:text="5daf5aefad5faef"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/appCompatTextView4"
-                        app:layout_constraintTop_toTopOf="@+id/appCompatTextView4" />
 
 
                     <!--    계정관리 레이아웃 화면-->

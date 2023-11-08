@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="post_spinner">SpinnerExample</string>
+
+    <string-array name="post_spinner">
+        <item>모든게시물</item>
+        <item>나의게시물</item>
+        <item>좋아요한게시물</item>
+    </string-array>
+</resources>
