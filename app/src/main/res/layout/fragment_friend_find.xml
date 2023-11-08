@@ -7,16 +7,6 @@
     tools:context=".FriendFind.FriendFindFragment"
     android:id="@+id/Friend_list_frag">
 
-    <!--    <FrameLayout-->
-    <!--        android:id="@+id/main_frame"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_margin="1dp"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/main_nav"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent">-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
@@ -27,33 +17,26 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/mbti_btn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/mbti_btn"
-            app:layout_constraintStart_toEndOf="@+id/filter_second"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/mbti_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/filter_btn"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:background="@drawable/filter_btn1"
             android:src="@drawable/filter_icon"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
-
-<!--        <androidx.appcompat.widget.AppCompatImageView-->
-<!--            android:id="@+id/filter_btn1"-->
-<!--            android:layout_width="40dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:src="@drawable/filter_btn1"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/filter_gender"

@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.MBTI_Talk" parent="Base.Theme.MBTI_Talk" />
+    <style name="ThemeOverlay.MBTI_Talk.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
 </resources>

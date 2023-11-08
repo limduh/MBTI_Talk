@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mbti_talk.Adapter.UserAdapter
 import com.example.mbti_talk.DetailActivity
 import com.example.mbti_talk.Main.FilterDialogFragment
+import com.example.mbti_talk.Main.GraphMbtiFragment
 import com.example.mbti_talk.R
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentFriendFindBinding
@@ -158,6 +159,12 @@ class FriendFindFragment : Fragment() {
             })
             // 필터 설정 다이얼로그를 화면에 표시
             filterDialog.show(childFragmentManager, "FilterDialog")
+        }
+
+        // mbti logo 버튼 클릭 시 mbti graph 표시
+        binding.mbtiBtn.setOnClickListener {
+            val mbtiGraphDialog = GraphMbtiFragment() // GraphMbtiFragment 클래스의 인스턴스를 생성
+            mbtiGraphDialog.show(childFragmentManager, "GraphMbti")
         }
     }
 }
