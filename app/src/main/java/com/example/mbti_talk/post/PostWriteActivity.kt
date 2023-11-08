@@ -83,7 +83,7 @@ class PostWriteActivity : AppCompatActivity() {
         binding.postSave.setOnClickListener {
             val title = binding.postTitle.text.toString()
             val content = binding.postEtContent.text.toString()
-            val time = getTime()
+            val time = getTime2()
             val uri = binding.postImageSelect.tag as? Uri
             if (uri != null) {
                 Log.d("vec", "Selected Image Uri: $uri")
@@ -151,6 +151,13 @@ class PostWriteActivity : AppCompatActivity() {
     fun getTime(): String {
         val currentDateTime = Calendar.getInstance().time
         val dateFormat =
+            SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(currentDateTime)
+
+        return dateFormat
+    }
+    fun getTime2(): String {
+        val currentDateTime = Calendar.getInstance().time
+        val dateFormat =
             SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA).format(currentDateTime)
 
         return dateFormat
@@ -180,7 +187,7 @@ class PostWriteActivity : AppCompatActivity() {
                             this.user_gender = user_gender
                             this.user_age = user_age
                         }
-                        FirebaseData.mydata.child(userUid!! + Calendar.getInstance().time)
+                        FirebaseData.mydata.child(userUid!! + getTime())
                             .setValue(user)
                     }
                 }

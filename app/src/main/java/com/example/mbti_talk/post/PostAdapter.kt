@@ -2,6 +2,7 @@ package com.example.mbti_talk.post
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.mbti_talk.R
 import com.example.mbti_talk.databinding.ActivityPostItemBinding
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
 import com.google.firebase.storage.FirebaseStorage
 
 
@@ -63,7 +66,6 @@ class PostAdapter(private var postList: List<PostData>) : RecyclerView.Adapter<R
 
         fun bind(postData: PostData) = binding.apply {
             binding.PostItemTitle.text = postData.title
-            binding.PostItemContent.text = postData.content
             binding.PostItemTime.text = postData.time
             binding.PostItemTxtUserNickname.text = postData.user_nickName
 
@@ -83,6 +85,7 @@ class PostAdapter(private var postList: List<PostData>) : RecyclerView.Adapter<R
                     .into(PostItemImgUserprofile)
             }
 
+            val postsRef = FirebaseData.database.getReference("posts")
             binding.PostItemLike.setOnClickListener {
                 postData.likeByUser = !postData.likeByUser
 
@@ -95,6 +98,10 @@ class PostAdapter(private var postList: List<PostData>) : RecyclerView.Adapter<R
                     binding.PostItemLike.setImageResource(R.drawable.ic_post_like_off)
                     Toast.makeText(itemView.context, "좋아요를 취소했습니다.", Toast.LENGTH_SHORT).show()
                 }
+                val postId = postData.user_uid+postData.time
+                postsRef.child(postId).child("likeByUser").setValue(postData.likeByUser)
+                postsRef.child(postId).child("likeCount").setValue(postData.likeCount)
+
             }
         }
     }
