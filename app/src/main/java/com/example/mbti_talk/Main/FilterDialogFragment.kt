@@ -1,6 +1,5 @@
 package com.example.mbti_talk.Main
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
@@ -28,7 +27,6 @@ class FilterDialogFragment : DialogFragment() {
     var mbtiTF = ""
     var mbtiJP = ""
 
-    @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,11 +35,11 @@ class FilterDialogFragment : DialogFragment() {
 
         // 각 필터 설정 요소에 대한 변경 이벤트 처리 설정
 
-        binding.filterBtnMale.setOnClickListener {
-            binding.filterBtnMale.setSelected(!binding.filterBtnMale.isSelected)
+        binding.filterChipMan.setOnClickListener {
+            binding.filterChipMan.setSelected(!binding.filterChipMan.isSelected)
         }
-        binding.filterBtnFemale.setOnClickListener {
-            binding.filterBtnFemale.setSelected(!binding.filterBtnFemale.isSelected)
+        binding.filterChipWoman.setOnClickListener {
+            binding.filterChipWoman.setSelected(!binding.filterChipWoman.isSelected)
         }
 
 
@@ -53,63 +51,70 @@ class FilterDialogFragment : DialogFragment() {
             maxValue = value[1].toInt()
         }
 
-        binding.filterEIGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        binding.chipGroupMbtiEI.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                R.id.filter_btn_mbti_E -> {
+                R.id.filter_chip_E -> {
                     mbtiEI = "E"
                 }
-                R.id.filter_btn_mbti_I -> {
+                R.id.filter_chip_I -> {
                     mbtiEI = "I"
-                }
-            }
+                } }
         }
 
-        binding.filterSNGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        binding.chipGroupMbtiSN.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                R.id.filter_btn_mbti_S -> {
+                R.id.filter_chip_S -> {
                     mbtiSN = "S"
                 }
-                R.id.filter_btn_mbti_N -> {
+                R.id.filter_chip_N -> {
                     mbtiSN = "N"
                 }
             }
         }
 
-        binding.filterTFGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        binding.chipGroupMbtiTF.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                R.id.filter_btn_mbti_T -> {
+                R.id.filter_chip_T -> {
                     mbtiTF = "T"
                 }
-                R.id.filter_btn_mbti_F -> {
+                R.id.filter_chip_F -> {
                     mbtiTF = "F"
                 }
             }
         }
 
-        binding.filterJPGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        binding.chipGroupMbtiJP.setOnCheckedChangeListener { group, checkedId ->
             when (checkedId) {
-                R.id.filter_btn_mbti_J -> {
+                R.id.filter_chip_J -> {
                     mbtiJP = "J"
                 }
-                R.id.filter_btn_mbti_P -> {
+                R.id.filter_chip_P -> {
                     mbtiJP = "P"
                 }
             }
         }
 
         // "적용" 버튼 클릭 이벤트 처리
-        binding.filterBtnApply.setOnClickListener {
+        binding.applyBtn.setOnClickListener {
             // 설정 필터 값 가져온 후, 유효성 검사 수행
 
-            gender_male = if(binding.filterBtnMale.isSelected){"남자"}else{""}
-            gender_female = if(binding.filterBtnFemale.isSelected){"여자"}else{""}
+            gender_male = if(binding.filterChipMan.isSelected){"남자"}else{""}
+            gender_female = if(binding.filterChipWoman.isSelected){"여자"}else{""}
 
 
             minValue = binding.filterSliderAge.values[0].toInt()
             maxValue = binding.filterSliderAge.values[1].toInt()
 
+//            if (binding.chipGroupMbtiEI.checkedChipId == View.NO_ID ||
+//                binding.chipGroupMbtiSN.checkedChipId == View.NO_ID ||
+//                binding.chipGroupMbtiTF.checkedChipId == View.NO_ID ||
+//                binding.chipGroupMbtiJP.checkedChipId == View.NO_ID) {
+//
+//                // 하나 이상의 Chip 그룹이 선택되지 않았을 때
+//                Toast.makeText(requireContext(), "MBTI를 모두 선택해주세요.", Toast.LENGTH_SHORT).show()
+//            } else {
 //                // 설정한 필터를 리스너 통해 전달 후 다이얼로그 닫기
-                buttonClickListener.onChipApply(gender_male, gender_female, minValue, maxValue, mbtiEI, mbtiSN, mbtiTF, mbtiJP)
+            buttonClickListener.onChipApply(gender_male, gender_female, minValue, maxValue, mbtiEI,mbtiSN,mbtiTF,mbtiJP)
 //            }
 
             Log.d("FilterDialogFragment","#jblee > $gender_male, $gender_female, $minValue, $maxValue,$mbtiEI,$mbtiSN,$mbtiTF,$mbtiJP")
@@ -137,4 +142,3 @@ class FilterDialogFragment : DialogFragment() {
         }
     }
 }
-
