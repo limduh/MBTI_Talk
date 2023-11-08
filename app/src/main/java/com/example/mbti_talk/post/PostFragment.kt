@@ -7,9 +7,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mbti_talk.R
 
 import com.example.mbti_talk.databinding.ActivityPostListBinding
 import com.example.mbti_talk.utils.Utils
@@ -52,6 +55,30 @@ class PostFragment : Fragment() {
 
         }
 
+        val spinner = binding.postSpinner
+
+        val adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.post_spinner,
+            R.layout.custom_spinner_item
+        )
+
+        spinner.adapter = adapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedItem = parent?.getItemAtPosition(position).toString()
+                when (selectedItem) {
+                    "모든게시물" -> loadAllPosts()
+                    "나의게시물" -> loadMyPosts()
+                    "좋아요한게시물" -> loadLikedPosts()
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
         // 글쓰기 버튼을 클릭 했을 경우 ContentWriteActivity로 이동한다.
         binding.contentWriteBtn.setOnClickListener {
             val intent = Intent(requireContext(), PostWriteActivity::class.java)
@@ -80,6 +107,7 @@ class PostFragment : Fragment() {
             }
         })
     }
+
     private fun filterPosts(query: String): List<PostData> {
         if (query.isBlank()) {
             return postList // 검색어가 비어있으면 전체 목록 반환
@@ -92,6 +120,21 @@ class PostFragment : Fragment() {
             }
         }
         return filteredList
+    }
+    private fun loadAllPosts() {
+
+    }
+    private fun loadMyPosts() {
+        val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
+
+        if (currentUserUid != null) {
+            val myPosts = postList.filter { it.user_uid == currentUserUid }
+            postAdapter.updateList(myPosts)
+        }
+
+    }
+    private fun loadLikedPosts() {
+        val likedPosts = postAdapter.getLikedPosts()
     }
 }
 
