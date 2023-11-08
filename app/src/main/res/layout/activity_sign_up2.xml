@@ -73,21 +73,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/SignUp_V_hline"
                 app:srcCompat="@drawable/signup_profile_img" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView5"
+                android:layout_width="62dp"
+                android:layout_height="54dp"
+                android:padding="10dp"
+                android:layout_marginTop="65dp"
+                android:layout_marginStart="65dp"
+                android:src="@drawable/ic_photo" />
+
 
         </androidx.cardview.widget.CardView>
 
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView5"
-            android:layout_width="73dp"
-            android:layout_height="66dp"
-            android:layout_marginEnd="92dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_photo"
-            app:layout_constraintBottom_toBottomOf="@+id/card_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SignUp_V_hline"
-            app:layout_constraintVertical_bias="1.0" />
 
         <!--        비밀번호 입력칸-->
 
