@@ -9,4 +9,5 @@
     <color name="filter_toolbar">#F5F5F5</color>
     <color name="filter_background">#EAEDEE</color>
     <color name="filter_text">#252525</color>
+    <color name="ai_divider3">#e4e5e6</color>
 </resources>
