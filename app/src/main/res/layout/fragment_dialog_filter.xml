@@ -9,78 +9,144 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingVertical="50dp"
-        android:paddingHorizontal="30dp">
+        tools:ignore="ExtraText">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/filter_btn_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_left_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="필터"
+            android:textColor="@color/filter_text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/filter_btn_back"
+            app:layout_constraintStart_toEndOf="@+id/filter_btn_back"
+            app:layout_constraintTop_toTopOf="@+id/filter_btn_back" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="나이"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/filter_txt_0"
+            app:layout_constraintTop_toBottomOf="@+id/filter_btn_back" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_txt_0"
+            style="@style/FilterTextViewStyle"
+            android:layout_marginTop="24dp"
+            android:text="0 ~"
+            app:layout_constraintEnd_toStartOf="@+id/filter_txt_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView16" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_txt_10"
+            style="@style/FilterTextViewStyle"
+            android:text="10"
+            app:layout_constraintBottom_toBottomOf="@+id/filter_txt_0"
+            app:layout_constraintEnd_toStartOf="@+id/filter_txt_20"
+            app:layout_constraintStart_toEndOf="@+id/filter_txt_0"
+            app:layout_constraintTop_toTopOf="@+id/filter_txt_0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_txt_20"
+            style="@style/FilterTextViewStyle"
+            android:text="20"
+            app:layout_constraintBottom_toBottomOf="@+id/filter_txt_10"
+            app:layout_constraintEnd_toStartOf="@+id/filter_txt_30"
+            app:layout_constraintStart_toEndOf="@+id/filter_txt_10"
+            app:layout_constraintTop_toTopOf="@+id/filter_txt_10" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_txt_30"
+            style="@style/FilterTextViewStyle"
+            android:text="30"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/filter_txt_20"
+            app:layout_constraintTop_toTopOf="@+id/filter_txt_20" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_txt_40"
+            style="@style/FilterTextViewStyle"
+            android:layout_marginTop="24dp"
+            android:text="40"
+            app:layout_constraintEnd_toEndOf="@+id/filter_txt_0"
+            app:layout_constraintStart_toStartOf="@+id/filter_txt_0"
+            app:layout_constraintTop_toBottomOf="@+id/filter_txt_0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_txt_50"
+            style="@style/FilterTextViewStyle"
+            android:layout_marginTop="24dp"
+            android:text="50"
+            app:layout_constraintEnd_toEndOf="@+id/filter_txt_10"
+            app:layout_constraintStart_toStartOf="@+id/filter_txt_10"
+            app:layout_constraintTop_toBottomOf="@+id/filter_txt_10" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_txt_60"
+            style="@style/FilterTextViewStyle"
+            android:layout_marginTop="24dp"
+            android:text="60 ~"
+            app:layout_constraintEnd_toEndOf="@+id/filter_txt_20"
+            app:layout_constraintStart_toStartOf="@+id/filter_txt_20"
+            app:layout_constraintTop_toBottomOf="@+id/filter_txt_20" />
 
         <!--        성별-->
-        <com.google.android.material.textview.MaterialTextView
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/filter_txt_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:text="성별"
-            android:textStyle="bold"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <LinearLayout
-            android:id="@+id/chipGroup_gender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="@id/filter_txt_gender"
-            app:layout_constraintTop_toBottomOf="@id/filter_txt_gender">
-
-            <TextView
-                android:id="@+id/filter_chip_man"
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:text="남자"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:background="@drawable/chip_selected_man"/>
-
-            <TextView
-                android:id="@+id/filter_chip_woman"
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:text="여자"
-                android:layout_marginStart="20dp"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:background="@drawable/chip_selected_woman"/>
-
-        </LinearLayout>
-
-
-        <!--        나이-->
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/filter_txt_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="나이"
             android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginTop="100dp"
-            app:layout_constraintStart_toStartOf="@id/filter_txt_gender"
-            app:layout_constraintTop_toBottomOf="@id/filter_txt_gender"/>
+            app:layout_constraintStart_toStartOf="@+id/appCompatTextView16"
+            app:layout_constraintTop_toBottomOf="@+id/filter_txt_40" />
 
-        <com.google.android.material.slider.RangeSlider
-            android:id="@+id/filter_slider_age"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/filter_txt_age"
-            android:valueFrom="20.0"
-            android:valueTo="50.0"
-            android:stepSize="10.0"
-            app:values="@array/initial_range_slider_values"
-            android:contentDescription="age_slider"/>
+        <TextView
+            android:id="@+id/filter_chip_man"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/filter3"
+            android:gravity="center"
+            android:text="남자"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/filter_txt_gender"
+            app:layout_constraintTop_toBottomOf="@+id/filter_txt_gender" />
+
+        <TextView
+            android:id="@+id/filter_chip_woman"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/filter3"
+            android:gravity="center"
+            android:text="여자"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/filter_chip_man"
+            app:layout_constraintStart_toEndOf="@+id/filter_chip_man"
+            app:layout_constraintTop_toTopOf="@+id/filter_chip_man" />
 
 
         <!--        MBTI-->
@@ -88,138 +154,295 @@
             android:id="@+id/filter_txt_mbti"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:text="MBTI"
-            android:textStyle="bold"
             android:textSize="16sp"
-            android:layout_marginTop="100dp"
-            app:layout_constraintStart_toStartOf="@id/filter_txt_age"
-            app:layout_constraintTop_toBottomOf="@id/filter_txt_age"/>
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/filter_txt_gender"
+            app:layout_constraintTop_toBottomOf="@+id/filter_chip_man" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup_mbti_EI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:singleSelection="true"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/filter_txt_mbti">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_chip_E"
+            style="@style/FilterMBTIStyle"
+            android:layout_marginTop="24dp"
+            android:text="E"
+            app:layout_constraintStart_toStartOf="@+id/filter_txt_mbti"
+            app:layout_constraintTop_toBottomOf="@+id/filter_txt_mbti" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:id="@+id/filter_chip_E"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="E"
-                android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked" />
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/FilterMBTIExplan"
+            android:text="외향형"
+            app:layout_constraintEnd_toEndOf="@+id/filter_chip_E"
+            app:layout_constraintStart_toStartOf="@+id/filter_chip_E"
+            app:layout_constraintTop_toBottomOf="@+id/filter_chip_E" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:id="@+id/filter_chip_I"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="I"
-                android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked" />
-        </com.google.android.material.chip.ChipGroup>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_chip_I"
+            style="@style/FilterMBTIStyle"
+            android:text="I"
+            app:layout_constraintBottom_toBottomOf="@+id/filter_chip_E"
+            app:layout_constraintEnd_toStartOf="@+id/vline1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/filter_chip_E"
+            app:layout_constraintTop_toTopOf="@+id/filter_chip_E" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup_mbti_SN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@id/chipGroup_mbti_EI"
-            app:layout_constraintStart_toEndOf="@id/chipGroup_mbti_EI"
-            app:singleSelection="true">
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/FilterMBTIExplan"
+            android:text="내향형"
+            app:layout_constraintEnd_toEndOf="@+id/filter_chip_I"
+            app:layout_constraintStart_toStartOf="@+id/filter_chip_I"
+            app:layout_constraintTop_toBottomOf="@+id/filter_chip_I" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/filter_chip_S"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="S"
-                app:chipBackgroundColor="@drawable/chip_checked" />
+        <View
+            android:id="@+id/vline1"
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="@drawable/login_hline_kit"
+            app:layout_constraintBottom_toBottomOf="@+id/filter_chip_I"
+            app:layout_constraintEnd_toStartOf="@+id/filter_chip_S"
+            app:layout_constraintStart_toEndOf="@+id/filter_chip_I"
+            app:layout_constraintTop_toTopOf="@+id/filter_chip_I" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/filter_chip_N"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="N"
-                app:chipBackgroundColor="@drawable/chip_checked" />
-        </com.google.android.material.chip.ChipGroup>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_chip_S"
+            style="@style/FilterMBTIStyle"
+            android:text="S"
+            app:layout_constraintBottom_toBottomOf="@+id/vline1"
+            app:layout_constraintEnd_toStartOf="@+id/filter_chip_N"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/vline1"
+            app:layout_constraintTop_toTopOf="@+id/vline1" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup_mbti_TF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:singleSelection="true"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="@id/chipGroup_mbti_EI"
-            app:layout_constraintTop_toBottomOf="@id/chipGroup_mbti_EI">
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/FilterMBTIExplan"
+            android:text="감각형"
+            app:layout_constraintEnd_toEndOf="@+id/filter_chip_S"
+            app:layout_constraintStart_toStartOf="@+id/filter_chip_S"
+            app:layout_constraintTop_toBottomOf="@+id/filter_chip_S" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:id="@+id/filter_chip_T"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="T"
-                android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_chip_N"
+            style="@style/FilterMBTIStyle"
+            android:text="N"
+            app:layout_constraintBottom_toBottomOf="@+id/filter_chip_S"
+            app:layout_constraintEnd_toEndOf="@+id/filter_txt_30"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/filter_chip_S"
+            app:layout_constraintTop_toTopOf="@+id/filter_chip_S" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:id="@+id/filter_chip_F"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="F"
-                android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"/>
-        </com.google.android.material.chip.ChipGroup>
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/FilterMBTIExplan"
+            android:text="직관형"
+            app:layout_constraintEnd_toEndOf="@+id/filter_chip_N"
+            app:layout_constraintStart_toStartOf="@+id/filter_chip_N"
+            app:layout_constraintTop_toBottomOf="@+id/filter_chip_N" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup_mbti_JP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@id/chipGroup_mbti_TF"
-            app:layout_constraintStart_toEndOf="@id/chipGroup_mbti_TF"
-            app:singleSelection="true">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/filter_chip_J"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="J"
-                app:chipBackgroundColor="@drawable/chip_checked" />
+        -----------------------------------------
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/filter_chip_P"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="P"
-                app:chipBackgroundColor="@drawable/chip_checked" />
-        </com.google.android.material.chip.ChipGroup>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_chip_T"
+            style="@style/FilterMBTIStyle"
+            android:layout_marginTop="40dp"
+            android:text="T"
+            app:layout_constraintStart_toStartOf="@+id/filter_chip_E"
+            app:layout_constraintTop_toBottomOf="@+id/filter_chip_E" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/FilterMBTIExplan"
+            android:text="사고형"
+            app:layout_constraintEnd_toEndOf="@+id/filter_chip_T"
+            app:layout_constraintStart_toStartOf="@+id/filter_chip_T"
+            app:layout_constraintTop_toBottomOf="@+id/filter_chip_T" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_chip_F"
+            style="@style/FilterMBTIStyle"
+            android:text="F"
+            app:layout_constraintBottom_toBottomOf="@+id/filter_chip_T"
+            app:layout_constraintEnd_toStartOf="@+id/vline2"
+            app:layout_constraintStart_toEndOf="@+id/filter_chip_T"
+            app:layout_constraintTop_toTopOf="@+id/filter_chip_T" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView18"
+            style="@style/FilterMBTIExplan"
+            android:text="감정형"
+            app:layout_constraintEnd_toEndOf="@+id/filter_chip_F"
+            app:layout_constraintStart_toStartOf="@+id/filter_chip_F"
+            app:layout_constraintTop_toBottomOf="@+id/filter_chip_F" />
+
+        <View
+            android:id="@+id/vline2"
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="@drawable/login_hline_kit"
+            app:layout_constraintBottom_toBottomOf="@+id/filter_chip_F"
+            app:layout_constraintEnd_toStartOf="@+id/filter_chip_J"
+            app:layout_constraintStart_toEndOf="@+id/filter_chip_F"
+            app:layout_constraintTop_toTopOf="@+id/filter_chip_F" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_chip_J"
+            style="@style/FilterMBTIStyle"
+            android:text="J"
+            app:layout_constraintBottom_toBottomOf="@+id/vline2"
+            app:layout_constraintEnd_toStartOf="@+id/filter_chip_P"
+            app:layout_constraintStart_toEndOf="@+id/vline2"
+            app:layout_constraintTop_toTopOf="@+id/vline2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/FilterMBTIExplan"
+            android:text="판단형"
+            app:layout_constraintEnd_toEndOf="@+id/filter_chip_J"
+            app:layout_constraintStart_toStartOf="@+id/filter_chip_J"
+            app:layout_constraintTop_toBottomOf="@+id/filter_chip_J" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_chip_P"
+            style="@style/FilterMBTIStyle"
+            android:text="P"
+            app:layout_constraintBottom_toBottomOf="@+id/filter_chip_J"
+            app:layout_constraintEnd_toEndOf="@+id/filter_chip_N"
+            app:layout_constraintStart_toEndOf="@+id/filter_chip_J"
+            app:layout_constraintTop_toTopOf="@+id/filter_chip_J" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/FilterMBTIExplan"
+            android:text="인식형"
+            app:layout_constraintEnd_toEndOf="@+id/filter_chip_P"
+            app:layout_constraintStart_toStartOf="@+id/filter_chip_P"
+            app:layout_constraintTop_toBottomOf="@+id/filter_chip_P" />
+
+        <ImageView
             android:id="@+id/apply_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="적용"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/signup_btn_kit"
+            android:src="@drawable/ic_checkmark"
+            android:textColor="#3C3C3C"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chipGroup_mbti_TF"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView18" />
+
+
+        <!--        <com.google.android.material.chip.ChipGroup-->
+        <!--            android:id="@+id/chipGroup_mbti_EI"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/filter_txt_mbti"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/filter_txt_mbti"-->
+        <!--            app:singleSelection="true">-->
+
+        <!--            <com.google.android.material.chip.Chip-->
+        <!--                android:id="@+id/filter_chip_E"-->
+        <!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="20dp"-->
+        <!--                android:text="E"-->
+        <!--                app:chipBackgroundColor="@drawable/chip_checked" />-->
+
+        <!--            <com.google.android.material.chip.Chip-->
+        <!--                android:id="@+id/filter_chip_I"-->
+        <!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="20dp"-->
+        <!--                android:text="I"-->
+        <!--                app:chipBackgroundColor="@drawable/chip_checked" />-->
+        <!--        </com.google.android.material.chip.ChipGroup>-->
+
+        <!--        <com.google.android.material.chip.ChipGroup-->
+        <!--            android:id="@+id/chipGroup_mbti_SN"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="24dp"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@id/chipGroup_mbti_EI"-->
+        <!--            app:layout_constraintStart_toEndOf="@id/chipGroup_mbti_EI"-->
+        <!--            app:singleSelection="true">-->
+
+        <!--            <com.google.android.material.chip.Chip-->
+        <!--                android:id="@+id/filter_chip_S"-->
+        <!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="20dp"-->
+        <!--                android:text="S"-->
+        <!--                app:chipBackgroundColor="@drawable/chip_checked" />-->
+
+        <!--            <com.google.android.material.chip.Chip-->
+        <!--                android:id="@+id/filter_chip_N"-->
+        <!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="20dp"-->
+        <!--                android:text="N"-->
+        <!--                app:chipBackgroundColor="@drawable/chip_checked" />-->
+        <!--        </com.google.android.material.chip.ChipGroup>-->
+
+        <!--        <com.google.android.material.chip.ChipGroup-->
+        <!--            android:id="@+id/chipGroup_mbti_TF"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            app:layout_constraintStart_toStartOf="@id/chipGroup_mbti_EI"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/chipGroup_mbti_EI"-->
+        <!--            app:singleSelection="true">-->
+
+        <!--            <com.google.android.material.chip.Chip-->
+        <!--                android:id="@+id/filter_chip_T"-->
+        <!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="20dp"-->
+        <!--                android:text="T"-->
+        <!--                app:chipBackgroundColor="@drawable/chip_checked" />-->
+
+        <!--            <com.google.android.material.chip.Chip-->
+        <!--                android:id="@+id/filter_chip_F"-->
+        <!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="20dp"-->
+        <!--                android:text="F"-->
+        <!--                app:chipBackgroundColor="@drawable/chip_checked" />-->
+        <!--        </com.google.android.material.chip.ChipGroup>-->
+
+        <!--        <com.google.android.material.chip.ChipGroup-->
+        <!--            android:id="@+id/chipGroup_mbti_JP"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="24dp"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@id/chipGroup_mbti_TF"-->
+        <!--            app:layout_constraintStart_toEndOf="@id/chipGroup_mbti_TF"-->
+        <!--            app:singleSelection="true">-->
+
+        <!--            <com.google.android.material.chip.Chip-->
+        <!--                android:id="@+id/filter_chip_J"-->
+        <!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="20dp"-->
+        <!--                android:text="J"-->
+        <!--                app:chipBackgroundColor="@drawable/chip_checked" />-->
+
+        <!--            <com.google.android.material.chip.Chip-->
+        <!--                android:id="@+id/filter_chip_P"-->
+        <!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="20dp"-->
+        <!--                android:text="P"-->
+        <!--                app:chipBackgroundColor="@drawable/chip_checked" />-->
+        <!--        </com.google.android.material.chip.ChipGroup>-->
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
