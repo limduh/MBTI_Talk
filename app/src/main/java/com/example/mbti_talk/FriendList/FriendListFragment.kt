@@ -6,11 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mbti_talk.Adapter.UserAdapter
 import com.example.mbti_talk.DetailActivity
+import com.example.mbti_talk.R
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentFriendListBinding
 import com.example.mbti_talk.utils.Utils
@@ -20,6 +23,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.qamar.curvedbottomnaviagtion.visible
 
 // RDB 사용하여 친구목록을 가져와 RecyclerView에 표시
 class FriendListFragment : Fragment() {
@@ -83,6 +87,7 @@ class FriendListFragment : Fragment() {
         // 중복 로드 피하기 위해 friendList 를 지움.
         friendList.clear()
 
+
         // 현재 유저의 친구 데이터베이스를 쿼리합니다. (정보요청)
         friendDB
             .child(currentUserUid) // friendDb 아래 currentUserUid 를 키로 갖는 하위 노드 찾음.
@@ -92,6 +97,7 @@ class FriendListFragment : Fragment() {
 
                     // 추가한 친구 uid 가 userDB 에 존재하는지 확인
                     if (dataSnapshot.exists()) {
+                        binding.friendlistFragImg.isVisible
                         // 유저의 친구 수 계산. datasnapshot = 현재 사용자의 친구 목록 데이터
                         val size = dataSnapshot.children.count()
                         // 로그에 친구 수 출력
@@ -116,6 +122,11 @@ class FriendListFragment : Fragment() {
                     } else {
                         // 현재 사용자의 친구가 없다면, 친구를 찾을 수 없다는 로그 남김
                         Log.d("FirebaseDatabase", "No friends found for UID: $currentUserUid")
+
+                        // Drawable 리소스 ID를 사용하여 이미지 설정
+                        val drawableResourceId = R.drawable.img_nofriend
+                        //현재 사용자의 친구가 없다면, 이미지를 이미지뷰에 띄움
+                        binding.friendlistFragImg.setImageResource(drawableResourceId)
                         Toast.makeText(requireContext(), "친구를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
