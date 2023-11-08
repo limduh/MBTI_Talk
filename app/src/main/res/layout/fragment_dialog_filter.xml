@@ -19,53 +19,40 @@
             android:layout_height="wrap_content"
             android:text="성별"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.google.android.material.chip.ChipGroup
+        <LinearLayout
             android:id="@+id/chipGroup_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:singleSelection="true"
-            app:chipSpacingHorizontal="30dp"
+            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="@id/filter_txt_gender"
             app:layout_constraintTop_toBottomOf="@id/filter_txt_gender">
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+            <TextView
                 android:id="@+id/filter_chip_man"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
                 android:text="남자"
-                android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"
-                app:layout_constraintStart_toStartOf="@id/filter_txt_gender"
-                app:layout_constraintTop_toBottomOf="@id/filter_txt_gender"/>
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:background="@drawable/chip_selected_man"/>
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+            <TextView
                 android:id="@+id/filter_chip_woman"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
                 android:text="여자"
-                android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"
-                app:layout_constraintStart_toEndOf="@id/filter_chip_man"
-                app:layout_constraintTop_toBottomOf="@id/filter_txt_gender"/>
+                android:layout_marginStart="20dp"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:background="@drawable/chip_selected_woman"/>
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:id="@+id/filter_chip_both"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="둘다"
-                android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"
-                app:layout_constraintStart_toEndOf="@id/filter_chip_man"
-                app:layout_constraintTop_toBottomOf="@id/filter_txt_gender"/>
-
-        </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
 
 
 <!--        나이-->
@@ -75,7 +62,7 @@
             android:layout_height="wrap_content"
             android:text="나이"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:layout_marginTop="100dp"
             app:layout_constraintStart_toStartOf="@id/filter_txt_gender"
             app:layout_constraintTop_toBottomOf="@id/filter_txt_gender"/>
@@ -94,7 +81,6 @@
             app:values="@array/initial_range_slider_values"
             android:contentDescription="age_slider"/>
 
-
 <!--        MBTI-->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/filter_txt_mbti"
@@ -102,7 +88,7 @@
             android:layout_height="wrap_content"
             android:text="MBTI"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:layout_marginTop="100dp"
             app:layout_constraintStart_toStartOf="@id/filter_txt_age"
             app:layout_constraintTop_toBottomOf="@id/filter_txt_age"/>
@@ -139,29 +125,29 @@
             android:id="@+id/chipGroup_mbti_SN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:orientation="horizontal"
-            app:singleSelection="true"
-            app:layout_constraintStart_toEndOf="@id/chipGroup_mbti_EI"
             app:layout_constraintBottom_toBottomOf="@id/chipGroup_mbti_EI"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintStart_toEndOf="@id/chipGroup_mbti_EI"
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:id="@+id/filter_chip_S"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="S"
                 android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"/>
+                android:text="S"
+                app:chipBackgroundColor="@drawable/chip_checked" />
 
             <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:id="@+id/filter_chip_N"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="N"
                 android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"/>
+                android:text="N"
+                app:chipBackgroundColor="@drawable/chip_checked" />
         </com.google.android.material.chip.ChipGroup>
 
         <com.google.android.material.chip.ChipGroup
@@ -197,35 +183,36 @@
             android:id="@+id/chipGroup_mbti_JP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:orientation="horizontal"
-            app:singleSelection="true"
-            app:layout_constraintStart_toEndOf="@id/chipGroup_mbti_TF"
             app:layout_constraintBottom_toBottomOf="@id/chipGroup_mbti_TF"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintStart_toEndOf="@id/chipGroup_mbti_TF"
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:id="@+id/filter_chip_J"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="J"
                 android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"/>
+                android:text="J"
+                app:chipBackgroundColor="@drawable/chip_checked" />
 
             <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:id="@+id/filter_chip_P"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="P"
                 android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"/>
+                android:text="P"
+                app:chipBackgroundColor="@drawable/chip_checked" />
         </com.google.android.material.chip.ChipGroup>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/apply_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="적용"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
