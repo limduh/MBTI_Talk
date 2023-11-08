@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.mbti_talk.LogInActivity
 import com.example.mbti_talk.MBTI.MbtiActivity
 import com.example.mbti_talk.MBTI.MbtiDialogChoice
 import com.example.mbti_talk.MBTI.MbtiTestActivity
@@ -52,6 +53,20 @@ class MyProfileFragment : Fragment() {
         binding.ProfileMbtiBtn.setOnClickListener {
             showMbtiChoiceDialog()
         }
+
+        //로그아웃
+        binding.ProfileBtnLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(requireContext(), LogInActivity::class.java)
+            startActivity(intent)
+
+        }
+
+        //회원탈퇴
+        binding.ProfileBtnMemberout.setOnClickListener {
+            signoutDialog()
+        }
+        //
 
         // Firebase 초기화
         firebaseAuth = FirebaseAuth.getInstance()
@@ -123,6 +138,41 @@ class MyProfileFragment : Fragment() {
 
         alertDialog.show()
     }
+
+    private fun revokeAccess() {
+        firebaseAuth.currentUser!!.delete()
+    }
+
+    private fun signoutDialog() {
+        val dialogView = LayoutInflater.from(requireContext()).inflate(com.example.mbti_talk.R.layout.dialog_signout, null)
+        val binding = SignoutDialogChoice(
+            dialogView.findViewById(com.example.mbti_talk.R.id.Signout_btn_check),
+            dialogView.findViewById(com.example.mbti_talk.R.id.Signout_btn_cancel)
+        )
+
+        val alertDialog = android.app.AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        binding.SignoutBtnCheck.setOnClickListener {
+            revokeAccess()
+            val intent = Intent(requireContext(), LogInActivity::class.java)
+            startActivity(intent)
+            alertDialog.dismiss()
+
+        }
+
+        binding.SignoutBtnCancel.setOnClickListener {
+
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+    }
+
+
+
+
 }
 
 

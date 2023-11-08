@@ -323,7 +323,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/Profile_const_AccountManage"
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"
+                    android:layout_height="0dp"
                     android:layout_margin="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -342,9 +342,11 @@
                     <!--    로그아웃 그림+글 묶어놈 const을 하나의 버튼으로 사용하기 위함-->
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/Profile_btn_Logout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="130dp"
+                        android:layout_height="60dp"
                         android:padding="10dp"
+                        app:layout_constraintEnd_toStartOf="@+id/Profile_btn_Memberout"
+                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Profile_txt_AccountManage">
 
@@ -371,11 +373,14 @@
                     <!--    회원탈퇴 그림+글 묶어놈 const을 하나의 버튼으로 사용하기 위함-->
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/Profile_btn_Memberout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="130dp"
+                        android:layout_height="60dp"
                         android:padding="10dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/Profile_btn_Logout">
+                        app:layout_constraintBottom_toBottomOf="@+id/Profile_btn_Logout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/Profile_btn_Logout"
+                        app:layout_constraintTop_toTopOf="@+id/Profile_btn_Logout">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/Profile_img_Memberout"
@@ -396,7 +401,6 @@
                             app:layout_constraintTop_toTopOf="@+id/Profile_img_Memberout" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
                     <!--    계정관리 레이아웃 화면-->
