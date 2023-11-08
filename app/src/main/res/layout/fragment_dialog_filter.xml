@@ -12,7 +12,7 @@
         android:paddingVertical="50dp"
         android:paddingHorizontal="30dp">
 
-<!--        성별-->
+        <!--        성별-->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/filter_txt_gender"
             android:layout_width="wrap_content"
@@ -28,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="@id/filter_txt_gender"
             app:layout_constraintTop_toBottomOf="@id/filter_txt_gender">
 
@@ -55,7 +56,7 @@
         </LinearLayout>
 
 
-<!--        나이-->
+        <!--        나이-->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/filter_txt_age"
             android:layout_width="wrap_content"
@@ -81,7 +82,8 @@
             app:values="@array/initial_range_slider_values"
             android:contentDescription="age_slider"/>
 
-<!--        MBTI-->
+
+        <!--        MBTI-->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/filter_txt_mbti"
             android:layout_width="wrap_content"

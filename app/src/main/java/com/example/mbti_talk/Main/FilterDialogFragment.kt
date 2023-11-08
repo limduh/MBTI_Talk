@@ -1,6 +1,5 @@
 package com.example.mbti_talk.Main
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
@@ -28,7 +27,6 @@ class FilterDialogFragment : DialogFragment() {
     var mbtiTF = ""
     var mbtiJP = ""
 
-    @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -116,7 +114,7 @@ class FilterDialogFragment : DialogFragment() {
 //                Toast.makeText(requireContext(), "MBTI를 모두 선택해주세요.", Toast.LENGTH_SHORT).show()
 //            } else {
 //                // 설정한 필터를 리스너 통해 전달 후 다이얼로그 닫기
-                buttonClickListener.onChipApply(gender_male, gender_female, minValue, maxValue, mbtiEI, mbtiSN, mbtiTF, mbtiJP)
+            buttonClickListener.onChipApply(gender_male, gender_female, minValue, maxValue, mbtiEI,mbtiSN,mbtiTF,mbtiJP)
 //            }
 
             Log.d("FilterDialogFragment","#jblee > $gender_male, $gender_female, $minValue, $maxValue,$mbtiEI,$mbtiSN,$mbtiTF,$mbtiJP")
@@ -144,4 +142,3 @@ class FilterDialogFragment : DialogFragment() {
         }
     }
 }
-
