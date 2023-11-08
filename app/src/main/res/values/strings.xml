@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MBTI_Talk</string>
+    <string name="app_name">M친톡</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="default_web_client_id" translatable="false">751430456068-ek5vvgaetu4qof3rk7o8qeaebnid32r8.apps.googleusercontent.com</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -90,4 +90,6 @@
     <string name="question4_5">Q5. 집 안 정리 정돈은?</string>
     <string name="question4_5_answer1">정리를 잘해놔야 마음이 편하다.</string>
     <string name="question4_5_answer2">어질러져 있는것도 하나의 질서다.</string>
+
 </resources>
+

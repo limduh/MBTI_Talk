@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.mbti_talk.LogInActivity
 import com.example.mbti_talk.MBTI.MbtiActivity
 import com.example.mbti_talk.MBTI.MbtiDialogChoice
 import com.example.mbti_talk.MBTI.MbtiTestActivity
@@ -17,6 +18,7 @@ import com.example.mbti_talk.Main.BottomActivity
 import com.example.mbti_talk.R
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentMyProfileBinding
+import com.example.mbti_talk.post.PostLikeActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -41,9 +43,30 @@ class MyProfileFragment : Fragment() {
         binding = FragmentMyProfileBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        // profile_btn_MyLikeList 클릭 이벤트 추가
+        binding.profileBtnMyLikeList.setOnClickListener {
+            // 사용자가 좋아요한 글들을 보여주는 화면으로 이동
+            val intent = Intent(requireContext(), PostLikeActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.ProfileMbtiBtn.setOnClickListener {
             showMbtiChoiceDialog()
         }
+
+        //로그아웃
+        binding.ProfileBtnLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(requireContext(), LogInActivity::class.java)
+            startActivity(intent)
+
+        }
+
+        //회원탈퇴
+        binding.ProfileBtnMemberout.setOnClickListener {
+            signoutDialog()
+        }
+        //
 
         // Firebase 초기화
         firebaseAuth = FirebaseAuth.getInstance()
@@ -62,7 +85,6 @@ class MyProfileFragment : Fragment() {
                         val userData = snapshot.getValue(UserData::class.java)
                         if (userData != null) {
                             binding.ProfileEmail.text = "${userData.user_email}"
-                            binding.ProfileTxtUid.text = "${userData.user_uid}"
                             binding.ProfileNickname.text = "${userData.user_nickName}"
                             binding.ProfileAge.text = "${userData.user_age}"
                             binding.ProfileGender.text = "${userData.user_gender}"
@@ -116,6 +138,41 @@ class MyProfileFragment : Fragment() {
 
         alertDialog.show()
     }
+
+    private fun revokeAccess() {
+        firebaseAuth.currentUser!!.delete()
+    }
+
+    private fun signoutDialog() {
+        val dialogView = LayoutInflater.from(requireContext()).inflate(com.example.mbti_talk.R.layout.dialog_signout, null)
+        val binding = SignoutDialogChoice(
+            dialogView.findViewById(com.example.mbti_talk.R.id.Signout_btn_check),
+            dialogView.findViewById(com.example.mbti_talk.R.id.Signout_btn_cancel)
+        )
+
+        val alertDialog = android.app.AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        binding.SignoutBtnCheck.setOnClickListener {
+            revokeAccess()
+            val intent = Intent(requireContext(), LogInActivity::class.java)
+            startActivity(intent)
+            alertDialog.dismiss()
+
+        }
+
+        binding.SignoutBtnCancel.setOnClickListener {
+
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+    }
+
+
+
+
 }
 
 

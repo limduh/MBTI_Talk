@@ -239,6 +239,8 @@ class PostData {
     var user_mbti: String = ""
     var user_gender: String = ""
     var user_age: Int = 0
+    var likeCount: Int = 0
+    var likeByUser: Boolean = false
 
     constructor()
     constructor(title: String, content: String, time: String, image: String) {

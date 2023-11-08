@@ -12,7 +12,7 @@
         android:paddingVertical="50dp"
         android:paddingHorizontal="30dp">
 
-<!--        성별-->
+        <!--        성별-->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/filter_txt_gender"
             android:layout_width="wrap_content"
@@ -23,52 +23,40 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.google.android.material.chip.ChipGroup
+        <LinearLayout
             android:id="@+id/chipGroup_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:singleSelection="true"
-            app:chipSpacingHorizontal="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="@id/filter_txt_gender"
             app:layout_constraintTop_toBottomOf="@id/filter_txt_gender">
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+            <TextView
                 android:id="@+id/filter_chip_man"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
                 android:text="남자"
-                android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"
-                app:layout_constraintStart_toStartOf="@id/filter_txt_gender"
-                app:layout_constraintTop_toBottomOf="@id/filter_txt_gender"/>
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:background="@drawable/chip_selected_man"/>
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+            <TextView
                 android:id="@+id/filter_chip_woman"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
                 android:text="여자"
-                android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"
-                app:layout_constraintStart_toEndOf="@id/filter_chip_man"
-                app:layout_constraintTop_toBottomOf="@id/filter_txt_gender"/>
+                android:layout_marginStart="20dp"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:background="@drawable/chip_selected_woman"/>
 
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:id="@+id/filter_chip_both"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="둘다"
-                android:layout_marginTop="20dp"
-                app:chipBackgroundColor="@drawable/chip_checked"
-                app:layout_constraintStart_toEndOf="@id/filter_chip_man"
-                app:layout_constraintTop_toBottomOf="@id/filter_txt_gender"/>
-
-        </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
 
 
-<!--        나이-->
+        <!--        나이-->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/filter_txt_age"
             android:layout_width="wrap_content"
@@ -95,7 +83,7 @@
             android:contentDescription="age_slider"/>
 
 
-<!--        MBTI-->
+        <!--        MBTI-->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/filter_txt_mbti"
             android:layout_width="wrap_content"
