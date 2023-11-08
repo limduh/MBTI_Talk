@@ -7,334 +7,332 @@
     tools:context=".SignUpActivity">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent" >
 
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/SignUp_btn_back"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/ic_left_arrow"
-            app:layout_constraintBottom_toTopOf="@+id/SignUp_V_hline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/SignUp_txt_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="회원가입"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/SignUp_V_hline"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/login_hline_kit"
-            app:layout_constraintTop_toBottomOf="@+id/SignUp_txt_title" />
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
 
-        <!--tools:srcCompat="@tools:sample/avatars" />-->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/SignUp_btn_back"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_left_arrow"
+                app:layout_constraintBottom_toTopOf="@+id/SignUp_V_hline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/SignUp_txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="회원가입"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_view"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="8dp"
-            app:cardCornerRadius="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SignUp_V_hline">
+            <View
+                android:id="@+id/SignUp_V_hline"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/login_hline_kit"
+                app:layout_constraintTop_toBottomOf="@+id/SignUp_txt_title" />
 
 
-            <ImageView
-                android:id="@+id/LoginImageView"
+            <!--tools:srcCompat="@tools:sample/avatars" />-->
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:scaleType="centerCrop"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="100dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/SignUp_V_hline"
-                app:srcCompat="@drawable/signup_profile_img" />
+                app:layout_constraintTop_toBottomOf="@+id/SignUp_V_hline">
 
 
-        </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/LoginImageView"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/SignUp_V_hline"
+                    app:srcCompat="@drawable/signup_profile_img" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView5"
+                    android:layout_width="62dp"
+                    android:layout_height="54dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginStart="65dp"
+                    android:src="@drawable/ic_photo" />
 
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView5"
-            android:layout_width="73dp"
-            android:layout_height="66dp"
-            android:layout_marginEnd="92dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_photo"
-            app:layout_constraintBottom_toBottomOf="@+id/card_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SignUp_V_hline"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <!--        비밀번호 입력칸-->
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/SignUp_const_IdBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="108dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SignUp_V_hline">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/SignUp_const_email"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                app:endIconMode="clear_text"
-                app:helperText="이메일 형식을 입력해 주세요"
-                app:helperTextTextColor="@android:color/holo_red_dark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/SignUp_etxt_ID"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="email을 입력해 주세요"
-                    android:inputType="textEmailAddress"
-                    android:lines="1" />
+            </androidx.cardview.widget.CardView>
 
 
-            </com.google.android.material.textfield.TextInputLayout>
+            <!--        비밀번호 입력칸-->
 
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/SignUp_const_PwBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SignUp_const_IdBox">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/SignUp_const_Pw"
-
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/SignUp_const_IdBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:counterEnabled="true"
-                app:counterMaxLength="16"
-                app:helperText="패스워드 입력"
-                app:helperTextTextColor="@android:color/holo_red_dark"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="108dp"
+                android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:passwordToggleEnabled="true">
+                app:layout_constraintTop_toBottomOf="@+id/SignUp_V_hline">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/SignUp_etxt_PW"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="영대문자,숫자,특수문자 포함 비밀번호를 입력"
-                    android:inputType="textPassword"
-                    android:lines="1"
-                    android:maxLength="16" />
-
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <!--        비밀번호확인 입력칸-->
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/SignUp_const_PwBox_check"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SignUp_const_PwBox">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/SignUp_const_Pw2"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                app:helperText="패스워드 입력"
-                app:helperTextTextColor="@android:color/holo_red_dark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                app:counterEnabled="true"
-                app:counterMaxLength="16"
-                app:passwordToggleEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/SignUp_etxt_PW2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:lines="1"
-                    android:maxLength="16"
-                    android:inputType="textPassword"
-                    android:hint="영대문자,숫자,특수문자 포함 비밀번호를 입력"/>
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!--        닉네임 확인-->
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/SignUp_const_NickName_Box"
-            app:endIconMode="clear_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SignUp_const_PwBox_check">
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:id="@+id/SignUp_const_NickName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:endIconMode="clear_text"
-                app:counterEnabled="true"
-                app:counterMaxLength="12"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/SignUp_etxt_NickName"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/SignUp_const_email"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="12자 이내의 닉네임을 입력해주세요.."
-                    android:maxLength="12"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginTop="30dp"
+                    app:endIconMode="clear_text"
+                    app:helperText="이메일 형식을 입력해 주세요"
+                    app:helperTextTextColor="@android:color/holo_red_dark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/SignUp_etxt_ID"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="email을 입력해 주세요"
+                        android:inputType="textEmailAddress"
+                        android:lines="1" />
 
-        <!--        나이-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            app:endIconMode="clear_text"
-            app:counterMaxLength="3"
-            app:helperText="1~200까지의 숫자만 입력해 주세요."
-            app:counterEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SignUp_const_NickName_Box">
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/SignUp_etxt_Age"
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/SignUp_const_PwBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="나이 입력"
-                android:maxLength="3"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SignUp_const_IdBox">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTextView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="성별"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/SignUp_radio_Group"
-            app:layout_constraintEnd_toStartOf="@+id/SignUp_radio_Group"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/SignUp_radio_Group" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/SignUp_const_Pw"
+
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="16"
+                    app:helperText="패스워드 입력"
+                    app:helperTextTextColor="@android:color/holo_red_dark"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/SignUp_etxt_PW"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="영대문자,숫자,특수문자 포함 비밀번호를 입력"
+                        android:inputType="textPassword"
+                        android:lines="1"
+                        android:maxLength="16" />
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/SignUp_btn_SignUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/login_btn_kit"
-            android:text="회원가입"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <RadioGroup
-            android:id="@+id/SignUp_radio_Group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/SignUp_btn_SignUp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.436"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--        비밀번호확인 입력칸-->
 
-            <RadioButton
-                android:id="@+id/SignUp_radioMale"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/SignUp_const_PwBox_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SignUp_const_PwBox">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/SignUp_const_Pw2"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="16"
+                    app:helperText="패스워드 입력"
+                    app:helperTextTextColor="@android:color/holo_red_dark"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/SignUp_etxt_PW2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="영대문자,숫자,특수문자 포함 비밀번호를 입력"
+                        android:inputType="textPassword"
+                        android:lines="1"
+                        android:maxLength="16" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--        닉네임 확인-->
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/SignUp_const_NickName_Box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="24dp"
+                app:endIconMode="clear_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SignUp_const_PwBox_check">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/SignUp_const_NickName"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="12"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/SignUp_etxt_NickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="12자 이내의 닉네임을 입력해주세요.."
+                        android:inputType="text"
+                        android:maxLength="12" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--        나이-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="3"
+                app:endIconMode="clear_text"
+                app:helperText="1~200까지의 숫자만 입력해 주세요."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SignUp_const_NickName_Box">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/SignUp_etxt_Age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="나이 입력"
+                    android:inputType="text"
+                    android:maxLength="3" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="남자"
-                app:layout_constraintStart_toEndOf="@+id/SignUp_radio_Group"
-                app:layout_constraintStart_toStartOf="@+id/SignUp_radiobtn_female" />
+                android:text="성별"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/SignUp_radio_Group"
+                app:layout_constraintEnd_toStartOf="@+id/SignUp_radio_Group"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/SignUp_radio_Group" />
 
-            <RadioButton
-                android:id="@+id/SignUp_radioFemale"
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/SignUp_btn_SignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/login_btn_kit"
+                android:text="회원가입"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/SignUp_radio_Group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:text="여자"
-                app:layout_constraintStart_toEndOf="@+id/SignUp_radiobtn_male"
-                app:layout_constraintStart_toStartOf="@+id/SignUp_radio_Group" />
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/SignUp_btn_SignUp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.436"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+                <RadioButton
+                    android:id="@+id/SignUp_radioMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="남자"
+                    app:layout_constraintStart_toEndOf="@+id/SignUp_radio_Group"
+                    app:layout_constraintStart_toStartOf="@+id/SignUp_radiobtn_female" />
+
+                <RadioButton
+                    android:id="@+id/SignUp_radioFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:text="여자"
+                    app:layout_constraintStart_toEndOf="@+id/SignUp_radiobtn_male"
+                    app:layout_constraintStart_toStartOf="@+id/SignUp_radio_Group" />
 
 
-        </RadioGroup>
+            </RadioGroup>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

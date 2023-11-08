@@ -41,6 +41,8 @@ class LogInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.AppTheme)
+
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -49,9 +51,11 @@ class LogInActivity : AppCompatActivity() {
         val btnLogin = binding.LoginBtnLogin
         val btnSignUp = binding.loginTxtSignUp
         firebaseAuth = FirebaseAuth.getInstance()
+        val etxtFindPw = binding.loginTxtFindPW
+
+
         val get_email = intent.getStringExtra("email")
         val get_password = intent.getStringExtra("password")
-        val etxtFindPw = binding.loginTxtFindPW
 
         //구글 이미지 버튼
         val imageViewGoogle = binding.LoginImageViewGoogle
@@ -136,7 +140,7 @@ class LogInActivity : AppCompatActivity() {
                                     // 데이터가 존재하는 경우
                                     val userData = dataSnapshot.getValue(UserData::class.java)
 
-                                    Log.d("FirebaseDatabase", "User Data: $userData")
+                                    Log.d("FirebaseDatabase1", "User Data: $userData")
 
                                     if (!userData?.user_mbti.isNullOrEmpty()) {
                                         // userData?.user_mbti.toString()에서 유저 MBTI를 문자열로 변환. Utils.setMyMbti 함수를 호출하여 해당 MBTI 저장
@@ -238,15 +242,17 @@ class LogInActivity : AppCompatActivity() {
                                     // 데이터가 존재하는 경우
                                     val userData = dataSnapshot.getValue(UserData::class.java)
 
-                                    Log.d("FirebaseDatabase", "User Data: $userData")
+                                    Log.d("FirebaseDatabase1", "User Data: $userData")
 
                                     if (!userData?.user_mbti.isNullOrEmpty()) {
+                                        Log.d("FirebaseDatabase2", "User Data: $userData")
                                         val intent =
                                             Intent(this@LogInActivity, BottomActivity::class.java)
                                         startActivity(intent)
                                         finish() // 로그인 화면 종료
                                     } else {
                                         // 메인 페이지 이동
+                                        Log.d("FirebaseDatabase3", "User Data: $userData")
                                         val intent =
                                             Intent(this@LogInActivity, MbtiActivity::class.java)
                                         startActivity(intent)
@@ -255,7 +261,10 @@ class LogInActivity : AppCompatActivity() {
 
                                 } else {
                                     // UID에 해당하는 데이터가 없는 경우
-                                    Log.d("FirebaseDatabase", "User not found")
+                                    Log.d("FirebaseDatabase4", "User not found")
+                                    val intent =
+                                        Intent(this@LogInActivity, SignUpActivity2::class.java)
+                                    startActivity(intent)
                                 }
                             }
 
