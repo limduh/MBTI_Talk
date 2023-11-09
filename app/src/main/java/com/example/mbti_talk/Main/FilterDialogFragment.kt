@@ -43,6 +43,8 @@ class FilterDialogFragment : DialogFragment() {
         }
 
 
+
+
 //        binding.filterSliderAge.addOnChangeListener { slider, value, fromUser ->
 //
 //            val value = slider.values
@@ -82,7 +84,7 @@ class FilterDialogFragment : DialogFragment() {
 //                }
 //            }
 //        }
-
+//
 //        binding.chipGroupMbtiJP.setOnCheckedChangeListener { group, checkedId ->
 //            when (checkedId) {
 //                R.id.filter_chip_J -> {
