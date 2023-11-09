@@ -46,16 +46,18 @@
             app:layout_constraintStart_toStartOf="@+id/filter_txt_0"
             app:layout_constraintTop_toBottomOf="@+id/filter_btn_back" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/filter_txt_0"
             style="@style/FilterTextViewStyle"
             android:layout_marginTop="24dp"
             android:text="0 ~"
+            android:clickable="true"
+            android:focusable="true"
             app:layout_constraintEnd_toStartOf="@+id/filter_txt_10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView16" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/filter_txt_10"
             style="@style/FilterTextViewStyle"
             android:text="10"
