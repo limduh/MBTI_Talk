@@ -31,6 +31,7 @@ class FilterDialogFragment : DialogFragment() {
     var mbtiJ = ""
     var mbtiP = ""
 
+    // 다이얼로그 창 최대로 키움
     override fun onStart() {
         super.onStart()
         val dialog = dialog
@@ -49,23 +50,28 @@ class FilterDialogFragment : DialogFragment() {
 
         // 각 필터 설정 요소에 대한 변경 이벤트 처리 설정
 
+        // "남자" 필터 칩의 클릭 이벤트 처리
         binding.filterChipMan.setOnClickListener {
+            // 클릭 시, 선택 상태를 반전
             binding.filterChipMan.setSelected(!binding.filterChipMan.isSelected)
         }
+
         binding.filterChipWoman.setOnClickListener {
             binding.filterChipWoman.setSelected(!binding.filterChipWoman.isSelected)
         }
 
+        // 나이 범위 슬라이더 값 변경 이벤트 처리
         binding.filterSliderAge.addOnChangeListener { slider, value, fromUser ->
-
+            // 슬라이더의 최소, 최대 값 저장
             val value = slider.values
-
             minValue = value[0].toInt()
             maxValue = value[1].toInt()
         }
 
+        // MBTI "E" 필터 칩의 클릭 이벤트 처리
         binding.filterChipE.setOnClickListener {
             binding.filterChipE.isSelected = !binding.filterChipE.isSelected
+            // "E"가 선택되면 "I"를 선택 해제
             if (binding.filterChipE.isSelected) {
                 binding.filterChipI.isSelected = false
             }
@@ -148,7 +154,7 @@ class FilterDialogFragment : DialogFragment() {
             // 설정한 필터를 리스너 통해 전달 후 다이얼로그 닫기
             buttonClickListener.onChipApply(gender_male, gender_female, minValue, maxValue, mbtiE, mbtiI, mbtiS, mbtiN, mbtiT, mbtiF, mbtiJ, mbtiP)
 
-            Log.d("FilterDialogFragment","#jblee > $gender_male, $gender_female, $minValue, $maxValue,$mbtiE,$mbtiI,$mbtiS,$mbtiN,$mbtiT,$mbtiF,$mbtiJ,$mbtiP")
+            Log.d("FilterDialogFragment","#byurin > $gender_male, $gender_female, $minValue, $maxValue,$mbtiE,$mbtiI,$mbtiS,$mbtiN,$mbtiT,$mbtiF,$mbtiJ,$mbtiP")
             dismiss()
 
         }
@@ -162,7 +168,7 @@ class FilterDialogFragment : DialogFragment() {
 
     // 필터 설정 다이얼로그에서 사용할 리스너 설정하는 메서드
     fun setChipClickListener(chipClickListener: OnDialogChipClickListener) {
-        Log.d("FilterDialogFragment","#jblee > setChipClickListener")
+        Log.d("FilterDialogFragment","#byurin > setChipClickListener")
         // 필터 설정 리스너를 설정
         this.buttonClickListener = chipClickListener
     }
