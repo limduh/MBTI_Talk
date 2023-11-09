@@ -43,56 +43,58 @@ class FilterDialogFragment : DialogFragment() {
         }
 
 
-        binding.filterSliderAge.addOnChangeListener { slider, value, fromUser ->
 
-            val value = slider.values
 
-            minValue = value[0].toInt()
-            maxValue = value[1].toInt()
-        }
-
-        binding.chipGroupMbtiEI.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                R.id.filter_chip_E -> {
-                    mbtiEI = "E"
-                }
-                R.id.filter_chip_I -> {
-                    mbtiEI = "I"
-                } }
-        }
-
-        binding.chipGroupMbtiSN.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                R.id.filter_chip_S -> {
-                    mbtiSN = "S"
-                }
-                R.id.filter_chip_N -> {
-                    mbtiSN = "N"
-                }
-            }
-        }
-
-        binding.chipGroupMbtiTF.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                R.id.filter_chip_T -> {
-                    mbtiTF = "T"
-                }
-                R.id.filter_chip_F -> {
-                    mbtiTF = "F"
-                }
-            }
-        }
-
-        binding.chipGroupMbtiJP.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                R.id.filter_chip_J -> {
-                    mbtiJP = "J"
-                }
-                R.id.filter_chip_P -> {
-                    mbtiJP = "P"
-                }
-            }
-        }
+//        binding.filterSliderAge.addOnChangeListener { slider, value, fromUser ->
+//
+//            val value = slider.values
+//
+//            minValue = value[0].toInt()
+//            maxValue = value[1].toInt()
+//        }
+//
+//        binding.chipGroupMbtiEI.setOnCheckedChangeListener { group, checkedId ->
+//            when (checkedId) {
+//                R.id.filter_chip_E -> {
+//                    mbtiEI = "E"
+//                }
+//                R.id.filter_chip_I -> {
+//                    mbtiEI = "I"
+//                } }
+//        }
+//
+//        binding.chipGroupMbtiSN.setOnCheckedChangeListener { group, checkedId ->
+//            when (checkedId) {
+//                R.id.filter_chip_S -> {
+//                    mbtiSN = "S"
+//                }
+//                R.id.filter_chip_N -> {
+//                    mbtiSN = "N"
+//                }
+//            }
+//        }
+//
+//        binding.chipGroupMbtiTF.setOnCheckedChangeListener { group, checkedId ->
+//            when (checkedId) {
+//                R.id.filter_chip_T -> {
+//                    mbtiTF = "T"
+//                }
+//                R.id.filter_chip_F -> {
+//                    mbtiTF = "F"
+//                }
+//            }
+//        }
+//
+//        binding.chipGroupMbtiJP.setOnCheckedChangeListener { group, checkedId ->
+//            when (checkedId) {
+//                R.id.filter_chip_J -> {
+//                    mbtiJP = "J"
+//                }
+//                R.id.filter_chip_P -> {
+//                    mbtiJP = "P"
+//                }
+//            }
+//        }
 
         // "적용" 버튼 클릭 이벤트 처리
         binding.applyBtn.setOnClickListener {
@@ -102,8 +104,8 @@ class FilterDialogFragment : DialogFragment() {
             gender_female = if(binding.filterChipWoman.isSelected){"여자"}else{""}
 
 
-            minValue = binding.filterSliderAge.values[0].toInt()
-            maxValue = binding.filterSliderAge.values[1].toInt()
+//            minValue = binding.filterSliderAge.values[0].toInt()
+//            maxValue = binding.filterSliderAge.values[1].toInt()
 
 //            if (binding.chipGroupMbtiEI.checkedChipId == View.NO_ID ||
 //                binding.chipGroupMbtiSN.checkedChipId == View.NO_ID ||
