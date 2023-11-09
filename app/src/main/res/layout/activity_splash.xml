@@ -7,12 +7,5 @@
     android:gravity="center"
     tools:context=".LogInActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clipToOutline="true"
-        >
-
-    </ImageView>
 
 </LinearLayout>

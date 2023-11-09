@@ -165,6 +165,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/filter_background"
+        app:layout_constraintBottom_toTopOf="@+id/top_layout" />
+
 
     <!--    app:cbn_titleFont="@font/book"-->
 </androidx.constraintlayout.widget.ConstraintLayout>
