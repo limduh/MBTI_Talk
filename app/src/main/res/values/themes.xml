@@ -9,27 +9,27 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#d8d8d8</item>
+        <item name="colorPrimaryDark">#d8d8d8</item>
+        <item name="colorAccent">#d8d8d8</item>
         <!-- No Title Bar-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <!-- white status bar -->
-        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:statusBarColor">#d8d8d8</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">#ffffff</item>
+        <item name="colorPrimaryDark">#ffffff</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!-- No Title Bar-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <!-- white status bar -->
-        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:statusBarColor">#ffffff</item>
         <item name="android:windowLightStatusBar">true</item>
         <!-- background -->
         <item name="android:windowBackground">@drawable/background_splash</item>
