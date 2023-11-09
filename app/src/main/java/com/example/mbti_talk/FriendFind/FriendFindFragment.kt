@@ -135,7 +135,7 @@ class FriendFindFragment : Fragment() {
             val filterDialog = FilterDialogFragment() // FilterDialogFragment 클래스의 인스턴스를 생성
 
             filterDialog.setChipClickListener(object :FilterDialogFragment.OnDialogChipClickListener {
-                override fun onChipApply(gender_male: String, gender_female: String, minValue: Int, maxValue: Int, mbtiEI: String, mbtiSN: String, mbtiTF: String, mbtiJP: String) {
+                override fun onChipApply(gender_male: String, gender_female: String, minValue: Int, maxValue: Int, mbtiE : String, mbtiI : String, mbtiS : String, mbtiN : String, mbtiT : String, mbtiF : String, mbtiJ : String, mbtiP : String) {
 
                     val isBothGenderSelected = gender_male.isNotEmpty() && gender_female.isNotEmpty()
 
@@ -147,8 +147,8 @@ class FriendFindFragment : Fragment() {
                             gender_female.isNotEmpty() -> user.user_gender.equals(gender_female, ignoreCase = true)
                             else -> true
                         }
-                        val mbtiMatches = user.user_mbti.contains(mbtiEI) && user.user_mbti.contains(mbtiSN) &&
-                                user.user_mbti.contains(mbtiTF) && user.user_mbti.contains(mbtiJP)
+                        val mbtiMatches = user.user_mbti.contains(mbtiE) && user.user_mbti.contains(mbtiI) &&
+                                user.user_mbti.contains(mbtiS) && user.user_mbti.contains(mbtiN) && user.user_mbti.contains(mbtiT) && user.user_mbti.contains(mbtiF) && user.user_mbti.contains(mbtiJ) && user.user_mbti.contains(mbtiP)
 
                         ageMatches && genderMatches && mbtiMatches
                     }

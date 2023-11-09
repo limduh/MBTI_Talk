@@ -22,10 +22,24 @@ class FilterDialogFragment : DialogFragment() {
     var gender_female = ""
     var minValue = 0 // 최소나이
     var maxValue = 0 // 최대나이
-    var mbtiEI = ""
-    var mbtiSN = ""
-    var mbtiTF = ""
-    var mbtiJP = ""
+    var mbtiE = ""
+    var mbtiI = ""
+    var mbtiS = ""
+    var mbtiN = ""
+    var mbtiT = ""
+    var mbtiF = ""
+    var mbtiJ = ""
+    var mbtiP = ""
+
+    override fun onStart() {
+        super.onStart()
+        val dialog = dialog
+        if (dialog != null) {
+            val width = ViewGroup.LayoutParams.MATCH_PARENT // 다이얼로그 너비
+            val height = ViewGroup.LayoutParams.MATCH_PARENT // 다이얼로그 높이
+            dialog.window?.setLayout(width, height)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,84 +56,99 @@ class FilterDialogFragment : DialogFragment() {
             binding.filterChipWoman.setSelected(!binding.filterChipWoman.isSelected)
         }
 
+        binding.filterSliderAge.addOnChangeListener { slider, value, fromUser ->
 
+            val value = slider.values
 
+            minValue = value[0].toInt()
+            maxValue = value[1].toInt()
+        }
 
-//        binding.filterSliderAge.addOnChangeListener { slider, value, fromUser ->
-//
-//            val value = slider.values
-//
-//            minValue = value[0].toInt()
-//            maxValue = value[1].toInt()
-//        }
-//
-//        binding.chipGroupMbtiEI.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                R.id.filter_chip_E -> {
-//                    mbtiEI = "E"
-//                }
-//                R.id.filter_chip_I -> {
-//                    mbtiEI = "I"
-//                } }
-//        }
-//
-//        binding.chipGroupMbtiSN.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                R.id.filter_chip_S -> {
-//                    mbtiSN = "S"
-//                }
-//                R.id.filter_chip_N -> {
-//                    mbtiSN = "N"
-//                }
-//            }
-//        }
-//
-//        binding.chipGroupMbtiTF.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                R.id.filter_chip_T -> {
-//                    mbtiTF = "T"
-//                }
-//                R.id.filter_chip_F -> {
-//                    mbtiTF = "F"
-//                }
-//            }
-//        }
-//
-//        binding.chipGroupMbtiJP.setOnCheckedChangeListener { group, checkedId ->
-//            when (checkedId) {
-//                R.id.filter_chip_J -> {
-//                    mbtiJP = "J"
-//                }
-//                R.id.filter_chip_P -> {
-//                    mbtiJP = "P"
-//                }
-//            }
-//        }
+        binding.filterChipE.setOnClickListener {
+            binding.filterChipE.isSelected = !binding.filterChipE.isSelected
+            if (binding.filterChipE.isSelected) {
+                binding.filterChipI.isSelected = false
+            }
+        }
+
+        binding.filterChipI.setOnClickListener {
+            binding.filterChipI.isSelected = !binding.filterChipI.isSelected
+            if (binding.filterChipI.isSelected) {
+                binding.filterChipE.isSelected = false
+            }
+        }
+
+        binding.filterChipS.setOnClickListener {
+            binding.filterChipS.isSelected = !binding.filterChipS.isSelected
+            if (binding.filterChipS.isSelected) {
+                binding.filterChipN.isSelected = false
+            }
+        }
+
+        binding.filterChipN.setOnClickListener {
+            binding.filterChipN.isSelected = !binding.filterChipN.isSelected
+            if (binding.filterChipN.isSelected) {
+                binding.filterChipS.isSelected = false
+            }
+        }
+
+        binding.filterChipT.setOnClickListener {
+            binding.filterChipT.isSelected = !binding.filterChipT.isSelected
+            if (binding.filterChipT.isSelected) {
+                binding.filterChipF.isSelected = false
+            }
+        }
+
+        binding.filterChipF.setOnClickListener {
+            binding.filterChipF.isSelected = !binding.filterChipF.isSelected
+            if (binding.filterChipF.isSelected) {
+                binding.filterChipT.isSelected = false
+            }
+        }
+
+        binding.filterChipJ.setOnClickListener {
+            binding.filterChipJ.isSelected = !binding.filterChipJ.isSelected
+            if (binding.filterChipJ.isSelected) {
+                binding.filterChipP.isSelected = false
+            }
+        }
+
+        binding.filterChipP.setOnClickListener {
+            binding.filterChipP.isSelected = !binding.filterChipP.isSelected
+            if (binding.filterChipP.isSelected) {
+                binding.filterChipJ.isSelected = false
+            }
+        }
+
+        // "뒤로가기" 버튼 클릭 이벤트 처리
+        binding.filterBtnBack.setOnClickListener {
+            dismiss() // 다이얼로그 닫기
+        }
 
         // "적용" 버튼 클릭 이벤트 처리
         binding.applyBtn.setOnClickListener {
-            // 설정 필터 값 가져온 후, 유효성 검사 수행
 
+            // 설정 필터 값 가져온 후, 유효성 검사 수행
             gender_male = if(binding.filterChipMan.isSelected){"남자"}else{""}
             gender_female = if(binding.filterChipWoman.isSelected){"여자"}else{""}
 
 
-//            minValue = binding.filterSliderAge.values[0].toInt()
-//            maxValue = binding.filterSliderAge.values[1].toInt()
+            minValue = binding.filterSliderAge.values[0].toInt()
+            maxValue = binding.filterSliderAge.values[1].toInt()
 
-//            if (binding.chipGroupMbtiEI.checkedChipId == View.NO_ID ||
-//                binding.chipGroupMbtiSN.checkedChipId == View.NO_ID ||
-//                binding.chipGroupMbtiTF.checkedChipId == View.NO_ID ||
-//                binding.chipGroupMbtiJP.checkedChipId == View.NO_ID) {
-//
-//                // 하나 이상의 Chip 그룹이 선택되지 않았을 때
-//                Toast.makeText(requireContext(), "MBTI를 모두 선택해주세요.", Toast.LENGTH_SHORT).show()
-//            } else {
-//                // 설정한 필터를 리스너 통해 전달 후 다이얼로그 닫기
-            buttonClickListener.onChipApply(gender_male, gender_female, minValue, maxValue, mbtiEI,mbtiSN,mbtiTF,mbtiJP)
-//            }
+            mbtiE = if(binding.filterChipE.isSelected){"E"}else{""}
+            mbtiI = if(binding.filterChipI.isSelected){"I"}else{""}
+            mbtiS = if(binding.filterChipS.isSelected){"S"}else{""}
+            mbtiN = if(binding.filterChipN.isSelected){"N"}else{""}
+            mbtiT = if(binding.filterChipT.isSelected){"T"}else{""}
+            mbtiF = if(binding.filterChipF.isSelected){"F"}else{""}
+            mbtiJ = if(binding.filterChipJ.isSelected){"J"}else{""}
+            mbtiP = if(binding.filterChipP.isSelected){"P"}else{""}
 
-            Log.d("FilterDialogFragment","#jblee > $gender_male, $gender_female, $minValue, $maxValue,$mbtiEI,$mbtiSN,$mbtiTF,$mbtiJP")
+            // 설정한 필터를 리스너 통해 전달 후 다이얼로그 닫기
+            buttonClickListener.onChipApply(gender_male, gender_female, minValue, maxValue, mbtiE, mbtiI, mbtiS, mbtiN, mbtiT, mbtiF, mbtiJ, mbtiP)
+
+            Log.d("FilterDialogFragment","#jblee > $gender_male, $gender_female, $minValue, $maxValue,$mbtiE,$mbtiI,$mbtiS,$mbtiN,$mbtiT,$mbtiF,$mbtiJ,$mbtiP")
             dismiss()
 
         }
@@ -128,7 +157,7 @@ class FilterDialogFragment : DialogFragment() {
 
     // 필터 설정 다이얼로그에서 사용할 리스너 정의
     interface OnDialogChipClickListener {
-        fun onChipApply(gender_male: String, gender_female: String, minValue: Int, maxValue: Int,mbtiEI: String, mbtiSN: String, mbtiTF: String, mbtiJP: String)
+        fun onChipApply(gender_male: String, gender_female: String, minValue: Int, maxValue: Int, mbtiE : String, mbtiI : String, mbtiS : String, mbtiN : String, mbtiT : String, mbtiF : String, mbtiJ : String, mbtiP : String)
     }
 
     // 필터 설정 다이얼로그에서 사용할 리스너 설정하는 메서드
