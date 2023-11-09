@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/background"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp">
 
 
     <TextView
@@ -13,7 +14,6 @@
         android:layout_height="33dp"
         android:layout_marginTop="2dp"
         android:paddingStart="10dp"
-        android:text="이름"
         app:layout_constraintBottom_toTopOf="@+id/txtMessage"
         app:layout_constraintStart_toEndOf="@+id/Chatroom_iamge"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +25,6 @@
         android:layout_height="72dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/img_profiletest"
         android:outlineProvider="background"
         android:scaleType="centerCrop"
         android:clipToOutline="true"
@@ -39,7 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="16dp"
-        android:text="보낸시각"
         app:layout_constraintBottom_toTopOf="@+id/txtMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
