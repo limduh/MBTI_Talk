@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mbti_talk.Adapter.UserAdapter
 import com.example.mbti_talk.DetailActivity
 import com.example.mbti_talk.Main.FilterDialogFragment
+import com.example.mbti_talk.Main.GraphMbtiFragment
 import com.example.mbti_talk.R
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentFriendFindBinding
@@ -134,7 +135,7 @@ class FriendFindFragment : Fragment() {
             val filterDialog = FilterDialogFragment() // FilterDialogFragment 클래스의 인스턴스를 생성
 
             filterDialog.setChipClickListener(object :FilterDialogFragment.OnDialogChipClickListener {
-                override fun onChipApply(gender_male: String, gender_female: String, minValue: Int, maxValue: Int, mbtiEI: String, mbtiSN: String, mbtiTF: String, mbtiJP: String) {
+                override fun onChipApply(gender_male: String, gender_female: String, minValue: Int, maxValue: Int, mbtiE : String, mbtiI : String, mbtiS : String, mbtiN : String, mbtiT : String, mbtiF : String, mbtiJ : String, mbtiP : String) {
 
                     val isBothGenderSelected = gender_male.isNotEmpty() && gender_female.isNotEmpty()
 
@@ -146,8 +147,8 @@ class FriendFindFragment : Fragment() {
                             gender_female.isNotEmpty() -> user.user_gender.equals(gender_female, ignoreCase = true)
                             else -> true
                         }
-                        val mbtiMatches = user.user_mbti.contains(mbtiEI) && user.user_mbti.contains(mbtiSN) &&
-                                user.user_mbti.contains(mbtiTF) && user.user_mbti.contains(mbtiJP)
+                        val mbtiMatches = user.user_mbti.contains(mbtiE) && user.user_mbti.contains(mbtiI) &&
+                                user.user_mbti.contains(mbtiS) && user.user_mbti.contains(mbtiN) && user.user_mbti.contains(mbtiT) && user.user_mbti.contains(mbtiF) && user.user_mbti.contains(mbtiJ) && user.user_mbti.contains(mbtiP)
 
                         ageMatches && genderMatches && mbtiMatches
                     }
@@ -158,6 +159,12 @@ class FriendFindFragment : Fragment() {
             })
             // 필터 설정 다이얼로그를 화면에 표시
             filterDialog.show(childFragmentManager, "FilterDialog")
+        }
+
+        // mbti logo 버튼 클릭 시 mbti graph 표시
+        binding.mbtiBtn.setOnClickListener {
+            val mbtiGraphDialog = GraphMbtiFragment() // GraphMbtiFragment 클래스의 인스턴스를 생성
+            mbtiGraphDialog.show(childFragmentManager, "GraphMbti")
         }
     }
 }

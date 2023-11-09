@@ -7,138 +7,120 @@
     tools:context=".FriendFind.FriendFindFragment"
     android:id="@+id/Friend_list_frag">
 
-    <!--    <FrameLayout-->
-    <!--        android:id="@+id/main_frame"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_margin="1dp"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/main_nav"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent">-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/mbti_btn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/mbti_btn"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/mbti_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/filter_second"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/filter_btn"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="20dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:background="@drawable/filter_btn1"
             android:src="@drawable/filter_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!--        <androidx.appcompat.widget.AppCompatImageView-->
-        <!--            android:id="@+id/filter_btn1"-->
-        <!--            android:layout_width="40dp"-->
-        <!--            android:layout_height="40dp"-->
-        <!--            android:src="@drawable/filter_btn1"-->
-        <!--            android:layout_marginStart="20dp"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/filter_gender"
             android:layout_width="50dp"
             android:layout_height="30dp"
-            android:layout_marginStart="20dp"
             android:src="@drawable/filter_group_kit"
-            app:layout_constraintBottom_toBottomOf="@id/filter_btn"
+            android:layout_marginStart="20dp"
             app:layout_constraintStart_toEndOf="@id/filter_btn"
-            app:layout_constraintTop_toTopOf="@id/filter_btn" />
+            app:layout_constraintTop_toTopOf="@id/filter_btn"
+            app:layout_constraintBottom_toBottomOf="@id/filter_btn"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="남자"
-            android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/filter_gender"
-            app:layout_constraintEnd_toEndOf="@id/filter_gender"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="@id/filter_gender"
-            app:layout_constraintTop_toTopOf="@id/filter_gender" />
+            app:layout_constraintEnd_toEndOf="@id/filter_gender"
+            app:layout_constraintTop_toTopOf="@id/filter_gender"
+            app:layout_constraintBottom_toBottomOf="@id/filter_gender"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/filter_age"
             android:layout_width="50dp"
             android:layout_height="30dp"
-            android:layout_marginStart="10dp"
             android:src="@drawable/filter_group_kit"
-            app:layout_constraintBottom_toBottomOf="@id/filter_gender"
+            android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@id/filter_gender"
-            app:layout_constraintTop_toTopOf="@id/filter_gender" />
+            app:layout_constraintTop_toTopOf="@id/filter_gender"
+            app:layout_constraintBottom_toBottomOf="@id/filter_gender"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="20-30"
-            android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/filter_age"
-            app:layout_constraintEnd_toEndOf="@id/filter_age"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="@id/filter_age"
-            app:layout_constraintTop_toTopOf="@id/filter_age" />
+            app:layout_constraintEnd_toEndOf="@id/filter_age"
+            app:layout_constraintTop_toTopOf="@id/filter_age"
+            app:layout_constraintBottom_toBottomOf="@id/filter_age"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/filter_first"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="10dp"
             android:src="@drawable/filter_group_kit"
-            app:layout_constraintBottom_toBottomOf="@id/filter_age"
+            android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@id/filter_age"
-            app:layout_constraintTop_toTopOf="@id/filter_age" />
+            app:layout_constraintTop_toTopOf="@id/filter_age"
+            app:layout_constraintBottom_toBottomOf="@id/filter_age"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="I"
-            android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/filter_first"
-            app:layout_constraintEnd_toEndOf="@id/filter_first"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="@id/filter_first"
-            app:layout_constraintTop_toTopOf="@id/filter_first" />
+            app:layout_constraintEnd_toEndOf="@id/filter_first"
+            app:layout_constraintTop_toTopOf="@id/filter_first"
+            app:layout_constraintBottom_toBottomOf="@id/filter_first"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/filter_second"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="10dp"
             android:src="@drawable/filter_group_kit"
-            app:layout_constraintBottom_toBottomOf="@id/filter_first"
+            android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@id/filter_first"
-            app:layout_constraintTop_toTopOf="@id/filter_first" />
+            app:layout_constraintTop_toTopOf="@id/filter_first"
+            app:layout_constraintBottom_toBottomOf="@id/filter_first"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="N"
-            android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/filter_second"
-            app:layout_constraintEnd_toEndOf="@id/filter_second"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="@id/filter_second"
-            app:layout_constraintTop_toTopOf="@id/filter_second" />
+            app:layout_constraintEnd_toEndOf="@id/filter_second"
+            app:layout_constraintTop_toTopOf="@id/filter_second"
+            app:layout_constraintBottom_toBottomOf="@id/filter_second"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -153,23 +135,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="친구찾기"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/filter_background"
-        app:layout_constraintBottom_toTopOf="@+id/top_layout" />
 
 
     <!--    app:cbn_titleFont="@font/book"-->

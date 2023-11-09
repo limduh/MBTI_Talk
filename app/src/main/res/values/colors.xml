@@ -9,4 +9,6 @@
     <color name="filter_toolbar">#F5F5F5</color>
     <color name="filter_background">#EAEDEE</color>
     <color name="filter_text">#252525</color>
+    <color name="filter_normal">#e4e5e6</color>
+    <color name="filter_press">#519DE9</color>
 </resources>
