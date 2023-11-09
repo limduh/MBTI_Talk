@@ -55,13 +55,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/forgotTitle" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCancel"
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:text="취소하기"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14sp"
             app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="@id/dialogBox"
@@ -70,13 +70,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editBox" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnReset"
             android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:text="p/w재설정"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="14sp"
             app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="@id/dialogBox"

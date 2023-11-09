@@ -7,411 +7,298 @@
     tools:context=".MyProfile.MyProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Profile_Frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ExtraText">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="내 프로필"
+            android:textSize="17sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/filter_background"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView2" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view4">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아이디 : "
+                android:textColor="@color/gray"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/Profile_email"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextView6"
+                app:layout_constraintTop_toTopOf="@+id/Profile_email" />
+
+            <!--        아이디는 이메일 주소임-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/Profile_email"
+                android:layout_width="154dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="tedsfdfd@adfdfads.com"
+                android:textColor="@color/gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/appCompatTextView5"
+                app:layout_constraintTop_toBottomOf="@+id/Profile_nickname" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="닉네임 : "
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/Profile_nickname"
+                app:layout_constraintEnd_toStartOf="@+id/Profile_nickname"
+                app:layout_constraintTop_toTopOf="@+id/Profile_nickname" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/Profile_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="닉네임 내용"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/Profile_img"
+                app:layout_constraintStart_toStartOf="@+id/Profile_img"
+                app:layout_constraintTop_toBottomOf="@+id/Profile_img" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/Profile_img"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/profile_image_circle_kit"
+                android:clipToOutline="true"
+                android:outlineProvider="background"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--수정버튼-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MBTI 타입"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/appCompatTextView9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/appCompatTextView9" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/Profile_mbti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="ISTJ"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextView10"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView10" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="나이"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/Profile_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="20"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView9"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextView9"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView9" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성별"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/appCompatTextView9"
+                app:layout_constraintTop_toTopOf="@+id/appCompatTextView9" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/Profile_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="남"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView11"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextView11"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView11" />
+
+            <ImageView
+                android:id="@+id/Profile_mbti_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/myprofile_mbti_btn"
+                app:layout_constraintBottom_toBottomOf="@+id/Profile_mbti"
+                app:layout_constraintStart_toEndOf="@+id/Profile_mbti"
+                app:layout_constraintTop_toTopOf="@+id/Profile_mbti" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Profile_const_AccountManage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="20dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/Profile_txt_AccountManage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="계정관리"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--    로그아웃 그림+글 묶어놈 const을 하나의 버튼으로 사용하기 위함-->
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/Profile_Frame"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ExtraText">
+                android:id="@+id/Profile_btn_Logout"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:padding="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/Profile_btn_Memberout"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Profile_txt_AccountManage">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/appCompatTextView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="내 프로필"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView6"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_logout"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="50dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView2">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:text="아이디 : "
-                        android:textColor="@color/gray"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <!--        아이디는 이메일 주소임-->
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/Profile_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="tedsfdfd@adfdfads.com"
-                        app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView5"
-                        app:layout_constraintStart_toEndOf="@+id/appCompatTextView5"
-                        app:layout_constraintTop_toTopOf="@+id/appCompatTextView5" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="닉네임 : "
-                        android:textColor="@color/gray"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/appCompatTextView5"
-                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView5" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/Profile_nickname"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="닉네임 내용"
-                        app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView6"
-                        app:layout_constraintStart_toEndOf="@+id/appCompatTextView6"
-                        app:layout_constraintTop_toTopOf="@+id/appCompatTextView6" />
-
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/Profile_img"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:background="@drawable/profile_image_circle_kit"
-                        android:clipToOutline="true"
-                        android:outlineProvider="background"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_profiletest"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-                <!--수정버튼-->
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout3"
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:layout_marginTop="24dp"
-                    android:background="@color/mbti_default"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextView10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="MBTI 타입"
-                        android:textColor="@color/gray"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="@+id/appCompatTextView9"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/appCompatTextView9" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/Profile_mbti"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ISTJ"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/appCompatTextView10"
-                        app:layout_constraintStart_toStartOf="@+id/appCompatTextView10"
-                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView10" />
-
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextView9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="나이"
-                        android:textColor="@color/gray"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/Profile_age"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="20"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/appCompatTextView9"
-                        app:layout_constraintStart_toStartOf="@+id/appCompatTextView9"
-                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView9" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextView11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="성별"
-                        android:textColor="@color/gray"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/appCompatTextView9"
-                        app:layout_constraintTop_toTopOf="@+id/appCompatTextView9" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/Profile_gender"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="남"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/appCompatTextView11"
-                        app:layout_constraintStart_toStartOf="@+id/appCompatTextView11"
-                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView11" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <!--아래메뉴부분-->
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/Profile_mbti_btn"
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:text="검사/수정하기"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/Profile_const_MyActivity"
-                    app:layout_constraintStart_toStartOf="@+id/Profile_const_MyActivity"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+                    android:layout_marginStart="8dp"
+                    android:text="로그아웃"
+                    app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView6"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView6"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView6" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Profile_const_MyActivity"
-                    android:layout_width="match_parent"
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--    회원탈퇴 그림+글 묶어놈 const을 하나의 버튼으로 사용하기 위함-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/Profile_btn_Memberout"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/Profile_btn_Logout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/Profile_btn_Logout"
+                app:layout_constraintTop_toTopOf="@+id/Profile_btn_Logout">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/Profile_img_Memberout"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_caution_red"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="90dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+                    android:layout_marginStart="8dp"
+                    android:text="회원탈퇴"
+                    app:layout_constraintBottom_toBottomOf="@+id/Profile_img_Memberout"
+                    app:layout_constraintStart_toEndOf="@+id/Profile_img_Memberout"
+                    app:layout_constraintTop_toTopOf="@+id/Profile_img_Memberout" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/appCompatTextView14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="나의 활동"
-                        android:textSize="13sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <!--내가작성한 글 아이콘+글씨 묶어서 버튼으로 활용-->
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/profile_btn_MyWriteList"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:padding="10dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/appCompatTextView14">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/appCompatImageView2"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_bulletin"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="내가 작성한 글"
-                            app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView2"
-                            app:layout_constraintStart_toEndOf="@+id/appCompatImageView2"
-                            app:layout_constraintTop_toTopOf="@+id/appCompatImageView2" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <!--내가작성한 글 아이콘+글씨 묶어서 버튼으로 활용-->
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/profile_btn_MyLikeList"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/profile_btn_MyWriteList">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/ic_bulletin"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_post_like_off"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="내가 좋아요한 글"
-                            app:layout_constraintBottom_toBottomOf="@+id/ic_bulletin"
-                            app:layout_constraintStart_toEndOf="@+id/ic_bulletin"
-                            app:layout_constraintTop_toTopOf="@+id/ic_bulletin" />
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                    <!--차단목록 아이콘+글씨 묶어서 버튼으로 활용-->
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/profile_btn_cutoff"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/profile_btn_MyLikeList">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/ic_img_cutoff"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_cutoff"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="차단목록 관리"
-                            app:layout_constraintBottom_toBottomOf="@+id/ic_img_cutoff"
-                            app:layout_constraintStart_toEndOf="@+id/ic_img_cutoff"
-                            app:layout_constraintTop_toTopOf="@+id/ic_img_cutoff" />
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/Profile_const_AccountManage"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_margin="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Profile_const_MyActivity">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/Profile_txt_AccountManage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="계정관리"
-                        android:textSize="13sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <!--    로그아웃 그림+글 묶어놈 const을 하나의 버튼으로 사용하기 위함-->
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/Profile_btn_Logout"
-                        android:layout_width="130dp"
-                        android:layout_height="60dp"
-                        android:padding="10dp"
-                        app:layout_constraintEnd_toStartOf="@+id/Profile_btn_Memberout"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/Profile_txt_AccountManage">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/appCompatImageView6"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_logout"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="로그아웃"
-                            app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView6"
-                            app:layout_constraintStart_toEndOf="@+id/appCompatImageView6"
-                            app:layout_constraintTop_toTopOf="@+id/appCompatImageView6" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <!--    회원탈퇴 그림+글 묶어놈 const을 하나의 버튼으로 사용하기 위함-->
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/Profile_btn_Memberout"
-                        android:layout_width="130dp"
-                        android:layout_height="60dp"
-                        android:padding="10dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/Profile_btn_Logout"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/Profile_btn_Logout"
-                        app:layout_constraintTop_toTopOf="@+id/Profile_btn_Logout">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/Profile_img_Memberout"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:src="@drawable/ic_caution_red"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="회원탈퇴"
-                            app:layout_constraintBottom_toBottomOf="@+id/Profile_img_Memberout"
-                            app:layout_constraintStart_toEndOf="@+id/Profile_img_Memberout"
-                            app:layout_constraintTop_toTopOf="@+id/Profile_img_Memberout" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                    <!--    계정관리 레이아웃 화면-->
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <!--            //전체네모임 아래는-->
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </ScrollView>
+            <!--    계정관리 레이아웃 화면-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!--            //전체네모임 아래는-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
