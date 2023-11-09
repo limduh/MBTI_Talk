@@ -179,6 +179,7 @@ class PostWriteActivity : AppCompatActivity() {
                     val user_age = userData.user_age
 
 
+                    val postId = userUid!! + getTime() ;
                     if (user_nickName != null && user_profile != null) {
                         user.apply {
                             this.user_nickName = user_nickName
@@ -186,8 +187,9 @@ class PostWriteActivity : AppCompatActivity() {
                             this.user_mbti = user_mbti
                             this.user_gender = user_gender
                             this.user_age = user_age
+                            this.postId = postId
                         }
-                        FirebaseData.mydata.child(userUid!! + getTime())
+                        FirebaseData.mydata.child(postId)
                             .setValue(user)
                     }
                 }
@@ -236,6 +238,7 @@ class PostWriteActivity : AppCompatActivity() {
 }
 
 class PostData {
+    var postId: String = "" // 게시물 고유 식별자
     var user_uid: String = "" // 게시물 고유 식별자
     var title: String = ""
     var content: String = ""
@@ -246,8 +249,7 @@ class PostData {
     var user_mbti: String = ""
     var user_gender: String = ""
     var user_age: Int = 0
-    var likeCount: Int = 0
-    var likeByUser: Boolean = false
+    var likeByUser : MutableMap<String, Boolean> = HashMap()
 
     constructor()
     constructor(title: String, content: String, time: String, image: String) {

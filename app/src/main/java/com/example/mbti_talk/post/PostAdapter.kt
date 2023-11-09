@@ -1,27 +1,21 @@
 package com.example.mbti_talk.post
 
 import android.content.Intent
-import android.net.Uri
-import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.mbti_talk.R
 import com.example.mbti_talk.databinding.ActivityPostItemBinding
-import com.google.firebase.Firebase
-import com.google.firebase.database.database
 import com.google.firebase.storage.FirebaseStorage
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
-class PostAdapter(private var postList: List<PostData>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PostAdapter(private var postList: List<PostData>, val myUid: String?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // onCreateViewHolder 메서드에서 뷰홀더를 생성합니다.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -65,9 +59,12 @@ class PostAdapter(private var postList: List<PostData>) : RecyclerView.Adapter<R
         }
 
         fun bind(postData: PostData) = binding.apply {
+            Log.d("PostAdapter","jblee bind>>  $adapterPosition ")
+
             binding.PostItemTitle.text = postData.title
             binding.PostItemTime.text = postData.time
             binding.PostItemTxtUserNickname.text = postData.user_nickName
+            val postId = postData.postId
 
             val storage = FirebaseStorage.getInstance()
             val reference = storage.getReference("images/${postData.image}")
@@ -85,31 +82,70 @@ class PostAdapter(private var postList: List<PostData>) : RecyclerView.Adapter<R
                     .into(PostItemImgUserprofile)
             }
 
+            val isCheck = getLikeState(postId, myUid!!) ;
+            Log.d("PostAdapter","jblee bind>>  $adapterPosition  isCheck = $isCheck ")
+
+            if(isCheck)
+                binding.PostItemLike.setImageResource(R.drawable.ic_post_like_on)
+            else
+                binding.PostItemLike.setImageResource(R.drawable.ic_post_like_off)
+
+
             val postsRef = FirebaseData.database.getReference("posts")
+
             binding.PostItemLike.setOnClickListener {
-                postData.likeByUser = !postData.likeByUser
 
-                if (postData.likeByUser) {
-                    postData.likeCount++
-                    binding.PostItemLike.setImageResource(R.drawable.ic_post_like_on)
-                    Toast.makeText(itemView.context, "좋아요를 눌렀습니다.", Toast.LENGTH_SHORT).show()
-                } else {
-                    postData.likeCount--
-                    binding.PostItemLike.setImageResource(R.drawable.ic_post_like_off)
+                val isCheck = getLikeState(postId, myUid!!) ;
+
+                if(isCheck){
+                    postsRef.child(postId).child("likeByUser").child(myUid!!).setValue(false)
                     Toast.makeText(itemView.context, "좋아요를 취소했습니다.", Toast.LENGTH_SHORT).show()
-                }
-                val postId = postData.user_uid+postData.time
-                postsRef.child(postId).child("likeByUser").setValue(postData.likeByUser)
-                postsRef.child(postId).child("likeCount").setValue(postData.likeCount)
+                    postList.get(adapterPosition).likeByUser.set(myUid,false)
 
+                }else {
+                    postsRef.child(postId).child("likeByUser").child(myUid!!).setValue(true)
+                    Toast.makeText(itemView.context, "좋아요를 눌렀습니다.", Toast.LENGTH_SHORT).show()
+                    postList.get(adapterPosition).likeByUser.set(myUid,true)
+                }
+                Log.d("PostAdapter","jblee $adapterPosition / myUid = $myUid / value = ${!isCheck} ")
+
+                notifyItemChanged(adapterPosition)
             }
         }
+    }
+
+
+
+
+    fun getTime(): String {
+        val currentDateTime = Calendar.getInstance().time
+        val dateFormat =
+            SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(currentDateTime)
+
+        return dateFormat
     }
     fun updateList(newList: List<PostData>) {
         postList = newList
         notifyDataSetChanged()
     }
     fun getLikedPosts(): List<PostData> {
-        return postList.filter { it.likeByUser }
+        return postList.filter {it.likeByUser.get(myUid)==true }
+    }
+
+
+
+
+    private fun getLikeState(postId:String,  uId:String): Boolean{
+
+        var res = false
+
+        val post = postList.filter { it.postId==postId && it.likeByUser.get(uId)==true }
+
+        if(post.isNotEmpty())
+            res = true
+
+        return res
+
+
     }
 }
