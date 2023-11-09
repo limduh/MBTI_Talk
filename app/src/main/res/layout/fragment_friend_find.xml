@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,6 +25,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/txt_TItle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="친구 찾기"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/filter_btn"
             android:layout_width="44dp"
@@ -34,109 +46,136 @@
             android:scaleType="centerInside"
             android:adjustViewBounds="true"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/filter_gender"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:src="@drawable/filter_group_kit"
-            android:layout_marginStart="20dp"
-            app:layout_constraintStart_toEndOf="@id/filter_btn"
-            app:layout_constraintTop_toTopOf="@id/filter_btn"
-            app:layout_constraintBottom_toBottomOf="@id/filter_btn"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="남자"
-            android:textSize="12sp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@id/filter_gender"
-            app:layout_constraintEnd_toEndOf="@id/filter_gender"
-            app:layout_constraintTop_toTopOf="@id/filter_gender"
-            app:layout_constraintBottom_toBottomOf="@id/filter_gender"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/filter_age"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:src="@drawable/filter_group_kit"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@id/filter_gender"
-            app:layout_constraintTop_toTopOf="@id/filter_gender"
-            app:layout_constraintBottom_toBottomOf="@id/filter_gender"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="20-30"
-            android:textSize="12sp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@id/filter_age"
-            app:layout_constraintEnd_toEndOf="@id/filter_age"
-            app:layout_constraintTop_toTopOf="@id/filter_age"
-            app:layout_constraintBottom_toBottomOf="@id/filter_age"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/filter_first"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/filter_group_kit"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@id/filter_age"
-            app:layout_constraintTop_toTopOf="@id/filter_age"
-            app:layout_constraintBottom_toBottomOf="@id/filter_age"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="I"
-            android:textSize="12sp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@id/filter_first"
-            app:layout_constraintEnd_toEndOf="@id/filter_first"
-            app:layout_constraintTop_toTopOf="@id/filter_first"
-            app:layout_constraintBottom_toBottomOf="@id/filter_first"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/filter_second"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/filter_group_kit"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toEndOf="@id/filter_first"
-            app:layout_constraintTop_toTopOf="@id/filter_first"
-            app:layout_constraintBottom_toBottomOf="@id/filter_first"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="N"
-            android:textSize="12sp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@id/filter_second"
-            app:layout_constraintEnd_toEndOf="@id/filter_second"
-            app:layout_constraintTop_toTopOf="@id/filter_second"
-            app:layout_constraintBottom_toBottomOf="@id/filter_second"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--    </FrameLayout>-->
+    <View
+        android:id="@+id/view7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/filter_background"
+        app:layout_constraintBottom_toBottomOf="@+id/top_layout" />
+
+    <LinearLayout
+        android:id="@+id/ll_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="28dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/Friend_find_frag_rv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_layout">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_gender_male"
+            android:layout_width="50dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/background_filter"
+            android:padding="4dp"
+            android:text="남자"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_gender_female"
+            android:layout_width="50dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/background_filter"
+            android:padding="4dp"
+            android:text="여자"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_age"
+            android:layout_width="60dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/background_filter"
+            android:padding="4dp"
+            android:text="20~30"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_mbti1"
+            android:layout_width="20dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/background_filter"
+            android:padding="4dp"
+            android:text="E"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_mbti2"
+            android:layout_width="20dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/background_filter"
+            android:padding="4dp"
+            android:text="N"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_mbti3"
+            android:layout_width="20dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/background_filter"
+            android:padding="4dp"
+            android:text="T"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filter_mbti4"
+            android:layout_width="20dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/background_filter"
+            android:padding="4dp"
+            android:text="J"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Friend_find_frag_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintTop_toBottomOf="@id/top_layout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-
-
-
-    <!--    app:cbn_titleFont="@font/book"-->
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

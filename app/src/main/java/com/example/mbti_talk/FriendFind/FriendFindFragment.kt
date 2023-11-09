@@ -8,17 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatImageButton
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mbti_talk.Adapter.UserAdapter
 import com.example.mbti_talk.DetailActivity
 import com.example.mbti_talk.Main.FilterDialogFragment
 import com.example.mbti_talk.Main.GraphMbtiFragment
-import com.example.mbti_talk.R
 import com.example.mbti_talk.UserData
 import com.example.mbti_talk.databinding.FragmentFriendFindBinding
 import com.example.mbti_talk.utils.Utils
@@ -45,7 +40,6 @@ class FriendFindFragment : Fragment() {
     ): View? {
         // XML 레이아웃을 화면에 그리기 위해 바인딩 객체 생성
         binding = FragmentFriendFindBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -135,7 +129,50 @@ class FriendFindFragment : Fragment() {
             val filterDialog = FilterDialogFragment() // FilterDialogFragment 클래스의 인스턴스를 생성
 
             filterDialog.setChipClickListener(object :FilterDialogFragment.OnDialogChipClickListener {
-                override fun onChipApply(gender_male: String, gender_female: String, minValue: Int, maxValue: Int, mbtiE : String, mbtiI : String, mbtiS : String, mbtiN : String, mbtiT : String, mbtiF : String, mbtiJ : String, mbtiP : String) {
+                override fun onChipApply(
+                    gender_male: String,
+                    gender_female: String,
+                    minValue: Int,
+                    maxValue: Int,
+                    mbtiE: String,
+                    mbtiI: String,
+                    mbtiS: String,
+                    mbtiN: String,
+                    mbtiT: String,
+                    mbtiF: String,
+                    mbtiJ: String,
+                    mbtiP: String,
+                ) {
+
+                    if (gender_male.isNotEmpty()) {
+                        binding.filterGenderMale.visibility = View.VISIBLE
+                        binding.filterGenderMale.text = gender_male
+                    } else {
+                        binding.filterGenderMale.visibility = View.GONE
+                    }
+
+                    if (gender_female.isNotEmpty()) {
+                        binding.filterGenderFemale.visibility = View.VISIBLE
+                        binding.filterGenderFemale.text = gender_female
+                    } else {
+                        binding.filterGenderFemale.visibility = View.GONE
+                    }
+
+                    val ageRangeText = "$minValue~$maxValue"
+                    binding.filterAge.text = ageRangeText
+
+                    // Set visibility and text for MBTI filters
+                    binding.filterMbti1.visibility = if (mbtiI.isNotEmpty() || mbtiE.isNotEmpty()) View.VISIBLE else View.GONE
+                    binding.filterMbti1.text = if (mbtiI.isNotEmpty()) mbtiI else mbtiE
+
+                    binding.filterMbti2.visibility = if (mbtiS.isNotEmpty() || mbtiN.isNotEmpty()) View.VISIBLE else View.GONE
+                    binding.filterMbti2.text = if (mbtiS.isNotEmpty()) mbtiS else mbtiN
+
+                    binding.filterMbti3.visibility = if (mbtiT.isNotEmpty() || mbtiF.isNotEmpty()) View.VISIBLE else View.GONE
+                    binding.filterMbti3.text = if (mbtiT.isNotEmpty()) mbtiT else mbtiF
+
+                    binding.filterMbti4.visibility = if (mbtiJ.isNotEmpty() || mbtiP.isNotEmpty()) View.VISIBLE else View.GONE
+                    binding.filterMbti4.text = if (mbtiJ.isNotEmpty()) mbtiJ else mbtiP
 
                     val isBothGenderSelected = gender_male.isNotEmpty() && gender_female.isNotEmpty()
 
