@@ -46,16 +46,14 @@ class LogInActivity : AppCompatActivity() {
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        firebaseAuth = FirebaseAuth.getInstance()
+
         val etxtId = binding.LoginEtxtId
         val etxtPassword = binding.LoginEtxtPassword
         val btnLogin = binding.LoginBtnLogin
         val btnSignUp = binding.loginTxtSignUp
-        firebaseAuth = FirebaseAuth.getInstance()
         val etxtFindPw = binding.loginTxtFindPW
 
-
-        val get_email = intent.getStringExtra("email")
-        val get_password = intent.getStringExtra("password")
 
         //구글 이미지 버튼
         val imageViewGoogle = binding.LoginImageViewGoogle
@@ -66,7 +64,6 @@ class LogInActivity : AppCompatActivity() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
-
 
         userDB = Firebase.database.reference.child("Users")
 
