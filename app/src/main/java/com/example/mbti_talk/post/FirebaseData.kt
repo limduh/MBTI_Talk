@@ -1,4 +1,4 @@
-package com.example.mbti_talk.post
+package nb_.mbti_talk.post
 
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase

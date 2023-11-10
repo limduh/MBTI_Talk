@@ -1,4 +1,4 @@
-package com.example.mbti_talk.FriendFind
+package nb_.mbti_talk.FriendFind
 
 import android.content.Context
 import android.content.Intent
@@ -14,14 +14,14 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mbti_talk.Adapter.UserAdapter
-import com.example.mbti_talk.DetailActivity
-import com.example.mbti_talk.Main.FilterDialogFragment
-import com.example.mbti_talk.Main.GraphMbtiFragment
-import com.example.mbti_talk.R
-import com.example.mbti_talk.UserData
-import com.example.mbti_talk.databinding.FragmentFriendFindBinding
-import com.example.mbti_talk.utils.Utils
+import nb_.mbti_talk.Adapter.UserAdapter
+import nb_.mbti_talk.DetailActivity
+import nb_.mbti_talk.Main.FilterDialogFragment
+import nb_.mbti_talk.Main.GraphMbtiFragment
+import nb_.mbti_talk.R
+import nb_.mbti_talk.UserData
+import nb_.mbti_talk.databinding.FragmentFriendFindBinding
+import nb_.mbti_talk.utils.Utils
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference

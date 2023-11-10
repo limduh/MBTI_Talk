@@ -1,4 +1,4 @@
-package com.example.mbti_talk.Chat
+package nb_.mbti_talk.Chat
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mbti_talk.databinding.FragmentChatBinding
+import nb_.mbti_talk.databinding.FragmentChatBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 

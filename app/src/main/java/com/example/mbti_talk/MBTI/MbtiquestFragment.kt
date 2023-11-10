@@ -1,4 +1,4 @@
-package com.example.mbti_talk.MBTI
+package nb_.mbti_talk.MBTI
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,8 +12,8 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.mbti_talk.Main.BottomActivity
-import com.example.mbti_talk.R
+import nb_.mbti_talk.Main.BottomActivity
+import nb_.mbti_talk.R
 
 class MbtiquestFragment : Fragment() {
     private var questionType: Int = 0

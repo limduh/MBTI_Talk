@@ -1,10 +1,10 @@
-package com.example.mbti_talk.MBTI
+package nb_.mbti_talk.MBTI
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.example.mbti_talk.R
+import nb_.mbti_talk.R
 
 class MbtiTestActivity : AppCompatActivity() {
 

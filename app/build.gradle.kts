@@ -10,11 +10,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mbti_talk"
+    namespace = "nb_.mbti_talk"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.mbti_talk"
+        applicationId = "nb_.mbti_talk"
         minSdk = 26
         targetSdk = 33
         versionCode = 1

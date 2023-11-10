@@ -1,4 +1,4 @@
-package com.example.mbti_talk.post
+package nb_.mbti_talk.post
 
 import android.content.Context
 import android.content.Intent
@@ -11,10 +11,10 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mbti_talk.R
+import nb_.mbti_talk.R
 
-import com.example.mbti_talk.databinding.ActivityPostListBinding
-import com.example.mbti_talk.utils.Utils
+import nb_.mbti_talk.databinding.ActivityPostListBinding
+import nb_.mbti_talk.utils.Utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
