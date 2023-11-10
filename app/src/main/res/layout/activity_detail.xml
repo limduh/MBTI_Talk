@@ -66,8 +66,8 @@
             android:id="@+id/Detail_txt_friendAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="친구추가"
             android:layout_marginTop="-5dp"
+            android:text="친구추가"
             android:textSize="11sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/Detail_btn_friendAdd"
@@ -88,8 +88,8 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="채팅하기"
             android:layout_marginTop="-5dp"
+            android:text="채팅하기"
             android:textSize="11sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/Detail_btn_chat"
@@ -175,27 +175,34 @@
             app:layout_constraintStart_toStartOf="@+id/appCompatTextView17"
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView17" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/Detail_btn_cutoff"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="5dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_cutoff"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
+        <LinearLayout
+            android:id="@+id/ll_friend_block"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-5dp"
-            android:text="차단하기"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/Detail_btn_cutoff"
-            app:layout_constraintStart_toStartOf="@+id/Detail_btn_cutoff"
-            app:layout_constraintTop_toBottomOf="@+id/Detail_btn_cutoff" />
+            android:padding="10dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/Detail_btn_cutoff"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_cutoff" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:text="차단하기"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -206,8 +213,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="포스팅"
-        android:textStyle="bold"
         android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Detail_const_UserInfo" />
@@ -232,9 +239,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
-<!--    리사이클러뷰 아이템은 -->
-        
-        
-    
-    
+    <!--    리사이클러뷰 아이템은 -->
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
