@@ -80,16 +80,15 @@
                 android:id="@+id/et_gender"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginStart="18dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/detail_man_kit"
                 android:gravity="center"
                 android:text="남"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/et_nickName"
-                app:layout_constraintStart_toEndOf="@+id/et_nickName"
-                app:layout_constraintTop_toTopOf="@+id/et_nickName" />
+                app:layout_constraintStart_toStartOf="@+id/et_nickName"
+                app:layout_constraintTop_toBottomOf="@+id/et_nickName" />
 
             <TextView
                 android:id="@+id/et_mbti"
@@ -111,10 +110,12 @@
                 android:id="@+id/ll_heart"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="@+id/et_nickName"
-                app:layout_constraintTop_toBottomOf="@+id/et_nickName">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/et_mbti"
+                app:layout_constraintTop_toTopOf="@+id/et_age">
 
                 <ImageView
                     android:id="@+id/iv_heart1"
