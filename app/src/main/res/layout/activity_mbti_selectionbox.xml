@@ -33,7 +33,8 @@
         app:layout_constraintBottom_toTopOf="@+id/Mbti_btn_enter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Mbti_selecbox_V_hline">
+        app:layout_constraintTop_toBottomOf="@+id/Mbti_selecbox_V_hline"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/Mbti_selecbox_mainboard"
@@ -83,7 +84,7 @@
             <RadioGroup
                 android:id="@+id/Mbti_selecbox_1"
                 android:layout_width="wrap_content"
-                android:layout_height="110dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="-20dp"
                 android:background="@drawable/mbti_search_btn"
                 android:gravity="center"
@@ -94,7 +95,7 @@
 
                 <RadioButton
                     android:id="@+id/Mbti_selecbox_E"
-                    android:layout_width="120dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_leftbtn"
                     android:button="@null"
@@ -110,7 +111,7 @@
 
                 <RadioButton
                     android:id="@+id/Mbti_selecbox_I"
-                    android:layout_width="120dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_rightbtn"
                     android:button="@null"
@@ -136,7 +137,7 @@
             <RadioGroup
                 android:id="@+id/Mbti_selecbox_2"
                 android:layout_width="wrap_content"
-                android:layout_height="110dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="-20dp"
                 android:background="@drawable/mbti_search_btn"
                 android:gravity="center"
@@ -147,7 +148,7 @@
 
                 <RadioButton
                     android:id="@+id/Mbti_selecbox_S"
-                    android:layout_width="120dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_leftbtn"
                     android:button="@null"
@@ -163,7 +164,7 @@
 
                 <RadioButton
                     android:id="@+id/Mbti_selecbox_N"
-                    android:layout_width="120dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_rightbtn"
                     android:button="@null"
@@ -173,7 +174,7 @@
 
             <TextView
                 android:id="@+id/Mbti_selecbox_3_title"
-                android:layout_width="120dp"
+                android:layout_width="130dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/mbti_txt_title"
@@ -189,7 +190,7 @@
             <RadioGroup
                 android:id="@+id/Mbti_selecbox_3"
                 android:layout_width="wrap_content"
-                android:layout_height="110dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="-20dp"
                 android:background="@drawable/mbti_search_btn"
                 android:gravity="center"
@@ -200,7 +201,7 @@
 
                 <RadioButton
                     android:id="@+id/Mbti_selecbox_T"
-                    android:layout_width="120dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_leftbtn"
                     android:button="@null"
@@ -216,7 +217,7 @@
 
                 <RadioButton
                     android:id="@+id/Mbti_selecbox_F"
-                    android:layout_width="120dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_rightbtn"
                     android:button="@null"
@@ -242,7 +243,7 @@
             <RadioGroup
                 android:id="@+id/Mbti_selecbox_4"
                 android:layout_width="wrap_content"
-                android:layout_height="110dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="-20dp"
                 android:background="@drawable/mbti_search_btn"
                 android:gravity="center"
@@ -253,7 +254,7 @@
 
                 <RadioButton
                     android:id="@+id/Mbti_selecbox_J"
-                    android:layout_width="120dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_leftbtn"
                     android:button="@null"
@@ -269,7 +270,7 @@
 
                 <RadioButton
                     android:id="@+id/Mbti_selecbox_P"
-                    android:layout_width="120dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/mbti_selecbox_rightbtn"
                     android:button="@null"

@@ -197,10 +197,10 @@
 
             <ImageView
                 android:id="@+id/Profile_mbti_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="5dp"
-                android:src="@drawable/ic_add_post_write"
+                android:src="@drawable/myprofile_mbti_btn"
                 app:layout_constraintBottom_toBottomOf="@+id/Profile_mbti"
                 app:layout_constraintStart_toEndOf="@+id/Profile_mbti"
                 app:layout_constraintTop_toTopOf="@+id/Profile_mbti" />
@@ -214,10 +214,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="20dp"
-            android:layout_marginTop="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Profile_txt_AccountManage"
