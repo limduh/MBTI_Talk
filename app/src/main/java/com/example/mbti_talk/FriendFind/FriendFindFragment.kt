@@ -99,6 +99,7 @@ class FriendFindFragment : Fragment() {
                         userList.add(user) // user data 목록에 추가
                     }
                     userList.sortBy { it.user_compat } // userList라는 사용자 목록을 user_compat 기준으로 오름차순 정렬
+
                 }
                 adapter.setList(userList)
                 adapter.notifyDataSetChanged() // 어댑터에게 데이터 변경을 알림
@@ -187,6 +188,17 @@ class FriendFindFragment : Fragment() {
                     // 필터링 결과 로깅 및 어댑터 업데이트
                     Log.d("FriendFindFragment", "#byurin >>>> ${usrNewList.size} users found with filter")
                     adapter.setList(usrNewList)
+
+                    // 필터링 결과 없을 시 이미지 표시
+                    if (usrNewList.isNotEmpty()) {
+                        Log.d("FriendFindFragment", "#byurin >>>> ${usrNewList.size} users found with filter")
+                        adapter.setList(usrNewList)
+                        binding.friendfindFragImg.visibility = View.GONE // 사용자 목록이 있을 경우 이미지 숨김
+                    } else {
+                        Log.d("FriendFindFragment", "#byurin >>>> No users found with filter")
+                        binding.friendfindFragImg.visibility = View.VISIBLE // 사용자 목록이 없을 경우 이미지 표시
+                        Toast.makeText(requireContext(), "원하는 조건의 친구가 없습니다.", Toast.LENGTH_SHORT).show()
+                    }
                 }
             })
             // 필터 설정 다이얼로그를 화면에 표시
