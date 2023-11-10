@@ -1,4 +1,4 @@
-package com.example.mbti_talk
+package nb_.mbti_talk
 
 
 import android.Manifest
@@ -17,8 +17,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mbti_talk.databinding.ActivitySignUpBinding
-import com.example.mbti_talk.post.PostData
+import nb_.mbti_talk.databinding.ActivitySignUpBinding
+import nb_.mbti_talk.post.PostData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

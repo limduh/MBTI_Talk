@@ -1,4 +1,4 @@
-package com.example.mbti_talk.post
+package nb_.mbti_talk.post
 
 import android.content.Intent
 import android.util.Log
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.mbti_talk.R
-import com.example.mbti_talk.databinding.ActivityPostItemBinding
+import nb_.mbti_talk.R
+import nb_.mbti_talk.databinding.ActivityPostItemBinding
 import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.Calendar

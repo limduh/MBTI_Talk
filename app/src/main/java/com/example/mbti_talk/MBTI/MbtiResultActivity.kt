@@ -1,4 +1,4 @@
-package com.example.mbti_talk.MBTI
+package nb_.mbti_talk.MBTI
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,10 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mbti_talk.Main.BottomActivity
-import com.example.mbti_talk.MyProfile.MyProfileFragment
-import com.example.mbti_talk.R
-import com.example.mbti_talk.post.FirebaseData
+import nb_.mbti_talk.Main.BottomActivity
+import nb_.mbti_talk.MyProfile.MyProfileFragment
+import nb_.mbti_talk.R
+import nb_.mbti_talk.post.FirebaseData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.Locale

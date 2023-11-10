@@ -1,4 +1,4 @@
-package com.example.mbti_talk.Chat
+package nb_.mbti_talk.Chat
 
 import android.content.Context
 import android.graphics.Rect
@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mbti_talk.R
-import com.example.mbti_talk.databinding.ListTalkItemMineBinding
-import com.example.mbti_talk.databinding.ListTalkItemOthersBinding
+import nb_.mbti_talk.R
+import nb_.mbti_talk.databinding.ListTalkItemMineBinding
+import nb_.mbti_talk.databinding.ListTalkItemOthersBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

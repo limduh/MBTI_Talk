@@ -1,4 +1,4 @@
-package com.example.mbti_talk.MBTI
+package nb_.mbti_talk.MBTI
 
 import android.widget.Button
 
