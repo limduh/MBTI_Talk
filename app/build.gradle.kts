@@ -68,7 +68,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     //바텀네비게이션바 의존성추가
-    implementation ("com.google.android.material:material:1.3.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
     implementation ("com.github.qamarelsafadi:CurvedBottomNavigation:0.1.3")
