@@ -55,6 +55,8 @@ class MyProfileFragment : Fragment() {
         binding.ProfileBtnLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(requireContext(), LogInActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
 
         }
@@ -154,6 +156,8 @@ class MyProfileFragment : Fragment() {
         binding.SignoutBtnCheck.setOnClickListener {
             revokeAccess()
             val intent = Intent(requireContext(), LogInActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             alertDialog.dismiss()
 
