@@ -8,17 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatImageButton
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import nb_.mbti_talk.Adapter.UserAdapter
 import nb_.mbti_talk.DetailActivity
 import nb_.mbti_talk.Main.FilterDialogFragment
 import nb_.mbti_talk.Main.GraphMbtiFragment
-import nb_.mbti_talk.R
 import nb_.mbti_talk.UserData
 import nb_.mbti_talk.databinding.FragmentFriendFindBinding
 import nb_.mbti_talk.utils.Utils
@@ -62,6 +57,9 @@ class FriendFindFragment : Fragment() {
     * 여기서 view는 onCreateView에서 반환한 뷰 */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // 기존에 추가된 사용자 목록을 초기화
+        userList.clear()
 
         Log.d("FriendFindFragment", "onViewCreated")
 
