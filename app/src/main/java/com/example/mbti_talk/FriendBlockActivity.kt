@@ -61,6 +61,11 @@ class FriendBlockActivity : AppCompatActivity() {
 
         currentUserUid = Utils.getMyUid(this).toString() // util 함수 통해 현재 사용자 uid 가져오기
 
+        // "뒤로가기" 버튼 클릭 이벤트 처리
+        binding.blockBtnBack.setOnClickListener {
+            finish() // 다이얼로그 닫기
+        }
+
     }
 
 
@@ -190,4 +195,5 @@ class FriendBlockActivity : AppCompatActivity() {
                 }
             })
     }
+
 }
