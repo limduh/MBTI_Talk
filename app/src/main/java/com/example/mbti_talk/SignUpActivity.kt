@@ -163,6 +163,15 @@ class SignUpActivity : AppCompatActivity() {
                 if (SignupActivity_id.isNotEmpty() && SignupActivity_pass.isNotEmpty() && SignupActivity_confirmPass.isNotEmpty()) {
                     Log.d("Signup", "#dudu myProfileUrichack2=$myProfileUri")
 
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("잠시만 기다려 주세요")
+                    builder.setIcon(R.mipmap.ic_mbti_talk)
+
+                    val v1 = layoutInflater.inflate(R.layout.progressbar, null)
+                    builder.setView(v1)
+
+                    builder.show()
+
 
                     // 비밀번호 일치 여부 확인
                     if (SignupActivity_pass == SignupActivity_confirmPass) {

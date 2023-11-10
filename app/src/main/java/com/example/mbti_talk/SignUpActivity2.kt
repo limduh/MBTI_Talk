@@ -135,6 +135,15 @@ class SignUpActivity2 : AppCompatActivity() {
 
             if (validNick) {
 
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("잠시만 기다려 주세요")
+                builder.setIcon(R.mipmap.ic_mbti_talk)
+
+                val v1 = layoutInflater.inflate(R.layout.progressbar, null)
+                builder.setView(v1)
+
+                builder.show()
+
                 // 유저가 입력한 회원가입 정보 가져오기
                 val SignupActivity_age = binding.SignUpEtxtAge.text.toString().toInt()
                 val SignupActivity_nickName = binding.SignUpEtxtNickName.text.toString()
