@@ -1,4 +1,4 @@
-package com.example.mbti_talk
+package nb_.mbti_talk
 
 import android.app.Activity
 import android.content.Intent
@@ -11,10 +11,10 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mbti_talk.MBTI.MbtiActivity
-import com.example.mbti_talk.Main.BottomActivity
-import com.example.mbti_talk.databinding.ActivityLogInBinding
-import com.example.mbti_talk.utils.Utils
+import nb_.mbti_talk.MBTI.MbtiActivity
+import nb_.mbti_talk.Main.BottomActivity
+import nb_.mbti_talk.databinding.ActivityLogInBinding
+import nb_.mbti_talk.utils.Utils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

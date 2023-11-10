@@ -1,4 +1,4 @@
-package com.example.mbti_talk.MyProfile
+package nb_.mbti_talk.MyProfile
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -9,13 +9,13 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.example.mbti_talk.LogInActivity
-import com.example.mbti_talk.MBTI.MbtiActivity
-import com.example.mbti_talk.MBTI.MbtiDialogChoice
-import com.example.mbti_talk.MBTI.MbtiTestActivity
-import com.example.mbti_talk.R
-import com.example.mbti_talk.UserData
-import com.example.mbti_talk.databinding.FragmentMyProfileBinding
+import nb_.mbti_talk.LogInActivity
+import nb_.mbti_talk.MBTI.MbtiActivity
+import nb_.mbti_talk.MBTI.MbtiDialogChoice
+import nb_.mbti_talk.MBTI.MbtiTestActivity
+import nb_.mbti_talk.R
+import nb_.mbti_talk.UserData
+import nb_.mbti_talk.databinding.FragmentMyProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -141,10 +141,10 @@ class MyProfileFragment : Fragment() {
     }
 
     private fun signoutDialog() {
-        val dialogView = LayoutInflater.from(requireContext()).inflate(com.example.mbti_talk.R.layout.dialog_signout, null)
+        val dialogView = LayoutInflater.from(requireContext()).inflate(nb_.mbti_talk.R.layout.dialog_signout, null)
         val binding = SignoutDialogChoice(
-            dialogView.findViewById(com.example.mbti_talk.R.id.Signout_btn_check),
-            dialogView.findViewById(com.example.mbti_talk.R.id.Signout_btn_cancel)
+            dialogView.findViewById(nb_.mbti_talk.R.id.Signout_btn_check),
+            dialogView.findViewById(nb_.mbti_talk.R.id.Signout_btn_cancel)
         )
 
         val alertDialog = android.app.AlertDialog.Builder(requireContext())

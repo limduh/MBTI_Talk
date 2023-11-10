@@ -1,12 +1,12 @@
-package com.example.mbti_talk.post
+package nb_.mbti_talk.post
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.bumptech.glide.Glide
-import com.example.mbti_talk.DetailActivity
-import com.example.mbti_talk.databinding.ActivityPostDetailBinding
+import nb_.mbti_talk.DetailActivity
+import nb_.mbti_talk.databinding.ActivityPostDetailBinding
 import com.google.firebase.storage.FirebaseStorage
 
 class PostDetailActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.mbti_talk.Chat
+package nb_.mbti_talk.Chat
 
 import java.io.Serializable
 

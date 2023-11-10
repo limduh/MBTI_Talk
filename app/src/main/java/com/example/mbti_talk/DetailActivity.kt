@@ -1,4 +1,4 @@
-package com.example.mbti_talk
+package nb_.mbti_talk
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,11 +9,11 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.bumptech.glide.Glide
-import com.example.mbti_talk.Chat.ChatRoom
-import com.example.mbti_talk.Chat.ChatRoomActivity
-import com.example.mbti_talk.Chat.User
-import com.example.mbti_talk.databinding.ActivityDetailBinding
-import com.example.mbti_talk.utils.Utils
+import nb_.mbti_talk.Chat.ChatRoom
+import nb_.mbti_talk.Chat.ChatRoomActivity
+import nb_.mbti_talk.Chat.User
+import nb_.mbti_talk.databinding.ActivityDetailBinding
+import nb_.mbti_talk.utils.Utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

@@ -1,8 +1,8 @@
-package com.example.mbti_talk.post
+package nb_.mbti_talk.post
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.mbti_talk.R
+import nb_.mbti_talk.R
 
 class PostMyDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

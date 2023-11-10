@@ -1,4 +1,4 @@
-package com.example.mbti_talk.MyProfile
+package nb_.mbti_talk.MyProfile
 
 import android.widget.Button
 

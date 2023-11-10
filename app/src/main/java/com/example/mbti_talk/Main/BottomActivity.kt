@@ -1,4 +1,4 @@
-package com.example.mbti_talk.Main
+package nb_.mbti_talk.Main
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -7,13 +7,13 @@ import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.example.mbti_talk.R
-import com.example.mbti_talk.databinding.ActivityBottomBinding
-import com.example.mbti_talk.FriendFind.FriendFindFragment
-import com.example.mbti_talk.post.PostFragment
-import com.example.mbti_talk.Chat.ChatFragment
-import com.example.mbti_talk.FriendList.FriendListFragment
-import com.example.mbti_talk.MyProfile.MyProfileFragment
+import nb_.mbti_talk.R
+import nb_.mbti_talk.databinding.ActivityBottomBinding
+import nb_.mbti_talk.FriendFind.FriendFindFragment
+import nb_.mbti_talk.post.PostFragment
+import nb_.mbti_talk.Chat.ChatFragment
+import nb_.mbti_talk.FriendList.FriendListFragment
+import nb_.mbti_talk.MyProfile.MyProfileFragment
 import com.tauheed.wavybottomnavigation.WavyBottomNavigation
 import com.tauheed.wavybottomnavigation.WavyBottomNavigationCell
 

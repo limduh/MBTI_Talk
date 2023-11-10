@@ -1,8 +1,8 @@
-package com.example.mbti_talk.utils
+package nb_.mbti_talk.utils
 
 
 import android.content.Context
-import com.example.mbti_talk.MBTI.Mbti
+import nb_.mbti_talk.MBTI.Mbti
 
 object Utils {
     /**

@@ -1,4 +1,4 @@
-package com.example.mbti_talk
+package nb_.mbti_talk
 
 
 import android.Manifest
@@ -17,10 +17,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mbti_talk.MBTI.MbtiActivity
-import com.example.mbti_talk.databinding.ActivitySignUp2Binding
-import com.example.mbti_talk.databinding.ActivitySignUpBinding
-import com.example.mbti_talk.post.PostData
+import nb_.mbti_talk.MBTI.MbtiActivity
+import nb_.mbti_talk.databinding.ActivitySignUp2Binding
+import nb_.mbti_talk.databinding.ActivitySignUpBinding
+import nb_.mbti_talk.post.PostData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -134,6 +134,15 @@ class SignUpActivity2 : AppCompatActivity() {
             val validNick = binding.SignUpConstNickName.helperText == null
 
             if (validNick) {
+
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("잠시만 기다려 주세요")
+                builder.setIcon(R.mipmap.ic_mbti_talk)
+
+                val v1 = layoutInflater.inflate(R.layout.progressbar, null)
+                builder.setView(v1)
+
+                builder.show()
 
                 // 유저가 입력한 회원가입 정보 가져오기
                 val SignupActivity_age = binding.SignUpEtxtAge.text.toString().toInt()

@@ -1,4 +1,4 @@
-package com.example.mbti_talk;
+package nb_.mbti_talk;
 
 import android.content.Context;
 
