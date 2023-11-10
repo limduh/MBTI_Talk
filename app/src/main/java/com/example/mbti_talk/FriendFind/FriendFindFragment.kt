@@ -168,11 +168,12 @@ class FriendFindFragment : Fragment() {
                     }
 
                     // 필터링 결과 로깅 및 어댑터 업데이트
-                    Log.d("FriendFindFragment", "#byurin >>>> ${usrNewList.size} users found with filter")
                     adapter.setList(usrNewList)
+                    Log.d("FriendFindFragment", "#byurin >>>> ${usrNewList.size} users found with filter")
+
 
                     // 필터링 결과 없을 시 이미지 표시
-                    if (usrNewList.isNotEmpty()) {
+                    if (usrNewList.size!=0) {
                         Log.d("FriendFindFragment", "#byurin >>>> ${usrNewList.size} users found with filter")
                         adapter.setList(usrNewList)
                         binding.friendfindFragImg.visibility = View.GONE // 사용자 목록이 있을 경우 이미지 숨김
