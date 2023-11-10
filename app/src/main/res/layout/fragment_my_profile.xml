@@ -294,6 +294,16 @@
             <!--    계정관리 레이아웃 화면-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/tv_blockFriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="32dp"
+            android:text="친구 차단 목록"
+            app:layout_constraintBottom_toTopOf="@+id/Profile_const_AccountManage"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
         <!--            //전체네모임 아래는-->
     </androidx.constraintlayout.widget.ConstraintLayout>
