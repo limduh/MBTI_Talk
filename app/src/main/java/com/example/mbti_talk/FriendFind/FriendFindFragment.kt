@@ -1,4 +1,4 @@
-package com.example.mbti_talk.FriendFind
+package nb_.mbti_talk.FriendFind
 
 import android.content.Context
 import android.content.Intent
@@ -8,15 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mbti_talk.Adapter.UserAdapter
-import com.example.mbti_talk.DetailActivity
-import com.example.mbti_talk.Main.FilterDialogFragment
-import com.example.mbti_talk.Main.GraphMbtiFragment
-import com.example.mbti_talk.UserData
-import com.example.mbti_talk.databinding.FragmentFriendFindBinding
-import com.example.mbti_talk.utils.Utils
+import nb_.mbti_talk.Adapter.UserAdapter
+import nb_.mbti_talk.DetailActivity
+import nb_.mbti_talk.Main.FilterDialogFragment
+import nb_.mbti_talk.Main.GraphMbtiFragment
+import nb_.mbti_talk.R
+import nb_.mbti_talk.UserData
+import nb_.mbti_talk.databinding.FragmentFriendFindBinding
+import nb_.mbti_talk.utils.Utils
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -40,6 +45,7 @@ class FriendFindFragment : Fragment() {
     ): View? {
         // XML 레이아웃을 화면에 그리기 위해 바인딩 객체 생성
         binding = FragmentFriendFindBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -77,6 +83,23 @@ class FriendFindFragment : Fragment() {
         // 사용자 데이터를 RDB 에서 가져오기
         val currentUserUid = Utils.getMyUid(requireContext())
 
+        fun applyFilterConditions(ageCondition: Int?, genderCondition: String?, mbtiCondition: String?) {
+            Utils.saveFilterConditions(requireContext(), ageCondition, genderCondition, mbtiCondition)
+
+            val (filteredAge, filteredGender, filteredMbti) = Utils.getFilterConditions(requireContext())
+
+            val filteredList = userList.filter { user ->
+                val ageMatches = filteredAge?.let { user.user_age >= it } ?: true
+                val genderMatches = filteredGender?.let { user.user_gender.equals(it) } ?: true
+                val mbtiMatches = filteredMbti?.let { user.user_mbti == it } ?: true
+
+                ageMatches && genderMatches && mbtiMatches
+            }
+            userList.clear()
+            userList.addAll(filteredList)
+            adapter.notifyDataSetChanged()
+        }
+
         userDB
             .orderByChild("user_age")
             .limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
@@ -111,78 +134,26 @@ class FriendFindFragment : Fragment() {
         binding.filterBtn.setOnClickListener {
             val filterDialog = FilterDialogFragment() // FilterDialogFragment 클래스의 인스턴스를 생성
 
-            // FilterDialogFragment 에서 필터 설정이 적용되었을 때 적용된 항목을 TextView 에 표시
             filterDialog.setChipClickListener(object :FilterDialogFragment.OnDialogChipClickListener {
-                override fun onChipApply(
-                    gender_male: String,
-                    gender_female: String,
-                    minValue: Int,
-                    maxValue: Int,
-                    mbtiE: String,
-                    mbtiI: String,
-                    mbtiS: String,
-                    mbtiN: String,
-                    mbtiT: String,
-                    mbtiF: String,
-                    mbtiJ: String,
-                    mbtiP: String,
-                ) {
+                override fun onChipApply(gender_male: String, gender_female: String, minValue: Int, maxValue: Int, mbtiE : String, mbtiI : String, mbtiS : String, mbtiN : String, mbtiT : String, mbtiF : String, mbtiJ : String, mbtiP : String) {
 
-                    // 성별 필터 적용 : 남자 선택되었을 경우
-                    if (gender_male.isNotEmpty()) {
-                        binding.filterGenderMale.visibility = View.VISIBLE
-                        binding.filterGenderMale.text = gender_male
-                    } else {
-                        binding.filterGenderMale.visibility = View.GONE
-                    }
-
-                    if (gender_female.isNotEmpty()) {
-                        binding.filterGenderFemale.visibility = View.VISIBLE
-                        binding.filterGenderFemale.text = gender_female
-                    } else {
-                        binding.filterGenderFemale.visibility = View.GONE
-                    }
-
-                    // 나이 범위 필터 적용
-                    val ageRangeText = "$minValue~$maxValue"
-                    binding.filterAge.text = ageRangeText
-
-                    // MBTI 필터 적용 : 각 MBTI 칩 상태에 따라 텍스트뷰 설정
-                    binding.filterMbti1.visibility = if (mbtiI.isNotEmpty() || mbtiE.isNotEmpty()) View.VISIBLE else View.GONE // 'I'or'E'가 선택->tv보임. 선택되지 않았다면 숨김.
-                    binding.filterMbti1.text = if (mbtiI.isNotEmpty()) mbtiI else mbtiE // 'I' 선택 시 'I' 표시, 'I'가 선택x but, 'E' 선택 시 'E' 표시
-
-                    binding.filterMbti2.visibility = if (mbtiS.isNotEmpty() || mbtiN.isNotEmpty()) View.VISIBLE else View.GONE
-                    binding.filterMbti2.text = if (mbtiS.isNotEmpty()) mbtiS else mbtiN
-
-                    binding.filterMbti3.visibility = if (mbtiT.isNotEmpty() || mbtiF.isNotEmpty()) View.VISIBLE else View.GONE
-                    binding.filterMbti3.text = if (mbtiT.isNotEmpty()) mbtiT else mbtiF
-
-                    binding.filterMbti4.visibility = if (mbtiJ.isNotEmpty() || mbtiP.isNotEmpty()) View.VISIBLE else View.GONE
-                    binding.filterMbti4.text = if (mbtiJ.isNotEmpty()) mbtiJ else mbtiP
-
-                    // 두 성별 모두 선택되었는지 여부 확인
                     val isBothGenderSelected = gender_male.isNotEmpty() && gender_female.isNotEmpty()
 
-                    // 사용자 목록 필터링: 선택한 필터 조건에 맞는 사용자만 필터링
                     val usrNewList = userList.filter { user ->
-                        // (minValue~maxValue)에 속하는지 확인. 만약 나이 범위가 설정되지 않았다면(minValue와 maxValue가 0인 경우), 모든 나이가 해당되는 것으로 간주.
                         val ageMatches = (user.user_age in minValue..maxValue) || (minValue == 0 && maxValue == 0)
-                        // 선택 성별 따라 필터링합. 두 성별 모두 선택 시,(isBothGenderSelected), 성별 필터는 적용x
                         val genderMatches = when {
                             isBothGenderSelected -> true
                             gender_male.isNotEmpty() -> user.user_gender.equals(gender_male, ignoreCase = true)
                             gender_female.isNotEmpty() -> user.user_gender.equals(gender_female, ignoreCase = true)
                             else -> true
                         }
-                        // 유저 MBTI가 선택한 MBTI 필터에 모두 해당하는지 확인. 사용자가 'E', 'N', 'T', 'J'를 선택했다면, 모두 해당하는 유저만 포함됩니다.
                         val mbtiMatches = user.user_mbti.contains(mbtiE) && user.user_mbti.contains(mbtiI) &&
                                 user.user_mbti.contains(mbtiS) && user.user_mbti.contains(mbtiN) && user.user_mbti.contains(mbtiT) && user.user_mbti.contains(mbtiF) && user.user_mbti.contains(mbtiJ) && user.user_mbti.contains(mbtiP)
 
                         ageMatches && genderMatches && mbtiMatches
                     }
 
-                    // 필터링 결과 로깅 및 어댑터 업데이트
-                    Log.d("FriendFindFragment", "#byurin >>>> ${usrNewList.size} users found with filter")
+                    Log.d("FriendFindFragment", "#jblee >>>> ${usrNewList.size} users found with filter")
                     adapter.setList(usrNewList)
                 }
             })

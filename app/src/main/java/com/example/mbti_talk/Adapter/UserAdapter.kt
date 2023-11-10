@@ -1,13 +1,13 @@
-package com.example.mbti_talk.Adapter
+package nb_.mbti_talk.Adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.mbti_talk.R
-import com.example.mbti_talk.UserData
-import com.example.mbti_talk.databinding.UserListBinding
+import nb_.mbti_talk.R
+import nb_.mbti_talk.UserData
+import nb_.mbti_talk.databinding.UserListBinding
 import com.google.firebase.storage.FirebaseStorage
 
 // 이 어댑터는 RecyclerView에 사용됨. 각 아이템은 사용자 정보를 나타내며, 유저가 리스트 클릭 시, 해당 유저의 프로필 화면으로 이동 기능 추가

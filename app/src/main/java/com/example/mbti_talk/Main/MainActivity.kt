@@ -1,9 +1,9 @@
-package com.example.mbti_talk.Main
+package nb_.mbti_talk.Main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.mbti_talk.Adapter.UserAdapter
-import com.example.mbti_talk.databinding.ActivityMainBinding
+import nb_.mbti_talk.Adapter.UserAdapter
+import nb_.mbti_talk.databinding.ActivityMainBinding
 
 /* RDB 에서 데이터를 가져와 RecyclerView를 사용하여 화면에 표시
 1. MainActivity 클래스 정의

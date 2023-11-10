@@ -1,4 +1,4 @@
-package com.example.mbti_talk.Chat
+package nb_.mbti_talk.Chat
 
 import android.content.Context
 import android.content.Intent
@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.mbti_talk.R
-import com.example.mbti_talk.UserData
-import com.example.mbti_talk.databinding.ListChatroomItemBinding
+import nb_.mbti_talk.R
+import nb_.mbti_talk.UserData
+import nb_.mbti_talk.databinding.ListChatroomItemBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

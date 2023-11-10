@@ -1,9 +1,9 @@
-package com.example.mbti_talk.Main
+package nb_.mbti_talk.Main
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
-import com.example.mbti_talk.FriendFind.FriendFindFragment
-import com.example.mbti_talk.R
+import nb_.mbti_talk.FriendFind.FriendFindFragment
+import nb_.mbti_talk.R
 
 // MainFriendActivity 클래스는 Fragment를 활성화하고 화면에 표시
 class MainFriendActivity : FragmentActivity() {

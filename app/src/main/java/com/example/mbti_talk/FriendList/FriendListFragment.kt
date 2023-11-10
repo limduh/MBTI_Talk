@@ -1,4 +1,4 @@
-package com.example.mbti_talk.FriendList
+package nb_.mbti_talk.FriendList
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,12 +11,12 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mbti_talk.Adapter.UserAdapter
-import com.example.mbti_talk.DetailActivity
-import com.example.mbti_talk.R
-import com.example.mbti_talk.UserData
-import com.example.mbti_talk.databinding.FragmentFriendListBinding
-import com.example.mbti_talk.utils.Utils
+import nb_.mbti_talk.Adapter.UserAdapter
+import nb_.mbti_talk.DetailActivity
+import nb_.mbti_talk.R
+import nb_.mbti_talk.UserData
+import nb_.mbti_talk.databinding.FragmentFriendListBinding
+import nb_.mbti_talk.utils.Utils
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
