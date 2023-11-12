@@ -1,8 +1,10 @@
 package nb_.mbti_talk.Main
 
 import android.app.Dialog
+import android.graphics.Matrix
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +23,6 @@ class GraphMbtiFragment : DialogFragment() {
     private var scaleFactor = 1.0f
     private lateinit var imageView: ImageView
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,8 +30,9 @@ class GraphMbtiFragment : DialogFragment() {
         // 뷰 바인딩을 사용하여 레이아웃 인플레이트
         val binding = FragmentMbtiGraphBinding.inflate(inflater, container, false)
 
-        imageView = binding.mbtiGraph // 이미지 뷰를 초기화합니다.
-        scaleGestureDetector = ScaleGestureDetector(requireContext(), ScaleListener()) // ScaleGestureDetector를 초기화, 커스텀 ScaleListener 클래스를 제스처 리스너로 설정
+        imageView = binding.mbtiGraph // 이미지뷰 초기화
+        // ScaleGestureDetector를 초기화, 커스텀 ScaleListener 클래스를 제스처 리스너로 설정
+        scaleGestureDetector = ScaleGestureDetector(requireContext(), ScaleListener())
 
         // 이미지 뷰에 onTouchListener를 설정하여 ScaleGestureDetector가 터치 이벤트를 처리
         imageView.setOnTouchListener { _, event ->
@@ -49,14 +51,13 @@ class GraphMbtiFragment : DialogFragment() {
     private inner class ScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
         // 사용자가 핀치 줌 제스처를 사용할 때 호출
         override fun onScale(detector: ScaleGestureDetector): Boolean {
-            // scaleFactor를 업데이트하여 줌 레벨 변경
-            scaleFactor *= detector.scaleFactor
-            // scaleFactor가 너무 작거나 크지 않도록 제한
-            scaleFactor = max(0.1f, min(scaleFactor, 10.0f))
+            scaleFactor *= detector.scaleFactor // scaleFactor에 사용자가 줌한 비율을 곱함
 
-            // 이미지 뷰의 scaleX, Y 업데이트하여 크기 조정
-            imageView.scaleX = scaleFactor
-            imageView.scaleY = scaleFactor
+            // scaleFactor 가 1.0 미만이 되지 않도록 하여 줌아웃 방지
+            scaleFactor = max(1.0f, scaleFactor)
+
+            imageView.scaleX = scaleFactor // 이미지뷰의 x축 크기를 scaleFactor로 설정
+            imageView.scaleY = scaleFactor // 이미지뷰의 y축 크기를 scaleFactor로 설정
             return true
         }
     }
