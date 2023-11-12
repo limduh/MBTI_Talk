@@ -58,7 +58,6 @@ class GraphMbtiFragment : DialogFragment() {
             return true
         }
     }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState).apply {
             // 다이얼로그 초기 설정을 적용
