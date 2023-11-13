@@ -298,7 +298,38 @@ class DetailActivity : AppCompatActivity() {
             finish()
 
         }
+        // Firebase DB 참조
+        friendBlockDB = Firebase.database.reference.child("Friends_block")
+
+        // 현재 사용자의 UID 와 선택한 사용자의 UID 가져오기
+        val myUid = Utils.getMyUid(this)
+        val selectedUid = intent.getStringExtra("userId")
+
+        // A가 B를 차단했는지 확인
+        userID?.let { selectedUserId ->
+            friendBlockDB.child(selectedUserId).child(myId.toString())
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        // 데이터를 성공적으로 가져온 경우
+                        if (snapshot.exists()) {
+                            // A가 B를 차단한 경우
+                            hideFriendInteractionUI()
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        // 처리 중 오류 발생한 경우
+                        Log.d("ChatRoom", "#byurin > 채팅방 삭제 중 오류 발생 : ${error.message}")
+                    }
+                })
+        }
     }
+
+    private fun hideFriendInteractionUI() {
+        // 채팅하기 버튼 숨기기
+        binding.DetailBtnChat.visibility = View.GONE
+        binding.DetailTxtChat.visibility = View.GONE
+    }
+
     fun goToChatRoom(chatRoom: ChatRoom, chatRoomKey: String, opponent: UserData) {
         val intent = Intent(this, ChatRoomActivity::class.java)
         intent.putExtra("ChatRoom", chatRoom)
@@ -309,48 +340,48 @@ class DetailActivity : AppCompatActivity() {
     }
 
     //상대가 나를 차단했는지 알아보는 메소드
-    private fun loadOponentBlockFriends(userID: String) {
-
-        oponentBlockList.clear()
-        friendBlockDB
-            .child(userID) // friendDb 아래 userID 를 키로 갖는 하위 노드 찾음.
-            .addListenerForSingleValueEvent(object : ValueEventListener { // 함수는 데이터 변경을 단 한번만 기다림.
-                override fun onDataChange(dataSnapshot: DataSnapshot) { // RDB 에서 데이터 검색 성공 시 실행되는 콜백 함수.
-                    Log.d("FirebaseDatabase", "#dudu loadOponentBlockFriends ")
-
-                    // userDB 에 차단친구가 존재하는지 확인
-                    if (dataSnapshot.exists()) {
-                        val size = dataSnapshot.children.count()
-                        Log.d(
-                            "FirebaseDatabase",
-                            "#dudu userBlockList dataSnapshot.exists() size = $size"
-                        )
-                        for (badfriendUidSnapshot in dataSnapshot.children) {
-                            val badfriendUid = badfriendUidSnapshot.key
-                            if (badfriendUid != null) {
-//                                oponentBlockList.add(badfriendUid)
-                            }
-                        }
-                        Log.d(
-                            "FirebaseDatabase",
-                            "#dudu oponentBlockList.size = ${oponentBlockList.size}"
-                        )
+//    private fun loadOponentBlockFriends(userID: String) {
 //
-//                        if(myId = oponentBlockList){
-//                            binding.DetailBtnChat.gone()
+//        oponentBlockList.clear()
+//        friendBlockDB
+//            .child(userID) // friendDb 아래 userID 를 키로 갖는 하위 노드 찾음.
+//            .addListenerForSingleValueEvent(object : ValueEventListener { // 함수는 데이터 변경을 단 한번만 기다림.
+//                override fun onDataChange(dataSnapshot: DataSnapshot) { // RDB 에서 데이터 검색 성공 시 실행되는 콜백 함수.
+//                    Log.d("FirebaseDatabase", "#dudu loadOponentBlockFriends ")
+//
+//                    // userDB 에 차단친구가 존재하는지 확인
+//                    if (dataSnapshot.exists()) {
+//                        val size = dataSnapshot.children.count()
+//                        Log.d(
+//                            "FirebaseDatabase",
+//                            "#dudu userBlockList dataSnapshot.exists() size = $size"
+//                        )
+//                        for (badfriendUidSnapshot in dataSnapshot.children) {
+//                            val badfriendUid = badfriendUidSnapshot.key
+//                            if (badfriendUid != null) {
+////                                oponentBlockList.add(badfriendUid)
+//                            }
 //                        }
-
-
-                    } else {
-                        Log.d("FirebaseDatabase", "#dudu bad friends found for UID: $userID")
-
-                    }
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) { // DB 오류 처리하고 메시지 로깅
-                    Log.d("FirebaseDatabase", "#dudu onCancelled", databaseError.toException())
-                }
-            })
-    }
+//                        Log.d(
+//                            "FirebaseDatabase",
+//                            "#dudu oponentBlockList.size = ${oponentBlockList.size}"
+//                        )
+////
+////                        if(myId = oponentBlockList){
+////                            binding.DetailBtnChat.gone()
+////                        }
+//
+//
+//                    } else {
+//                        Log.d("FirebaseDatabase", "#dudu bad friends found for UID: $userID")
+//
+//                    }
+//                }
+//
+//                override fun onCancelled(databaseError: DatabaseError) { // DB 오류 처리하고 메시지 로깅
+//                    Log.d("FirebaseDatabase", "#dudu onCancelled", databaseError.toException())
+//                }
+//            })
+//    }
 }
 
