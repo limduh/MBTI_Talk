@@ -199,7 +199,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
-                android:src="@drawable/myprofile_mbti_btn"
+                android:src="@drawable/ic_profile_mbti_search"
                 app:layout_constraintBottom_toBottomOf="@+id/Profile_mbti"
                 app:layout_constraintStart_toEndOf="@+id/Profile_mbti"
                 app:layout_constraintTop_toTopOf="@+id/Profile_mbti" />

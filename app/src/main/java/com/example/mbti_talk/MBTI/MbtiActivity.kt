@@ -20,6 +20,10 @@ class MbtiActivity : AppCompatActivity() {
         binding = ActivityMbtiInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.MbtiBackBtn.setOnClickListener {
+            finish()
+        }
+
         val selectMBTI = binding.MbtiBox
 
         selectMBTI.setOnClickListener {
