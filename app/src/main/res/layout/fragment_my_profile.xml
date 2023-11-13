@@ -62,6 +62,7 @@
                 android:layout_width="154dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
+                android:gravity="center|start"
                 android:text="tedsfdfd@adfdfads.com"
                 android:textColor="@color/gray"
                 app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView5"
@@ -75,7 +76,7 @@
                 android:layout_marginEnd="5dp"
                 android:text="닉네임 : "
                 android:textColor="@color/gray"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/Profile_nickname"
                 app:layout_constraintEnd_toStartOf="@+id/Profile_nickname"
@@ -88,7 +89,7 @@
                 android:layout_marginTop="10dp"
                 android:text="닉네임 내용"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/Profile_img"
                 app:layout_constraintStart_toStartOf="@+id/Profile_img"
@@ -211,16 +212,43 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/Profile_const_AccountManage"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="20dp"
+            android:layout_height="290dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/ic_cutoff"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Profile_txt_AccountManage" />
+
+            <TextView
+                android:id="@+id/tv_blockFriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="차단 목록 관리"
+                app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView2"
+                app:layout_constraintStart_toEndOf="@+id/appCompatImageView2"
+                app:layout_constraintTop_toTopOf="@+id/appCompatImageView2" />
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Profile_txt_AccountManage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
                 android:text="계정관리"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -230,18 +258,16 @@
             <!--    로그아웃 그림+글 묶어놈 const을 하나의 버튼으로 사용하기 위함-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/Profile_btn_Logout"
-                android:layout_width="130dp"
-                android:layout_height="60dp"
-                android:padding="10dp"
-                app:layout_constraintEnd_toStartOf="@+id/Profile_btn_Memberout"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Profile_txt_AccountManage">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="@+id/appCompatImageView2"
+                app:layout_constraintTop_toBottomOf="@+id/tv_blockFriend">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/appCompatImageView6"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/ic_logout"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -261,19 +287,16 @@
             <!--    회원탈퇴 그림+글 묶어놈 const을 하나의 버튼으로 사용하기 위함-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/Profile_btn_Memberout"
-                android:layout_width="130dp"
-                android:layout_height="60dp"
-                android:padding="10dp"
-                app:layout_constraintBottom_toBottomOf="@+id/Profile_btn_Logout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/Profile_btn_Logout"
-                app:layout_constraintTop_toTopOf="@+id/Profile_btn_Logout">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintStart_toStartOf="@+id/Profile_btn_Logout"
+                app:layout_constraintTop_toBottomOf="@+id/Profile_btn_Logout">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/Profile_img_Memberout"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:src="@drawable/ic_caution_red"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -293,16 +316,6 @@
 
             <!--    계정관리 레이아웃 화면-->
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/tv_blockFriend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="32dp"
-            android:text="친구 차단 목록"
-            app:layout_constraintBottom_toTopOf="@+id/Profile_const_AccountManage"
-            app:layout_constraintStart_toStartOf="parent" />
 
 
         <!--            //전체네모임 아래는-->
