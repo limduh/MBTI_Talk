@@ -13,7 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="오전 10:23"
-        android:textSize="12sp"
+        android:textSize="13sp"
+        android:textColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cover" />
 
@@ -46,7 +47,6 @@
             android:linksClickable="true"
             android:padding="10dp"
             android:text="안녕하세요."
-            android:textSize="16sp"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

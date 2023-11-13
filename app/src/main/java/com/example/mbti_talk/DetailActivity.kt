@@ -11,7 +11,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.bumptech.glide.Glide
 import nb_.mbti_talk.Chat.ChatRoom
 import nb_.mbti_talk.Chat.ChatRoomActivity
-import nb_.mbti_talk.Chat.User
 import nb_.mbti_talk.databinding.ActivityDetailBinding
 import nb_.mbti_talk.utils.Utils
 import com.google.firebase.auth.FirebaseAuth
@@ -229,18 +228,79 @@ class DetailActivity : AppCompatActivity() {
                     Toast.makeText(this@DetailActivity, "데이터를 가져오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
                 }
             })
+        }
+
+
+        binding.llFriendBlock.setOnClickListener {
+
+            if (userID != null) { // 선택한 유저 UID 가 null 이 아닌 경우
+
+                // RDB 의 "Friends_block" 레퍼런스에 사용자 uid 추가
+                val friendsRef = Firebase.database.reference.child("Friends_block").child(myId.toString())
+                friendsRef.child(userID).setValue(true)
+
+                // 채팅방 삭제 함수
+                fun findChatRoomWithBlockedFriend(myUid: String, blockedFriendUid: String) {
+                    // "ChatRoom/chatRooms" 노드에서 유저와 차단할 유저 포함된 채팅방 목록 조회
+                    val chatRoomsRef = FirebaseDatabase.getInstance().getReference("ChatRoom").child("chatRooms")
+
+                    chatRoomsRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            // 데이터를 성공적으로 가져온 경우
+                            for (chatRoomSnapshot in snapshot.children) {
+                                // 각 채팅방 대해 반복 처리
+                                val chatRoom = chatRoomSnapshot.getValue(ChatRoom::class.java)
+                                val chatRoomUsers = chatRoom?.users?.keys ?: continue
+
+                                // 현재 사용자와 차단할 친구 모두 포함된 채팅방 확인
+                                if (chatRoomUsers.contains(myUid) && chatRoomUsers.contains(blockedFriendUid)) {
+                                    // 조건 만족하는 채팅방 삭제
+                                    chatRoomSnapshot.ref.removeValue()
+                                    Log.d("ChatRoom", "#byurin > 현재 사용자와 차단할 친구가 모두 포함된 채팅방을 찾음 : ${chatRoomSnapshot.key}.")
+                                }
+                            }
+                        }
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            // 처리 중 오류 발생한 경우
+                            Log.d("ChatRoom", "#byurin > 채팅방 삭제 중 오류 발생 : ${databaseError.message}")
+                        }
+                    })
+                }
+
+                // 채팅방 삭제 함수 호출
+                findChatRoomWithBlockedFriend(myId.toString(), userID)
+
+                //????  숙제1 (도연님)  ////
+                ///ChatRoom/chatRooms/
+                //  uid1_uid2
+
+                // chatRooms 목록을 가져와서.
+                // 2Xb9fup66mMTs6RGKxwHd3Qpxzm1-cq234vBQvngzop6T3FQwvSFiVDu2
+                // 여기에 내uid+차단할 친구 uid가 포함되어있는지 찾아. (contain)
+                // 있으면 해당 챗룸 삭제 (삭제는 블락친구삭제코드 참고)
+
+                //// 숙제 2  (진주님)
+                // 내프로필 차단친구 목록 디자인 수정
+                // 차단친구 목록에 뒤로가기 버튼추가
+                //  아이템 클릭시 정말 차단을 해제합니까? 다이얼로그 표시
+
+                //// 숙제 3  (두형 님)
+                // 나를 차단한 친구 상세보기에서는 채팅하기 아이콘 변경 or 안보이게 하던가
+            }
+            // 클릭 이벤트 처리
+            // Intent 사용하여 MainFriendActivity 로 이동
+            Toast.makeText(this@DetailActivity, "친구 차단이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+            finish()
 
         }
     }
-
-
-fun goToChatRoom(chatRoom: ChatRoom, chatRoomKey: String, opponent: UserData) {
-    val intent = Intent(this, ChatRoomActivity::class.java)
-    intent.putExtra("ChatRoom", chatRoom)
-    intent.putExtra("Opponent", opponent)
-    intent.putExtra("ChatRoomKey", chatRoomKey)
-    startActivity(intent)
-    finish()
- }
+    fun goToChatRoom(chatRoom: ChatRoom, chatRoomKey: String, opponent: UserData) {
+        val intent = Intent(this, ChatRoomActivity::class.java)
+        intent.putExtra("ChatRoom", chatRoom)
+        intent.putExtra("Opponent", opponent)
+        intent.putExtra("ChatRoomKey", chatRoomKey)
+        startActivity(intent)
+        finish()
+    }
 }
 
