@@ -8,17 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatImageButton
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import nb_.mbti_talk.Adapter.UserAdapter
 import nb_.mbti_talk.DetailActivity
 import nb_.mbti_talk.Main.FilterDialogFragment
 import nb_.mbti_talk.Main.GraphMbtiFragment
-import nb_.mbti_talk.R
 import nb_.mbti_talk.UserData
 import nb_.mbti_talk.databinding.FragmentFriendFindBinding
 import nb_.mbti_talk.utils.Utils
@@ -28,12 +24,16 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import nb_.mbti_talk.R
 
 class FriendFindFragment : Fragment() {
     private lateinit var binding: FragmentFriendFindBinding
     private lateinit var adapter: UserAdapter
     private val userList: MutableList<UserData> = mutableListOf()
+    private val userBlockList: MutableList<String> = mutableListOf()
     private lateinit var userDB: DatabaseReference
+    private lateinit var friendBlockDB: DatabaseReference
+
     lateinit var mContext: Context
 
     // onCreateView 함수는 Fragment가 생성될 때 호출. Fragment의 사용자 인터페이스 레이아웃을 초기화
@@ -45,7 +45,6 @@ class FriendFindFragment : Fragment() {
     ): View? {
         // XML 레이아웃을 화면에 그리기 위해 바인딩 객체 생성
         binding = FragmentFriendFindBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -54,6 +53,18 @@ class FriendFindFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context // mContext 변수에 context 할당
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("FriendFindFragment", "onResume")
+
+        // 기존에 추가된 사용자 목록을 초기화
+        userList.clear()
+
+        // 사용자 데이터를 RDB 에서 가져오기
+        val currentUserUid = Utils.getMyUid(requireContext())
+        currentUserUid?.let { loadBlockFriends(it) }
     }
 
     /* onCreateView 이후 호출
@@ -68,6 +79,8 @@ class FriendFindFragment : Fragment() {
 
         // RecyclerView 및 어댑터 초기화
         userDB = Firebase.database.reference.child("Users")
+        friendBlockDB = Firebase.database.reference.child("Friends_block")
+
         adapter = UserAdapter({
             // 클릭한 user data 를 DetailActivity 로 전달
             val intent = Intent(context, DetailActivity::class.java)
@@ -80,81 +93,95 @@ class FriendFindFragment : Fragment() {
         binding.FriendFindFragRv.adapter = adapter
         binding.FriendFindFragRv.layoutManager = LinearLayoutManager(requireContext())
 
-        // 사용자 데이터를 RDB 에서 가져오기
-        val currentUserUid = Utils.getMyUid(requireContext())
-
-        fun applyFilterConditions(ageCondition: Int?, genderCondition: String?, mbtiCondition: String?) {
-            Utils.saveFilterConditions(requireContext(), ageCondition, genderCondition, mbtiCondition)
-
-            val (filteredAge, filteredGender, filteredMbti) = Utils.getFilterConditions(requireContext())
-
-            val filteredList = userList.filter { user ->
-                val ageMatches = filteredAge?.let { user.user_age >= it } ?: true
-                val genderMatches = filteredGender?.let { user.user_gender.equals(it) } ?: true
-                val mbtiMatches = filteredMbti?.let { user.user_mbti == it } ?: true
-
-                ageMatches && genderMatches && mbtiMatches
-            }
-            userList.clear()
-            userList.addAll(filteredList)
-            adapter.notifyDataSetChanged()
-        }
-
-        userDB
-            .orderByChild("user_age")
-            .limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                // Data 가져오기 성공 시 실행
-                for (userSnapshot in snapshot.children) {
-                    // 각 유저 정보를 UserData 객체로 받아오기
-                    val user = userSnapshot.getValue(UserData::class.java)
-                    // 사용자 본인 정보는 친구찾기 페이지에 표시되지 않음.
-                    if (user != null && user.user_uid != currentUserUid) {
-
-                        // Utils 에서 저장한 compat을 불러오기
-                        val compat = Utils.getCompat(Utils.getMyMbti(mContext), user.user_mbti) // 유저 MBTI와 친구 MBTI를 비교하여 compat 변수에 등급 할당
-                        user.user_compat = compat.toString() //해당 등급 문자열로 저장
-
-                        Log.d("friendfind", "myMbti=${Utils.getMyMbti(mContext)} otherMbti=${user.user_mbti} compat=${user.user_compat})")
-                        userList.add(user) // user data 목록에 추가
-                    }
-                    userList.sortBy { it.user_compat } // userList라는 사용자 목록을 user_compat 기준으로 오름차순 정렬
-                }
-                adapter.setList(userList)
-                adapter.notifyDataSetChanged() // 어댑터에게 데이터 변경을 알림
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // 처리 중 오류 발생 시 토스트 표시
-                Toast.makeText(requireContext(), "해당 데이터는 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
-            }
-        })
-
         // 필터 버튼 클릭 시 다이얼로그 표시하고, 유저가 필터 설정 변경 후 '적용' 버튼 클릭하면 필터링 된 유저 목록 업데이트되어 화면에 표시. 필터 조건 따라 유저 목록 동적으로 변경
         binding.filterBtn.setOnClickListener {
             val filterDialog = FilterDialogFragment() // FilterDialogFragment 클래스의 인스턴스를 생성
 
+            // FilterDialogFragment 에서 필터 설정이 적용되었을 때 적용된 항목을 TextView 에 표시
             filterDialog.setChipClickListener(object :FilterDialogFragment.OnDialogChipClickListener {
-                override fun onChipApply(gender_male: String, gender_female: String, minValue: Int, maxValue: Int, mbtiE : String, mbtiI : String, mbtiS : String, mbtiN : String, mbtiT : String, mbtiF : String, mbtiJ : String, mbtiP : String) {
+                override fun onChipApply(
+                    gender_male: String,
+                    gender_female: String,
+                    minValue: Int,
+                    maxValue: Int,
+                    mbtiE: String,
+                    mbtiI: String,
+                    mbtiS: String,
+                    mbtiN: String,
+                    mbtiT: String,
+                    mbtiF: String,
+                    mbtiJ: String,
+                    mbtiP: String,
+                ) {
 
+                    // 성별 필터 적용 : 남자 선택되었을 경우
+                    if (gender_male.isNotEmpty()) {
+                        binding.filterGenderMale.visibility = View.VISIBLE
+                        binding.filterGenderMale.text = gender_male
+                    } else {
+                        binding.filterGenderMale.visibility = View.GONE
+                    }
+
+                    if (gender_female.isNotEmpty()) {
+                        binding.filterGenderFemale.visibility = View.VISIBLE
+                        binding.filterGenderFemale.text = gender_female
+                    } else {
+                        binding.filterGenderFemale.visibility = View.GONE
+                    }
+
+                    // 나이 범위 필터 적용
+                    val ageRangeText = "$minValue~$maxValue"
+                    binding.filterAge.text = ageRangeText
+
+                    // MBTI 필터 적용 : 각 MBTI 칩 상태에 따라 텍스트뷰 설정
+                    binding.filterMbti1.visibility = if (mbtiI.isNotEmpty() || mbtiE.isNotEmpty()) View.VISIBLE else View.GONE // 'I'or'E'가 선택->tv보임. 선택되지 않았다면 숨김.
+                    binding.filterMbti1.text = if (mbtiI.isNotEmpty()) mbtiI else mbtiE // 'I' 선택 시 'I' 표시, 'I'가 선택x but, 'E' 선택 시 'E' 표시
+
+                    binding.filterMbti2.visibility = if (mbtiS.isNotEmpty() || mbtiN.isNotEmpty()) View.VISIBLE else View.GONE
+                    binding.filterMbti2.text = if (mbtiS.isNotEmpty()) mbtiS else mbtiN
+
+                    binding.filterMbti3.visibility = if (mbtiT.isNotEmpty() || mbtiF.isNotEmpty()) View.VISIBLE else View.GONE
+                    binding.filterMbti3.text = if (mbtiT.isNotEmpty()) mbtiT else mbtiF
+
+                    binding.filterMbti4.visibility = if (mbtiJ.isNotEmpty() || mbtiP.isNotEmpty()) View.VISIBLE else View.GONE
+                    binding.filterMbti4.text = if (mbtiJ.isNotEmpty()) mbtiJ else mbtiP
+
+                    // 두 성별 모두 선택되었는지 여부 확인
                     val isBothGenderSelected = gender_male.isNotEmpty() && gender_female.isNotEmpty()
 
+                    // 사용자 목록 필터링: 선택한 필터 조건에 맞는 사용자만 필터링
                     val usrNewList = userList.filter { user ->
+                        // (minValue~maxValue)에 속하는지 확인. 만약 나이 범위가 설정되지 않았다면(minValue와 maxValue가 0인 경우), 모든 나이가 해당되는 것으로 간주.
                         val ageMatches = (user.user_age in minValue..maxValue) || (minValue == 0 && maxValue == 0)
+                        // 선택 성별 따라 필터링합. 두 성별 모두 선택 시,(isBothGenderSelected), 성별 필터는 적용x
                         val genderMatches = when {
                             isBothGenderSelected -> true
                             gender_male.isNotEmpty() -> user.user_gender.equals(gender_male, ignoreCase = true)
                             gender_female.isNotEmpty() -> user.user_gender.equals(gender_female, ignoreCase = true)
                             else -> true
                         }
+                        // 유저 MBTI가 선택한 MBTI 필터에 모두 해당하는지 확인. 사용자가 'E', 'N', 'T', 'J'를 선택했다면, 모두 해당하는 유저만 포함됩니다.
                         val mbtiMatches = user.user_mbti.contains(mbtiE) && user.user_mbti.contains(mbtiI) &&
                                 user.user_mbti.contains(mbtiS) && user.user_mbti.contains(mbtiN) && user.user_mbti.contains(mbtiT) && user.user_mbti.contains(mbtiF) && user.user_mbti.contains(mbtiJ) && user.user_mbti.contains(mbtiP)
 
                         ageMatches && genderMatches && mbtiMatches
                     }
 
-                    Log.d("FriendFindFragment", "#jblee >>>> ${usrNewList.size} users found with filter")
+                    // 필터링 결과 로깅 및 어댑터 업데이트
                     adapter.setList(usrNewList)
+                    Log.d("FriendFindFragment", "#byurin >>>> ${usrNewList.size} users found with filter")
+
+
+                    // 필터링 결과 없을 시 이미지 표시
+                    if (usrNewList.size!=0) {
+                        Log.d("FriendFindFragment", "#byurin >>>> ${usrNewList.size} users found with filter")
+                        adapter.setList(usrNewList)
+                        binding.friendfindFragImg.visibility = View.GONE // 사용자 목록이 있을 경우 이미지 숨김
+                    } else {
+                        Log.d("FriendFindFragment", "#byurin >>>> No users found with filter")
+                        binding.friendfindFragImg.visibility = View.VISIBLE // 사용자 목록이 없을 경우 이미지 표시
+                        Toast.makeText(requireContext(), "원하는 조건의 친구가 없습니다.", Toast.LENGTH_SHORT).show()
+                    }
                 }
             })
             // 필터 설정 다이얼로그를 화면에 표시
@@ -167,4 +194,86 @@ class FriendFindFragment : Fragment() {
             mbtiGraphDialog.show(childFragmentManager, "GraphMbti")
         }
     }
+
+    private fun loadBlockFriends(currentUserUid: String) {
+        userBlockList.clear()
+        friendBlockDB
+            .child(currentUserUid) // friendDb 아래 currentUserUid 를 키로 갖는 하위 노드 찾음.
+            .addListenerForSingleValueEvent(object : ValueEventListener { // alfsv 함수는 데이터 변경을 단 한번만 기다림.
+                override fun onDataChange(dataSnapshot: DataSnapshot) { // RDB 에서 데이터 검색 성공 시 실행되는 콜백 함수.
+                    Log.d("FirebaseDatabase", "#jblee loadFriends onDataChange")
+
+                    // 추가한 친구 uid 가 userDB 에 존재하는지 확인
+                    if (dataSnapshot.exists()) {
+                        val size = dataSnapshot.children.count()
+                        Log.d("FirebaseDatabase", "#jblee userBlockList dataSnapshot.exists() size = $size")
+                        for (friendUidSnapshot in dataSnapshot.children) {
+                            val friendUid = friendUidSnapshot.key
+                            if (friendUid != null) {
+                                userBlockList.add(friendUid)
+                            }
+                        }
+                        Log.d("FirebaseDatabase", "#jblee userBlockList size = ${userBlockList.size}")
+
+                        refreshFriendList(currentUserUid)
+
+                    } else {
+                        Log.d("FirebaseDatabase", "#jblee No friends found for UID: $currentUserUid")
+                        refreshFriendList(currentUserUid)
+
+                    }
+                }
+                override fun onCancelled(databaseError: DatabaseError) { // DB 오류 처리하고 메시지 로깅
+                    Log.d("FirebaseDatabase", "#jblee onCancelled", databaseError.toException())
+                }
+            })
+    }
+
+    private fun refreshFriendList(currentUserUid: String){
+        Log.d("FirebaseDatabase", "#jblee refreshFriendList()")
+
+        userDB
+            .orderByChild("user_age")
+            .limitToFirst(30).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    // Data 가져오기 성공 시 실행
+                    for (userSnapshot in snapshot.children) {
+                        // 각 유저 정보를 UserData 객체로 받아오기
+                        val user = userSnapshot.getValue(UserData::class.java)
+                        // 사용자 본인 정보는 친구찾기 페이지에 표시되지 않음.
+                        if (user != null && user.user_uid != currentUserUid) {
+
+                            // Utils 에서 저장한 compat을 불러오기
+                            val compat = Utils.getCompat(Utils.getMyMbti(mContext), user.user_mbti) // 유저 MBTI와 친구 MBTI를 비교하여 compat 변수에 등급 할당
+                            user.user_compat = compat.toString() //해당 등급 문자열로 저장
+
+                            Log.d("friendfind", "#jblee >>> myMbti=${Utils.getMyMbti(mContext)} otherMbti=${user.user_mbti} compat=${user.user_compat})")
+
+                            var isBlock = false
+                            for (list in userBlockList){
+                                if(user.user_uid.equals(list)){
+                                    isBlock = true ;
+                                    break
+                                }
+                            }
+
+                            if(!isBlock)
+                                userList.add(user) // user data 목록에 추가
+
+                        }
+                        userList.sortBy { it.user_compat } // userList라는 사용자 목록을 user_compat 기준으로 오름차순 정렬
+                        Log.d("FirebaseDatabase", "#jblee refreshFriendList() userList size = ${userList.size}")
+
+                    }
+                    adapter.setList(userList)
+                    adapter.notifyDataSetChanged() // 어댑터에게 데이터 변경을 알림
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // 처리 중 오류 발생 시 토스트 표시
+                    Toast.makeText(mContext, "해당 데이터는 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
 }

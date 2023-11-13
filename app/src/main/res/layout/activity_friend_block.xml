@@ -4,15 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FriendList.FriendListFragment"
-    android:id="@+id/Friend_list_frag">
+    tools:context="com.example.mbti_talk.FriendBlockActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/block_btn_back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="5dp"
+        android:src="@drawable/ic_left_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="친구 목록"
+        android:text="친구 차단 목록"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,26 +33,16 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/filter_background"
-        app:layout_constraintBottom_toTopOf="@+id/friendlist_frag_rv" />
+        app:layout_constraintBottom_toTopOf="@+id/friendblocklist_frag_rv" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/friendlist_frag_rv"
+        android:id="@+id/friendblocklist_frag_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <ImageView
-        android:id="@+id/friendlist_frag_img"
-        android:layout_width="344dp"
-        android:layout_height="522dp"
-        app:layout_constraintBottom_toBottomOf="@+id/friendlist_frag_rv"
-        app:layout_constraintEnd_toEndOf="@+id/friendlist_frag_rv"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/friendlist_frag_rv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

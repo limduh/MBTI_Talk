@@ -180,4 +180,15 @@
         app:layout_constraintTop_toBottomOf="@id/top_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/friendfind_frag_img"
+        android:layout_width="344dp"
+        android:layout_height="522dp"
+        android:src="@drawable/img_filtered_nofriend"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/Friend_find_frag_rv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

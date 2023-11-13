@@ -63,7 +63,7 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/login_etxt_kit"
             android:hint="아이디"
-            android:text="dan@gmail.com"
+            android:text="dan1@naver.com"
             android:paddingStart="10dp"
             android:textColorHint="#D2D2D2"
             android:textSize="18sp"

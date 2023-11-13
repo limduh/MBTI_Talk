@@ -48,13 +48,13 @@
                 android:id="@+id/appCompatTextView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="아이디 : "
                 android:textColor="@color/gray"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/Profile_email"
                 app:layout_constraintStart_toStartOf="@+id/appCompatTextView6"
-                app:layout_constraintTop_toTopOf="@+id/Profile_email" />
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView6" />
 
             <!--        아이디는 이메일 주소임-->
             <androidx.appcompat.widget.AppCompatTextView
@@ -62,12 +62,11 @@
                 android:layout_width="154dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="1dp"
                 android:text="tedsfdfd@adfdfads.com"
                 android:textColor="@color/gray"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView5"
                 app:layout_constraintStart_toEndOf="@+id/appCompatTextView5"
-                app:layout_constraintTop_toBottomOf="@+id/Profile_nickname" />
+                app:layout_constraintTop_toTopOf="@+id/appCompatTextView5" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appCompatTextView6"
@@ -197,10 +196,10 @@
 
             <ImageView
                 android:id="@+id/Profile_mbti_btn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="5dp"
-                android:src="@drawable/ic_add_post_write"
+                android:src="@drawable/myprofile_mbti_btn"
                 app:layout_constraintBottom_toBottomOf="@+id/Profile_mbti"
                 app:layout_constraintStart_toEndOf="@+id/Profile_mbti"
                 app:layout_constraintTop_toTopOf="@+id/Profile_mbti" />
@@ -214,10 +213,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="20dp"
-            android:layout_marginTop="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Profile_txt_AccountManage"
@@ -295,6 +293,16 @@
 
             <!--    계정관리 레이아웃 화면-->
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_blockFriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="32dp"
+            android:text="친구 차단 목록"
+            app:layout_constraintBottom_toTopOf="@+id/Profile_const_AccountManage"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <!--            //전체네모임 아래는-->
