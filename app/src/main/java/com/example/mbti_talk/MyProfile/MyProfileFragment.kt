@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.mbti_talk.FriendBlockActivity
 import nb_.mbti_talk.LogInActivity
 import nb_.mbti_talk.MBTI.MbtiActivity
 import nb_.mbti_talk.MBTI.MbtiDialogChoice
@@ -55,6 +56,8 @@ class MyProfileFragment : Fragment() {
         binding.ProfileBtnLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(requireContext(), LogInActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
 
         }
@@ -64,6 +67,11 @@ class MyProfileFragment : Fragment() {
             signoutDialog()
         }
         //
+
+        binding.tvBlockFriend.setOnClickListener {
+            val intent = Intent(requireContext(), FriendBlockActivity::class.java)
+            startActivity(intent)
+        }
 
         // Firebase 초기화
         firebaseAuth = FirebaseAuth.getInstance()
@@ -154,6 +162,8 @@ class MyProfileFragment : Fragment() {
         binding.SignoutBtnCheck.setOnClickListener {
             revokeAccess()
             val intent = Intent(requireContext(), LogInActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             alertDialog.dismiss()
 
