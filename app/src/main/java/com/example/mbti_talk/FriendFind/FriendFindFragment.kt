@@ -8,13 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import nb_.mbti_talk.Adapter.UserAdapter
 import nb_.mbti_talk.DetailActivity
 import nb_.mbti_talk.Main.FilterDialogFragment
-import nb_.mbti_talk.Main.GraphMbtiFragment
+import nb_.mbti_talk.Main.MbtiDialogFragment
 import nb_.mbti_talk.UserData
 import nb_.mbti_talk.databinding.FragmentFriendFindBinding
 import nb_.mbti_talk.utils.Utils
@@ -24,7 +23,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import nb_.mbti_talk.R
 
 class FriendFindFragment : Fragment() {
     private lateinit var binding: FragmentFriendFindBinding
@@ -190,7 +188,7 @@ class FriendFindFragment : Fragment() {
 
         // mbti logo 버튼 클릭 시 mbti graph 표시
         binding.mbtiBtn.setOnClickListener {
-            val mbtiGraphDialog = GraphMbtiFragment() // GraphMbtiFragment 클래스의 인스턴스를 생성
+            val mbtiGraphDialog = MbtiDialogFragment() // GraphMbtiFragment 클래스의 인스턴스를 생성
             mbtiGraphDialog.show(childFragmentManager, "GraphMbti")
         }
     }
@@ -275,5 +273,4 @@ class FriendFindFragment : Fragment() {
                 }
             })
     }
-
 }

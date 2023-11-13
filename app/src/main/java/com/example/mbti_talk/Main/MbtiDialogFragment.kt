@@ -8,12 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
-import nb_.mbti_talk.databinding.FragmentMbtiGraphBinding
+import nb_.mbti_talk.databinding.FragmentMbtiDialogBinding
 import kotlin.math.max
 
 // FilterDialog 의 동작 정의. 성별, 나이, MBTI 필터 설정을 변경할 수 있는 화면을 제공하고, 유저가 "적용" 버튼을 누르면 설정한 필터를 반영하여 부모 Fragment 에 필터 정보 전달
 
-class GraphMbtiFragment : DialogFragment() {
+class MbtiDialogFragment : DialogFragment() {
 
     // ScaleGestureDetector와 ImageView를 위한 변수 선언
     private lateinit var scaleGestureDetector: ScaleGestureDetector
@@ -25,7 +25,7 @@ class GraphMbtiFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // 뷰 바인딩을 사용하여 레이아웃 인플레이트
-        val binding = FragmentMbtiGraphBinding.inflate(inflater, container, false)
+        val binding = FragmentMbtiDialogBinding.inflate(inflater, container, false)
 
         imageView = binding.mbtiGraph // 이미지뷰 초기화
         // ScaleGestureDetector를 초기화, 커스텀 ScaleListener 클래스를 제스처 리스너로 설정
