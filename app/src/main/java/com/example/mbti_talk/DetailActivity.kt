@@ -301,24 +301,37 @@ class DetailActivity : AppCompatActivity() {
         // Firebase DB 참조
         friendBlockDB = Firebase.database.reference.child("Friends_block")
 
-        // 현재 사용자의 UID 와 선택한 사용자의 UID 가져오기
-        val myUid = Utils.getMyUid(this)
-        val selectedUid = intent.getStringExtra("userId")
+
+        // selectedUserId는 intent.getStringExtra("userId")를 통해 DetailActivity로 전달된 선택된 사용자의 UID를 받아오기 위해 사용됩니다.
+        //이는 DetailActivity가 시작될 때 전달되는 인텐트에서 추출된 데이터로, 다른 사용자의 상세 정보를 표시하기 위해 필요합니다.
+
+        // 현재 사용자의 UID = myId, 선택한 사용자의 UID = userID
 
         // A가 B를 차단했는지 확인
-        userID?.let { selectedUserId ->
+        userID?.let { selectedUserId -> // "userId" 를 통해 DetailActivity 로 전달된 userId UID 받기 위해 사용
+            // 선택된 사용자('selectedUserId') 가 현재 사용자('myId') 를 차단했는지 확인
             friendBlockDB.child(selectedUserId).child(myId.toString())
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         // 데이터를 성공적으로 가져온 경우
-                        if (snapshot.exists()) {
-                            // A가 B를 차단한 경우
+                        if (snapshot.exists()) { // 해당 경로에 데이터 존재하는지 확인하여 차단 여부 판단
+                            // A가 B를 차단한 경우 차단 안내 토스트 메시지 표시
+                            Toast.makeText(
+                                this@DetailActivity,
+                                "해당 사용자가 당신을 차단했습니다.\n채팅신청이 불가능합니다.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            // 채팅하기 UI 숨기기
                             hideFriendInteractionUI()
                         }
                     }
                     override fun onCancelled(error: DatabaseError) {
                         // 처리 중 오류 발생한 경우
-                        Log.d("ChatRoom", "#byurin > 채팅방 삭제 중 오류 발생 : ${error.message}")
+                        Toast.makeText(
+                            this@DetailActivity,
+                            "데이터 처리에 실패했습니다.\n다시 시도해주세요.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 })
         }
