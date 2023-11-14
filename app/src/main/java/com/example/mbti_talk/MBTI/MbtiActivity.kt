@@ -91,4 +91,4 @@ class MbtiActivity : AppCompatActivity() {
             else -> ""
         }
     }
-}
+}//
