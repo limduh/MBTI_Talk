@@ -24,6 +24,7 @@ import nb_.mbti_talk.databinding.ActivityFriendBlockBinding
 import nb_.mbti_talk.databinding.FragmentFriendListBinding
 import nb_.mbti_talk.utils.Utils
 
+
 class FriendBlockActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFriendBlockBinding
@@ -50,9 +51,18 @@ class FriendBlockActivity : AppCompatActivity() {
 
         // RecyclerView 및 어댑터 초기화
         userDB = Firebase.database.reference.child("Users")
+
         friendadapter = UserAdapter({
-            deleteFriendBlockEntry(it)
+            val dialog = Dialog_unblockCheckFragment { response ->
+                if (response) {
+                    // 사용자가 '차단 해제'를 선택한 경우
+                    deleteFriendBlockEntry(it)
+                }
+            }
+            dialog.show(supportFragmentManager, "Dialog_unblockCheckFragment")
         })
+
+
         friendadapter.setList(friendList)
 
         // RecyclerView에 어댑터 설정

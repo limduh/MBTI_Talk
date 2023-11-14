@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.mbti_talk.Dialog_blockCheckFragment">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,28 +33,28 @@
             app:layout_constraintTop_toBottomOf="@+id/appCompatImageView3" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/unblock_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="확  인"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintEnd_toStartOf="@+id/unblock_cancel"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView12" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button2"
+            android:id="@+id/unblock_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="취  소"
-            app:layout_constraintBottom_toBottomOf="@+id/button"
+            app:layout_constraintBottom_toBottomOf="@+id/unblock_check"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button"
-            app:layout_constraintTop_toTopOf="@+id/button" />
+            app:layout_constraintStart_toEndOf="@+id/unblock_check"
+            app:layout_constraintTop_toTopOf="@+id/unblock_check" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
