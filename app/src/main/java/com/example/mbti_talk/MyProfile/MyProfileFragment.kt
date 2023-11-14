@@ -2,10 +2,13 @@ package nb_.mbti_talk.MyProfile
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -27,6 +30,8 @@ import com.google.firebase.storage.FirebaseStorage
 
 
 class MyProfileFragment : Fragment() {
+
+    lateinit var selectedUri: Uri
 
     private lateinit var database: DatabaseReference
     private lateinit var binding: FragmentMyProfileBinding
@@ -50,6 +55,10 @@ class MyProfileFragment : Fragment() {
 
         binding.ProfileMbtiBtn.setOnClickListener {
             showMbtiChoiceDialog()
+        }
+
+        binding.ProfileImg.setOnClickListener{
+            galleryLauncher.launch("image/*")
         }
 
         //로그아웃
@@ -179,6 +188,17 @@ class MyProfileFragment : Fragment() {
 
 
 
+
+    //이미지 갤러리 불러오기
+    var galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        Log.d("SignIn", "dudu+ $uri")
+        binding.ProfileImg.tag = uri
+        binding.ProfileImg.setImageURI(uri)
+        if (uri != null) {
+            selectedUri = uri
+        }
+
+    }
 
 }
 
