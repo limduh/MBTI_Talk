@@ -198,17 +198,16 @@ class LogInActivity : AppCompatActivity() {
     private fun googleSignIn() {
         val signInClient = googleSignInClient.signInIntent
         launcher.launch(signInClient)
-
+        Log.d("google1","#dudu ${signInClient}")
     }
 
     //구글 로그인 관련 런쳐
     private val launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-
                 result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-
+                Log.d("google2","#dudu ${Activity.RESULT_OK}")
                 manageResults(task);
             }
         }
@@ -223,7 +222,7 @@ class LogInActivity : AppCompatActivity() {
             val credential = GoogleAuthProvider.getCredential(account.idToken, null)
             firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
                 if (task.isSuccessful) {
-
+                    Log.d("google3","#dudu ")
                     val user = firebaseAuth.currentUser
                     val uid = user?.uid
                     Log.d("로그인 정보 가져옴", "UID ==== ${uid}")
@@ -239,17 +238,17 @@ class LogInActivity : AppCompatActivity() {
                                     // 데이터가 존재하는 경우
                                     val userData = dataSnapshot.getValue(UserData::class.java)
 
-                                    Log.d("FirebaseDatabase1", "User Data: $userData")
+                                    Log.d("FirebaseDatabase1", "#dudu User Data: $userData")
 
                                     if (!userData?.user_mbti.isNullOrEmpty()) {
-                                        Log.d("FirebaseDatabase2", "User Data: $userData")
+                                        Log.d("FirebaseDatabase2", "#dudu User Data: $userData")
                                         val intent =
                                             Intent(this@LogInActivity, BottomActivity::class.java)
                                         startActivity(intent)
                                         finish() // 로그인 화면 종료
                                     } else {
                                         // 메인 페이지 이동
-                                        Log.d("FirebaseDatabase3", "User Data: $userData")
+                                        Log.d("FirebaseDatabase3", "#dudu User Data: $userData")
                                         val intent =
                                             Intent(this@LogInActivity, MbtiActivity::class.java)
                                         startActivity(intent)
@@ -258,7 +257,7 @@ class LogInActivity : AppCompatActivity() {
 
                                 } else {
                                     // UID에 해당하는 데이터가 없는 경우
-                                    Log.d("FirebaseDatabase4", "User not found")
+                                    Log.d("FirebaseDatabase4", "#dudu User not found")
                                     val intent =
                                         Intent(this@LogInActivity, SignUpActivity2::class.java)
                                     startActivity(intent)
