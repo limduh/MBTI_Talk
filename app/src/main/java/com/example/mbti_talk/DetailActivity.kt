@@ -337,49 +337,6 @@ class DetailActivity : AppCompatActivity() {
         finish()
     }
 
-    //상대가 나를 차단했는지 알아보는 메소드
-//    private fun loadOponentBlockFriends(userID: String) {
-//
-//        oponentBlockList.clear()
-//        friendBlockDB
-//            .child(userID) // friendDb 아래 userID 를 키로 갖는 하위 노드 찾음.
-//            .addListenerForSingleValueEvent(object : ValueEventListener { // 함수는 데이터 변경을 단 한번만 기다림.
-//                override fun onDataChange(dataSnapshot: DataSnapshot) { // RDB 에서 데이터 검색 성공 시 실행되는 콜백 함수.
-//                    Log.d("FirebaseDatabase", "#dudu loadOponentBlockFriends ")
-//
-//                    // userDB 에 차단친구가 존재하는지 확인
-//                    if (dataSnapshot.exists()) {
-//                        val size = dataSnapshot.children.count()
-//                        Log.d(
-//                            "FirebaseDatabase",
-//                            "#dudu userBlockList dataSnapshot.exists() size = $size"
-//                        )
-//                        for (badfriendUidSnapshot in dataSnapshot.children) {
-//                            val badfriendUid = badfriendUidSnapshot.key
-//                            if (badfriendUid != null) {
-////                                oponentBlockList.add(badfriendUid)
-//                            }
-//                        }
-//                        Log.d(
-//                            "FirebaseDatabase",
-//                            "#dudu oponentBlockList.size = ${oponentBlockList.size}"
-//                        )
-////
-////                        if(myId = oponentBlockList){
-////                            binding.DetailBtnChat.gone()
-////                        }
-//
-//
-//                    } else {
-//                        Log.d("FirebaseDatabase", "#dudu bad friends found for UID: $userID")
-//
-//                    }
-//                }
-//
-//                override fun onCancelled(databaseError: DatabaseError) { // DB 오류 처리하고 메시지 로깅
-//                    Log.d("FirebaseDatabase", "#dudu onCancelled", databaseError.toException())
-//                }
-//            })
-//    }
+
 }
 
