@@ -14,7 +14,7 @@
             </item>
             <item
                 android:drawable="@drawable/ic_arrow_down_size"
-                android:gravity="center|start"
+                android:gravity="center|end"
                 android:width="20dp"
                 android:height="20dp" />
         </layer-list>

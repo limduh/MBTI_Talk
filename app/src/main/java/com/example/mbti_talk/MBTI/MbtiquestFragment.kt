@@ -142,7 +142,6 @@ class MbtiquestFragment : Fragment() {
         mbtiQuestionBack.setOnClickListener {
             val bottomActivityIntent = Intent(activity, BottomActivity::class.java)
             bottomActivityIntent.putExtra("startFragment", "MyProfileFragment") // 추가된 부분
-            startActivity(bottomActivityIntent)
             activity?.finish() // 현재 Fragment가 속한 Activity 종료
         }
 
