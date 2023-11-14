@@ -216,10 +216,10 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/filter_chip_F"
             style="@style/FilterMBTIStyle"
-            android:text="F"
             android:layout_marginTop="40dp"
+            android:text="F"
             app:layout_constraintBottom_toBottomOf="@+id/filter_chip_T"
-            app:layout_constraintEnd_toStartOf="@+id/vline2"
+            app:layout_constraintEnd_toEndOf="@+id/filter_chip_I"
             app:layout_constraintStart_toStartOf="@+id/filter_chip_I"
             app:layout_constraintTop_toBottomOf="@+id/filter_chip_I" />
 
