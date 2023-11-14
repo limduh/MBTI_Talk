@@ -48,7 +48,7 @@ class RecyclerChatRoomsAdapter(val context: Context, val binding: FragmentChatBi
 
                     if (chatRooms.isEmpty()) {
                         val drawableResourceId = R.drawable.img_nochat
-                        //현재 사용자의 채팅방이 없다면, 이미지를 이미지뷰에 띄움!
+                        //현재 사용자의 채팅방이 없다면, 이미지를 이미지뷰에 띄움
                         binding.fragmentChatImg.setImageResource(drawableResourceId)
                     }
                     notifyDataSetChanged()
