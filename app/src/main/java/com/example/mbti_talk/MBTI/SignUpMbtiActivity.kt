@@ -64,6 +64,7 @@ class SignUpMbtiActivity : AppCompatActivity() {
             val intent = Intent(this, MbtiActivity::class.java)
             intent.putExtra("COMBINED_MBTI", combinedMbti)
             startActivity(intent)
+            finish()
 
 
         }

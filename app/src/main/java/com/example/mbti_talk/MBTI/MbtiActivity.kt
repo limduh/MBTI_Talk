@@ -29,6 +29,7 @@ class MbtiActivity : AppCompatActivity() {
         selectMBTI.setOnClickListener {
             val intent = Intent(this, SignUpMbtiActivity::class.java)
             startActivity(intent)
+            finish()
         }
         val combineMbti = intent.getStringExtra("COMBINED_MBTI")
 
@@ -61,11 +62,14 @@ class MbtiActivity : AppCompatActivity() {
                         val intent = Intent(this, BottomActivity::class.java)
                         Utils.setMyMbti(this, combineMbti) // Utils.setMyMbti 함수를 호출하여 해당 MBTI를 저장
                         startActivity(intent)
+                        finish()
+
                     }
                         .addOnFailureListener { error ->
                             Toast.makeText(this, "MBTI 값 업데이트 중 오류 발생: $error", Toast.LENGTH_SHORT)
                                 .show()
                         }
+
                 }
             }
         }
@@ -91,4 +95,4 @@ class MbtiActivity : AppCompatActivity() {
             else -> ""
         }
     }
-}//
+}
