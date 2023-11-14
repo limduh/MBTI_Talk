@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -18,11 +19,12 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.getValue
 import com.google.firebase.storage.FirebaseStorage
+import nb_.mbti_talk.databinding.FragmentChatBinding
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.TimeZone
 
-class RecyclerChatRoomsAdapter(val context: Context) :
+class RecyclerChatRoomsAdapter(val context: Context, val binding: FragmentChatBinding) :
     RecyclerView.Adapter<RecyclerChatRoomsAdapter.ViewHolder>() {
     var chatRooms: ArrayList<ChatRoom> = arrayListOf()   //채팅방 목록
     var chatRoomKeys: ArrayList<String> = arrayListOf()  //채팅방 키 목록
@@ -43,10 +45,15 @@ class RecyclerChatRoomsAdapter(val context: Context) :
                         chatRooms.add(data.getValue<ChatRoom>()!!)
                         chatRoomKeys.add(data.key!!)
                     }
+
+                    if (chatRooms.isEmpty()) {
+                        val drawableResourceId = R.drawable.img_nochat
+                        //현재 사용자의 채팅방이 없다면, 이미지를 이미지뷰에 띄움
+                        binding.fragmentChatImg.setImageResource(drawableResourceId)
+                    }
                     notifyDataSetChanged()
                 }
             })
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
