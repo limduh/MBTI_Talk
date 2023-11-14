@@ -173,7 +173,7 @@ class MyProfileFragment : Fragment() {
         return view
     }
 
-
+//
     //이미지 갤러리 불러오기
     val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
 //        binding.postImageSelect.tag = uri
