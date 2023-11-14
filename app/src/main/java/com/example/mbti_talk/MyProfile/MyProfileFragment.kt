@@ -189,7 +189,7 @@ class MyProfileFragment : Fragment() {
             }
         }
     }
-//
+
     fun makeFilePath(path: String, userId: String, uri: Uri): String {
         val mimeType = requireContext().contentResolver.getType(uri) ?: "/none" // MIME 타입 ex) images/jpeg
         val ext = mimeType.split("/")[1] // 확장자 ex) jpeg
