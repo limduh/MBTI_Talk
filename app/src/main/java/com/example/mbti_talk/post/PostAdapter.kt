@@ -57,6 +57,7 @@ class PostAdapter(private var postList: List<PostData>, val myUid: String?) : Re
                     intent.putExtra("user_gender", postData.user_gender)
                     intent.putExtra("time", postData.time)
                     intent.putExtra("userId", postData.user_uid)
+                    intent.putExtra("postId", postData.postId)
                     // ... (나머지 데이터 추가)
 
                     context.startActivity(intent)

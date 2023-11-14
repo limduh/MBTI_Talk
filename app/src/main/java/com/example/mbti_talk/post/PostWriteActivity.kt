@@ -33,7 +33,8 @@ import java.util.Calendar
 import java.util.Locale
 
 class PostWriteActivity : AppCompatActivity() {
-    private var postId: String? = null
+    private var postId_edit: String? = null
+    private var postmode = false
 
 
     lateinit var binding: ActivityPostWriteBinding
@@ -58,8 +59,11 @@ class PostWriteActivity : AppCompatActivity() {
         binding = ActivityPostWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        postId = intent.getStringExtra("postId")
-        postId?.let {
+        postId_edit = intent.getStringExtra("postId")
+        if(postId_edit != null) {
+            postmode = true
+        }
+        postId_edit?.let {
             loadPostData(it)
         }
 
@@ -96,7 +100,6 @@ class PostWriteActivity : AppCompatActivity() {
             val time = getTime2()
             val uri = binding.postImageSelect.tag as? Uri
             if (uri != null) {
-                Log.d("vec", "Selected Image Uri: $uri")
                 uploadImage(uri) {
                     if (it != null) {
                         val user = PostData(title, content, time, it)
@@ -234,7 +237,11 @@ class PostWriteActivity : AppCompatActivity() {
                     val user_age = userData.user_age
 
 
-                    val postId = userUid!! + getTime() ;
+                    val postId = userUid!! + getTime()
+                    var new_postId = postId
+                    if (postmode) {
+                        new_postId = postId_edit.toString()
+                    }
                     if (user_nickName != null && user_profile != null) {
                         user.apply {
                             this.user_nickName = user_nickName
@@ -242,10 +249,10 @@ class PostWriteActivity : AppCompatActivity() {
                             this.user_mbti = user_mbti
                             this.user_gender = user_gender
                             this.user_age = user_age
-                            this.postId = postId
+                            this.postId = new_postId
                         }
-                        FirebaseData.mydata.child(postId)
-                            .setValue(user)
+
+                            FirebaseData.mydata.child(new_postId).setValue(user)
                     }
                 }
             }

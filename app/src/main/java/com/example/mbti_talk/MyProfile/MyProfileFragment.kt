@@ -1,14 +1,19 @@
 package nb_.mbti_talk.MyProfile
 
+import android.Manifest
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -26,18 +31,37 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
+import nb_.mbti_talk.Chat.User
+import nb_.mbti_talk.databinding.ActivityPostWriteBinding
 
 
 class MyProfileFragment : Fragment() {
-
-    lateinit var selectedUri: Uri
 
     private lateinit var database: DatabaseReference
     private lateinit var binding: FragmentMyProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
 
     private lateinit var ProfileImg:AppCompatImageView
+
+    val storage = Firebase.storage("gs://mbti-talk-f2a04.appspot.com")
+    private lateinit var myUserData : UserData
+
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private val permission33 = arrayOf(
+        Manifest.permission.READ_MEDIA_IMAGES,
+        Manifest.permission.READ_MEDIA_AUDIO,
+        Manifest.permission.READ_MEDIA_VIDEO,
+    )
+
+    private val permission = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,6 +69,7 @@ class MyProfileFragment : Fragment() {
     ): View? {
         binding = FragmentMyProfileBinding.inflate(inflater, container, false)
         val view = binding.root
+        database = FirebaseDatabase.getInstance().getReference("Users")
 
         // profile_btn_MyLikeList 클릭 이벤트 추가
 //        binding.profileBtnMyLikeList.setOnClickListener {
@@ -55,10 +80,6 @@ class MyProfileFragment : Fragment() {
 
         binding.ProfileMbtiBtn.setOnClickListener {
             showMbtiChoiceDialog()
-        }
-
-        binding.ProfileImg.setOnClickListener{
-            galleryLauncher.launch("image/*")
         }
 
         //로그아웃
@@ -75,7 +96,28 @@ class MyProfileFragment : Fragment() {
         binding.ProfileBtnMemberout.setOnClickListener {
             signoutDialog()
         }
-        //
+
+        binding.ProfileImg.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (requireContext().checkSelfPermission(Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED)
+                    (requireContext() as Activity).requestPermissions(permission33, 100)
+                else {
+                    galleryLauncher.launch("image/*")
+                }
+            } else {
+                if (requireContext().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                    requireContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    (requireContext() as Activity).requestPermissions(permission, 100)
+                } else {
+                    galleryLauncher.launch("image/*")
+                }
+
+            }
+
+
+        }
+
 
         binding.tvBlockFriend.setOnClickListener {
             val intent = Intent(requireContext(), FriendBlockActivity::class.java)
@@ -97,6 +139,9 @@ class MyProfileFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         val userData = snapshot.getValue(UserData::class.java)
+                        if (userData != null) {
+                            myUserData = userData
+                        }
                         if (userData != null) {
                             binding.ProfileEmail.text = "${userData.user_email}"
                             binding.ProfileNickname.text = "${userData.user_nickName}"
@@ -127,6 +172,50 @@ class MyProfileFragment : Fragment() {
 
         return view
     }
+
+//
+    //이미지 갤러리 불러오기
+    val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+//        binding.postImageSelect.tag = uri
+        binding.ProfileImg.setImageURI(uri)
+        if (uri != null) {
+            uploadImage(uri){
+                val userId = firebaseAuth.currentUser?.uid
+                if (userId != null) {
+
+                    myUserData.user_profile = it.toString()
+                    database.child(userId).setValue(myUserData)
+                }
+            }
+        }
+    }
+
+    fun makeFilePath(path: String, userId: String, uri: Uri): String {
+        val mimeType = requireContext().contentResolver.getType(uri) ?: "/none" // MIME 타입 ex) images/jpeg
+        val ext = mimeType.split("/")[1] // 확장자 ex) jpeg
+        val timeSuffix = System.currentTimeMillis() // 시간값 ex) 1235421532
+        val filename = "${path}/${userId}_${timeSuffix}.${ext}" // 완성!
+        return filename
+    }
+
+    fun uploadImage(uri: Uri, callback: (String?) -> Unit) {
+        val fullPath = makeFilePath("images", "temp", uri)
+        val imageRef = storage.getReference(fullPath)
+        val uploadTask = imageRef.putFile(uri)
+
+        // 업로드 실행 및 결과 확인
+        uploadTask.addOnFailureListener {
+            Log.d("Storage", "Fail -> ${it.message}")
+            callback(null)
+        }.addOnSuccessListener { taskSnapshot ->
+            Log.d(
+                "Storage",
+                "Success Address -> ${taskSnapshot.metadata?.name}"
+            )
+            callback(taskSnapshot.metadata?.name)
+        }
+    }
+
     private fun showMbtiChoiceDialog() {
         val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.mbti_dialog_choice, null)
         val binding = MbtiDialogChoice(
@@ -189,22 +278,4 @@ class MyProfileFragment : Fragment() {
 
 
 
-    //이미지 갤러리 불러오기
-    var galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        Log.d("SignIn", "dudu+ $uri")
-        binding.ProfileImg.tag = uri
-        binding.ProfileImg.setImageURI(uri)
-        if (uri != null) {
-            selectedUri = uri
-        }
-
-    }
-
 }
-
-
-
-
-
-
-

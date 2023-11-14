@@ -13,6 +13,6 @@ data class UserData(
     val user_uid: String = "",
     val user_gender: String = "",
     val user_mbti: String = "",
-    val user_profile: String = "",
+    var user_profile: String = "",
     var user_compat: String = "" // mbti 호환
 ) : Parcelable
