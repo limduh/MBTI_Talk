@@ -71,6 +71,7 @@ class LogInActivity : AppCompatActivity() {
         //구글 이미지 누를때 이벤트
         imageViewGoogle.setOnClickListener {
             googleSignIn()
+            Log.d("goolgestart","google")
         }
 
 
