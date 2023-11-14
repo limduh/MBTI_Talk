@@ -22,6 +22,7 @@ class PostDetailActivity : AppCompatActivity() {
         val nickname = intent.getStringExtra("user_nickName")
         val profile = intent.getStringExtra("user_profile")
         val time = intent.getStringExtra("time")
+        val userId = intent.getStringExtra("userId")
 
         binding.PostDetailTitle.text = title
         binding.PostDetailEtContent.text = content
@@ -43,7 +44,7 @@ class PostDetailActivity : AppCompatActivity() {
         }
         binding.PostDetailUserpicture.setOnClickListener {
             val intent = Intent(this, DetailActivity::class.java)
-
+            intent.putExtra("userId", userId) // 실제 사용자 ID로 대체
             startActivity(intent)
         }
 

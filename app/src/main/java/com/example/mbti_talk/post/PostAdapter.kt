@@ -44,17 +44,40 @@ class PostAdapter(private var postList: List<PostData>, val myUid: String?) : Re
                 val context = itemView.context
                 val postData = postList[position]
 
-                val intent = Intent(context, PostDetailActivity::class.java)
-                intent.putExtra("title", postData.title)
-                intent.putExtra("content", postData.content)
-                intent.putExtra("image", postData.image)
-                intent.putExtra("user_age", postData.user_age)
-                intent.putExtra("user_nickName", postData.user_nickName)
-                intent.putExtra("user_profile", postData.user_profile)
-                intent.putExtra("user_mbti", postData.user_mbti)
-                intent.putExtra("user_gender", postData.user_gender)
-                intent.putExtra("time", postData.time)
-                context.startActivity(intent)
+                if (postData.user_uid == myUid) {
+                    val intent = Intent(context, PostMyDetailActivity::class.java)
+                    // 여기에 데이터 전달 코드 추가
+                    intent.putExtra("title", postData.title)
+                    intent.putExtra("content", postData.content)
+                    intent.putExtra("image", postData.image)
+                    intent.putExtra("user_age", postData.user_age)
+                    intent.putExtra("user_nickName", postData.user_nickName)
+                    intent.putExtra("user_profile", postData.user_profile)
+                    intent.putExtra("user_mbti", postData.user_mbti)
+                    intent.putExtra("user_gender", postData.user_gender)
+                    intent.putExtra("time", postData.time)
+                    intent.putExtra("userId", postData.user_uid)
+                    // ... (나머지 데이터 추가)
+
+                    context.startActivity(intent)
+                } else {
+                    // 일반 게시물의 경우 PostDetailActivity로 이동
+                    val intent = Intent(context, PostDetailActivity::class.java)
+                    // 여기에 데이터 전달 코드 추가
+                    intent.putExtra("title", postData.title)
+                    intent.putExtra("content", postData.content)
+                    intent.putExtra("image", postData.image)
+                    intent.putExtra("user_age", postData.user_age)
+                    intent.putExtra("user_nickName", postData.user_nickName)
+                    intent.putExtra("user_profile", postData.user_profile)
+                    intent.putExtra("user_mbti", postData.user_mbti)
+                    intent.putExtra("user_gender", postData.user_gender)
+                    intent.putExtra("time", postData.time)
+                    intent.putExtra("userId", postData.user_uid)
+                    // ... (나머지 데이터 추가)
+
+                    context.startActivity(intent)
+                }
             }
         }
 
@@ -114,16 +137,6 @@ class PostAdapter(private var postList: List<PostData>, val myUid: String?) : Re
         }
     }
 
-
-
-
-    fun getTime(): String {
-        val currentDateTime = Calendar.getInstance().time
-        val dateFormat =
-            SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(currentDateTime)
-
-        return dateFormat
-    }
     fun updateList(newList: List<PostData>) {
         postList = newList
         notifyDataSetChanged()
@@ -131,9 +144,6 @@ class PostAdapter(private var postList: List<PostData>, val myUid: String?) : Re
     fun getLikedPosts(): List<PostData> {
         return postList.filter {it.likeByUser.get(myUid)==true }
     }
-
-
-
 
     private fun getLikeState(postId:String,  uId:String): Boolean{
 

@@ -197,8 +197,8 @@
 
             <ImageView
                 android:id="@+id/Profile_mbti_btn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="5dp"
                 android:src="@drawable/ic_profile_mbti_search"
                 app:layout_constraintBottom_toBottomOf="@+id/Profile_mbti"
