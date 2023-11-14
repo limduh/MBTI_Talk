@@ -24,13 +24,13 @@ class ChatFragment : Fragment() {
         val view = binding.root
 
         // Firebase 및 RecyclerView 초기화
-        firebaseDatabase = FirebaseDatabase.getInstance().getReference("ChatRoom")!!
+        firebaseDatabase = FirebaseDatabase.getInstance().getReference("ChatRoom")
         recycler_chatroom = binding.recyclerChatrooms
         recycler_chatroom.layoutManager = LinearLayoutManager(requireContext())
-        recycler_chatroom.adapter = RecyclerChatRoomsAdapter(requireContext())
 
+        val adapter = RecyclerChatRoomsAdapter(requireContext(), binding)
+        recycler_chatroom.adapter = adapter
 
         return view
     }
 }
-

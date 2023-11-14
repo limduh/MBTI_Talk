@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
+        android:id="@+id/view6"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/filter_background"
@@ -35,4 +36,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_TItle"
         tools:listitem="@layout/list_chatroom_item" />
+
+    <ImageView
+        android:id="@+id/fragment_chat_img"
+        android:layout_width="344dp"
+        android:layout_height="522dp"
+        app:layout_constraintBottom_toBottomOf="@+id/recycler_chatrooms"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/recycler_chatrooms"
+        app:layout_constraintTop_toTopOf="@+id/recycler_chatrooms"
+       />
 </androidx.constraintlayout.widget.ConstraintLayout>
