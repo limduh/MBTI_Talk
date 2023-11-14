@@ -26,6 +26,11 @@ import com.google.firebase.storage.FirebaseStorage
 
 class DetailActivity : AppCompatActivity() {
 
+
+    private lateinit var friendBlockDB: DatabaseReference
+
+    private val oponentBlockList: MutableList<UserData> = mutableListOf()
+
     // DetailActivity 클래스의 멤버 변수들을 선언
     lateinit var binding: ActivityDetailBinding // 뷰바인딩 초기화
     lateinit var detailDB: DatabaseReference // RDB 와 연동하기 위한 레퍼런스를 초기화
@@ -270,22 +275,7 @@ class DetailActivity : AppCompatActivity() {
                 // 채팅방 삭제 함수 호출
                 findChatRoomWithBlockedFriend(myId.toString(), userID)
 
-                //????  숙제1 (도연님)  ////
-                ///ChatRoom/chatRooms/
-                //  uid1_uid2
 
-                // chatRooms 목록을 가져와서.
-                // 2Xb9fup66mMTs6RGKxwHd3Qpxzm1-cq234vBQvngzop6T3FQwvSFiVDu2
-                // 여기에 내uid+차단할 친구 uid가 포함되어있는지 찾아. (contain)
-                // 있으면 해당 챗룸 삭제 (삭제는 블락친구삭제코드 참고)
-
-                //// 숙제 2  (진주님)
-                // 내프로필 차단친구 목록 디자인 수정
-                // 차단친구 목록에 뒤로가기 버튼추가
-                //  아이템 클릭시 정말 차단을 해제합니까? 다이얼로그 표시
-
-                //// 숙제 3  (두형 님)
-                // 나를 차단한 친구 상세보기에서는 채팅하기 아이콘 변경 or 안보이게 하던가
             }
             // 클릭 이벤트 처리
             // Intent 사용하여 MainFriendActivity 로 이동
@@ -293,7 +283,51 @@ class DetailActivity : AppCompatActivity() {
             finish()
 
         }
+        // Firebase DB 참조
+        friendBlockDB = Firebase.database.reference.child("Friends_block")
+
+
+        // selectedUserId는 intent.getStringExtra("userId")를 통해 DetailActivity로 전달된 선택된 사용자의 UID를 받아오기 위해 사용됩니다.
+        //이는 DetailActivity가 시작될 때 전달되는 인텐트에서 추출된 데이터로, 다른 사용자의 상세 정보를 표시하기 위해 필요합니다.
+
+        // 현재 사용자의 UID = myId, 선택한 사용자의 UID = userID
+
+        // A가 B를 차단했는지 확인
+        userID?.let { selectedUserId -> // "userId" 를 통해 DetailActivity 로 전달된 userId UID 받기 위해 사용
+            // 선택된 사용자('selectedUserId') 가 현재 사용자('myId') 를 차단했는지 확인
+            friendBlockDB.child(selectedUserId).child(myId.toString())
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        // 데이터를 성공적으로 가져온 경우
+                        if (snapshot.exists()) { // 해당 경로에 데이터 존재하는지 확인하여 차단 여부 판단
+                            // A가 B를 차단한 경우 차단 안내 토스트 메시지 표시
+                            Toast.makeText(
+                                this@DetailActivity,
+                                "해당 사용자가 당신을 차단했습니다.\n채팅신청이 불가능합니다.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            // 채팅하기 UI 숨기기
+                            hideFriendInteractionUI()
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        // 처리 중 오류 발생한 경우
+                        Toast.makeText(
+                            this@DetailActivity,
+                            "데이터 처리에 실패했습니다.\n다시 시도해주세요.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                })
+        }
     }
+
+    private fun hideFriendInteractionUI() {
+        // 채팅하기 버튼 숨기기
+        binding.DetailBtnChat.visibility = View.GONE
+        binding.DetailTxtChat.visibility = View.GONE
+    }
+
     fun goToChatRoom(chatRoom: ChatRoom, chatRoomKey: String, opponent: UserData) {
         val intent = Intent(this, ChatRoomActivity::class.java)
         intent.putExtra("ChatRoom", chatRoom)
@@ -302,5 +336,7 @@ class DetailActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+
 }
 
