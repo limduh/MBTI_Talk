@@ -79,22 +79,31 @@ class UserAdapter(private val clickListener: (String) -> Unit) : RecyclerView.Ad
             clickListener(user.user_uid)
         }
 
+        // 하트 초기화
+        holder.user_heart1.visibility = View.GONE
+        holder.user_heart2.visibility = View.GONE
+        holder.user_heart3.visibility = View.GONE
+        holder.user_heart4.visibility = View.GONE
 
-        // 궁합 이미지 설정
+        // 궁합에 따른 하트 개수 설정
         when (user.user_compat) {
-            "A" -> holder.user_heart1.visibility = View.VISIBLE
+            "A" -> {
+                holder.user_heart1.visibility = View.VISIBLE
+                holder.user_heart2.visibility = View.VISIBLE
+                holder.user_heart3.visibility = View.VISIBLE
+                holder.user_heart4.visibility = View.VISIBLE
+            }
             "B" -> {
-                holder.user_heart4.visibility = View.GONE
+                holder.user_heart1.visibility = View.VISIBLE
+                holder.user_heart2.visibility = View.VISIBLE
+                holder.user_heart3.visibility = View.VISIBLE
             }
             "C" -> {
-                holder.user_heart3.visibility = View.GONE
-                holder.user_heart4.visibility = View.GONE
-
+                holder.user_heart1.visibility = View.VISIBLE
+                holder.user_heart2.visibility = View.VISIBLE
             }
             "D" -> {
-                holder.user_heart2.visibility = View.GONE
-                holder.user_heart3.visibility = View.GONE
-                holder.user_heart4.visibility = View.GONE
+                holder.user_heart1.visibility = View.VISIBLE
             }
         }
     }

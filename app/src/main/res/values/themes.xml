@@ -7,7 +7,7 @@
 
     <style name="Theme.MBTI_Talk" parent="Base.Theme.MBTI_Talk" />
 
-    <style name="SplashTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimaryDark">#ffffff</item>
         <item name="colorAccent">@color/colorAccent</item>

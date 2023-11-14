@@ -10,10 +10,15 @@
       "client_info": {
         "mobilesdk_app_id": "1:751430456068:android:cc47aa9fb13d10375b3651",
         "android_client_info": {
-          "package_name": "nb_.mbti_talk"
+          "package_name": "com.example.mbti_talk"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "751430456068-ek5vvgaetu4qof3rk7o8qeaebnid32r8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBXGa4Xjnptw7OpfRUuYgmN4WeN4UJEgPY"
@@ -21,7 +26,41 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751430456068-ek5vvgaetu4qof3rk7o8qeaebnid32r8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751430456068:android:1055f91673a787c35b3651",
+        "android_client_info": {
+          "package_name": "nb_.mbti_talk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751430456068-ek5vvgaetu4qof3rk7o8qeaebnid32r8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXGa4Xjnptw7OpfRUuYgmN4WeN4UJEgPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751430456068-ek5vvgaetu4qof3rk7o8qeaebnid32r8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

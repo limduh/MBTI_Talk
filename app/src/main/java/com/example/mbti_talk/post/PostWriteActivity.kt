@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import nb_.mbti_talk.UserData
 import nb_.mbti_talk.databinding.ActivityPostWriteBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -23,13 +24,16 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
 class PostWriteActivity : AppCompatActivity() {
+    private var postId: String? = null
 
 
     lateinit var binding: ActivityPostWriteBinding
@@ -53,6 +57,12 @@ class PostWriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPostWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        postId = intent.getStringExtra("postId")
+        postId?.let {
+            loadPostData(it)
+        }
+
         val btnBack = binding.postbackarrow
         btnBack.setOnClickListener {
             finish()
@@ -119,6 +129,51 @@ class PostWriteActivity : AppCompatActivity() {
         }
 
         editText.filters = arrayOf(filter)
+    }
+    private fun loadPostData(postId: String) {
+        val postsRef = Firebase.database.reference.child("posts").child(postId)
+
+        postsRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("PostWriteActivity", "Data Change Event Occurred")
+
+                if (snapshot.exists()) {
+                    val postData = snapshot.getValue(PostData::class.java)
+
+                    Log.d("PostWriteActivity", "Loaded Post Data: $postData")
+
+                    // 가져온 데이터를 화면에 출력
+                    postData?.let {
+                        binding.postTitle.setText(it.title)
+                        binding.postEtContent.setText(it.content)
+
+                        // 이미지 출력을 위한 코드
+                        val storage = FirebaseStorage.getInstance()
+                        val reference = storage.reference.child("images/${it.image}")
+                        reference.downloadUrl.addOnSuccessListener { uri ->
+                            Glide.with(this@PostWriteActivity)
+                                .load(uri)
+                                .into(binding.postImage)
+                        }
+                    }
+                } else {
+                    Toast.makeText(
+                        this@PostWriteActivity,
+                        "게시물이 존재하지 않습니다.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("PostWriteActivity", "Data Change Event Canceled")
+                Toast.makeText(
+                    this@PostWriteActivity,
+                    "데이터를 가져오는데 실패했습니다.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
     }
 
     private fun showToast(message: String) {

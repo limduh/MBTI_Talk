@@ -22,6 +22,7 @@ class PostDetailActivity : AppCompatActivity() {
         val nickname = intent.getStringExtra("user_nickName")
         val profile = intent.getStringExtra("user_profile")
         val time = intent.getStringExtra("time")
+        val userId = intent.getStringExtra("userId")
 
         binding.PostDetailTitle.text = title
         binding.PostDetailEtContent.text = content
@@ -41,24 +42,11 @@ class PostDetailActivity : AppCompatActivity() {
                 .load(it)
                 .into(binding.PostDetailUserpicture)
         }
-//        binding.PostDetailUserpicture.setOnClickListener {
-//            val userId = intent.getStringExtra("userId")
-//            val userAge = intent.getIntExtra("user_age", -1) // 추가: 유저 나이 가져오기 (기본값 -1로 설정)
-//            val usergender = intent.getStringExtra("user_gender")
-//            val usermbti = intent.getStringExtra("user_mbti")
-//            val time = intent.getStringExtra("time")
-//
-//            // DetailActivity로 이동하는 Intent를 생성합니다.
-//            val intent = Intent(this, DetailActivity::class.java)
-//            intent.putExtra("userId", userId)
-//            intent.putExtra("user_Nickname", nickname) // 추가: 유저 닉네임 전달
-//            intent.putExtra("user_age", userAge) // 추가: 유저 나이 전달
-//            intent.putExtra("user_profile", profile)
-//            intent.putExtra("user_gender", usergender)
-//            intent.putExtra("user_mbti", usermbti)
-//
-//            startActivity(intent)
-//        }
+        binding.PostDetailUserpicture.setOnClickListener {
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("userId", userId) // 실제 사용자 ID로 대체
+            startActivity(intent)
+        }
 
 
         binding.PostDetailBackarrow.setOnClickListener {

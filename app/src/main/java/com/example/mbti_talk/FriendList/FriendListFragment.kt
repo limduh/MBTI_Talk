@@ -236,4 +236,7 @@ class FriendListFragment : Fragment() {
                 }
             })
     }
+
+
+
 }
