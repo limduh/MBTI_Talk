@@ -128,8 +128,12 @@ class FriendFindFragment : Fragment() {
                     }
 
                     // 나이 범위 필터 적용
-                    val ageRangeText = "$minValue~$maxValue"
-                    binding.filterAge.text = ageRangeText
+                    val ageRangeText = if (minValue > 0 || maxValue > 0) {
+                        "${minValue} ~ ${maxValue}"
+                    } else {
+                        "All Ages"
+                    }
+                    binding.filterAge.visibility = View.VISIBLE
 
                     // MBTI 필터 적용 : 각 MBTI 칩 상태에 따라 텍스트뷰 설정
                     binding.filterMbti1.visibility = if (mbtiI.isNotEmpty() || mbtiE.isNotEmpty()) View.VISIBLE else View.GONE // 'I'or'E'가 선택->tv보임. 선택되지 않았다면 숨김.
