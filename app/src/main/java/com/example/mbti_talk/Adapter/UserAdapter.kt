@@ -49,10 +49,16 @@ class UserAdapter(private val clickListener: (String) -> Unit) : RecyclerView.Ad
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val user = userList[position]
 
-        var gender = "남"
+        holder.user_heart1.visibility = View.GONE
+        holder.user_heart2.visibility = View.GONE
+        holder.user_heart3.visibility = View.GONE
+        holder.user_heart4.visibility = View.GONE
+        holder.user_gender.setBackgroundResource(R.drawable.detail_man_kit)
+        holder.user_age.setBackgroundResource(R.drawable.detail_man_kit)
+        holder.user_mbti.setBackgroundResource(R.drawable.detail_man_kit)
+
 
         if(user.user_gender.equals("여자")) {
-            gender = "여"
             holder.user_gender.setBackgroundResource(R.drawable.detail_woman_kit)
             holder.user_age.setBackgroundResource(R.drawable.detail_woman_kit)
             holder.user_mbti.setBackgroundResource(R.drawable.detail_woman_kit)
@@ -60,7 +66,7 @@ class UserAdapter(private val clickListener: (String) -> Unit) : RecyclerView.Ad
         // 아이템 데이터 설정
         holder.user_nickname.text = user.user_nickName
         holder.user_age.text = user.user_age.toString()
-        holder.user_gender.text = gender
+        holder.user_gender.text = if (user.user_gender.equals("여자")) "여" else "남"
         holder.user_mbti.text = user.user_mbti
 
         // Firebase Storage 에서 프로필 이미지 가져오기
