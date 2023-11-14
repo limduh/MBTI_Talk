@@ -48,32 +48,32 @@
                 android:id="@+id/appCompatTextView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
                 android:text="아이디 : "
                 android:textColor="@color/gray"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/appCompatTextView6"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView6" />
+                app:layout_constraintBottom_toBottomOf="@+id/Profile_email"
+                app:layout_constraintEnd_toStartOf="@+id/Profile_email"
+                app:layout_constraintTop_toTopOf="@+id/Profile_email" />
 
             <!--        아이디는 이메일 주소임-->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/Profile_email"
-                android:layout_width="154dp"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="5dp"
                 android:gravity="center|start"
                 android:text="tedsfdfd@adfdfads.com"
                 android:textColor="@color/gray"
-                app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView5"
-                app:layout_constraintStart_toEndOf="@+id/appCompatTextView5"
-                app:layout_constraintTop_toTopOf="@+id/appCompatTextView5" />
+                app:layout_constraintEnd_toEndOf="@+id/Profile_nickname"
+                app:layout_constraintStart_toStartOf="@+id/Profile_nickname"
+                tools:layout_editor_absoluteY="166dp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appCompatTextView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="10dp"
                 android:text="닉네임 : "
                 android:textColor="@color/gray"
                 android:textSize="14sp"
