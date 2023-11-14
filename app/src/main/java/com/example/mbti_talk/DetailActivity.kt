@@ -275,22 +275,7 @@ class DetailActivity : AppCompatActivity() {
                 // 채팅방 삭제 함수 호출
                 findChatRoomWithBlockedFriend(myId.toString(), userID)
 
-                //????  숙제1 (도연님)  ////
-                ///ChatRoom/chatRooms/
-                //  uid1_uid2
 
-                // chatRooms 목록을 가져와서.
-                // 2Xb9fup66mMTs6RGKxwHd3Qpxzm1-cq234vBQvngzop6T3FQwvSFiVDu2
-                // 여기에 내uid+차단할 친구 uid가 포함되어있는지 찾아. (contain)
-                // 있으면 해당 챗룸 삭제 (삭제는 블락친구삭제코드 참고)
-
-                //// 숙제 2  (진주님)
-                // 내프로필 차단친구 목록 디자인 수정
-                // 차단친구 목록에 뒤로가기 버튼추가
-                //  아이템 클릭시 정말 차단을 해제합니까? 다이얼로그 표시
-
-                //// 숙제 3  (두형 님)
-                // 나를 차단한 친구 상세보기에서는 채팅하기 아이콘 변경 or 안보이게 하던가
             }
             // 클릭 이벤트 처리
             // Intent 사용하여 MainFriendActivity 로 이동
