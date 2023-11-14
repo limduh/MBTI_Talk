@@ -177,8 +177,8 @@ class SignUpActivity2 : AppCompatActivity() {
                             }
 
                             val intent = Intent(this, MbtiActivity::class.java)
-
                             startActivity(intent)
+                            finish()
                         } else {
                             Toast.makeText(
                                 this@SignUpActivity2,
@@ -198,7 +198,6 @@ class SignUpActivity2 : AppCompatActivity() {
 
 
             }
-
         }
     }
 

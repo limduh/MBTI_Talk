@@ -213,6 +213,7 @@ class SignUpActivity : AppCompatActivity() {
                                                 val intent = Intent(this, LogInActivity::class.java)
 
                                                 startActivity(intent)
+                                                finish()
                                             } else {
                                                 Toast.makeText(
                                                     this@SignUpActivity,
