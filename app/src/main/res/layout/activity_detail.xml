@@ -37,20 +37,6 @@
             app:layout_constraintStart_toEndOf="@+id/Detail_Back_arrow"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/Detail_txt_gender"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="16dp"
-            android:background="@drawable/detail_woman_kit"
-            android:gravity="center"
-            android:text="여"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/Detail_txt_nickname"
-            app:layout_constraintStart_toEndOf="@+id/Detail_txt_nickname"
-            app:layout_constraintTop_toTopOf="@+id/Detail_txt_nickname" />
-
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/Detail_btn_friendAdd"
             android:layout_width="40dp"
@@ -165,6 +151,18 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="#969696"
+            android:textSize="12sp"
+            android:text="성별"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView17"
+            app:layout_constraintStart_toEndOf="@+id/appCompatTextView17"
+            app:layout_constraintTop_toTopOf="@+id/appCompatTextView17" />
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/Detail_txt_Age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -204,6 +202,18 @@
 
         </LinearLayout>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/Detail_txt_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="여"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/appCompatTextView13"
+            app:layout_constraintStart_toStartOf="@+id/appCompatTextView13"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView13" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
