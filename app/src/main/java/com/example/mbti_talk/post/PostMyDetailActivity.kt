@@ -21,46 +21,26 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.storage
 import nb_.mbti_talk.DetailActivity
 import nb_.mbti_talk.R
+import nb_.mbti_talk.UserData
 import nb_.mbti_talk.databinding.ActivityPostMyDetailBinding
 
 class PostMyDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPostMyDetailBinding
     private lateinit var postDB: DatabaseReference
+    private lateinit var postId: String
+    private lateinit var userId: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPostMyDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         postDB = Firebase.database.reference.child("posts")
-
-        val title = intent.getStringExtra("title")
-        val content = intent.getStringExtra("content")
-        val image = intent.getStringExtra("image")
-        val nickname = intent.getStringExtra("user_nickName")
-        val profile = intent.getStringExtra("user_profile")
-        val time = intent.getStringExtra("time")
-        val userId = intent.getStringExtra("userId")
-        val postId = intent.getStringExtra("postId")
+        postId = intent.getStringExtra("postId").toString()
+        userId = intent.getStringExtra("userId").toString()
 
 
-        binding.PostDetailMyTitle.text = title
-        binding.PostDetailMyEtContent.text = content
-        binding.PostDetailMyUserName.text = nickname
-        binding.PostDetailMyTime.text = time
 
-        val storage = FirebaseStorage.getInstance()
-        val reference = storage.reference.child("images/$image")
-        reference.downloadUrl.addOnSuccessListener {
-            Glide.with(this)
-                .load(it)
-                .into(binding.PostDetailMyImage)
-        }
-        val profileReference = storage.reference.child("images/$profile")
-        profileReference.downloadUrl.addOnSuccessListener {
-            Glide.with(this)
-                .load(it)
-                .into(binding.PostDetailMyUserpicture)
-        }
         binding.PostDetailMyUserpicture.setOnClickListener {
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra("userId", userId) // 실제 사용자 ID로 대체
@@ -113,11 +93,11 @@ class PostMyDetailActivity : AppCompatActivity() {
                     postDB.child(id).removeValue().addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             // 삭제 성공 시 다이얼로그 닫고 액티비티 종료
-                            Toast.makeText(this, "게시물이 삭제 되었습니다.",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "게시물이 삭제 되었습니다.", Toast.LENGTH_SHORT).show()
                             dialog.dismiss()
                             finish()
                         } else {
-                            Toast.makeText(this,"삭제 중 오류가 발생했습니다.",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "삭제 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -127,6 +107,51 @@ class PostMyDetailActivity : AppCompatActivity() {
 
         binding.PostDetailMyBackarrow.setOnClickListener {
             finish()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateData()
+    }
+
+    fun updateData() {
+
+        postId?.let { id ->
+            postDB.child(id).addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        val postData = dataSnapshot.getValue(PostData::class.java)
+
+                        binding.PostDetailMyTitle.text = postData?.title
+                        binding.PostDetailMyEtContent.text = postData?.content
+                        binding.PostDetailMyUserName.text = postData?.user_nickName
+                        binding.PostDetailMyTime.text = postData?.time
+
+                        val storage = FirebaseStorage.getInstance()
+                        val reference = storage.reference.child("images/${postData?.image}")
+                        reference.downloadUrl.addOnSuccessListener {
+                            Glide.with(binding.root)
+                                .load(it)
+                                .into(binding.PostDetailMyImage)
+                        }
+                        val profileReference = storage.reference.child("images/${postData?.image}")
+                        profileReference.downloadUrl.addOnSuccessListener {
+                            Glide.with(binding.root)
+                                .load(it)
+                                .into(binding.PostDetailMyUserpicture)
+                        }
+                    }
+                }
+
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // 취소 시 처리
+                    Log.e("PostWriteActivity", "Failed to read database.", databaseError.toException())
+                }
+            })
+
+
         }
     }
 }

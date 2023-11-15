@@ -47,17 +47,9 @@ class PostAdapter(private var postList: List<PostData>, val myUid: String?) : Re
                 if (postData.user_uid == myUid) {
                     val intent = Intent(context, PostMyDetailActivity::class.java)
                     // 여기에 데이터 전달 코드 추가
-                    intent.putExtra("title", postData.title)
-                    intent.putExtra("content", postData.content)
-                    intent.putExtra("image", postData.image)
-                    intent.putExtra("user_age", postData.user_age)
-                    intent.putExtra("user_nickName", postData.user_nickName)
-                    intent.putExtra("user_profile", postData.user_profile)
-                    intent.putExtra("user_mbti", postData.user_mbti)
-                    intent.putExtra("user_gender", postData.user_gender)
-                    intent.putExtra("time", postData.time)
-                    intent.putExtra("userId", postData.user_uid)
                     intent.putExtra("postId", postData.postId)
+                    intent.putExtra("userId", postData.user_uid)
+
                     // ... (나머지 데이터 추가)
 
                     context.startActivity(intent)
