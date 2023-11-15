@@ -43,6 +43,7 @@ class PostWriteActivity : AppCompatActivity() {
     val storage = Firebase.storage("gs://mbti-talk-f2a04.appspot.com")
 
     var isEditMode = false;
+    var isEditModeForImage =false
     var SelectedImage = ""
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -107,7 +108,7 @@ class PostWriteActivity : AppCompatActivity() {
 
             if (uri.isNotEmpty()) {
 
-                if (isEditMode) {
+                if (isEditMode && !isEditModeForImage) {
                     val user = PostData(title, content, time, uri.toString())
                     addItem(user)
                     Toast.makeText(this@PostWriteActivity, "게시글 입력 완료", Toast.LENGTH_SHORT)
@@ -293,6 +294,8 @@ class PostWriteActivity : AppCompatActivity() {
     //이미지 갤러리 불러오기
     val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         Log.d("Storage", "jb# galleryLauncher uri -> ${uri}")
+        if(isEditMode)
+        isEditModeForImage = true
 
 
         SelectedImage = uri.toString()
