@@ -11,10 +11,12 @@ import android.text.Spanned
 import android.text.TextWatcher
 import android.util.Log
 import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import nb_.mbti_talk.UserData
 import nb_.mbti_talk.databinding.ActivityPostWriteBinding
@@ -34,13 +36,16 @@ import java.util.Locale
 
 class PostWriteActivity : AppCompatActivity() {
     private var postId_edit: String? = null
-    private var postmode = false
+    private var imageSelected = false
 
 
     lateinit var binding: ActivityPostWriteBinding
     private lateinit var firebaseAuth: FirebaseAuth
     val storage = Firebase.storage("gs://mbti-talk-f2a04.appspot.com")
 
+    var isEditMode = false;
+    var isEditModeForImage = false
+    var SelectedImage = ""
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private val permission33 = arrayOf(
@@ -59,9 +64,12 @@ class PostWriteActivity : AppCompatActivity() {
         binding = ActivityPostWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.llLoadingPostWrite.setOnClickListener {
+
+        }
         postId_edit = intent.getStringExtra("postId")
-        if(postId_edit != null) {
-            postmode = true
+        if (postId_edit != null) {
+            isEditMode = true
         }
         postId_edit?.let {
             loadPostData(it)
@@ -95,32 +103,58 @@ class PostWriteActivity : AppCompatActivity() {
         }
 
         binding.postSave.setOnClickListener {
+            binding.llLoadingPostWrite.visibility = View.VISIBLE
             val title = binding.postTitle.text.toString()
             val content = binding.postEtContent.text.toString()
             val time = getTime2()
-            val uri = binding.postImageSelect.tag as? Uri
-            if (uri != null) {
-                uploadImage(uri) {
-                    if (it != null) {
-                        val user = PostData(title, content, time, it)
-                        addItem(user)
-                        Toast.makeText(this@PostWriteActivity, "게시글 입력 완료", Toast.LENGTH_SHORT)
-                            .show()
-                        finish()
-                    } else {
-                        Toast.makeText(this@PostWriteActivity, "이미지 업로드 실패", Toast.LENGTH_SHORT)
-                            .show()
+            val uri = SelectedImage
+
+            Log.d("Storage", "jb# postSave uri -> ${uri.toString()}")
+
+            if (uri.isNotEmpty()) {
+
+                if (isEditMode && !isEditModeForImage) {
+                    val user = PostData(title, content, time, uri.toString())
+                    addItem(user)
+                    Toast.makeText(this@PostWriteActivity, "게시글 입력 완료", Toast.LENGTH_SHORT)
+                        .show()
+                    finish()
+                    binding.llLoadingPostWrite.visibility = View.GONE
+                } else {
+                    uploadImage(uri.toUri()) {
+                        Log.d("Storage", "jb# postSave uploadImage uri -> ${it.toString()}")
+
+                        if (it != null) {
+                            val user = PostData(title, content, time, it)
+                            addItem(user)
+                            Toast.makeText(this@PostWriteActivity, "게시글 입력 완료", Toast.LENGTH_SHORT)
+                                .show()
+                            finish()
+                        } else {
+                            Toast.makeText(this@PostWriteActivity, "이미지 업로드 실패", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                        binding.llLoadingPostWrite.visibility = View.GONE
                     }
                 }
             } else {
                 Toast.makeText(this@PostWriteActivity, "이미지를 선택해주세요", Toast.LENGTH_SHORT).show()
+                binding.llLoadingPostWrite.visibility = View.GONE
             }
+
         }
 
         val editText = binding.postEtContent
 
         val filter = object : InputFilter {
-            override fun filter(source: CharSequence?, start: Int, end: Int, dest: Spanned?, dstart: Int, dend: Int): CharSequence? {
+            override fun filter(
+                source: CharSequence?,
+                start: Int,
+                end: Int,
+                dest: Spanned?,
+                dstart: Int,
+                dend: Int
+            ): CharSequence? {
                 val inputText = dest.toString() + source.toString()
                 if (inputText.length <= 500) {
                     return null
@@ -133,6 +167,7 @@ class PostWriteActivity : AppCompatActivity() {
 
         editText.filters = arrayOf(filter)
     }
+
     private fun loadPostData(postId: String) {
         val postsRef = Firebase.database.reference.child("posts").child(postId)
 
@@ -149,15 +184,21 @@ class PostWriteActivity : AppCompatActivity() {
                     postData?.let {
                         binding.postTitle.setText(it.title)
                         binding.postEtContent.setText(it.content)
+                        SelectedImage = it.image
+
+                        Log.d("Storage", "jb# postsRef uri -> ${it.image}")
 
                         // 이미지 출력을 위한 코드
                         val storage = FirebaseStorage.getInstance()
-                        val reference = storage.reference.child("images/${it.image}")
+                        val reference = storage.reference.child("images/${postData.image}")
                         reference.downloadUrl.addOnSuccessListener { uri ->
+
+                            Log.d("image", "images/${postData.image}")
                             Glide.with(this@PostWriteActivity)
                                 .load(uri)
                                 .into(binding.postImage)
                         }
+
                     }
                 } else {
                     Toast.makeText(
@@ -182,7 +223,6 @@ class PostWriteActivity : AppCompatActivity() {
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
-
 
 
     override fun onRequestPermissionsResult(
@@ -213,6 +253,7 @@ class PostWriteActivity : AppCompatActivity() {
 
         return dateFormat
     }
+
     fun getTime2(): String {
         val currentDateTime = Calendar.getInstance().time
         val dateFormat =
@@ -239,7 +280,8 @@ class PostWriteActivity : AppCompatActivity() {
 
                     val postId = userUid!! + getTime()
                     var new_postId = postId
-                    if (postmode) {
+
+                    if (isEditMode) {
                         new_postId = postId_edit.toString()
                     }
                     if (user_nickName != null && user_profile != null) {
@@ -251,8 +293,7 @@ class PostWriteActivity : AppCompatActivity() {
                             this.user_age = user_age
                             this.postId = new_postId
                         }
-
-                            FirebaseData.mydata.child(new_postId).setValue(user)
+                        FirebaseData.mydata.child(new_postId).setValue(user)
                     }
                 }
             }
@@ -268,7 +309,12 @@ class PostWriteActivity : AppCompatActivity() {
 
     //이미지 갤러리 불러오기
     val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        binding.postImageSelect.tag = uri
+        Log.d("Storage", "jb# galleryLauncher uri -> ${uri}")
+        if (isEditMode)
+            isEditModeForImage = true
+
+
+        SelectedImage = uri.toString()
         binding.postImage.setImageURI(uri)
     }
 
@@ -311,7 +357,7 @@ class PostData {
     var user_mbti: String = ""
     var user_gender: String = ""
     var user_age: Int = 0
-    var likeByUser : MutableMap<String, Boolean> = HashMap()
+    var likeByUser: MutableMap<String, Boolean> = HashMap()
 
     constructor()
     constructor(title: String, content: String, time: String, image: String) {

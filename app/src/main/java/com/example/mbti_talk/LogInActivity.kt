@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -54,7 +55,9 @@ class LogInActivity : AppCompatActivity() {
         val btnSignUp = binding.loginTxtSignUp
         val etxtFindPw = binding.loginTxtFindPW
 
+        binding.llLoading.setOnClickListener{
 
+        }
         //구글 이미지 버튼
         val imageViewGoogle = binding.LoginImageViewGoogle
         //구글로그인 옵션
@@ -70,7 +73,9 @@ class LogInActivity : AppCompatActivity() {
 
         //구글 이미지 누를때 이벤트
         imageViewGoogle.setOnClickListener {
+            binding.llLoading.visibility = View.VISIBLE
             googleSignIn()
+
             Log.d("goolgestart","google")
         }
 
@@ -246,11 +251,13 @@ class LogInActivity : AppCompatActivity() {
                                         Log.d("FirebaseDatabase2", "#dudu User Data: $userData")
                                         val intent =
                                             Intent(this@LogInActivity, BottomActivity::class.java)
+                                        binding.llLoading.visibility = View.GONE
                                         startActivity(intent)
                                         finish() // 로그인 화면 종료
                                     } else {
                                         // 메인 페이지 이동
                                         Log.d("FirebaseDatabase3", "#dudu User Data: $userData")
+
                                         val intent =
                                             Intent(this@LogInActivity, MbtiActivity::class.java)
                                         startActivity(intent)
@@ -265,6 +272,7 @@ class LogInActivity : AppCompatActivity() {
                                     startActivity(intent)
                                     finish()
                                 }
+                                binding.llLoading.visibility = View.GONE
                             }
 
                             override fun onCancelled(databaseError: DatabaseError) {
@@ -274,6 +282,7 @@ class LogInActivity : AppCompatActivity() {
                                     "onCancelled",
                                     databaseError.toException()
                                 )
+                                binding.llLoading.visibility = View.GONE
                             }
                         })
 

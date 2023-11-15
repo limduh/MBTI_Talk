@@ -56,7 +56,7 @@ class FriendFindFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         Log.d("FriendFindFragment", "onResume")
-
+        binding.llLoadingFriend.visibility = View.VISIBLE
         // 기존에 추가된 사용자 목록을 초기화
         userList.clear()
 
@@ -269,12 +269,16 @@ class FriendFindFragment : Fragment() {
                     }
                     adapter.setList(userList)
                     adapter.notifyDataSetChanged() // 어댑터에게 데이터 변경을 알림
+
+                    binding.llLoadingFriend.visibility = View.GONE
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     // 처리 중 오류 발생 시 토스트 표시
                     Toast.makeText(mContext, "해당 데이터는 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+                    binding.llLoadingFriend.visibility = View.GONE
                 }
+
             })
     }
 }

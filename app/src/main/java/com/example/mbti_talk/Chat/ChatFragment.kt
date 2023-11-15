@@ -31,6 +31,8 @@ class ChatFragment : Fragment() {
         val adapter = RecyclerChatRoomsAdapter(requireContext(), binding)
         recycler_chatroom.adapter = adapter
 
+        binding.llLoadingFriend.visibility = View.GONE
         return view
+
     }
 }

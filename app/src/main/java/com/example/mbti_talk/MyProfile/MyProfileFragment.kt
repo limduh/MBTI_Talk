@@ -71,6 +71,7 @@ class MyProfileFragment : Fragment() {
         val view = binding.root
         database = FirebaseDatabase.getInstance().getReference("Users")
 
+        binding.llLoadingProfile.visibility = View.GONE
         // profile_btn_MyLikeList 클릭 이벤트 추가
 //        binding.profileBtnMyLikeList.setOnClickListener {
 //            // 사용자가 좋아요한 글들을 보여주는 화면으로 이동
