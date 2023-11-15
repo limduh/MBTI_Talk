@@ -269,7 +269,6 @@ class LogInActivity : AppCompatActivity() {
                                     val intent =
                                         Intent(this@LogInActivity, SignUpActivity2::class.java)
                                     startActivity(intent)
-                                    finish()
                                 }
                                 binding.llLoading.visibility = View.GONE
                             }
