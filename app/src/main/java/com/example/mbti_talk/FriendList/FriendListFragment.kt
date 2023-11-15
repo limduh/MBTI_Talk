@@ -51,6 +51,7 @@ class FriendListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        binding.llLoadingFriendList.visibility = View.VISIBLE
         val currentUserUid = Utils.getMyUid(requireContext()) // util 함수 통해 현재 사용자 uid 가져오기
         loadBlockFriends(currentUserUid.toString()) // 현재 사용자 uid를 통해 친구 목록 가져오기
 
@@ -221,6 +222,7 @@ class FriendListFragment : Fragment() {
                             if(isLast) {
                                 friendadapter.setList(friendList)
                                 friendadapter.notifyDataSetChanged()
+                                binding.llLoadingFriendList.visibility = View.GONE
                             }
                         }
                         friendList.sortBy { it.user_compat } // friendList 라는 사용자 목록을 user_compat 기준으로 오름차순 정렬
@@ -233,6 +235,7 @@ class FriendListFragment : Fragment() {
                 override fun onCancelled(databaseError: DatabaseError) {
                     // 데이터베이스 조회가 실패한 경우 오류 로그 기록
                     Log.d("FirebaseDatabase", "onCancelled", databaseError.toException())
+                    binding.llLoadingFriendList.visibility = View.GONE
                 }
             })
     }
