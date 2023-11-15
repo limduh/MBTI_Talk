@@ -11,7 +11,7 @@
     </style>
 
     <style name="FilterMBTIStyle">
-        <item name="android:layout_width">68dp</item>
+        <item name="android:layout_width">56dp</item>
         <item name="android:layout_height">32dp</item>
         <item name="android:background">@drawable/selector_btn</item>
         <item name="android:gravity">center</item>

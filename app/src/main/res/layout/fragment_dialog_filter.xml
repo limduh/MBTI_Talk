@@ -137,7 +137,7 @@
             android:id="@+id/filter_chip_I"
             style="@style/FilterMBTIStyle"
             android:text="I"
-            android:layout_marginTop="24sp"
+            android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="@+id/vline1"
             app:layout_constraintEnd_toStartOf="@+id/vline1"
             app:layout_constraintStart_toEndOf="@+id/filter_chip_E"
