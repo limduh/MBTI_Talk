@@ -44,7 +44,7 @@ class PostWriteActivity : AppCompatActivity() {
     val storage = Firebase.storage("gs://mbti-talk-f2a04.appspot.com")
 
     var isEditMode = false;
-    var isEditModeForImage =false
+    var isEditModeForImage = false
     var SelectedImage = ""
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -64,7 +64,7 @@ class PostWriteActivity : AppCompatActivity() {
         binding = ActivityPostWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.llLoadingPostWrite.setOnClickListener{
+        binding.llLoadingPostWrite.setOnClickListener {
 
         }
         postId_edit = intent.getStringExtra("postId")
@@ -147,7 +147,14 @@ class PostWriteActivity : AppCompatActivity() {
         val editText = binding.postEtContent
 
         val filter = object : InputFilter {
-            override fun filter(source: CharSequence?, start: Int, end: Int, dest: Spanned?, dstart: Int, dend: Int): CharSequence? {
+            override fun filter(
+                source: CharSequence?,
+                start: Int,
+                end: Int,
+                dest: Spanned?,
+                dstart: Int,
+                dend: Int
+            ): CharSequence? {
                 val inputText = dest.toString() + source.toString()
                 if (inputText.length <= 500) {
                     return null
@@ -303,8 +310,8 @@ class PostWriteActivity : AppCompatActivity() {
     //이미지 갤러리 불러오기
     val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         Log.d("Storage", "jb# galleryLauncher uri -> ${uri}")
-        if(isEditMode)
-        isEditModeForImage = true
+        if (isEditMode)
+            isEditModeForImage = true
 
 
         SelectedImage = uri.toString()
