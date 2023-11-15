@@ -35,6 +35,7 @@ import java.util.Locale
 class PostWriteActivity : AppCompatActivity() {
     private var postId_edit: String? = null
     private var postmode = false
+    private var imageSelected = false
 
 
     lateinit var binding: ActivityPostWriteBinding
@@ -98,7 +99,7 @@ class PostWriteActivity : AppCompatActivity() {
             val title = binding.postTitle.text.toString()
             val content = binding.postEtContent.text.toString()
             val time = getTime2()
-            val uri = binding.postImageSelect.tag as? Uri
+            val uri = binding.postImage.tag as? Uri
             if (uri != null) {
                 uploadImage(uri) {
                     if (it != null) {
@@ -152,8 +153,9 @@ class PostWriteActivity : AppCompatActivity() {
 
                         // 이미지 출력을 위한 코드
                         val storage = FirebaseStorage.getInstance()
-                        val reference = storage.reference.child("images/${it.image}")
+                        val reference = storage.reference.child("images/${postData.image}")
                         reference.downloadUrl.addOnSuccessListener { uri ->
+                            Log.d("image","images/${postData.image}")
                             Glide.with(this@PostWriteActivity)
                                 .load(uri)
                                 .into(binding.postImage)

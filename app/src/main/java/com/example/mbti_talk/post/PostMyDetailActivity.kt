@@ -11,8 +11,11 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.storage
@@ -85,9 +88,30 @@ class PostMyDetailActivity : AppCompatActivity() {
 
                 // 해당 게시물의 ID를 사용하여 Firebase Database에서 삭제
                 postId?.let { id ->
+                    postDB.child(id).addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            val image = dataSnapshot.child("image").getValue(String::class.java)
+                            if (image != null) {
+                                val storageReference = Firebase.storage.reference
+                                val imageRef = storageReference.child("images/$image") // 이미지 경로 지정 (파일 형식에 따라 확장자 변경 가능)
+
+                                imageRef.delete().addOnSuccessListener {
+                                    // 이미지 삭제 성공 시
+                                    Log.d("PostWriteActivity", "Image deleted successfully")
+                                }.addOnFailureListener { e ->
+                                    // 이미지 삭제 실패 시
+                                    Log.e("PostWriteActivity", "Failed to delete image: $e")
+                                }
+                            }
+                        }
+
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            // 취소 시 처리
+                            Log.e("PostWriteActivity", "Failed to read database.", databaseError.toException())
+                        }
+                    })
                     postDB.child(id).removeValue().addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            deleteImage(id)
                             // 삭제 성공 시 다이얼로그 닫고 액티비티 종료
                             Toast.makeText(this, "게시물이 삭제 되었습니다.",Toast.LENGTH_SHORT).show()
                             dialog.dismiss()
@@ -103,18 +127,6 @@ class PostMyDetailActivity : AppCompatActivity() {
 
         binding.PostDetailMyBackarrow.setOnClickListener {
             finish()
-        }
-    }
-    fun deleteImage(image: String) {
-        val storageReference = Firebase.storage.reference
-        val imageRef = storageReference.child("images/$image") // 이미지 경로 지정 (파일 형식에 따라 확장자 변경 가능)
-
-        imageRef.delete().addOnSuccessListener {
-            // 이미지 삭제 성공 시
-            Log.d("PostWriteActivity", "Image deleted successfully")
-        }.addOnFailureListener { e ->
-            // 이미지 삭제 실패 시
-            Log.e("PostWriteActivity", "Failed to delete image: $e")
         }
     }
 }
