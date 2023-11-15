@@ -231,6 +231,8 @@
                     app:counterEnabled="true"
                     app:counterMaxLength="12"
                     app:endIconMode="clear_text"
+                    app:helperText="12자 이내의 닉네임을 입력해 주세요.\n추후 수정이 불가능 합니다."
+                    app:helperTextTextColor="@android:color/holo_red_dark"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -258,7 +260,8 @@
                 app:counterEnabled="true"
                 app:counterMaxLength="3"
                 app:endIconMode="clear_text"
-                app:helperText="1~200까지의 숫자만 입력해 주세요."
+                app:helperText="1~200까지의 숫자를 입력해 주세요.\n추후 수정이 불가능 합니다."
+                app:helperTextTextColor="@android:color/holo_red_dark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/SignUp_const_NickName_Box">
