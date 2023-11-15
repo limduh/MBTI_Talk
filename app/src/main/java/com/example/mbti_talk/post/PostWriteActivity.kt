@@ -11,6 +11,7 @@ import android.text.Spanned
 import android.text.TextWatcher
 import android.util.Log
 import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -63,6 +64,9 @@ class PostWriteActivity : AppCompatActivity() {
         binding = ActivityPostWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.llLoadingPostWrite.setOnClickListener{
+
+        }
         postId_edit = intent.getStringExtra("postId")
         if (postId_edit != null) {
             isEditMode = true
@@ -99,6 +103,7 @@ class PostWriteActivity : AppCompatActivity() {
         }
 
         binding.postSave.setOnClickListener {
+            binding.llLoadingPostWrite.visibility = View.VISIBLE
             val title = binding.postTitle.text.toString()
             val content = binding.postEtContent.text.toString()
             val time = getTime2()
@@ -114,6 +119,7 @@ class PostWriteActivity : AppCompatActivity() {
                     Toast.makeText(this@PostWriteActivity, "게시글 입력 완료", Toast.LENGTH_SHORT)
                         .show()
                     finish()
+                    binding.llLoadingPostWrite.visibility = View.GONE
                 } else {
                     uploadImage(uri.toUri()) {
                         Log.d("Storage", "jb# postSave uploadImage uri -> ${it.toString()}")
@@ -128,11 +134,14 @@ class PostWriteActivity : AppCompatActivity() {
                             Toast.makeText(this@PostWriteActivity, "이미지 업로드 실패", Toast.LENGTH_SHORT)
                                 .show()
                         }
+                        binding.llLoadingPostWrite.visibility = View.GONE
                     }
                 }
             } else {
                 Toast.makeText(this@PostWriteActivity, "이미지를 선택해주세요", Toast.LENGTH_SHORT).show()
+                binding.llLoadingPostWrite.visibility = View.GONE
             }
+
         }
 
         val editText = binding.postEtContent

@@ -35,6 +35,8 @@ class PostFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = ActivityPostListBinding.inflate(inflater, container, false)
+
+        binding.llLoadingPost.visibility = View.GONE
         return binding.root
     }
 
