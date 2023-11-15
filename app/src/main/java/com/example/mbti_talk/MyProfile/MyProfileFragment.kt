@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageView
@@ -48,6 +49,7 @@ class MyProfileFragment : Fragment() {
 
     val storage = Firebase.storage("gs://mbti-talk-f2a04.appspot.com")
     private lateinit var myUserData : UserData
+    private lateinit var galleryLauncher: ActivityResultLauncher<String>
 
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -171,25 +173,27 @@ class MyProfileFragment : Fragment() {
             })
         }
 
+        galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+//        binding.postImageSelect.tag = uri
+            binding.ProfileImg.setImageURI(uri)
+            if (uri != null) {
+                uploadImage(uri){
+                    val userId = firebaseAuth.currentUser?.uid
+                    if (userId != null) {
+
+                        myUserData.user_profile = it.toString()
+                        database.child(userId).setValue(myUserData)
+                    }
+                }
+            }
+        }
+
         return view
     }
 
 //
     //이미지 갤러리 불러오기
-    val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-//        binding.postImageSelect.tag = uri
-        binding.ProfileImg.setImageURI(uri)
-        if (uri != null) {
-            uploadImage(uri){
-                val userId = firebaseAuth.currentUser?.uid
-                if (userId != null) {
 
-                    myUserData.user_profile = it.toString()
-                    database.child(userId).setValue(myUserData)
-                }
-            }
-        }
-    }
 
     fun makeFilePath(path: String, userId: String, uri: Uri): String {
         val mimeType = requireContext().contentResolver.getType(uri) ?: "/none" // MIME 타입 ex) images/jpeg
