@@ -155,7 +155,9 @@
                 android:layout_height="wrap_content"
                 android:hint="나이 입력"
                 android:maxLength="3"
-                android:inputType="number" />
+                android:inputType="number"
+
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView

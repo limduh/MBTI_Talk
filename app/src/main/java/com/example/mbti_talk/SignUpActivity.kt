@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -18,13 +19,12 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import nb_.mbti_talk.databinding.ActivitySignUpBinding
-import nb_.mbti_talk.post.PostData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import java.util.regex.Pattern
+
 
 
 // Firebase 를 사용하여 사용자 회원가입 처리, Realtime DB에 유저 정보 저장
@@ -79,6 +79,7 @@ class SignUpActivity : AppCompatActivity() {
             finish()
         }
 
+
         //이메일 체크
         emailFocusListener()
         //비밀번호 체크
@@ -128,129 +129,143 @@ class SignUpActivity : AppCompatActivity() {
 
 
         binding.SignUpBtnSignUp.setOnClickListener {
-            if (!myProfileUri) {
-                Toast.makeText(this, "사진을 업로드하지 않았어요 !!", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+
+            val builder = AlertDialog.Builder(this)
+            val view = layoutInflater.inflate(R.layout.dialog_signin, null)
+
+            builder.setView(view)
+            val dialog = builder.create()
+            view.findViewById<Button>(R.id.Signout_btn_cancel).setOnClickListener {
+                dialog.dismiss()
             }
 
-            //아이디,패스워드,패스워드확인 바인딩
-            binding.SignUpConstEmail.helperText = validEmail()
-            binding.SignUpConstPw.helperText = validPassword()
-            binding.SignUpConstPw2.helperText = validPassword2()
-            binding.SignUpConstNickName.helperText = validNIck()
+            view.findViewById<Button>(R.id.Signout_btn_check).setOnClickListener {
+
+                if (!myProfileUri) {
+                    Toast.makeText(this, "사진을 업로드하지 않았어요 !!", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                //아이디,패스워드,패스워드확인 바인딩
+                binding.SignUpConstEmail.helperText = validEmail()
+                binding.SignUpConstPw.helperText = validPassword()
+                binding.SignUpConstPw2.helperText = validPassword2()
+                binding.SignUpConstNickName.helperText = validNIck()
 
 
-            val validEmail = binding.SignUpConstEmail.helperText == null
-            val validPassword = binding.SignUpConstPw.helperText == null
-            val validPassword2 = binding.SignUpConstPw2.helperText == null
-            val validNick = binding.SignUpConstNickName.helperText == null
+                val validEmail = binding.SignUpConstEmail.helperText == null
+                val validPassword = binding.SignUpConstPw.helperText == null
+                val validPassword2 = binding.SignUpConstPw2.helperText == null
+                val validNick = binding.SignUpConstNickName.helperText == null
 
 
-            if (validEmail && validPassword && validPassword2 && validNick) {
+                if (validEmail && validPassword && validPassword2 && validNick) {
 
 
-                // 유저가 입력한 회원가입 정보 가져오기
-                val SignupActivity_id = binding.SignUpEtxtID.text.toString()
-                val SignupActivity_pass = binding.SignUpEtxtPW.text.toString()
-                val SignupActivity_confirmPass = binding.SignUpEtxtPW2.text.toString()
-                val SignupActivity_age = binding.SignUpEtxtAge.text.toString().toInt()
-                val SignupActivity_nickName = binding.SignUpEtxtNickName.text.toString()
+                    // 유저가 입력한 회원가입 정보 가져오기
+                    val SignupActivity_id = binding.SignUpEtxtID.text.toString()
+                    val SignupActivity_pass = binding.SignUpEtxtPW.text.toString()
+                    val SignupActivity_confirmPass = binding.SignUpEtxtPW2.text.toString()
+                    val SignupActivity_age = binding.SignUpEtxtAge.text.toString().toInt()
+                    val SignupActivity_nickName = binding.SignUpEtxtNickName.text.toString()
 
 
 
-                Log.d("Signup", "#dudu myProfileUrichack=$myProfileUri")
+                    Log.d("Signup", "#dudu myProfileUrichack=$myProfileUri")
 
-                if (SignupActivity_id.isNotEmpty() && SignupActivity_pass.isNotEmpty() && SignupActivity_confirmPass.isNotEmpty()) {
-                    Log.d("Signup", "#dudu myProfileUrichack2=$myProfileUri")
+                    if (SignupActivity_id.isNotEmpty() && SignupActivity_pass.isNotEmpty() && SignupActivity_confirmPass.isNotEmpty()) {
+                        Log.d("Signup", "#dudu myProfileUrichack2=$myProfileUri")
 
-                    val builder = AlertDialog.Builder(this)
-                    builder.setTitle("잠시만 기다려 주세요")
-                    builder.setIcon(R.mipmap.ic_mbti_talk)
+                        val builder = AlertDialog.Builder(this)
+                        builder.setTitle("잠시만 기다려 주세요")
+                        builder.setIcon(R.mipmap.ic_mbti_talk)
 
-                    val v1 = layoutInflater.inflate(R.layout.progressbar, null)
-                    builder.setView(v1)
+                        val v1 = layoutInflater.inflate(R.layout.progressbar, null)
+                        builder.setView(v1)
 
-                    builder.show()
+                        builder.show()
 
 
-                    // 비밀번호 일치 여부 확인
-                    if (SignupActivity_pass == SignupActivity_confirmPass) {
-                        firebaseAuth?.createUserWithEmailAndPassword(
-                            SignupActivity_id,
-                            SignupActivity_pass
-                        )
-                            ?.addOnCompleteListener(this) { task ->
-                                if (task.isSuccessful) {
-                                    Toast.makeText(this, "계정 생성 완료.", Toast.LENGTH_SHORT).show()
-                                    if (selectedUri != null) {
-                                        Log.d("vec", "Selected Image Uri: $selectedUri")
-                                        uploadImage(selectedUri) {
-                                            if (it != null) {
+                        // 비밀번호 일치 여부 확인
+                        if (SignupActivity_pass == SignupActivity_confirmPass) {
+                            firebaseAuth?.createUserWithEmailAndPassword(
+                                SignupActivity_id,
+                                SignupActivity_pass
+                            )
+                                ?.addOnCompleteListener(this) { task ->
+                                    if (task.isSuccessful) {
+                                        Toast.makeText(this, "계정 생성 완료.", Toast.LENGTH_SHORT).show()
+                                        if (selectedUri != null) {
+                                            Log.d("vec", "Selected Image Uri: $selectedUri")
+                                            uploadImage(selectedUri) {
+                                                if (it != null) {
 
-                                                Toast.makeText(
-                                                    this@SignUpActivity,
-                                                    "이미지 업로드 완료",
-                                                    Toast.LENGTH_SHORT
-                                                )
-                                                    .show()
+                                                    Toast.makeText(
+                                                        this@SignUpActivity,
+                                                        "이미지 업로드 완료",
+                                                        Toast.LENGTH_SHORT
+                                                    )
+                                                        .show()
 
-                                                val userId = firebaseAuth.currentUser?.uid
-                                                if (userId != null) {
-                                                    Log.d("SignUp", "#dudu+ $user_gender")
-                                                    val user = UserData(
-                                                        SignupActivity_id,
-                                                        SignupActivity_age,
-                                                        SignupActivity_nickName,
-                                                        userId,
-                                                        user_gender,
-                                                        "",
-                                                        it
-                                                    )//,SignUpActivity_uri )
-                                                    // DB저장
-                                                    database.child(userId).setValue(user)
+                                                    val userId = firebaseAuth.currentUser?.uid
+                                                    if (userId != null) {
+                                                        Log.d("SignUp", "#dudu+ $user_gender")
+                                                        val user = UserData(
+                                                            SignupActivity_id,
+                                                            SignupActivity_age,
+                                                            SignupActivity_nickName,
+                                                            userId,
+                                                            user_gender,
+                                                            "",
+                                                            it
+                                                        )//,SignUpActivity_uri )
+                                                        // DB저장
+                                                        database.child(userId).setValue(user)
+                                                    }
+
+                                                    val intent =
+                                                        Intent(this, LogInActivity::class.java)
+
+                                                    startActivity(intent)
+                                                    finish()
+                                                } else {
+                                                    Toast.makeText(
+                                                        this@SignUpActivity,
+                                                        "이미지 업로드 실패",
+                                                        Toast.LENGTH_SHORT
+                                                    )
+                                                        .show()
                                                 }
-
-                                                val intent = Intent(this, LogInActivity::class.java)
-
-                                                startActivity(intent)
-                                                finish()
-                                            } else {
-                                                Toast.makeText(
-                                                    this@SignUpActivity,
-                                                    "이미지 업로드 실패",
-                                                    Toast.LENGTH_SHORT
-                                                )
-                                                    .show()
                                             }
+                                        } else {
+                                            Toast.makeText(
+                                                this@SignUpActivity,
+                                                "이미지를 선택해주세요",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                         }
+
+
                                     } else {
-                                        Toast.makeText(
-                                            this@SignUpActivity,
-                                            "이미지를 선택해주세요",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+                                        Toast.makeText(this, "계정 생성 실패", Toast.LENGTH_SHORT).show()
+
                                     }
 
-
-                                } else {
-                                    Toast.makeText(this, "계정 생성 실패", Toast.LENGTH_SHORT).show()
-
                                 }
+                        } else {
+                            Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
 
-                            }
+                        }
                     } else {
-                        Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-
+                        Toast.makeText(this, "작성하지 않은곳이 있어요 !!", Toast.LENGTH_SHORT).show()
                     }
+                    return@setOnClickListener
                 } else {
-                    Toast.makeText(this, "작성하지 않은곳이 있어요 !!", Toast.LENGTH_SHORT).show()
+                    invalidForm()
                 }
-                return@setOnClickListener
-            } else {
-                invalidForm()
+
             }
-
-
+            dialog.show()
         }
 
     }
