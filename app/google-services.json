@@ -44,6 +44,38 @@
       },
       "oauth_client": [
         {
+          "client_id": "751430456068-68ufo09knrd15uh59951u4egctq78pfh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nb_.mbti_talk",
+            "certificate_hash": "a23a3a0ce6d12df4aa54b1dbf1b7402ea0440d4d"
+          }
+        },
+        {
+          "client_id": "751430456068-jet0rv9pvru8618to872vhdgvflciqc1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nb_.mbti_talk",
+            "certificate_hash": "849b66319a1cef18844021cc8d91aa2101a64adc"
+          }
+        },
+        {
+          "client_id": "751430456068-kuvtvr30aoa2td63fvk0ta20rjie5fue.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nb_.mbti_talk",
+            "certificate_hash": "7ae073d15e38c70420740b9c6fde96cc5c288697"
+          }
+        },
+        {
+          "client_id": "751430456068-l3j6h6komi6917dp7pil8tji3rh3ncp2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nb_.mbti_talk",
+            "certificate_hash": "0584494abf1de0f263f7fa264db97a74e5e01e73"
+          }
+        },
+        {
           "client_id": "751430456068-ek5vvgaetu4qof3rk7o8qeaebnid32r8.apps.googleusercontent.com",
           "client_type": 3
         }

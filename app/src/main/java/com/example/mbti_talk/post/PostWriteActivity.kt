@@ -231,14 +231,9 @@ class PostWriteActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+        if (grantResults.isNotEmpty() && grantResults[0] == 0) {
             when (requestCode) {
                 100 -> {
-                    Toast.makeText(
-                        this@PostWriteActivity,
-                        "권한 허용됨",
-                        Toast.LENGTH_SHORT
-                    ).show()
                     galleryLauncher.launch("image/*")
 
                 }
