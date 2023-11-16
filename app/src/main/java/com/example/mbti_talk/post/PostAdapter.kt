@@ -27,8 +27,9 @@ class PostAdapter(private var postList: List<PostData>, val myUid: String?) : Re
     // onBindViewHolder 메서드에서 뷰홀더에 데이터를 바인딩합니다.
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = postList[position]
-        val viewHolderType = holder as PostViewHolder
-        viewHolderType.bind(item)
+        if (holder is PostViewHolder) {
+            holder.bind(item)
+        }
     }
 
     // getItemCount 메서드에서 데이터의 개수를 반환합니다.

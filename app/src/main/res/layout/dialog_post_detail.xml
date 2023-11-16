@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,32 +53,28 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/detail_default_kit"
+            android:background="@drawable/login_btn_kit"
             android:text="확인"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/postdelete_btn_cancel"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView8"
-            app:layout_constraintWidth_percent="0.3" />
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView8" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/postdelete_btn_cancel"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/detail_default_kit"
+            android:background="@drawable/login_btn2_kit"
             android:text="취소"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/postdelete_btn_check"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/postdelete_btn_check"
-            app:layout_constraintTop_toTopOf="@+id/postdelete_btn_check"
-            app:layout_constraintWidth_percent="0.3" />
+            app:layout_constraintTop_toTopOf="@+id/postdelete_btn_check" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
