@@ -147,16 +147,19 @@ class DetailActivity : AppCompatActivity() {
             }
         })
 
-        val friendAdd = binding.DetailBtnFriendAdd
+        val btnFriendAdd = binding.DetailBtnFriendAdd
+        val txtFriendAdd = binding.DetailTxtFriendAdd
 
-        friendAdd.setOnClickListener {
+        btnFriendAdd.setOnClickListener {
             // RDB 의 "Friends" 레퍼런스에 사용자 uid 추가
             if (userID != null) {
                 val friendsRef = Firebase.database.reference.child("Friends").child(myId.toString())
                 friendsRef.child(userID).setValue(true)
             }
             // 클릭 이벤트 처리
-            // Intent 사용하여 MainFriendActivity 로 이동
+            // 버튼과 텍스트 뷰를 보이지 않게 설정
+            btnFriendAdd.visibility = View.GONE
+            txtFriendAdd.visibility = View.GONE
             Toast.makeText(this@DetailActivity, "친구 추가가 완료되었습니다.", Toast.LENGTH_SHORT).show()
         }
         // 뒤로가기 누르면 현 액티비티 종료
