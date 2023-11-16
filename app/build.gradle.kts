@@ -17,8 +17,8 @@ android {
         applicationId = "nb_.mbti_talk"
         minSdk = 26
         targetSdk = 33
-        versionCode = 6
-        versionName = "1.5"
+        versionCode = 8
+        versionName = "1.7"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

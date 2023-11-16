@@ -231,7 +231,7 @@ class SignUpActivity2 : AppCompatActivity() {
         Log.d("SignUp", "#dudu grantResults = ${grantResults[0]}")
 
 
-        if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+        if (grantResults.isNotEmpty() && grantResults[0] == 0) {
             when (requestCode) {
                 100 -> {
                     Log.d("SignUp", "#dudu permissionok = ${grantResults[0]}")
