@@ -20,6 +20,9 @@ import com.tauheed.wavybottomnavigation.WavyBottomNavigationCell
 
 class BottomActivity : AppCompatActivity() {
 
+    // 이전에 눌린 시간 기록하는 변수
+    private var backKeyPressedTime: Long = 0
+
     companion object {
         private const val ID_FRIEND = 0
         private const val ID_POST = 1
@@ -143,6 +146,19 @@ class BottomActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onBackPressed() {
+        // 현재 시간과 마지막으로 뒤로가기 버튼이 눌린 시간 차이 계산
+        if (System.currentTimeMillis() - backKeyPressedTime < 2000) {
+            super.onBackPressed()
+            return
+        }
+        // 유저에게 토스트 메시지를 보여줌
+        Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+        // 마지막으로 뒤로가기 버튼이 눌린 시간 업데이트
+        backKeyPressedTime = System.currentTimeMillis()
+    }
+
     private fun switchFragment(fragment: Fragment) {
         Log.d("BottomActivity", "switchFragment => ${fragment.tag}")
 

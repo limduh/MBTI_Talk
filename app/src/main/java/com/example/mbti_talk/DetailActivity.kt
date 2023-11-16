@@ -171,7 +171,7 @@ class DetailActivity : AppCompatActivity() {
             detailDB.addListenerForSingleValueEvent(object :
                 ValueEventListener { // RDB에서 데이터를 읽어오기 위한 리스너를 설정. 데이터의 한 번 읽기 작업을 수행
                 override fun onDataChange(snapshot: DataSnapshot) { // 데이터를 성공적으로 읽어왔을 때 호출.snapshot은 데이터베이스에서 가져온 정보(=uid)
-                    if (snapshot.exists()) { // 데이터 스냅샷 존재 확인. 스냅샷이 데이터 포함 시 이 블록 안으로 진입
+                    if (snapshot.exists()) { // 데이터 스냅샷 존재 확인. 스냅샷이 데이좀터 포함 시 이 블록 안으로 진입
                         lateinit var userData: DataSnapshot
                         // 선택한 유저 데이터 찾기
                         if (userID != null) {
