@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -17,6 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import nb_.mbti_talk.MBTI.MbtiActivity
 import nb_.mbti_talk.databinding.ActivitySignUp2Binding
 import nb_.mbti_talk.databinding.ActivitySignUpBinding
@@ -26,6 +28,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import nb_.mbti_talk.MyProfile.SignoutDialogChoice
 import java.util.regex.Pattern
 
 
@@ -124,81 +127,95 @@ class SignUpActivity2 : AppCompatActivity() {
 
 
         binding.SignUpBtnSignUp.setOnClickListener {
-            if (!myProfileUri) {
-                Toast.makeText(this, "사진을 업로드하지 않았어요 !!", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            val builder = AlertDialog.Builder(this)
+            val view = layoutInflater.inflate(R.layout.dialog_signin, null)
+
+            builder.setView(view)
+            val dialog = builder.create()
+            view.findViewById<Button>(R.id.Signout_btn_cancel).setOnClickListener {
+                dialog.dismiss()
             }
 
-            //닉네임 바인딩
-            binding.SignUpConstNickName.helperText = validNIck()
-            val validNick = binding.SignUpConstNickName.helperText == null
-
-            if (validNick) {
-
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("잠시만 기다려 주세요")
-                builder.setIcon(R.mipmap.ic_mbti_talk)
-
-                val v1 = layoutInflater.inflate(R.layout.progressbar, null)
-                builder.setView(v1)
-
-                builder.show()
-
-                // 유저가 입력한 회원가입 정보 가져오기
-                val SignupActivity_age = binding.SignUpEtxtAge.text.toString().toInt()
-                val SignupActivity_nickName = binding.SignUpEtxtNickName.text.toString()
+            view.findViewById<Button>(R.id.Signout_btn_check).setOnClickListener {
 
 
-                if (selectedUri != null) {
-                    Log.d("vec", "Selected Image Uri: $selectedUri")
-                    uploadImage(selectedUri) {
-                        if (it != null) {
-
-                            Toast.makeText(
-                                this@SignUpActivity2,
-                                "이미지 업로드 완료",
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
-
-                            val userId = firebaseAuth.currentUser?.uid
-                            if (userId != null) {
-                                val user = UserData(
-                                    "googleLogIn",
-                                    SignupActivity_age,
-                                    SignupActivity_nickName,
-                                    userId,
-                                    user_gender,
-                                    "",
-                                    it
-                                )//,SignUpActivity_uri )
-                                // DB저장
-                                database.child(userId).setValue(user)
-                            }
-
-                            val intent = Intent(this, MbtiActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        } else {
-                            Toast.makeText(
-                                this@SignUpActivity2,
-                                "이미지 업로드 실패",
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
-                        }
-                    }
-                } else {
-                    Toast.makeText(
-                        this@SignUpActivity2,
-                        "이미지를 선택해주세요",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                if (!myProfileUri) {
+                    Toast.makeText(this, "사진을 업로드하지 않았어요 !!", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
                 }
 
+                //닉네임 바인딩
+                binding.SignUpConstNickName.helperText = validNIck()
+                val validNick = binding.SignUpConstNickName.helperText == null
+
+                if (validNick) {
+
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("잠시만 기다려 주세요")
+                    builder.setIcon(R.mipmap.ic_mbti_talk)
+
+                    val v1 = layoutInflater.inflate(R.layout.progressbar, null)
+                    builder.setView(v1)
+
+                    builder.show()
+
+                    // 유저가 입력한 회원가입 정보 가져오기
+                    val SignupActivity_age = binding.SignUpEtxtAge.text.toString().toInt()
+                    val SignupActivity_nickName = binding.SignUpEtxtNickName.text.toString()
+
+
+                    if (selectedUri != null) {
+                        Log.d("vec", "Selected Image Uri: $selectedUri")
+                        uploadImage(selectedUri) {
+                            if (it != null) {
+
+                                Toast.makeText(
+                                    this@SignUpActivity2,
+                                    "이미지 업로드 완료",
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+
+                                val userId = firebaseAuth.currentUser?.uid
+                                if (userId != null) {
+                                    val user = UserData(
+                                        "googleLogIn",
+                                        SignupActivity_age,
+                                        SignupActivity_nickName,
+                                        userId,
+                                        user_gender,
+                                        "",
+                                        it
+                                    )//,SignUpActivity_uri )
+                                    // DB저장
+                                    database.child(userId).setValue(user)
+                                }
+
+                                val intent = Intent(this, MbtiActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                Toast.makeText(
+                                    this@SignUpActivity2,
+                                    "이미지 업로드 실패",
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+                            }
+                        }
+                    } else {
+                        Toast.makeText(
+                            this@SignUpActivity2,
+                            "이미지를 선택해주세요",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
 
             }
+            dialog.show()
         }
+
     }
 
 
