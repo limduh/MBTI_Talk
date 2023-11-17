@@ -103,9 +103,9 @@ class SignUpActivity2 : AppCompatActivity() {
         binding.appCompatImageView5.setOnClickListener {
             Log.d("SignUp", "#dudu setOnClick appCompatImageView5")
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                if (checkSelfPermission(Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED)
+                if (checkSelfPermission(Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(permission33, 100)
-                else {
+                } else {
                     galleryLauncher.launch("image/*")
                 }
             } else {
@@ -120,6 +120,7 @@ class SignUpActivity2 : AppCompatActivity() {
                 }
 
             }
+            return@setOnClickListener
         }
 
 
@@ -244,8 +245,10 @@ class SignUpActivity2 : AppCompatActivity() {
 
 
                 }
+
             }
         }
+
     }
 
 
