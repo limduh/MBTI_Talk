@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -73,6 +74,10 @@ class SignUpActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         val database = FirebaseDatabase.getInstance().getReference("Users")
 
+        binding.llLoading.setOnClickListener{
+
+        }
+
         //back버튼
         val btnBack = binding.SignUpBtnBack
         btnBack.setOnClickListener {
@@ -129,13 +134,14 @@ class SignUpActivity : AppCompatActivity() {
 
 
         binding.SignUpBtnSignUp.setOnClickListener {
-
+            binding.llLoading.visibility = View.VISIBLE
             val builder = AlertDialog.Builder(this)
             val view = layoutInflater.inflate(R.layout.dialog_signin, null)
 
             builder.setView(view)
             val dialog = builder.create()
             view.findViewById<Button>(R.id.Signout_btn_cancel).setOnClickListener {
+                binding.llLoading.visibility = View.GONE
                 dialog.dismiss()
             }
 
@@ -143,6 +149,7 @@ class SignUpActivity : AppCompatActivity() {
 
                 if (!myProfileUri) {
                     Toast.makeText(this, "사진을 업로드하지 않았어요 !!", Toast.LENGTH_SHORT).show()
+                    binding.llLoading.visibility = View.GONE
                     return@setOnClickListener
                 }
 
@@ -176,14 +183,7 @@ class SignUpActivity : AppCompatActivity() {
                     if (SignupActivity_id.isNotEmpty() && SignupActivity_pass.isNotEmpty() && SignupActivity_confirmPass.isNotEmpty()) {
                         Log.d("Signup", "#dudu myProfileUrichack2=$myProfileUri")
 
-                        val builder = AlertDialog.Builder(this)
-                        builder.setTitle("잠시만 기다려 주세요")
-                        builder.setIcon(R.mipmap.ic_mbti_talk)
 
-                        val v1 = layoutInflater.inflate(R.layout.progressbar, null)
-                        builder.setView(v1)
-
-                        builder.show()
 
 
                         // 비밀번호 일치 여부 확인
@@ -207,6 +207,8 @@ class SignUpActivity : AppCompatActivity() {
                                                     )
                                                         .show()
 
+
+
                                                     val userId = firebaseAuth.currentUser?.uid
                                                     if (userId != null) {
                                                         Log.d("SignUp", "#dudu+ $user_gender")
@@ -227,6 +229,7 @@ class SignUpActivity : AppCompatActivity() {
                                                         Intent(this, LogInActivity::class.java)
 
                                                     startActivity(intent)
+                                                    binding.llLoading.visibility = View.GONE
                                                     finish()
                                                 } else {
                                                     Toast.makeText(
@@ -235,6 +238,7 @@ class SignUpActivity : AppCompatActivity() {
                                                         Toast.LENGTH_SHORT
                                                     )
                                                         .show()
+                                                    binding.llLoading.visibility = View.GONE
                                                 }
                                             }
                                         } else {
@@ -243,27 +247,31 @@ class SignUpActivity : AppCompatActivity() {
                                                 "이미지를 선택해주세요",
                                                 Toast.LENGTH_SHORT
                                             ).show()
+                                            binding.llLoading.visibility = View.GONE
                                         }
 
 
                                     } else {
                                         Toast.makeText(this, "계정 생성 실패", Toast.LENGTH_SHORT).show()
-
+                                        binding.llLoading.visibility = View.GONE
                                     }
 
                                 }
                         } else {
                             Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+                            binding.llLoading.visibility = View.GONE
 
                         }
                     } else {
                         Toast.makeText(this, "작성하지 않은곳이 있어요 !!", Toast.LENGTH_SHORT).show()
+                        binding.llLoading.visibility = View.GONE
                     }
                     return@setOnClickListener
                 } else {
                     invalidForm()
+                    binding.llLoading.visibility = View.GONE
                 }
-
+                binding.llLoading.visibility = View.GONE
             }
             dialog.show()
         }
