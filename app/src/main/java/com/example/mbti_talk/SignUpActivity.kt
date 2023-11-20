@@ -10,22 +10,19 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import nb_.mbti_talk.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-
+import nb_.mbti_talk.databinding.ActivitySignUpBinding
 
 
 // Firebase 를 사용하여 사용자 회원가입 처리, Realtime DB에 유저 정보 저장
@@ -134,11 +131,14 @@ class SignUpActivity : AppCompatActivity() {
 
 
         binding.SignUpBtnSignUp.setOnClickListener {
+
+
             binding.llLoading.visibility = View.VISIBLE
             val builder = AlertDialog.Builder(this)
             val view = layoutInflater.inflate(R.layout.dialog_signin, null)
 
             builder.setView(view)
+            builder.setCancelable(false)
             val dialog = builder.create()
             view.findViewById<Button>(R.id.Signout_btn_cancel).setOnClickListener {
                 binding.llLoading.visibility = View.GONE
@@ -460,6 +460,8 @@ class SignUpActivity : AppCompatActivity() {
         }
         return null
     }
+
+
 
 
 }
