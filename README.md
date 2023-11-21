@@ -10,6 +10,6 @@ MBTI 친구 톡의 줄임말인 M친톡은 MBTI를 이용해서 자신의 MBTI�
 
 ### 시연 영상
 
-
-
+![gif]()
+https://drive.google.com/drive/my-drive?hl=ko
 
