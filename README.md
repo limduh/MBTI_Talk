@@ -9,7 +9,7 @@ MBTI 친구 톡의 줄임말인 M친톡은 MBTI를 이용해서 자신의 MBTI�
 23.10.10 ~ 23.11.17
 
 ### 시연 영상
-[영상 보기]([https://drive.google.com/drive/my-drive?hl=ko](https://drive.google.com/file/d/1Kwgsahq4zV414lMSXAA0sujLGkYtqP3u/view?t=15s))
+[영상 보기](https://drive.google.com/file/d/1Kwgsahq4zV414lMSXAA0sujLGkYtqP3u/view?t=15s)
 
 ### 와이어 프레임
 ![스크린샷 2023-11-21 201338](https://github.com/6pleasant-MBTITalk/MBTI_Talk/assets/139088072/ccbd3536-33ec-4538-98dd-f000a962f044)
