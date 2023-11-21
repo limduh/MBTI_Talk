@@ -12,6 +12,8 @@ MBTI 친구 톡의 줄임말인 M친톡은 MBTI를 이용해서 자신의 MBTI�
 [영상 보기](https://drive.google.com/drive/my-drive?hl=ko)
 
 ### 와이어 프레임
+![스크린샷 2023-11-21 201338](https://github.com/6pleasant-MBTITalk/MBTI_Talk/assets/139088072/ccbd3536-33ec-4538-98dd-f000a962f044)
+
 [Figma](https://www.figma.com/file/QXM0DdeFpzehGclrY0fI9p/1?type=design&node-id=0-1&mode=design)
 
 ### 개발자
@@ -50,7 +52,7 @@ MBTI 친구 톡의 줄임말인 M친톡은 MBTI를 이용해서 자신의 MBTI�
 
    ## 주요 기능
    ### LoginActivity
-![Login](https://github.com/6pleasant-MBTITalk/MBTI_Talk/assets/139088072/26ee9da4-db88-46c4-8e33-1f0f620e9709)![Friend list](https://github.com/6pleasant-MBTITalk/MBTI_Talk/assets/139088072/1e20c500-3c33-43dc-9517-3805e1b73c59)
+
 
 
 * 작업자 : 임두형
