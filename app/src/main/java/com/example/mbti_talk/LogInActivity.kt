@@ -259,7 +259,7 @@ class LogInActivity : AppCompatActivity() {
 
                                         val intent =
                                             Intent(this@LogInActivity, MbtiActivity::class.java)
-
+                                        binding.llLoading.visibility = View.GONE
                                         startActivity(intent)
                                         finish() // 로그인 화면 종료
                                     }
@@ -269,9 +269,9 @@ class LogInActivity : AppCompatActivity() {
                                     Log.d("FirebaseDatabase4", "#dudu User not found")
                                     val intent =
                                         Intent(this@LogInActivity, SignUpActivity2::class.java)
+                                    binding.llLoading.visibility = View.GONE
                                     startActivity(intent)
                                 }
-                                binding.llLoading.visibility = View.GONE
                             }
 
                             override fun onCancelled(databaseError: DatabaseError) {
