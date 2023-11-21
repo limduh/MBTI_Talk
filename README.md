@@ -53,7 +53,12 @@ MBTI 친구 톡의 줄임말인 M친톡은 MBTI를 이용해서 자신의 MBTI�
    ## 주요 기능
    ### LoginActivity
 * 작업자 : 임두형
-* google login 기능과 회원가입, 이메일을 통한 
+* google login 기능과 회원가입, 이메일을 통한 비밀번호 찾기 기능
+
+### BottomActivity, UI 디자인
+* 작업자 : 황진주
+* 전반적인 레이아웃 디자인과 BottomBar를 통한 Fragment 전환과 디자인을 담당
+### 
 
 ## 
 ![Service-2](https://github.com/6pleasant-MBTITalk/MBTI_Talk/assets/139088072/542b1455-bd8f-4994-896a-9b25621db252)
