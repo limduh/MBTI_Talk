@@ -252,7 +252,6 @@ class SignUpActivity : AppCompatActivity() {
 
 
                                     } else {
-                                        Toast.makeText(this, "계정 생성 실패", Toast.LENGTH_SHORT).show()
                                         binding.llLoading.visibility = View.GONE
                                     }
 

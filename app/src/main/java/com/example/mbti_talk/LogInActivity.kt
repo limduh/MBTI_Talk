@@ -259,6 +259,7 @@ class LogInActivity : AppCompatActivity() {
 
                                         val intent =
                                             Intent(this@LogInActivity, MbtiActivity::class.java)
+
                                         startActivity(intent)
                                         finish() // 로그인 화면 종료
                                     }
