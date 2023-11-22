@@ -29,7 +29,7 @@ MBTI 친구 톡의 줄임말인 M친톡은 MBTI를 이용해서 자신의 MBTI�
  <tr>
       <td align="center">장재원</td>
       <td align="center">이도연</td>
-      <td align="center">임도형</td>
+      <td align="center">임두형</td>
       <td align="center">황진주</td>
       <td align="center">이진혁</td>
    </tr>
