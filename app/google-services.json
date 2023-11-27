@@ -13,12 +13,7 @@
           "package_name": "com.example.mbti_talk"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "751430456068-ek5vvgaetu4qof3rk7o8qeaebnid32r8.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
           "current_key": "AIzaSyBXGa4Xjnptw7OpfRUuYgmN4WeN4UJEgPY"
@@ -74,10 +69,6 @@
             "package_name": "nb_.mbti_talk",
             "certificate_hash": "0584494abf1de0f263f7fa264db97a74e5e01e73"
           }
-        },
-        {
-          "client_id": "751430456068-ek5vvgaetu4qof3rk7o8qeaebnid32r8.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
