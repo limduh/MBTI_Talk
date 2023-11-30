@@ -12,6 +12,7 @@ MBTI 친구 톡의 줄임말인 M친톡은 MBTI를 이용해서 자신의 MBTI�
 [영상 보기](https://drive.google.com/file/d/1Kwgsahq4zV414lMSXAA0sujLGkYtqP3u/view)
 
 ### 와이어 프레임
+
 [Figma](https://www.figma.com/file/QXM0DdeFpzehGclrY0fI9p/1?type=design&node-id=0-1&mode=design)
 ![스크린샷 2023-11-21 201338](https://github.com/6pleasant-MBTITalk/MBTI_Talk/assets/139088072/ccbd3536-33ec-4538-98dd-f000a962f044)
 
