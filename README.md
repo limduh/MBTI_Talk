@@ -17,40 +17,6 @@ MBTI 친구 톡의 줄임말인 M친톡은 MBTI를 이용해서 자신의 MBTI�
 
 
 
-## 개발자
-
-<table>
- <tr>
-   <td align="center">팀장</td>
-   <td align="center">부팀장</td>
-   <td align="center">팀원</td>
-   <td align="center">팀원</td>
-   <td align="center">팀원</td>
- </tr>
- <tr>
-      <td align="center">장재원</td>
-      <td align="center">이도연</td>
-      <td align="center">임두형</td>
-      <td align="center">황진주</td>
-      <td align="center">이진혁</td>
-   </tr>
- <tr>
-      <td align="center"><a href="https://github.com/jang0710">깃허브</a></td>
-      <td align="center"><a href="https://github.com/byu-rin">깃허브</a></td>
-      <td align="center"><a href="https://github.com/limduh">깃허브</a></td>
-      <td align="center"><a href="https://github.com/jinjoo1">깃허브</a></td>
-      <td align="center"><a href="https://github.com/jh4016">깃허브</a></td>
-   </tr>
- <tr>
-      <td align="center"><a href="https://velog.io/@janga19">블로그</a></td>
-      <td align="center"><a href="https://velog.io/@simon3397">블로그</a></td>
-      <td align="center"><a href="https://duhyoung-tom.tistory.com/">블로그</a></td>
-      <td align="center"><a href="https://vjinjoov.tistory.com/">블로그</a></td>
-      <td align="center"><a href="https://velog.io/@jh4016">블로그</a></td>
-
-   </tr>
-   </table>
-
 ## 주요 기능
 ### LoginActivity
 * google login 기능과 회원가입, 이메일을 통한 비밀번호 찾기 기능
